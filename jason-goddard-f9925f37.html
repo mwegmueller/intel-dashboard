@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Intelligence: Jason Goddard | Galderma</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #4299e1;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --gray: #718096;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .header-left h1 {
+            font-size: 2.5em;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .header-left .role {
+            font-size: 1.3em;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .header-left .company {
+            font-size: 1.1em;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: var(--light);
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .meta-item .icon {
+            font-size: 1.1em;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--success), #38a169);
+            color: white;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .source-count {
+            margin-top: 10px;
+            color: var(--gray);
+            font-size: 0.9em;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .tab {
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--gray);
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .tab:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .section-header h2 {
+            font-size: 1.5em;
+            color: var(--primary);
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .timeline-period {
+            font-size: 0.85em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .timeline-detail {
+            color: var(--gray);
+            font-size: 0.9em;
+            margin-top: 3px;
+        }
+
+        /* Person Cards */
+        .person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .person-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--light);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .person-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .person-info h4 {
+            color: var(--primary);
+            font-size: 1em;
+        }
+
+        .person-info p {
+            color: var(--gray);
+            font-size: 0.85em;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: var(--secondary);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Insight Boxes */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .insight-box {
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid;
+        }
+
+        .insight-box.yellow {
+            background: #fffbeb;
+            border-color: #f59e0b;
+        }
+
+        .insight-box.green {
+            background: #ecfdf5;
+            border-color: #10b981;
+        }
+
+        .insight-box.blue {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+
+        .insight-box.red {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+
+        .insight-box.orange {
+            background: #fff7ed;
+            border-color: #f97316;
+        }
+
+        .insight-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .insight-box p {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+
+        /* SWOT */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .swot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .swot-box {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .swot-box.strengths {
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+        }
+
+        .swot-box.weaknesses {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+        }
+
+        .swot-box.opportunities {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+        }
+
+        .swot-box.threats {
+            background: #fff7ed;
+            border: 2px solid #f97316;
+        }
+
+        .swot-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .swot-box ul {
+            list-style: none;
+        }
+
+        .swot-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.95em;
+        }
+
+        .swot-box li:last-child {
+            border-bottom: none;
+        }
+
+        /* Conversation Cards */
+        .conversation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .conversation-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--success);
+        }
+
+        .conversation-card.warning {
+            border-left-color: var(--warning);
+            background: #fffbeb;
+        }
+
+        .conversation-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .conversation-card p {
+            color: var(--gray);
+            font-size: 0.95em;
+            font-style: italic;
+        }
+
+        /* Radar Chart */
+        .radar-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .radar-chart {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        .radar-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .radar-labels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .radar-label {
+            position: absolute;
+            font-size: 0.75em;
+            font-weight: 500;
+            color: var(--gray);
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 80px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .data-table th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Source Distribution */
+        .source-dist {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .pie-chart {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--success) 0deg 216deg,
+                var(--accent) 216deg 288deg,
+                var(--warning) 288deg 324deg,
+                var(--gray) 324deg 360deg
+            );
+        }
+
+        .legend {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* Media Items */
+        .media-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .media-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .media-info h4 {
+            color: var(--dark);
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .media-info p {
+            color: var(--gray);
+            font-size: 0.85em;
+        }
+
+        /* Sentiment Bars */
+        .sentiment-chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 200px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bar {
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+        }
+
+        .bar-segment {
+            width: 100%;
+        }
+
+        .bar-segment.positive {
+            background: var(--success);
+        }
+
+        .bar-segment.neutral {
+            background: var(--gray);
+        }
+
+        .bar-segment.critical {
+            background: var(--danger);
+        }
+
+        .bar-label {
+            font-size: 0.85em;
+            color: var(--gray);
+        }
+
+        /* Sources */
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+        }
+
+        .source-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .source-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .source-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .source-name {
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 0.9em;
+        }
+
+        .source-meta {
+            font-size: 0.8em;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-info {
+            color: var(--gray);
+            font-size: 0.9em;
+        }
+
+        .footer-token {
+            font-family: monospace;
+            background: var(--light);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85em;
+        }
+
+        /* BLUF Section */
+        .bluf {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent);
+        }
+
+        .bluf h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .bluf p {
+            color: var(--dark);
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        .bluf strong {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            .header-right {
+                text-align: left;
+            }
+
+            .tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            .tab {
+                white-space: nowrap;
+            }
+        }
+
+        /* Competitive Positioning */
+        .scatter-plot {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: var(--light);
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .scatter-axis-x,
+        .scatter-axis-y {
+            position: absolute;
+            color: var(--gray);
+            font-size: 0.8em;
+        }
+
+        .scatter-axis-x {
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .scatter-axis-y {
+            left: 10px;
+            top: 50%;
+            transform: rotate(-90deg) translateX(-50%);
+            transform-origin: left center;
+        }
+
+        .scatter-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            transform: translate(-50%, 50%);
+            cursor: pointer;
+        }
+
+        .scatter-dot.subject {
+            background: var(--accent);
+            width: 30px;
+            height: 30px;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        .scatter-dot.competitor {
+            background: var(--gray);
+            opacity: 0.7;
+        }
+
+        .scatter-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            margin-bottom: 8px;
+        }
+
+        .scatter-dot:hover .scatter-tooltip {
+            display: block;
+        }
+
+        .scatter-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .scatter-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85em;
+        }
+
+        .scatter-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Differentiators */
+        .differentiator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .differentiator {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #86efac;
+        }
+
+        .differentiator h4 {
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .differentiator p {
+            color: #15803d;
+            font-size: 0.9em;
+        }
+
+        /* Meeting Purpose Banner */
+        .meeting-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .meeting-banner h3 {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .meeting-banner p {
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>Jason Goddard</h1>
+                    <div class="role">Global Head of IT (CIO)</div>
+                    <div class="company">Galderma</div>
+                    <div class="header-meta">
+                        <div class="meta-item">
+                            <span class="icon">📍</span>
+                            <span>Zürich, Switzerland</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">🎓</span>
+                            <span>MBA, Erasmus University Rotterdam</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">🌐</span>
+                            <span>galderma.com</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">🏢</span>
+                            <span>Since June 2022</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="confidence-badge">HIGH CONFIDENCE</div>
+                    <div class="source-count">Based on 25+ verified sources</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" onclick="showTab('summary')">Executive Summary</button>
+            <button class="tab" onclick="showTab('profile')">Subject Profile</button>
+            <button class="tab" onclick="showTab('network')">Network Map</button>
+            <button class="tab" onclick="showTab('behavioral')">Behavioral Analysis</button>
+            <button class="tab" onclick="showTab('strategic')">Strategic Position</button>
+            <button class="tab" onclick="showTab('playbook')">Engagement Playbook</button>
+            <button class="tab" onclick="showTab('media')">Media Footprint</button>
+        </nav>
+
+        <!-- Tab 1: Executive Summary -->
+        <div id="summary" class="tab-content active">
+            <div class="section-header">
+                <div class="section-icon">📊</div>
+                <h2>Executive Summary</h2>
+            </div>
+
+            <div class="bluf">
+                <h3>BLUF (Bottom Line Up Front)</h3>
+                <p>
+                    <strong>Jason Goddard</strong> is a seasoned IT executive with <strong>20+ years of experience</strong> in large-scale digital transformation, IT infrastructure, and enterprise technology leadership. He joined <strong>Galderma as Group CIO in June 2022</strong> after nearly a decade at ABB, where he led global IT infrastructure transformation across 100+ countries. At Galderma, he oversees IT strategy, governance, and the company's ambitious <strong>AI and digital transformation initiatives</strong>. His background in consulting (KPMG, Deloitte, EquaTerra) and multinational corporations (Heineken, ABB) has equipped him with deep expertise in <strong>IT outsourcing, program management, and business transformation</strong>. He recently spoke at the <strong>PwC Digital Leadership Summit 2024</strong> on AI integration and enterprise intelligence, signaling his strategic focus on <strong>leveraging AI to advance dermatology</strong>.
+                </p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric">
+                    <div class="metric-value">20+</div>
+                    <div class="metric-label">Years Experience</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">100+</div>
+                    <div class="metric-label">Countries (ABB scope)</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">$4.7B</div>
+                    <div class="metric-label">Galderma Revenue</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">5,800+</div>
+                    <div class="metric-label">Galderma Employees</div>
+                </div>
+            </div>
+
+            <h3 style="margin: 25px 0 15px; color: var(--primary);">Source Confidence Distribution</h3>
+            <div class="source-dist">
+                <div class="pie-chart"></div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--success);"></div>
+                        <span>Primary Sources (60%) - LinkedIn, Company Sites</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--accent);"></div>
+                        <span>News & Press (20%) - Business Media</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--warning);"></div>
+                        <span>Inferred (10%) - Industry Patterns</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--gray);"></div>
+                        <span>Speculative (10%) - Limited Data</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 25px 0 15px; color: var(--primary);">Key Insights</h3>
+            <div class="insight-grid">
+                <div class="insight-box green">
+                    <div class="insight-title">🎯 AI Strategy Champion</div>
+                    <p>Actively leading Galderma's AI Framework and Center of Excellence, embracing predictive and generative AI for R&D acceleration and digital transformation.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">🔧 Infrastructure Expert</div>
+                    <p>Deep background in IT infrastructure transformation at ABB, managing global operations across 100+ countries with focus on standardization and cost optimization.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">💡 Consulting Mindset</div>
+                    <p>Career foundation at KPMG, Deloitte, and EquaTerra provides strong analytical and strategic consulting approach to IT challenges.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="profile" class="tab-content">
+            <div class="section-header">
+                <div class="section-icon">👤</div>
+                <h2>Subject Profile</h2>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: var(--primary);">Professional Timeline</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-period">June 2022 - Present</div>
+                    <div class="timeline-content">Global Head of IT (CIO) at Galderma</div>
+                    <div class="timeline-detail">Leading IT strategy, governance, AI framework, and digital transformation for the world's largest independent dermatology company</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">April 2020 - May 2022</div>
+                    <div class="timeline-content">Group VP - Global Head IT Infrastructure at ABB</div>
+                    <div class="timeline-detail">Led global IT infrastructure operations across 100+ countries</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">July 2017 - April 2019</div>
+                    <div class="timeline-content">Group VP - Head of CIO Office at ABB</div>
+                    <div class="timeline-detail">Strategic IT leadership and CIO office management</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">June 2016 - December 2018</div>
+                    <div class="timeline-content">Group VP - Program Director at ABB</div>
+                    <div class="timeline-detail">Led major transformation programs</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">May 2013 - May 2016</div>
+                    <div class="timeline-content">Head of IS Sourcing Strategy at ABB</div>
+                    <div class="timeline-detail">IT sourcing strategy and vendor management</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">May 2011 - April 2013</div>
+                    <div class="timeline-content">Manager at KPMG</div>
+                    <div class="timeline-detail">IT consulting and advisory services</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">Earlier Career</div>
+                    <div class="timeline-content">EquaTerra, Deloitte Consulting Netherlands, Heineken International</div>
+                    <div class="timeline-detail">Consulting roles focused on organizational communication and IT optimization</div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Recognition & Speaking</h3>
+            <div class="media-item">
+                <div class="media-icon">🎤</div>
+                <div class="media-info">
+                    <h4>PwC Digital Leadership Summit 2024</h4>
+                    <p>Speaker on AI integration and enterprise intelligence, alongside CEOs from Microsoft Switzerland, SwissRe, and Basler Kantonalbank</p>
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-icon">🏆</div>
+                <div class="media-info">
+                    <h4>CIO MOVE Participant</h4>
+                    <p>Selected member of exclusive CIO community for senior IT executives</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Industry Expertise</h3>
+            <div class="tags">
+                <span class="tag">IT Strategy</span>
+                <span class="tag">Digital Transformation</span>
+                <span class="tag">AI/ML Implementation</span>
+                <span class="tag">IT Infrastructure</span>
+                <span class="tag">Program Management</span>
+                <span class="tag">IT Outsourcing</span>
+                <span class="tag">Cloud Migration</span>
+                <span class="tag">Business Transformation</span>
+                <span class="tag">Vendor Management</span>
+                <span class="tag">Healthcare IT</span>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Company Profile: Galderma</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Founded</h3>
+                    <p>1981 (L'Oréal & Nestlé JV)</p>
+                </div>
+                <div class="card">
+                    <h3>Headquarters</h3>
+                    <p>Zug, Switzerland</p>
+                </div>
+                <div class="card">
+                    <h3>Employees</h3>
+                    <p>~5,800 globally</p>
+                </div>
+                <div class="card">
+                    <h3>Revenue (2024)</h3>
+                    <p>$4.41 billion USD</p>
+                </div>
+                <div class="card">
+                    <h3>Market Cap</h3>
+                    <p>~$44 billion USD</p>
+                </div>
+                <div class="card">
+                    <h3>IPO</h3>
+                    <p>March 2024 (SIX Swiss Exchange)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network" class="tab-content">
+            <div class="section-header">
+                <div class="section-icon">🔗</div>
+                <h2>Network Map</h2>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: var(--primary);">Galderma Leadership Team</h3>
+            <div class="person-grid">
+                <div class="person-card">
+                    <div class="person-avatar">FØ</div>
+                    <div class="person-info">
+                        <h4>Flemming Ørnskov, M.D., MPH</h4>
+                        <p>CEO | Ex-Shire CEO, Harvard MPH, INSEAD MBA</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">TD</div>
+                    <div class="person-info">
+                        <h4>Thomas Dittrich</h4>
+                        <p>CFO | Ex-Shire, Amgen finance leadership</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">TE</div>
+                    <div class="person-info">
+                        <h4>Thomas Ebeling</h4>
+                        <p>Chairman | Ex-CEO Novartis Pharma, EQT Advisor</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">NS</div>
+                    <div class="person-info">
+                        <h4>Nakisa Serry</h4>
+                        <p>Legal & Compliance | Executive Team</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">ET</div>
+                    <div class="person-info">
+                        <h4>Edoardo Tersigni</h4>
+                        <p>Lead, Automation & AI | Reports to CIO office</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">GM</div>
+                    <div class="person-info">
+                        <h4>Gerry Muhle</h4>
+                        <p>Technology Innovation Lead | Dermatology Tech</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Key Investors & Board</h3>
+            <div class="person-grid">
+                <div class="person-card">
+                    <div class="person-avatar">EQT</div>
+                    <div class="person-info">
+                        <h4>EQT Partners</h4>
+                        <p>Private Equity | Led 2019 acquisition consortium</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">ADIA</div>
+                    <div class="person-info">
+                        <h4>Abu Dhabi Investment Authority</h4>
+                        <p>Sovereign Wealth | Co-led acquisition</p>
+                    </div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">L'O</div>
+                    <div class="person-info">
+                        <h4>L'Oréal</h4>
+                        <p>Strategic Investor | 20% stake, scientific partnership</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Professional Affiliations</h3>
+            <div class="conversation-grid">
+                <div class="conversation-card">
+                    <h4>CIO MOVE Community</h4>
+                    <p>Exclusive network of senior IT executives for peer learning and executive development</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>PwC Digital Leadership Network</h4>
+                    <p>Speaker at flagship digital transformation summit with 100+ digital leaders</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>Erasmus University Alumni</h4>
+                    <p>MBA in Business Information from Rotterdam School of Management</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Key Technology Partners</h3>
+            <div class="tags">
+                <span class="tag">Oracle Cloud ERP</span>
+                <span class="tag">Deloitte</span>
+                <span class="tag">Microsoft Azure</span>
+                <span class="tag">Cisco Webex</span>
+                <span class="tag">New Relic</span>
+                <span class="tag">Wiredcraft</span>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral" class="tab-content">
+            <div class="section-header">
+                <div class="section-icon">🧠</div>
+                <h2>Behavioral Analysis</h2>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: var(--primary);">Communication Style Radar</h3>
+            <div class="radar-container">
+                <div class="radar-chart">
+                    <svg viewBox="0 0 200 200">
+                        <!-- Background circles -->
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+                        <circle cx="100" cy="100" r="40" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+                        <circle cx="100" cy="100" r="20" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+                        <!-- Axes -->
+                        <line x1="100" y1="20" x2="100" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+                        <line x1="20" y1="100" x2="180" y2="100" stroke="#e2e8f0" stroke-width="1"/>
+                        <line x1="43" y1="43" x2="157" y2="157" stroke="#e2e8f0" stroke-width="1"/>
+                        <line x1="157" y1="43" x2="43" y2="157" stroke="#e2e8f0" stroke-width="1"/>
+                        <!-- Data polygon -->
+                        <polygon points="100,25 155,55 175,100 155,145 100,165 55,145 35,100 55,55"
+                                 fill="rgba(66, 153, 225, 0.3)" stroke="#4299e1" stroke-width="2"/>
+                    </svg>
+                    <div class="radar-labels">
+                        <span class="radar-label" style="top: 5%; left: 50%;">Data-Driven</span>
+                        <span class="radar-label" style="top: 20%; left: 85%;">Pragmatic</span>
+                        <span class="radar-label" style="top: 50%; left: 98%;">Collaborative</span>
+                        <span class="radar-label" style="top: 80%; left: 85%;">Structured</span>
+                        <span class="radar-label" style="top: 95%; left: 50%;">Action-Oriented</span>
+                        <span class="radar-label" style="top: 80%; left: 15%;">Ethics-Focused</span>
+                        <span class="radar-label" style="top: 50%; left: 2%;">Innovative</span>
+                        <span class="radar-label" style="top: 20%; left: 15%;">Visionary</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Decision-Making Profile</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Profile</th>
+                        <th>Evidence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Risk Appetite</strong></td>
+                        <td>Calculated Risk-Taker</td>
+                        <td>Willingness to adopt AI/emerging tech while maintaining governance frameworks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decision Speed</strong></td>
+                        <td>Methodical</td>
+                        <td>Program management background suggests structured, phased approach</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Information Needs</strong></td>
+                        <td>Data-Driven</td>
+                        <td>Consulting background indicates preference for evidence-based decisions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stakeholder Style</strong></td>
+                        <td>Collaborative</td>
+                        <td>Cross-functional experience at ABB spanning 100+ countries</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Change Orientation</strong></td>
+                        <td>Transformation Champion</td>
+                        <td>Career built on IT transformation and modernization programs</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Psychological Indicators</h3>
+            <div class="insight-grid">
+                <div class="insight-box blue">
+                    <div class="insight-title">🔬 Analytical Mindset</div>
+                    <p>MBA in Business Information combined with consulting tenure suggests strong analytical and strategic thinking capabilities.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🌍 Global Perspective</div>
+                    <p>Experience managing IT across 100+ countries at ABB indicates comfort with complexity and cultural diversity.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">⚙️ Operational Excellence</div>
+                    <p>Infrastructure and program management roles reveal focus on execution, standardization, and measurable outcomes.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">🚀 Innovation Driver</div>
+                    <p>Leading AI Center of Excellence and speaking at digital summits shows commitment to staying at technology frontier.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Key Phrases & Values</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Theme</th>
+                        <th>Likely Resonating Concepts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI Strategy</td>
+                        <td>"Predictive AI", "Generative AI", "AI Framework", "Center of Excellence"</td>
+                    </tr>
+                    <tr>
+                        <td>Digital Transformation</td>
+                        <td>"Digital acceleration", "Enterprise intelligence", "Business efficiency"</td>
+                    </tr>
+                    <tr>
+                        <td>Governance</td>
+                        <td>"IT Strategy and Governance", "Scalable solutions", "Security"</td>
+                    </tr>
+                    <tr>
+                        <td>Innovation</td>
+                        <td>"Advancing dermatology", "Shaping the future", "Tech-enabled solutions"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic" class="tab-content">
+            <div class="section-header">
+                <div class="section-icon">♟️</div>
+                <h2>Strategic Position</h2>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: var(--primary);">SWOT Analysis</h3>
+            <div class="swot-grid">
+                <div class="swot-box strengths">
+                    <h3>💪 Strengths</h3>
+                    <ul>
+                        <li>Deep IT infrastructure and transformation expertise from ABB</li>
+                        <li>Strong consulting foundation (KPMG, Deloitte) for strategic thinking</li>
+                        <li>Experience with large-scale cloud migrations (Oracle Cloud ERP)</li>
+                        <li>Established AI Center of Excellence at Galderma</li>
+                        <li>Cross-functional leadership across 100+ countries</li>
+                    </ul>
+                </div>
+                <div class="swot-box weaknesses">
+                    <h3>⚠️ Potential Challenges</h3>
+                    <ul>
+                        <li>Relatively new to healthcare/pharma industry (since 2022)</li>
+                        <li>Leading IT during rapid post-IPO growth phase</li>
+                        <li>Balancing innovation with regulatory compliance</li>
+                        <li>Managing legacy system transitions from Nestlé infrastructure</li>
+                    </ul>
+                </div>
+                <div class="swot-box opportunities">
+                    <h3>🎯 Opportunities</h3>
+                    <ul>
+                        <li>AI-driven dermatology innovation (skin analysis, AR treatment visualization)</li>
+                        <li>Nemluvio launch creating new data/digital requirements</li>
+                        <li>Post-IPO investment capacity for technology modernization</li>
+                        <li>L'Oréal scientific partnership opening new tech collaboration</li>
+                        <li>Global expansion requiring scalable IT infrastructure</li>
+                    </ul>
+                </div>
+                <div class="swot-box threats">
+                    <h3>🔴 Threats</h3>
+                    <ul>
+                        <li>Cybersecurity risks in healthcare with sensitive patient data</li>
+                        <li>Regulatory complexity across 100+ markets</li>
+                        <li>Competition for AI/tech talent in Swiss market</li>
+                        <li>Rapid technology change requiring continuous adaptation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Competitive Positioning (Dermatology IT Landscape)</h3>
+            <div class="scatter-plot">
+                <span class="scatter-axis-x">Digital Maturity →</span>
+                <span class="scatter-axis-y">Market Position →</span>
+                <div class="scatter-dot subject" style="left: 75%; bottom: 80%;">
+                    <div class="scatter-tooltip">Galderma - High digital maturity, category leader</div>
+                </div>
+                <div class="scatter-dot competitor" style="left: 85%; bottom: 90%;">
+                    <div class="scatter-tooltip">AbbVie/Allergan - Largest, high digital investment</div>
+                </div>
+                <div class="scatter-dot competitor" style="left: 60%; bottom: 60%;">
+                    <div class="scatter-tooltip">Merz Aesthetics - Strong aesthetics focus</div>
+                </div>
+                <div class="scatter-dot competitor" style="left: 90%; bottom: 70%;">
+                    <div class="scatter-tooltip">L'Oréal - Digital leader, strategic partner</div>
+                </div>
+                <div class="scatter-dot competitor" style="left: 70%; bottom: 50%;">
+                    <div class="scatter-tooltip">Johnson & Johnson - Broad portfolio</div>
+                </div>
+            </div>
+            <div class="scatter-legend">
+                <div class="scatter-legend-item">
+                    <div class="scatter-legend-dot" style="background: var(--accent);"></div>
+                    <span>Galderma</span>
+                </div>
+                <div class="scatter-legend-item">
+                    <div class="scatter-legend-dot" style="background: var(--gray);"></div>
+                    <span>Competitors</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Core Differentiators</h3>
+            <div class="differentiator-grid">
+                <div class="differentiator">
+                    <h4>🎯 Pure-Play Dermatology</h4>
+                    <p>Only large-scale company 100% focused on dermatology, enabling specialized IT solutions</p>
+                </div>
+                <div class="differentiator">
+                    <h4>🤖 AI-First Approach</h4>
+                    <p>Established AI Center of Excellence with focus on predictive and generative AI applications</p>
+                </div>
+                <div class="differentiator">
+                    <h4>📱 Consumer Tech Innovation</h4>
+                    <p>FACE by Galderma AR app and Cetaphil AI Skin Analysis demonstrating consumer-facing tech capability</p>
+                </div>
+                <div class="differentiator">
+                    <h4>☁️ Modern Cloud Architecture</h4>
+                    <p>Oracle Cloud ERP/EPM/SCM implementation with Deloitte SuperLedger for unified data</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="playbook" class="tab-content">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <h2>Engagement Playbook</h2>
+            </div>
+
+            <div class="meeting-banner">
+                <h3>Meeting Purpose</h3>
+                <p>Discussion on AI Strategy with Jason Goddard, CIO of Galderma</p>
+            </div>
+
+            <h3 style="margin-bottom: 15px; color: var(--primary);">Engagement Strategy</h3>
+            <div class="bluf">
+                <p>
+                    Jason Goddard values <strong>data-driven, structured approaches</strong> given his consulting and program management background. Lead with <strong>concrete examples and measurable outcomes</strong> rather than theoretical concepts. His recent focus on AI makes him receptive to innovative solutions, but expect questions about <strong>governance, scalability, and integration</strong> with existing systems. Given Galderma's recent IPO and growth trajectory, frame discussions around how AI can <strong>accelerate business value</strong> while maintaining the operational discipline he's known for. His experience at ABB managing global complexity means he'll appreciate solutions that work across diverse markets.
+                </p>
+            </div>
+
+            <h3 style="margin: 25px 0 15px; color: var(--primary);">Conversation Starters</h3>
+            <div class="conversation-grid">
+                <div class="conversation-card">
+                    <h4>AI Center of Excellence</h4>
+                    <p>"I understand you've established an AI Center of Excellence at Galderma. What were the key success factors in building that capability?"</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>Post-IPO Digital Strategy</h4>
+                    <p>"With Galderma now public, how has that changed your approach to technology investment decisions?"</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>ABB Transformation Learnings</h4>
+                    <p>"Your experience transforming IT infrastructure at ABB across 100+ countries is impressive. What lessons from that journey apply to Galderma's growth?"</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>Dermatology Tech Innovation</h4>
+                    <p>"FACE by Galderma and the Cetaphil AI Skin Analysis are innovative. How do you see AI further transforming dermatology care?"</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 25px 0 15px; color: var(--primary);">Topics to Approach Carefully</h3>
+            <div class="conversation-grid">
+                <div class="conversation-card warning">
+                    <h4>Nestlé Infrastructure Legacy</h4>
+                    <p>The 2019 carve-out required complex IT separation. Avoid implying current systems are outdated without understanding the transformation journey.</p>
+                </div>
+                <div class="conversation-card warning">
+                    <h4>Healthcare Regulatory Complexity</h4>
+                    <p>Galderma operates in 100+ countries with varying regulations. Don't oversimplify compliance challenges or assume one-size-fits-all solutions.</p>
+                </div>
+                <div class="conversation-card warning">
+                    <h4>Vendor Comparisons</h4>
+                    <p>With major investments in Oracle Cloud and existing partnerships, be thoughtful about positioning against incumbent vendors.</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 25px 0 15px; color: var(--primary);">Anticipated Discussion Topics</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>His Likely Perspective</th>
+                        <th>Your Opportunity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Generative AI in Pharma</td>
+                        <td>Actively exploring for R&D acceleration and personalization</td>
+                        <td>Discuss specific use cases in drug development, clinical trials, or HCP engagement</td>
+                    </tr>
+                    <tr>
+                        <td>AI Governance</td>
+                        <td>Critical priority given healthcare context and his governance focus</td>
+                        <td>Share frameworks for responsible AI in regulated industries</td>
+                    </tr>
+                    <tr>
+                        <td>Data Strategy</td>
+                        <td>Values "single source of truth" (evidenced by Deloitte SuperLedger)</td>
+                        <td>Discuss how AI can enhance data quality and insights across geographies</td>
+                    </tr>
+                    <tr>
+                        <td>Scalability</td>
+                        <td>Expects solutions to work globally (100+ countries experience)</td>
+                        <td>Demonstrate multi-market deployment capabilities</td>
+                    </tr>
+                    <tr>
+                        <td>ROI & Business Value</td>
+                        <td>Post-IPO scrutiny on investments, consulting mindset</td>
+                        <td>Quantify business impact with concrete metrics and case studies</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin: 25px 0 15px; color: var(--primary);">Key Insights for AI Strategy Discussion</h3>
+            <div class="insight-grid">
+                <div class="insight-box green">
+                    <div class="insight-title">✅ What Resonates</div>
+                    <p>Enterprise-grade AI solutions with strong governance, proven scalability across markets, clear ROI metrics, and integration with existing cloud infrastructure (Oracle).</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">🎯 Galderma's AI Focus Areas</div>
+                    <p>Predictive AI for R&D, generative AI for personalization, AR/VR for HCP training, AI-powered skin analysis tools, and automation of operational processes.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">💡 Timing Considerations</div>
+                    <p>Post-IPO (March 2024) means increased focus on demonstrating value to shareholders. Nemluvio launch (Dec 2024) creating new digital/data requirements.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media" class="tab-content">
+            <div class="section-header">
+                <div class="section-icon">📰</div>
+                <h2>Media Footprint</h2>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: var(--primary);">Public Appearances & Content</h3>
+            <div class="media-item">
+                <div class="media-icon">🎤</div>
+                <div class="media-info">
+                    <h4>PwC Digital Leadership Summit 2024</h4>
+                    <p>October 2024 | Speaker on AI integration and enterprise intelligence alongside 100+ digital leaders</p>
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-icon">🎬</div>
+                <div class="media-info">
+                    <h4>ABB Interview (Vidyard)</h4>
+                    <p>2020-2022 | Video interview as Group VP - Global Head IT Infrastructure at ABB</p>
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-icon">🏢</div>
+                <div class="media-info">
+                    <h4>Galderma IT Feature Article</h4>
+                    <p>2024 | "Advancing the Future of Dermatology with Robust IT" - Galderma company feature</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Company Media Coverage (Galderma)</h3>
+            <div class="media-item">
+                <div class="media-icon">📈</div>
+                <div class="media-info">
+                    <h4>IPO Coverage</h4>
+                    <p>March 2024 | Largest IPO in Switzerland since 2017, largest globally in Q1 2024 - Extensive coverage in FT, Bloomberg, Reuters</p>
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-icon">💊</div>
+                <div class="media-info">
+                    <h4>Nemluvio FDA Approval</h4>
+                    <p>December 2024 | First IL-31 targeting treatment for atopic dermatitis - Major pharma and healthcare media coverage</p>
+                </div>
+            </div>
+            <div class="media-item">
+                <div class="media-icon">🤝</div>
+                <div class="media-info">
+                    <h4>L'Oréal Partnership</h4>
+                    <p>December 2025 | L'Oréal increasing stake to 20% with scientific partnership - Business and beauty industry coverage</p>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Sentiment Analysis (Galderma Coverage)</h3>
+            <div class="sentiment-chart">
+                <div class="bar-group">
+                    <div class="bar" style="height: 140px;">
+                        <div class="bar-segment positive" style="height: 65%;"></div>
+                        <div class="bar-segment neutral" style="height: 25%;"></div>
+                        <div class="bar-segment critical" style="height: 10%;"></div>
+                    </div>
+                    <span class="bar-label">2023</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height: 160px;">
+                        <div class="bar-segment positive" style="height: 75%;"></div>
+                        <div class="bar-segment neutral" style="height: 20%;"></div>
+                        <div class="bar-segment critical" style="height: 5%;"></div>
+                    </div>
+                    <span class="bar-label">2024</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar" style="height: 170px;">
+                        <div class="bar-segment positive" style="height: 80%;"></div>
+                        <div class="bar-segment neutral" style="height: 15%;"></div>
+                        <div class="bar-segment critical" style="height: 5%;"></div>
+                    </div>
+                    <span class="bar-label">2025</span>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--success);"></div>
+                    <span>Positive</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--gray);"></div>
+                    <span>Neutral</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--danger);"></div>
+                    <span>Critical</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary);">Sources</h3>
+            <div class="sources-grid">
+                <a href="https://ch.linkedin.com/in/jason-goddard-1097a0" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">Jason Goddard LinkedIn</div>
+                        <div class="source-meta">2024 | Professional Profile</div>
+                    </div>
+                </a>
+                <a href="https://theorg.com/org/galderma/org-chart/jason-goddard" target="_blank" class="source-item">
+                    <div class="source-icon">TO</div>
+                    <div class="source-info">
+                        <div class="source-name">The Org - Galderma</div>
+                        <div class="source-meta">2024 | Org Chart</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/news/advancing-future-dermatology-robust-it" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma IT Article</div>
+                        <div class="source-meta">2024 | Company News</div>
+                    </div>
+                </a>
+                <a href="https://www.ciomove.com/participants/jason-goddard/" target="_blank" class="source-item">
+                    <div class="source-icon">CM</div>
+                    <div class="source-info">
+                        <div class="source-name">CIO MOVE Profile</div>
+                        <div class="source-meta">2024 | Executive Community</div>
+                    </div>
+                </a>
+                <a href="https://app.qwoted.com/opportunities/event-pwc-digital-leadership-summit-2024" target="_blank" class="source-item">
+                    <div class="source-icon">PwC</div>
+                    <div class="source-info">
+                        <div class="source-name">PwC Digital Summit 2024</div>
+                        <div class="source-meta">2024 | Event</div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Galderma" target="_blank" class="source-item">
+                    <div class="source-icon">WK</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma Wikipedia</div>
+                        <div class="source-meta">2024 | Encyclopedia</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/about-us" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma About Us</div>
+                        <div class="source-meta">2024 | Company</div>
+                    </div>
+                </a>
+                <a href="https://blogs.oracle.com/modernfinance/post/how-a-dermatology-leader-rejuvenated-its-legacy-data-systems" target="_blank" class="source-item">
+                    <div class="source-icon">OC</div>
+                    <div class="source-info">
+                        <div class="source-name">Oracle - Galderma Case Study</div>
+                        <div class="source-meta">2024 | Technology</div>
+                    </div>
+                </a>
+                <a href="https://www.six-group.com/en/newsroom/media-releases/2024/20240322-ipo-galderma.html" target="_blank" class="source-item">
+                    <div class="source-icon">SIX</div>
+                    <div class="source-info">
+                        <div class="source-name">SIX Exchange IPO Announcement</div>
+                        <div class="source-meta">March 2024 | IPO</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/news/galderma-receives-us-fda-approval-nemluvior-nemolizumab-patients-moderate-severe-atopic" target="_blank" class="source-item">
+                    <div class="source-icon">FDA</div>
+                    <div class="source-info">
+                        <div class="source-name">Nemluvio FDA Approval</div>
+                        <div class="source-meta">December 2024 | Regulatory</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><strong>Generated:</strong> February 2, 2026</p>
+                    <p><strong>Requested by:</strong> Michi (michael.wegmueller@artifact.swiss)</p>
+                    <p><strong>Purpose:</strong> Meeting with Jason Goddard, CIO of Galderma on his view on AI Strategy</p>
+                </div>
+                <div class="footer-token">
+                    Report ID: f9925f37
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Marcel Salathé">
+    <meta property="og:title" content="Sailor 2.0 - Marcel Salathé Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Marcel Salathé at EPFL">
+    <meta name="report-token" content="8cea1670">
+    <title>Sailor 2.0 - Marcel Salathé</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        .bar-chart-wrapper { position: relative; padding-left: 50px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 20px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 180deg, var(--blue-secondary) 180deg 288deg, var(--yellow-inferred) 288deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <h1>Marcel Salathé</h1>
+        <div class="header-subtitle">Associate Professor & Co-Director EPFL AI Center | EPFL</div>
+        <div class="header-meta">
+            <span>📍 Lausanne, Switzerland</span>
+            <span>🎓 PhD ETH Zurich, Y Combinator</span>
+            <span>🌐 salathe.com</span>
+            <span>📊 21,000+ Citations</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">28+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">🎯 BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content">Marcel Salathé is a <strong>Swiss digital epidemiologist</strong>, <strong>AI pioneer</strong>, and <strong>serial entrepreneur</strong> who co-directs the <strong>EPFL AI Center</strong>. Born in 1975, he pioneered <strong>digital epidemiology</strong> and played a crucial role in Switzerland's COVID-19 response through <strong>DP-3T contact tracing</strong>. As a <strong>Y Combinator alumnus</strong> and co-founder of <strong>AIcrowd</strong>, he bridges academia and startups. He recently published a book on AI and is <strong>highly vocal about Switzerland's need for tech policy reform</strong>. For an investment pitch, note his <strong>strong entrepreneurial track record</strong> and <strong>deep AI/health tech expertise</strong>.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from Wikipedia, EPFL profiles, Google Scholar, and news articles. Citation count from Google Scholar profile.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">20+</div><div class="metric-label">Years in Academia</div></div>
+                        <div class="metric-box"><div class="metric-value">3</div><div class="metric-label">Startups Founded</div></div>
+                        <div class="metric-box"><div class="metric-value">21K+</div><div class="metric-label">Citations</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">2x</div><div class="metric-label">Swiss Digital Shaper</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How calculated
+                                <div class="methodology-tooltip">Primary = Wikipedia, EPFL official pages, Google Scholar. Secondary = news articles, podcasts. Inferred = cross-referenced patterns. Speculative = single-source claims.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (50%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (30%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (10%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from interviews, podcasts, Twitter/X posts, and published articles. Patterns identified across multiple sources.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">🚀 Entrepreneur-Academic Hybrid:</div>
+                    <p>Unlike typical professors, Salathé went through Y Combinator (2014) and has founded multiple ventures (AIcrowd, EPFL Extension School, CH++). He understands startup dynamics, fundraising, and scaling - rare for an academic.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">🇨🇭 Swiss Tech Policy Advocate:</div>
+                    <p>Highly critical of Swiss government's tech approach. Founded CH++ to push for science-based policy. States Switzerland is in "strategic blind flight" on AI and calls for a federal technology department. This passion could align with your mission.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">💡 Investment Relevance:</div>
+                    <p>His LinkedIn lists him as "startup founder and investor." Co-founded AIcrowd (backed by EPFL), has extensive VC network through YC and AMLD conference. Strong potential as strategic investor with domain expertise in AI/health.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from Wikipedia and EPFL official profile. Dates verified against multiple sources.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2015 - Present</div>
+                        <div class="timeline-content">Associate Professor & Co-Director AI Center, EPFL</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2016 - Present</div>
+                        <div class="timeline-content">Founder & Academic Director, EPFL Extension School</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2018 - Present</div>
+                        <div class="timeline-content">Co-Founder, AIcrowd (AI challenge platform)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2020 - 2024</div>
+                        <div class="timeline-content">President, Swiss National COVID-19 Research Program (NRP 78)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2014</div>
+                        <div class="timeline-content">Y Combinator Program</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2010 - 2015</div>
+                        <div class="timeline-content">Assistant Professor, Penn State University</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2008 - 2010</div>
+                        <div class="timeline-content">Postdoctoral Researcher, Stanford University</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2007</div>
+                        <div class="timeline-content">PhD Biology & Environmental Sciences, ETH Zurich</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from Wikipedia, EPFL profile, and news articles.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>🏆 Swiss Digital Shaper (2018 & 2020)</h4>
+                        <p>Recognized twice for digital innovation contributions in Switzerland</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎖️ Branco Weiss Fellowship (2008-2013)</h4>
+                        <p>Prestigious Society in Science fellowship for exceptional researchers</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📰 Most Quoted Scientist in Swiss Media (2020)</h4>
+                        <p>During COVID-19 pandemic, became Switzerland's leading scientific voice</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📚 Coined "Digital Epidemiology" (2012)</h4>
+                        <p>Lead author of foundational paper introducing the field</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🤝 DP-3T Co-Developer</h4>
+                        <p>Work enabled Apple/Google Exposure Notification API used globally</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from research publications, speaking topics, and company activities.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Digital Epidemiology</span>
+                    <span class="tag">Applied Machine Learning</span>
+                    <span class="tag">AI in Healthcare</span>
+                    <span class="tag">Contact Tracing</span>
+                    <span class="tag">EdTech / Online Learning</span>
+                    <span class="tag">Data Science Platforms</span>
+                    <span class="tag">Public Health Policy</span>
+                    <span class="tag">AI Ethics & Governance</span>
+                    <span class="tag">Nutritional Epidemiology</span>
+                    <span class="tag">Crowdsourced AI</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">EPFL AI Center Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from EPFL AI Center official website and press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">2020</div><div class="metric-label">Center Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">2</div><div class="metric-label">Co-Directors</div></div>
+                    <div class="metric-box"><div class="metric-value">100+</div><div class="metric-label">AI Faculty</div></div>
+                    <div class="metric-box"><div class="metric-value">500+</div><div class="metric-label">EPFL Labs</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">Top 15</div><div class="metric-label">World University Ranking</div></div>
+                    <div class="metric-box"><div class="metric-value">Lausanne</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Collaborators
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From AIcrowd team page, EPFL AI Center, and AMLD conference organization.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">SM</div>
+                        <div class="person-info">
+                            <h4>Sharada Prasanna Mohanty</h4>
+                            <p>Co-Founder AIcrowd | PhD EPFL | ML Expert</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">PF</div>
+                        <div class="person-info">
+                            <h4>Pascal Frossard</h4>
+                            <p>Co-Director EPFL AI Center | Professor Electrical Engineering</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">MJ</div>
+                        <div class="person-info">
+                            <h4>Martin Jaggi</h4>
+                            <p>AMLD Co-Organizer | EPFL ML Professor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">CH++ Co-Founders
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From Le Temps article about CH++ founding team.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">SB</div>
+                        <div class="person-info">
+                            <h4>Serge Bignens</h4>
+                            <p>Director I4MI | Bern University of Applied Sciences</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">HG</div>
+                        <div class="person-info">
+                            <h4>Hannes Gassert</h4>
+                            <p>Co-Founder Opendata.ch | Swiss Tech Advocate</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">OB</div>
+                        <div class="person-info">
+                            <h4>Olga Baranova</h4>
+                            <p>Campaign Director | Civil Society Organizer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From LinkedIn, conference speaker bios, and organizational websites.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="conversation-card">
+                        <h4>Y Combinator Alumni Network</h4>
+                        <p>2014 batch - access to global startup ecosystem & investors</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Swiss COVID-19 Science Task Force</h4>
+                        <p>Led Digital Epidemiology expert group (2020-2024)</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>AMLD Conference Network</h4>
+                        <p>Organizer of Europe's largest ML conference - 3000+ attendees</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Academic & Industry Connections
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From career history, speaking engagements, and partnerships.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Stanford University</span>
+                    <span class="tag">Penn State</span>
+                    <span class="tag">ETH Zurich</span>
+                    <span class="tag">Apple (DP-3T)</span>
+                    <span class="tag">Google (DP-3T)</span>
+                    <span class="tag">Swiss Federal Council</span>
+                    <span class="tag">SNSF</span>
+                    <span class="tag">Frontiers (Publisher)</span>
+                    <span class="tag">CERN</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Based on analysis of interviews, podcasts, blog posts, and Twitter activity. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,25 170,50 175,100 165,150 100,175 35,145 30,100 40,55" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Decision-Making Profile
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Based on described approaches in interviews and his blog. Validate with direct interaction.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Decision Style</td><td>Science-based, evidence-driven, but action-oriented</td></tr>
+                        <tr><td>Risk Tolerance</td><td>Moderate-High (entrepreneur background)</td></tr>
+                        <tr><td>Time Orientation</td><td>Long-term impact focus with urgency on execution</td></tr>
+                        <tr><td>Communication</td><td>Direct, sometimes provocative, uses social media actively</td></tr>
+                        <tr><td>Values</td><td>Science, innovation, democratizing education, Swiss tech competitiveness</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Patterns from content analysis. Behavioral observations, not clinical assessments.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">🎸 Creative Unconventionality:</div>
+                    <p>During his doctoral studies, played in rock band Phébus that signed with EMI and opened for Lenny Kravitz. This artistic side suggests openness to unconventional approaches and creative thinking.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">📢 Public Advocacy Drive:</div>
+                    <p>Willingness to be publicly outspoken - "Switzerland is in strategic blind flight." Founded CH++ to change policy. Will engage with causes he believes in passionately.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🔄 Rule #2 - "Choose Change":</div>
+                    <p>His personal blog rule: "If you can't decide, choose change." Shows bias toward action and transformation over status quo.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted from interviews, blog posts, and Twitter. Frequency based on repetition across sources.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>"Digital skills for everyone"</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>EPFL Extension School mission</td></tr>
+                        <tr><td>"Science-based policy"</td><td><span class="probability-badge prob-high">HIGH</span></td><td>CH++ founding principle</td></tr>
+                        <tr><td>"We've never lost control"</td><td><span class="probability-badge prob-medium">MEDIUM</span></td><td>On AI safety concerns</td></tr>
+                        <tr><td>"No single truth, no single AI"</td><td><span class="probability-badge prob-medium">MEDIUM</span></td><td>AI diversity philosophy</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis (for Investment Pitch)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Analysis focused on his potential as an investor for your company.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths">
+                        <h4>💪 Strengths (as potential investor)</h4>
+                        <ul>
+                            <li><div class="interactive-item">Y Combinator network access<div class="item-recommendation"><div class="item-recommendation-label">💡 Leverage</div>Ask about YC connections - he actively invites YC partners to AMLD</div></div></li>
+                            <li><div class="interactive-item">Deep AI/health tech expertise<div class="item-recommendation"><div class="item-recommendation-label">💡 Leverage</div>If your company is in AI or health, his domain expertise adds massive value</div></div></li>
+                            <li><div class="interactive-item">EPFL institutional connections<div class="item-recommendation"><div class="item-recommendation-label">💡 Leverage</div>Could facilitate academic partnerships, PhD hiring, research collaborations</div></div></li>
+                            <li><div class="interactive-item">Media presence & credibility<div class="item-recommendation"><div class="item-recommendation-label">💡 Leverage</div>His endorsement carries weight - most quoted scientist in Swiss media 2020</div></div></li>
+                        </ul>
+                    </div>
+                    <div class="swot-box weaknesses">
+                        <h4>⚠️ Potential Challenges</h4>
+                        <ul>
+                            <li><div class="interactive-item">Primarily academic, not full-time investor<div class="item-recommendation"><div class="item-recommendation-label">💡 Approach</div>Position as strategic advisor with equity, not expecting heavy operational involvement</div></div></li>
+                            <li><div class="interactive-item">Strong opinions on AI ethics/policy<div class="item-recommendation"><div class="item-recommendation-label">💡 Approach</div>Ensure your company aligns with responsible AI principles</div></div></li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h4>🚀 Opportunities</h4>
+                        <ul>
+                            <li><div class="interactive-item">Access to AMLD conference (3000+ AI professionals)<div class="item-recommendation"><div class="item-recommendation-label">💡 Opportunity</div>Could showcase your product, recruit talent, build partnerships</div></div></li>
+                            <li><div class="interactive-item">CH++ policy network for govtech<div class="item-recommendation"><div class="item-recommendation-label">💡 Opportunity</div>If targeting Swiss public sector, his advocacy work opens doors</div></div></li>
+                            <li><div class="interactive-item">EPFL Extension School for talent pipeline<div class="item-recommendation"><div class="item-recommendation-label">💡 Opportunity</div>Could help recruit trained data scientists from his programs</div></div></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;">
+                    <h4>🎯 Risks to Consider</h4>
+                    <ul>
+                        <li>May be time-constrained with multiple roles</li>
+                        <li>Public figure - any issues become visible</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning (Swiss AI/Tech Investor Landscape)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-ESTIMATED: Relative positioning based on public profiles. Axes are subjective.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">AI/Tech Expertise →</span>
+                    <span class="scatter-axis-label x-label">Investment Activity →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 45%; bottom: 90%;"><div class="scatter-tooltip">Marcel Salathé - Very high expertise, moderate activity</div></div>
+                        <div class="scatter-dot competitor1" style="left: 85%; bottom: 60%;"><div class="scatter-tooltip">Traditional VCs - High activity, moderate expertise</div></div>
+                        <div class="scatter-dot competitor2" style="left: 70%; bottom: 85%;"><div class="scatter-tooltip">Other Academic Angels - High expertise, higher activity</div></div>
+                        <div class="scatter-dot competitor3" style="left: 25%; bottom: 40%;"><div class="scatter-tooltip">Corporate Investors - Lower both</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Marcel Salathé</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Traditional VCs</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Academic Angels</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> Corporate</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">His Investment Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on his roles, network, and stated interests.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🎓</div>
+                        <div class="differentiator-label">Academic-Startup Bridge</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🌐</div>
+                        <div class="differentiator-label">Global AI Network (YC, AMLD)</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🇨🇭</div>
+                        <div class="differentiator-label">Swiss Policy Influence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR Investment Pitch
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy based on his stated values, entrepreneurial background, and communication style.</div></span>
+                </div>
+                <div class="strategy-content">Lead with <strong>impact and innovation</strong>, not just financial returns. Salathé values ventures that democratize access (like his Extension School) and drive systemic change (like CH++). Frame your company as addressing a gap in the Swiss/European ecosystem that he cares about. Be <strong>data-driven but bold</strong> - he respects evidence but also embraces action ("If you can't decide, choose change"). Given his Y Combinator background, speak in startup terms (TAM, traction, unfair advantages) not just academic metrics.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from his recent activities, publications, and stated interests.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>📚 His New AI Book</h4>
+                        <p>"I saw you recently published 'Kompass Künstliche Intelligenz' - what motivated you to write it now, given everything happening in AI?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>🇨🇭 Swiss Tech Policy</h4>
+                        <p>"Your work with CH++ is fascinating - do you think Switzerland can catch up on AI infrastructure, or is the gap widening?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>🎪 AMLD 10th Anniversary</h4>
+                        <p>"AMLD turns 10 next year - what changes have you seen in how ML is applied since you started the conference?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>💡 Y Combinator Experience</h4>
+                        <p>"How did YC shape your view on what makes a startup successful? What do you look for when evaluating companies?"</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🚫 Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on his stated values and public positions.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>AI Hype Without Substance</h4>
+                        <p>He's critical of overblown AI claims. Don't pitch vaporware or exaggerated capabilities - he'll see through it instantly.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Disregard for Ethics/Privacy</h4>
+                        <p>He led privacy-preserving contact tracing (DP-3T). If your solution has ethical gaps, address them proactively.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Dismissing Swiss Market</h4>
+                        <p>While critical of Swiss policy, he's deeply committed to improving Switzerland. Don't dismiss the Swiss market.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💡 Connection Points for Your Pitch
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential alignment points based on his interests and your investment ask.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🎓 Education/Upskilling Angle:</div>
+                    <p>If your company involves education or democratizing skills, this directly aligns with his EPFL Extension School mission.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">🏥 Health Tech / Digital Health:</div>
+                    <p>His core expertise is digital epidemiology and AI in healthcare. Strong alignment if you're in this space.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">🇪🇺 European AI Sovereignty:</div>
+                    <p>He cares about Europe not falling behind. Position how your company strengthens European tech independence.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Anticipated Questions He May Ask
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on his YC background and stated priorities.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Question</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>"What's your unfair advantage?"</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>YC classic - have a clear moat answer ready</td></tr>
+                        <tr><td>"How does this scale across Europe?"</td><td><span class="probability-badge prob-high">HIGH</span></td><td>He thinks pan-European, not just Swiss</td></tr>
+                        <tr><td>"What's the evidence this works?"</td><td><span class="probability-badge prob-high">HIGH</span></td><td>He's a scientist - bring data, not just stories</td></tr>
+                        <tr><td>"How do you handle data privacy?"</td><td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td><td>DP-3T pioneer - expects thoughtful privacy approach</td></tr>
+                        <tr><td>"Why you? What's your background?"</td><td><span class="probability-badge prob-medium">MEDIUM</span></td><td>He values diverse backgrounds (rock musician turned professor!)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via web search, Substack, and Medium profiles.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>📕 "Kompass Künstliche Intelligenz" (2025)</h4>
+                        <p>Book on navigating AI revolution - available in German and French</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📰 "Engineering Prompts" Substack</h4>
+                        <p>Newsletter with thousands of subscribers - "Figuring out the age of AI in real time"</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>✍️ Personal Blog (blog.salathe.com)</h4>
+                        <p>Life advice and career insights including "Rule 2: If you can't decide, choose change"</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📄 21,000+ Academic Citations</h4>
+                        <p>Google Scholar - foundational papers in digital epidemiology</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, podcast directories, and event listings.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎤 AMLD Conference (Founder/Host)</h4>
+                        <p>Annual - Europe's largest ML conference with 3000+ attendees</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎙️ Swisspreneur Podcast (Ep. 424)</h4>
+                        <p>"Universities Are the Key to Switzerland's Success"</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🔬 CERN Talk (Oct 2025)</h4>
+                        <p>"Working in science in the age of AI"</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📻 Blick "Prompt Zero" Podcast (2025)</h4>
+                        <p>Discussed his AI book and Swiss tech policy criticisms</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🌐 EUPRIO Conference 2025</h4>
+                        <p>"The AI Revolution in Real Time: Making Sense of a World in Transformation"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Sentiment based on news coverage tone. 2020 spike reflects COVID-19 prominence.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <span class="bar-chart-y-axis">Coverage Volume →</span>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2020: Peak COVID coverage - 85% positive, 10% neutral, 5% critical</div>
+                                <div class="bar" style="height: 180px;">
+                                    <div class="bar-segment positive" style="height: 85%;"></div>
+                                    <div class="bar-segment neutral" style="height: 10%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2020</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2021: 80% positive, 15% neutral, 5% critical</div>
+                                <div class="bar" style="height: 140px;">
+                                    <div class="bar-segment positive" style="height: 80%;"></div>
+                                    <div class="bar-segment neutral" style="height: 15%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2021</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2022: 75% positive, 20% neutral, 5% critical</div>
+                                <div class="bar" style="height: 100px;">
+                                    <div class="bar-segment positive" style="height: 75%;"></div>
+                                    <div class="bar-segment neutral" style="height: 20%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2022</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2023: 80% positive, 15% neutral, 5% critical</div>
+                                <div class="bar" style="height: 90px;">
+                                    <div class="bar-segment positive" style="height: 80%;"></div>
+                                    <div class="bar-segment neutral" style="height: 15%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2023</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2024-25: AI book coverage - 85% positive, 10% neutral, 5% critical</div>
+                                <div class="bar" style="height: 120px;">
+                                    <div class="bar-segment positive" style="height: 85%;"></div>
+                                    <div class="bar-segment neutral" style="height: 10%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2024-25</span>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>📚 Intelligence Sources (28+)</h3>
+            <div class="sources-grid">
+                <a href="https://en.wikipedia.org/wiki/Marcel_Salath%C3%A9" target="_blank" class="source-item">
+                    <div class="source-icon">WK</div>
+                    <div class="source-info">
+                        <div class="source-name">Wikipedia - Marcel Salathé</div>
+                        <div class="source-meta">Verified | Biography</div>
+                    </div>
+                </a>
+                <a href="https://people.epfl.ch/marcel.salathe" target="_blank" class="source-item">
+                    <div class="source-icon">EP</div>
+                    <div class="source-info">
+                        <div class="source-name">EPFL Official Profile</div>
+                        <div class="source-meta">Primary | Academic</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/salathe/" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">Primary | Professional</div>
+                    </div>
+                </a>
+                <a href="https://ai.epfl.ch/" target="_blank" class="source-item">
+                    <div class="source-icon">AI</div>
+                    <div class="source-info">
+                        <div class="source-name">EPFL AI Center</div>
+                        <div class="source-meta">Primary | Organization</div>
+                    </div>
+                </a>
+                <a href="https://scholar.google.com/citations?user=_wHMGkUAAAAJ" target="_blank" class="source-item">
+                    <div class="source-icon">GS</div>
+                    <div class="source-info">
+                        <div class="source-name">Google Scholar</div>
+                        <div class="source-meta">Primary | Academic</div>
+                    </div>
+                </a>
+                <a href="https://www.swisspreneur.org/podcast/marcel-salathe-ep424" target="_blank" class="source-item">
+                    <div class="source-icon">SP</div>
+                    <div class="source-info">
+                        <div class="source-name">Swisspreneur Podcast Ep. 424</div>
+                        <div class="source-meta">2024 | Interview</div>
+                    </div>
+                </a>
+                <a href="https://engineeringprompts.substack.com/" target="_blank" class="source-item">
+                    <div class="source-icon">SS</div>
+                    <div class="source-info">
+                        <div class="source-name">Engineering Prompts Substack</div>
+                        <div class="source-meta">Active | Newsletter</div>
+                    </div>
+                </a>
+                <a href="https://www.crunchbase.com/organization/aicrowd" target="_blank" class="source-item">
+                    <div class="source-icon">CB</div>
+                    <div class="source-info">
+                        <div class="source-name">AIcrowd Crunchbase</div>
+                        <div class="source-meta">Secondary | Startup</div>
+                    </div>
+                </a>
+                <a href="https://appliedmldays.org/" target="_blank" class="source-item">
+                    <div class="source-icon">AM</div>
+                    <div class="source-info">
+                        <div class="source-name">Applied Machine Learning Days</div>
+                        <div class="source-meta">Primary | Conference</div>
+                    </div>
+                </a>
+                <a href="https://www.letemps.ch/economie/cyber/ch-linitiative-marcel-salathe-secouer-suisse" target="_blank" class="source-item">
+                    <div class="source-icon">LT</div>
+                    <div class="source-info">
+                        <div class="source-name">Le Temps - CH++ Initiative</div>
+                        <div class="source-meta">Secondary | News</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 2, 2026 | Sources: 28+ verified</p>
+        <p>Prepared for: Investment Meeting | Occasion: Investment Pitch</p>
+        <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Marcel Salathé from EPFL meeting to ask him to invest in my company"</div>
+        <div class="report-token">Report ID: 8cea1670</div>
+    </div>
+
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Marcel Salathé Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>

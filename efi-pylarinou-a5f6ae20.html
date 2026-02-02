@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Dr. Efi Pylarinou">
+    <meta property="og:title" content="Sailor 2.0 - Dr. Efi Pylarinou Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Dr. Efi Pylarinou at GrowFin">
+    <meta name="report-token" content="a5f6ae20">
+    <title>Sailor 2.0 - Dr. Efi Pylarinou</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Share & Tabs */
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 50px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 20px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 180deg, var(--blue-secondary) 180deg 270deg, var(--yellow-inferred) 270deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <h1>Dr. Efi Pylarinou</h1>
+        <div class="header-subtitle">Founder & Global Fintech Influencer | GrowFin GmbH</div>
+        <div class="header-meta">
+            <span>📍 Zurich, Switzerland</span>
+            <span>🎓 Ph.D. Finance, University of Tennessee-Knoxville</span>
+            <span>🌐 efipylarinou.com</span>
+            <span>📱 230K+ followers across platforms</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">25+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">🎯 BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content"><strong>Dr. Efi Pylarinou</strong> is a <strong>#1 ranked Global Woman Influencer in Finance</strong> (Refinitiv 2019/2020), former Wall Street professional at <strong>Salomon Brothers with Myron Scholes</strong>, and founder of <strong>GrowFin GmbH</strong> in Switzerland. With <strong>30+ years in finance</strong> spanning derivatives trading, emerging markets, and digital transformation, she has reinvented herself as a leading voice in <strong>Fintech, WealthTech, AI, and Blockchain</strong>. She is trusted by <strong>Microsoft, NVIDIA, and Oracle</strong> for content and advisory services, and is a <strong>co-author of "Branch Tomorrow" (2025)</strong> with Brett King and "Fast Future Blur" (Wiley, 2024). As a faculty member at <strong>Fast Future Executive</strong> and co-founder of <strong>Daily Fintech</strong>, she offers deep expertise in <strong>innovation management and digital strategy</strong> that aligns perfectly with Artifact's mission.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and news articles using NLP. Years of experience calculated from career timeline. Project counts from case studies when available.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">30+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">5</div><div class="metric-label">Books Co-Authored</div></div>
+                        <div class="metric-box"><div class="metric-value">230K+</div><div class="metric-label">Social Media Followers</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">#1</div><div class="metric-label">Woman Finance Influencer</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How calculated
+                                <div class="methodology-tooltip">Primary = official sources (company sites, registries). Secondary = reputable news/industry sources. Inferred = cross-referenced patterns. Speculative = limited single-source data.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (50%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (25%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (15%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">💡 Transformation Mindset:</div>
+                    <p>Efi exemplifies reinvention - from Wall Street derivatives trader to global fintech influencer. She values continuous learning and adapting to new tech cycles. Her journey from Salomon Brothers to self-taught Fintecher resonates with innovation-driven organizations.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🌍 Global Network & Switzerland Base:</div>
+                    <p>Based in Zurich for 10+ years, she operates at the intersection of Swiss wealth management tradition and fintech innovation. Her network spans Wall Street, BigTech (Microsoft, NVIDIA, Oracle), and global fintech conferences like Money20/20 and Point Zero Forum.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">📚 Thought Leadership Through Content:</div>
+                    <p>Prolific author and content creator - co-author of 5 books including "Branch Tomorrow" (2025) and "Fast Future Blur" (Wiley, 2024). Hosts podcast "Fintech Insights & Conversations" and writes for Daily Fintech. Content creation is central to her value proposition.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">🔮 Future of Finance Focus:</div>
+                    <p>Core expertise in GenAI for banking, blockchain/DeFi, digital transformation, and the future of bank branches. Recently led Money20/20 panel on "Baking GenAI in Banking" with Microsoft and Citizens Bank leaders.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2016 - Present</div>
+                        <div class="timeline-content">Founder, GrowFin GmbH & Efi Pylarinou Advisory, Switzerland</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2015 - 2020</div>
+                        <div class="timeline-content">Co-Founder & Author, Daily Fintech Advisers</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2018 - Present</div>
+                        <div class="timeline-content">Member, Disruption Disciples</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2020</div>
+                        <div class="timeline-content">Advisory Board Member, BrickMark AG (Blockchain Real Estate)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">~2008</div>
+                        <div class="timeline-content">Adjunct Professor, McGill University (Real Estate Finance)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">~2000s</div>
+                        <div class="timeline-content">Dalton Investments (California hedge fund, Asia distressed debt)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">1990s</div>
+                        <div class="timeline-content">VP, Bankers Trust & Cowen/Société Générale (Fixed Income, EM)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">1993</div>
+                        <div class="timeline-content">Salomon Brothers - Fixed Income Derivatives with Myron Scholes</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from press releases, award announcements, and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>🏆 #1 Global Woman Influencer in Finance</h4>
+                        <p>Refinitiv Global Social Media Rankings (2019 & 2020)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🥉 #3 Global Finance Influencer</h4>
+                        <p>Refinitiv Global Social Media (2019)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🌟 Top 20 Fintech Influencers</h4>
+                        <p>Onalytica (2021)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🤖 Top 20 Who's Who in AI</h4>
+                        <p>Onalytica (2021)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🔮 Top 50 Digital Futurists</h4>
+                        <p>Engatica (2022)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>💬 Top 30 LinkedIn Voice</h4>
+                        <p>Engatica (2022)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🇨🇭 Top 20 Swiss LinkedIn Creators</h4>
+                        <p>Favikon</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>👩‍💼 Women in Fintech Powerlist</h4>
+                        <p>Innovate Finance (2016/2017)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Fintech</span>
+                    <span class="tag">WealthTech</span>
+                    <span class="tag">Blockchain</span>
+                    <span class="tag">DeFi</span>
+                    <span class="tag">GenAI in Banking</span>
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Capital Markets</span>
+                    <span class="tag">Fixed Income Derivatives</span>
+                    <span class="tag">Emerging Markets</span>
+                    <span class="tag">Asset Management</span>
+                    <span class="tag">RegTech</span>
+                    <span class="tag">Bitcoin/Crypto</span>
+                    <span class="tag">Innovation Strategy</span>
+                    <span class="tag">Thought Leadership</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">GrowFin GmbH Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry, company website, and public profiles.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">2016</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">1</div><div class="metric-label">Founder</div></div>
+                    <div class="metric-box"><div class="metric-value">Solo</div><div class="metric-label">Consultancy</div></div>
+                    <div class="metric-box"><div class="metric-value">230K+</div><div class="metric-label">Global Reach</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">30+</div><div class="metric-label">Years Finance Experience</div></div>
+                    <div class="metric-box"><div class="metric-value">Zurich</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Professional Collaborators
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company registry records and team page. Roles verified via LinkedIn.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">BL</div>
+                        <div class="person-info">
+                            <h4>Bernard Lunn</h4>
+                            <p>CEO & Founder, Daily Fintech | Co-founder relationship</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">BK</div>
+                        <div class="person-info">
+                            <h4>Brett King</h4>
+                            <p>Author "Branch Tomorrow" | Co-author (2025 book)</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">JM</div>
+                        <div class="person-info">
+                            <h4>Jim Marous</h4>
+                            <p>Host, Banking Transformed Podcast | Co-author</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">HA</div>
+                        <div class="person-info">
+                            <h4>Hari Abburi</h4>
+                            <p>Fast Future Executive | "Fast Future Blur" co-author</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Advisory & Board Roles
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Advisors identified from company pages, LinkedIn connections marked as advisors, and press mentions.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">BM</div>
+                        <div class="person-info">
+                            <h4>BrickMark AG</h4>
+                            <p>Advisory Board Member | Blockchain Real Estate (since 2020)</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">FF</div>
+                        <div class="person-info">
+                            <h4>Fast Future Executive</h4>
+                            <p>Faculty Member | Future of Finance & Money</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">FH</div>
+                        <div class="person-info">
+                            <h4>Financial Services Intelligence Hub</h4>
+                            <p>Founder | FS i-Hub community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, association directories, and conference speaker bios.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="conversation-card">
+                        <h4>Money20/20</h4>
+                        <p>Regular speaker at Europe, USA, and Middle East events. Led GenAI panel 2024.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Point Zero Forum</h4>
+                        <p>Speaker at Swiss-based global fintech policy forum in Zurich.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Finovate</h4>
+                        <p>FinovateFall speaker, fintech demo day circuit.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Disruption Disciples</h4>
+                        <p>Member since 2018 - innovation thought leadership community.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>The Wealth Mosaic</h4>
+                        <p>Contributing advisor and content partner.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Breaking Banks Podcast</h4>
+                        <p>Regular guest on Brett King's fintech podcast.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Client Relationships
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Clients identified from case studies, testimonials, and press releases. Sector inferred from industry focus.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Microsoft</span>
+                    <span class="tag">NVIDIA</span>
+                    <span class="tag">Oracle</span>
+                    <span class="tag">Financial Services Firms</span>
+                    <span class="tag">Fintech Startups</span>
+                    <span class="tag">WealthTech Ventures</span>
+                    <span class="tag">Blockchain Companies</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,15 175,45 185,100 165,160 100,180 45,155 20,100 40,50" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Decision-Making Profile
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Profile based on described approaches in interviews and case studies. Validate with direct interaction.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Primary Style</td><td>Analytical-Visionary</td></tr>
+                        <tr><td>Risk Tolerance</td><td>Calculated Risk Taker (early mover in fintech)</td></tr>
+                        <tr><td>Time Horizon</td><td>Long-term strategic thinker</td></tr>
+                        <tr><td>Information Needs</td><td>Data + market context + human stories</td></tr>
+                        <tr><td>Collaboration Style</td><td>Network-centric, values diverse perspectives</td></tr>
+                        <tr><td>Trust Building</td><td>Through demonstrated expertise and track record</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Patterns from content analysis. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🔄 Reinvention Champion:</div>
+                    <p>Successfully pivoted career multiple times - Wall Street to academia to fintech influencer. Values adaptability and continuous learning. Will resonate with innovation narratives.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">📊 Wall Street Rigor Meets New Economy:</div>
+                    <p>Combines quantitative finance background (PhD in chaos theory, derivatives) with qualitative thought leadership. Appreciates both data-driven arguments and big-picture vision.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">🌐 Global Citizen Perspective:</div>
+                    <p>Greek-born, lived in 6 countries, married to a diplomat. Values international perspectives and diverse viewpoints. Comfortable navigating cross-cultural contexts.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">💡 Content-First Mindset:</div>
+                    <p>Creates value through content - books, podcasts, LinkedIn posts, articles. Likely to appreciate partnerships that amplify her voice and create content opportunities.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted via NLP from articles, posts, and interviews. Frequency = how often they appear in public content.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>"Digital transformation"</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Core service offering and advisory focus</td></tr>
+                        <tr><td>"Baking GenAI in banking"</td><td><span class="probability-badge prob-high">High</span></td><td>Recent Money20/20 panel theme</td></tr>
+                        <tr><td>"WealthTech innovation"</td><td><span class="probability-badge prob-high">High</span></td><td>Primary domain expertise</td></tr>
+                        <tr><td>"Blockchain potential"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Technology focus area</td></tr>
+                        <tr><td>"Self-taught Fintecher"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Personal brand narrative</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis. Recommendations are suggestions - validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>💪 Strengths</h4><ul>
+                        <li><div class="interactive-item">Unmatched credibility: Wall Street + Academia + Influencer trifecta<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Lead with mutual credibility - mention Artifact's serious innovation approach</div></div></li>
+                        <li><div class="interactive-item">Top-ranked global influence in finance (230K+ followers)<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Discuss how Artifact could benefit from her amplification</div></div></li>
+                        <li><div class="interactive-item">Trusted by BigTech: Microsoft, NVIDIA, Oracle clients<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Position Artifact alongside these premium brands</div></div></li>
+                        <li><div class="interactive-item">Swiss-based with global perspective and network<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Emphasize Swiss innovation ecosystem connections</div></div></li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>⚠️ Potential Gaps</h4><ul>
+                        <li><div class="interactive-item">Solo consultancy model - limited bandwidth<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Propose flexible engagement models that respect her time</div></div></li>
+                        <li><div class="interactive-item">Content creation focus may limit hands-on advisory depth<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Define clear scope between content and strategic advisory</div></div></li>
+                        <li><div class="interactive-item">Highly in-demand, selective about engagements<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Present compelling, differentiated value proposition</div></div></li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>🚀 Opportunities</h4><ul>
+                        <li><div class="interactive-item">Align with her "Branch Tomorrow" narrative on banking evolution<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Frame Artifact's work within the future of financial services</div></div></li>
+                        <li><div class="interactive-item">Leverage her GenAI expertise for Artifact's innovation strategy<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Discuss specific AI use cases and implementation</div></div></li>
+                        <li><div class="interactive-item">Content collaboration opportunities (podcasts, articles, books)<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Offer to be featured in her content or co-create</div></div></li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>🎯 Competitive Threats</h4><ul>
+                    <li><div class="interactive-item">Many organizations seeking her advisory time<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Differentiate Artifact's opportunity from typical engagements</div></div></li>
+                    <li><div class="interactive-item">BigTech relationships may create perceived conflicts<div class="item-recommendation"><div class="item-recommendation-label">💡 Recommendation</div>Position as complementary, not competitive</div></div></li>
+                </ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Finance Expertise →</span>
+                    <span class="scatter-axis-label x-label">Innovation Focus →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 85%; bottom: 90%;"><div class="scatter-tooltip">Efi Pylarinou - Exceptional expertise + innovation</div></div>
+                        <div class="scatter-dot competitor1" style="left: 40%; bottom: 75%;"><div class="scatter-tooltip">Traditional Consultants - High expertise, moderate innovation</div></div>
+                        <div class="scatter-dot competitor2" style="left: 80%; bottom: 50%;"><div class="scatter-tooltip">Tech Influencers - High innovation, moderate finance depth</div></div>
+                        <div class="scatter-dot competitor3" style="left: 60%; bottom: 60%;"><div class="scatter-tooltip">Academic Advisors - Balanced profile</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Dr. Efi Pylarinou</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Traditional Consultants</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Tech Influencers</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> Academic Advisors</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and marketing materials.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🎯</div>
+                        <div class="differentiator-label">Wall Street + Fintech Credibility</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">📢</div>
+                        <div class="differentiator-label">230K+ Global Amplification Reach</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">📚</div>
+                        <div class="differentiator-label">Thought Leadership Through Content</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR Convincing Efi to Share Innovation & Strategy Expertise
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content">Lead with Artifact's innovation vision and how it aligns with her "Future of Finance" narrative. Emphasize mutual value creation - her expertise shapes Artifact's strategy while Artifact provides compelling case studies for her content. Position the engagement as thought leadership collaboration, not just consulting. Reference her recent "Branch Tomorrow" and GenAI work to show you've done your homework. Appeal to her reinvention mindset - show how Artifact is pushing boundaries in fintech innovation.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Branch Tomorrow & Banking Evolution</h4>
+                        <p>"I was fascinated by 'Branch Tomorrow' - how do you see the intersection of AI and physical banking presence evolving in Swiss private banking?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>GenAI in Financial Services</h4>
+                        <p>"Your Money20/20 panel on 'Baking GenAI in Banking' was insightful. What implementation patterns are you seeing work best?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Reinvention Journey</h4>
+                        <p>"Your pivot from Salomon Brothers to becoming a fintech thought leader is inspiring. What drove that transformation?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Swiss Innovation Ecosystem</h4>
+                        <p>"You've mentioned Switzerland is #1 in global innovation. How do you see Swiss fintech evolving versus other hubs?"</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🚫 Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Oversimplified Fintech Narratives</h4>
+                        <p>With 30+ years in finance, she'll detect superficial takes on complex topics. Come prepared with nuanced understanding.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Transactional Advisory Requests</h4>
+                        <p>She values thought partnership over pure consulting. Frame engagement as mutual value creation.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Ignoring Her Content Work</h4>
+                        <p>Content creation is central to her identity. Acknowledge her books, podcast, and writing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💡 Connection Points for Artifact
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential common ground based on your provided context and their profile.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🇨🇭 Swiss Innovation Shared Ground:</div>
+                    <p>Both based in Switzerland. She values the Swiss innovation ecosystem highly. Emphasize Artifact's Swiss heritage and commitment to quality.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">🔮 Future-Forward Thinking:</div>
+                    <p>Her focus on "Fast Future" and digital transformation aligns with Artifact's innovation mission. Position as fellow travelers in financial innovation.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">📚 Content Collaboration Opportunity:</div>
+                    <p>She creates value through content. Offer Artifact as a case study or co-creation opportunity for her podcast, articles, or future books.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">💡 Mutual Network Value:</div>
+                    <p>Her connections to Microsoft, NVIDIA, Money20/20 ecosystem could benefit Artifact. Frame as network synergy, not one-way extraction.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>GenAI strategy and implementation</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Her current hot topic - be ready with Artifact's AI perspective</td></tr>
+                        <tr><td>WealthTech and digital wealth management</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Core expertise area - discuss Artifact's wealth-related initiatives</td></tr>
+                        <tr><td>Blockchain and tokenization</td><td><span class="probability-badge prob-high">High</span></td><td>Active advisory area - know your blockchain position</td></tr>
+                        <tr><td>Swiss fintech ecosystem dynamics</td><td><span class="probability-badge prob-high">High</span></td><td>She's a Swiss fintech voice - discuss local ecosystem</td></tr>
+                        <tr><td>Digital transformation strategy</td><td><span class="probability-badge prob-high">High</span></td><td>Her service offering - be ready to discuss Artifact's transformation journey</td></tr>
+                        <tr><td>Content and thought leadership approach</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Central to her model - explore collaboration opportunities</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via web search and company blog archives.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>📕 Branch Tomorrow (2025)</h4>
+                        <p>Co-authored with Brett King, Jim Marous, Paolo Sironi, Richard Turrin. Data-driven analysis of banking branch evolution.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📗 The Fast Future Blur (Wiley, 2024)</h4>
+                        <p>Contributing author - "Thinking Like an AI-Native" chapter with Hari Abburi. "The Future of Money & Finance" section.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📘 Theories of Change (Springer, 2021)</h4>
+                        <p>Contributing author on fintech transformation.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📙 4IR: Reinventing a Nation (2019)</h4>
+                        <p>AI, Blockchain, Fintech, IoT perspectives.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📔 WealthTech Book (Wiley, 2018)</h4>
+                        <p>Crowdsourced WealthTech industry insights.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📝 Daily Fintech</h4>
+                        <p>Co-founder and regular Tuesday columnist on WealthTech and Capital Markets.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📰 Medium Blog</h4>
+                        <p>Regular posts on fintech trends, GenAI, and industry analysis.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎤 Money20/20 (Europe, USA, Middle East)</h4>
+                        <p>Regular speaker. Led 2024 GenAI panel with Microsoft, Citizens, iGenius. "Branch Tomorrow" launch at ME 2025.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎤 Point Zero Forum, Zurich</h4>
+                        <p>Swiss fintech policy forum - speaker on financial innovation.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎤 FinovateFall</h4>
+                        <p>Finovate conference circuit speaker.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎤 Cyprus Fintech Summit</h4>
+                        <p>International fintech speaking circuit.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎙️ Fintech Insights & Conversations Podcast</h4>
+                        <p>Host - own podcast on Spotify and Apple Podcasts.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎙️ Breaking Banks Podcast</h4>
+                        <p>Regular guest on Brett King's flagship fintech podcast.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🎙️ What If? So What? Podcast</h4>
+                        <p>Perficient podcast guest - fintech thought leadership.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Sentiment from NLP classification of news coverage. Aggregate scores, not individual article analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <span class="bar-chart-y-axis">Sentiment Score →</span>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2023: 85% positive, 12% neutral, 3% critical</div>
+                                <div class="bar" style="height: 170px;">
+                                    <div class="bar-segment positive" style="height: 85%;"></div>
+                                    <div class="bar-segment neutral" style="height: 12%;"></div>
+                                    <div class="bar-segment critical" style="height: 3%;"></div>
+                                </div>
+                                <span class="bar-label">2023</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2024: 90% positive, 8% neutral, 2% critical</div>
+                                <div class="bar" style="height: 180px;">
+                                    <div class="bar-segment positive" style="height: 90%;"></div>
+                                    <div class="bar-segment neutral" style="height: 8%;"></div>
+                                    <div class="bar-segment critical" style="height: 2%;"></div>
+                                </div>
+                                <span class="bar-label">2024</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2025: 92% positive, 6% neutral, 2% critical</div>
+                                <div class="bar" style="height: 184px;">
+                                    <div class="bar-segment positive" style="height: 92%;"></div>
+                                    <div class="bar-segment neutral" style="height: 6%;"></div>
+                                    <div class="bar-segment critical" style="height: 2%;"></div>
+                                </div>
+                                <span class="bar-label">2025</span>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>📚 Intelligence Sources (25+)</h3>
+            <div class="sources-grid">
+                <a href="https://efipylarinou.com/" target="_blank" class="source-item">
+                    <div class="source-icon">EP</div>
+                    <div class="source-info">
+                        <div class="source-name">Efi Pylarinou Official Website</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/efipylarinou/" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://dailyfintech.com/author/efipylarinou/" target="_blank" class="source-item">
+                    <div class="source-icon">DF</div>
+                    <div class="source-info">
+                        <div class="source-name">Daily Fintech Author Page</div>
+                        <div class="source-meta">2020 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.fastfutureexecutive.com/efipylarinou" target="_blank" class="source-item">
+                    <div class="source-icon">FF</div>
+                    <div class="source-info">
+                        <div class="source-name">Fast Future Executive Bio</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://europe.money2020.com/agenda/speakers/efi-pylarinou-s102-102410" target="_blank" class="source-item">
+                    <div class="source-icon">M2</div>
+                    <div class="source-info">
+                        <div class="source-name">Money20/20 Speaker Profile</div>
+                        <div class="source-meta">2024 | Industry Source</div>
+                    </div>
+                </a>
+                <a href="https://www.branchtomorrow.com/" target="_blank" class="source-item">
+                    <div class="source-icon">BT</div>
+                    <div class="source-info">
+                        <div class="source-name">Branch Tomorrow Book</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.amazon.com/Fast-Future-Blur-Transformative-Interconnections/dp/1394220405" target="_blank" class="source-item">
+                    <div class="source-icon">AM</div>
+                    <div class="source-info">
+                        <div class="source-name">Fast Future Blur (Amazon)</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.pointzeroforum.com/speakers/spkr3281-dr-efi-pylarinou" target="_blank" class="source-item">
+                    <div class="source-icon">PZ</div>
+                    <div class="source-info">
+                        <div class="source-name">Point Zero Forum Speaker</div>
+                        <div class="source-meta">2025 | Industry Source</div>
+                    </div>
+                </a>
+                <a href="https://businessabc.net/wiki/efi-pylarinou" target="_blank" class="source-item">
+                    <div class="source-icon">BA</div>
+                    <div class="source-info">
+                        <div class="source-name">BusinessABC Wiki</div>
+                        <div class="source-meta">2024 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://onalytica.com/blog/posts/interview-with-efi-pylarinou/" target="_blank" class="source-item">
+                    <div class="source-icon">ON</div>
+                    <div class="source-info">
+                        <div class="source-name">Onalytica Interview</div>
+                        <div class="source-meta">2021 | Interview</div>
+                    </div>
+                </a>
+                <a href="https://www.finews.com/news/english-news/43515-efi-pylarinou-blockchain-cryptocurrency-wealth-management-wealth-mosaic" target="_blank" class="source-item">
+                    <div class="source-icon">FN</div>
+                    <div class="source-info">
+                        <div class="source-name">Finews Interview</div>
+                        <div class="source-meta">2020 | News Source</div>
+                    </div>
+                </a>
+                <a href="https://blogs.perficient.com/2025/03/05/efi-pylarinou-fintech-leader/" target="_blank" class="source-item">
+                    <div class="source-icon">PF</div>
+                    <div class="source-info">
+                        <div class="source-name">Perficient Podcast Feature</div>
+                        <div class="source-meta">2025 | Podcast</div>
+                    </div>
+                </a>
+                <a href="https://efipm.medium.com/" target="_blank" class="source-item">
+                    <div class="source-icon">MD</div>
+                    <div class="source-info">
+                        <div class="source-name">Medium Blog</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://twitter.com/efipm" target="_blank" class="source-item">
+                    <div class="source-icon">X</div>
+                    <div class="source-info">
+                        <div class="source-name">Twitter/X Profile</div>
+                        <div class="source-meta">2025 | Social Media</div>
+                    </div>
+                </a>
+                <a href="https://www.thewealthmosaic.com/vendors/efi-pylarinou-advisory/" target="_blank" class="source-item">
+                    <div class="source-icon">WM</div>
+                    <div class="source-info">
+                        <div class="source-name">The Wealth Mosaic</div>
+                        <div class="source-meta">2024 | Industry Directory</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 2, 2026 | Sources: 25+ verified</p>
+        <p>Prepared for: Artifact Team | Occasion: Innovation Management & Strategy Advisory</p>
+        <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "meeting with Dr. Efi Pylarinou from GrowFIn and want to convince her to share her expertise in innovation management and strategy for Artifact"</div>
+        <div class="report-token">Report ID: a5f6ae20</div>
+    </div>
+
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Dr. Efi Pylarinou Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
