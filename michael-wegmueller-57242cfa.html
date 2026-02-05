@@ -247,6 +247,22 @@
         .fit-score-card { background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 2px solid #86efac; }
         .fit-score-high { color: var(--green-verified); }
 
+        /* Profile Photo */
+        .header-main { display: flex; align-items: center; gap: 24px; }
+        .profile-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.3); }
+        .profile-initials { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #3b82f6); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; color: white; border: 3px solid rgba(255,255,255,0.3); }
+
+        /* AI Use Cases Tab */
+        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .use-case-card { background: linear-gradient(135deg, #f8f9fa, #ffffff); border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; position: relative; transition: all 0.3s; cursor: pointer; }
+        .use-case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); border-color: #8b5cf6; }
+        .use-case-icon { font-size: 2rem; margin-bottom: 12px; }
+        .use-case-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-description { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; }
+        .use-case-reasoning { display: none; position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px; background: var(--navy); color: white; padding: 16px; border-radius: 8px; font-size: 0.85rem; z-index: 100; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .use-case-card:hover .use-case-reasoning { display: block; }
+        .reasoning-label { font-weight: 600; color: #60a5fa; margin-bottom: 8px; font-size: 0.75rem; text-transform: uppercase; }
+
         @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
             .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
@@ -265,13 +281,19 @@
             <div class="brand-divider"></div>
             <span class="sailor-logo">Sailor 2.0</span>
         </div>
-        <h1>Michael Wegmüller</h1>
-        <div class="header-subtitle">Co-Founder & Managing Director | Artifact SA</div>
-        <div class="header-meta">
-            <span>Bern, Switzerland</span>
-            <span>Universität Bern</span>
-            <span>artifact.swiss</span>
-            <span>Forbes Business Council Member</span>
+        <div class="header-main">
+            <img src="https://artifact.swiss/wp-content/uploads/2023/12/Michael-Wegmueller.jpeg" alt="Michael Wegmüller" class="profile-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="profile-initials" style="display: none;">MW</div>
+            <div>
+                <h1>Michael Wegmüller</h1>
+                <div class="header-subtitle">Co-Founder & Managing Director | Artifact SA</div>
+                <div class="header-meta">
+                    <span>Bern, Switzerland</span>
+                    <span>Universität Bern</span>
+                    <span>artifact.swiss</span>
+                    <span>Forbes Business Council Member</span>
+                </div>
+            </div>
         </div>
         <div class="header-badge">
             <div class="badge-label">SAILOR 2.0</div>
@@ -289,6 +311,7 @@
             <button class="tab" data-tab="strategic-position">Strategic Position</button>
             <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
             <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
         </div>
     </div>
 
@@ -301,6 +324,7 @@
             <button class="tab" data-tab="strategic-position">Strategic</button>
             <button class="tab" data-tab="engagement-playbook">Playbook</button>
             <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI Cases</button>
         </div>
     </div>
 
@@ -1098,6 +1122,98 @@
                         <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
                         <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
                         <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recommended AI Use Cases
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How generated
+                            <div class="methodology-tooltip">AI-GENERATED: Use cases selected based on person's role, industry, company challenges, and stated interests. Reasoning available on hover.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white;">AI OPPORTUNITIES</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 20px;">
+                    Based on Michael's role as Co-Founder & Managing Director at Artifact SA, these AI applications could be highly relevant discussion topics:
+                </p>
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🤖</div>
+                        <h4 class="use-case-title">AI-Powered Data Analyst Copilot</h4>
+                        <p class="use-case-description">Conversational AI that helps business users query data, generate insights, and create visualizations without SQL knowledge.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Directly relevant to hAIdi success. Michael's team built this for Switzerland Tourism. He can speak to implementation challenges, adoption strategies, and ROI metrics from first-hand experience.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📊</div>
+                        <h4 class="use-case-title">Predictive Analytics for Retail</h4>
+                        <p class="use-case-description">ML models for demand forecasting, inventory optimization, and customer behavior prediction in retail environments.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Michael's IBM background focused heavily on retail and consumer goods. He led analytics programs in this sector and understands the specific challenges of retail AI deployment at scale.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🏨</div>
+                        <h4 class="use-case-title">Tourism & Hospitality AI</h4>
+                        <p class="use-case-description">AI assistants for travel planning, personalized recommendations, and tourist information services.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Award-winning work with Switzerland Tourism proves expertise. The hAIdi project won "Digital Innovation of the Year 2024" - he has deep insights into this vertical.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">⚡</div>
+                        <h4 class="use-case-title">Agile AI Implementation Framework</h4>
+                        <p class="use-case-description">Methodology for rapidly deploying AI pilots and scaling successful ones, avoiding common pitfalls of enterprise AI projects.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>His signature expertise. Published thought leadership on "Agile-AI" approaches. His methodology bridges startup agility with enterprise requirements - a key differentiator.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🏦</div>
+                        <h4 class="use-case-title">Banking & Financial Services AI</h4>
+                        <p class="use-case-description">Risk assessment, fraud detection, customer service automation, and regulatory compliance AI solutions.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Banking is listed as one of his key industry focus areas from IBM days. Swiss banking context adds relevance given regulatory expertise and local market knowledge.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🎯</div>
+                        <h4 class="use-case-title">AI Strategy & Roadmap Development</h4>
+                        <p class="use-case-description">Executive advisory services for defining AI vision, prioritizing use cases, and building organizational AI capabilities.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Core service offering of Artifact. As Managing Director, Michael leads these strategic engagements. Forbes Business Council membership indicates thought leadership in this space.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🛡️</div>
+                        <h4 class="use-case-title">Responsible AI & Governance</h4>
+                        <p class="use-case-description">Frameworks for ethical AI deployment, bias detection, explainability, and regulatory compliance in AI systems.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Active in AI policy networks (KImpact, Digital Impact Network). Swiss Armed Forces background suggests appreciation for governance and responsibility. hAIdi emphasized "without hallucinations" - reliability focus.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🔄</div>
+                        <h4 class="use-case-title">GenAI Enterprise Integration</h4>
+                        <p class="use-case-description">Integrating large language models into existing enterprise workflows, with focus on accuracy, security, and business value.</p>
+                        <div class="use-case-reasoning">
+                            <div class="reasoning-label">Why This Use Case?</div>
+                            <p>Current market focus. His LinkedIn posts cover GenAI extensively. The challenge of making GenAI reliable for enterprise use (like hAIdi) is his current specialty area.</p>
+                        </div>
                     </div>
                 </div>
             </div>
