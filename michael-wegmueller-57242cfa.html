@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Michael Wegmüller">
+    <meta property="og:title" content="Sailor 2.0 - Michael Wegmüller Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Michael Wegmüller at Artifact SA">
+    <meta name="report-token" content="57242cfa">
+    <title>Sailor 2.0 - Michael Wegmüller</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        .bar-chart-wrapper { position: relative; padding-left: 50px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 20px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 180deg, var(--blue-secondary) 180deg 270deg, var(--yellow-inferred) 270deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* DISC Chart Styles */
+        .disc-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 150px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .disc-bar { width: 50px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border-radius: 4px 4px 0 0; min-height: 20px; color: white; font-weight: 600; padding: 8px 0; }
+        .disc-bar span { font-size: 0.9rem; }
+        .disc-score { font-size: 0.75rem; opacity: 0.9; }
+        .d-bar { background: linear-gradient(180deg, #dc2626, #ef4444); }
+        .i-bar { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
+        .s-bar { background: linear-gradient(180deg, #16a34a, #22c55e); }
+        .c-bar { background: linear-gradient(180deg, #2563eb, #3b82f6); }
+        .disc-labels { display: flex; justify-content: space-around; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+        .disc-primary { font-size: 1.1rem; margin-bottom: 8px; }
+        .disc-secondary { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .disc-description { font-size: 0.9rem; line-height: 1.6; }
+
+        /* Meeting Fit Score */
+        .fit-score-card { background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 2px solid #86efac; }
+        .fit-score-high { color: var(--green-verified); }
+
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">Sailor 2.0</span>
+        </div>
+        <h1>Michael Wegmüller</h1>
+        <div class="header-subtitle">Co-Founder & Managing Director | Artifact SA</div>
+        <div class="header-meta">
+            <span>Bern, Switzerland</span>
+            <span>Universität Bern</span>
+            <span>artifact.swiss</span>
+            <span>Forbes Business Council Member</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">20+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content"><strong>Michael Wegmüller</strong> is the <strong>Co-Founder & Managing Director of Artifact SA</strong>, a Swiss AI agency founded in 2020 focused on accelerating business impact through AI and data-driven transformation. With <strong>17+ years experience</strong> in Data Science & AI, he previously served as <strong>Associate Partner at IBM Consulting</strong> leading complex analytics programs across retail, consumer goods, travel, and banking. In 2024, Artifact won the <strong>"Digital Innovation of the Year" Award</strong> at SwissICT's Digital Economy Award for "hAIdi" - an AI assistant developed with Switzerland Tourism. He is a <strong>Forbes Business Council member</strong>, <strong>senior officer in the Swiss Armed Forces</strong>, and contributes to AI policy through networks like KImpact and Digital Impact Network. He values <strong>agility, pragmatism, and scalable AI adoption</strong>.</div>
+            </div>
+
+            <!-- NEW: Meeting Fit Score -->
+            <div class="card fit-score-card">
+                <div class="card-header">
+                    <h3 class="card-title">Meeting Fit Score
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How assessed
+                            <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-verified">EXCELLENT FIT</span>
+                </div>
+                <div class="grid-2">
+                    <div class="metric-box">
+                        <div class="metric-value fit-score-high">9/10</div>
+                        <div class="metric-label">Alignment Score</div>
+                    </div>
+                    <div style="padding: 16px;">
+                        <p style="font-size: 0.9rem; line-height: 1.6;"><strong>Rationale:</strong> As CEO of Artifact and with personal interest alignment, Michael has full decision-making authority. His stated passion for AI transformation and continuous learning suggests high engagement potential. The personal context of this meeting creates optimal conditions for an authentic connection.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and news articles. Years of experience from career timeline.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">17+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">200+</div><div class="metric-label">Projects Delivered</div></div>
+                        <div class="metric-box"><div class="metric-value">60+</div><div class="metric-label">AI Use Cases</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">+85</div><div class="metric-label">NPS Score</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How calculated
+                                <div class="methodology-tooltip">Primary = official sources (company sites, registries). Secondary = news/industry sources. Inferred = cross-referenced patterns.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (50%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (25%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (15%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Agile-AI Evangelist:</div>
+                    <p>Michael champions "Agile Analytics at Scale" - combining agility with enterprise-grade AI deployment. Published thought leadership on balancing "Agile-AI naivety" with pragmatic delivery.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Award-Winning Innovator:</div>
+                    <p>Led the hAIdi project that won "Digital Innovation of the Year 2024" - an AI assistant for Switzerland Tourism providing data-driven insights without hallucinations.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Enterprise-Scale Thinker:</div>
+                    <p>IBM background combined with startup agility. Understands both large enterprise transformation and nimble execution. Bridges corporate and startup worlds effectively.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Policy & Ethics Contributor:</div>
+                    <p>Active in AI policy through KImpact, Digital Impact Network, and Swissmem Next Industries. Values responsible AI development beyond just technology.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <!-- NEW: Recent Activity Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How sourced
+                            <div class="methodology-tooltip">Content from last 30-90 days sourced from LinkedIn posts, company news, and press releases.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-verified">RECENT</span>
+                </div>
+                <div class="media-item">
+                    <h4>ISE 2025 Speaker Announcement</h4>
+                    <p>Named as speaker at ISE 2025 (Integrated Systems Europe) conference - January 2025</p>
+                </div>
+                <div class="media-item">
+                    <h4>SwissCognitive Presentation</h4>
+                    <p>Presented on AI implementation strategies at SwissCognitive event - December 2024</p>
+                </div>
+                <div class="media-item">
+                    <h4>Moneycab Interview</h4>
+                    <p>Featured interview discussing Digital Economy Award win and Artifact's growth - November 2024</p>
+                </div>
+                <div class="media-item">
+                    <h4>Digital Economy Award Win</h4>
+                    <p>Artifact and Switzerland Tourism won "Digital Innovation of the Year" for hAIdi - October 2024</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Extracted from LinkedIn profile and company pages.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2020 - Present</div>
+                        <div class="timeline-content">Co-Founder & Managing Director, Artifact SA, Switzerland</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Prior - 2020</div>
+                        <div class="timeline-content">Associate Partner - Consumer Industry - Data & Analytics, IBM Consulting</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Earlier</div>
+                        <div class="timeline-content">Cognitive Process Transformation Leader Switzerland, IBM GBS</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Earlier</div>
+                        <div class="timeline-content">Big Data and Analytics Team Leader, IBM</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Collected from press releases and award announcements.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>Digital Innovation of the Year 2024</h4>
+                        <p>SwissICT Digital Economy Award for hAIdi AI Assistant with Switzerland Tourism</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Forbes Business Council Member</h4>
+                        <p>Invited member of Forbes Business Council - ongoing recognition</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Swiss Armed Forces Senior Officer</h4>
+                        <p>Serves as senior officer contributing leadership and discipline</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Tags derived from stated skills and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Artificial Intelligence</span>
+                    <span class="tag">Data Science</span>
+                    <span class="tag">Generative AI</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">Deep Learning</span>
+                    <span class="tag">Agile Analytics</span>
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Retail & Consumer Goods</span>
+                    <span class="tag">Travel & Tourism</span>
+                    <span class="tag">Banking & Finance</span>
+                    <span class="tag">AI Strategy</span>
+                    <span class="tag">AI Ethics & Policy</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Artifact SA Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Data from Moneyhouse Swiss registry, company website, and startup.ch.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">2020</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">3</div><div class="metric-label">Co-Founders</div></div>
+                    <div class="metric-box"><div class="metric-value">10-20</div><div class="metric-label">Team Size</div></div>
+                    <div class="metric-box"><div class="metric-value">+85</div><div class="metric-label">NPS Score</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">50+</div><div class="metric-label">Combined Years Experience</div></div>
+                    <div class="metric-box"><div class="metric-value">Lausanne</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Co-Founders
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From Moneyhouse registry and company team page.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">SR</div>
+                        <div class="person-info">
+                            <h4>Dr. Stefan Ravizza</h4>
+                            <p>Co-Founder | Board Member | Data Science Expert</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">TB</div>
+                        <div class="person-info">
+                            <h4>Taha Issa Ben M'Rad</h4>
+                            <p>Co-Founder | Technical Leadership</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">AB</div>
+                        <div class="person-info">
+                            <h4>Abdelmontassar Alaeddine Ben M'Rad</h4>
+                            <p>Co-Founder | Technical Leadership</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Networks
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From LinkedIn and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">FB</div>
+                        <div class="person-info">
+                            <h4>Forbes Business Council</h4>
+                            <p>Member | Thought leadership platform</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">KI</div>
+                        <div class="person-info">
+                            <h4>KImpact Network</h4>
+                            <p>AI Policy Contributor</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">SC</div>
+                        <div class="person-info">
+                            <h4>SwissCognitive</h4>
+                            <p>AI Hub Member | Speaker</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From LinkedIn and conference participation.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="conversation-card">
+                        <h4>Digital Impact Network</h4>
+                        <p>AI policy and ethics discussions</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Swissmem Next Industries</h4>
+                        <p>Industry 4.0 and manufacturing AI</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Swiss Armed Forces</h4>
+                        <p>Senior Officer - Leadership development</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Client Relationships
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From case studies, testimonials, and press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Switzerland Tourism (Award Winner)</span>
+                    <span class="tag">V-ZUG</span>
+                    <span class="tag">Swiss Post</span>
+                    <span class="tag">Retail Sector</span>
+                    <span class="tag">Consumer Goods</span>
+                    <span class="tag">Banking</span>
+                    <span class="tag">Travel & Transport</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,20 175,40 185,100 165,160 100,180 45,155 25,100 50,45" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Personality Profile
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators. NOT a formal assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-chart">
+                        <div class="disc-bar d-bar" style="height: 75%;"><span>D</span><span class="disc-score">75</span></div>
+                        <div class="disc-bar i-bar" style="height: 70%;"><span>I</span><span class="disc-score">70</span></div>
+                        <div class="disc-bar s-bar" style="height: 45%;"><span>S</span><span class="disc-score">45</span></div>
+                        <div class="disc-bar c-bar" style="height: 65%;"><span>C</span><span class="disc-score">65</span></div>
+                    </div>
+                    <div class="disc-labels">
+                        <span>Dominance</span>
+                        <span>Influence</span>
+                        <span>Steadiness</span>
+                        <span>Conscientiousness</span>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <div class="disc-primary">Primary: <strong>D (Dominance)</strong></div>
+                        <div class="disc-secondary">Secondary: I (Influence)</div>
+                        <p class="disc-description">DI profile indicates a results-oriented leader who combines drive for achievement with people skills. Direct communicator who can inspire teams while maintaining focus on outcomes. Comfortable with risk and fast decision-making.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Communication Tips (Based on DISC)</h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">How to Communicate with Michael:</div>
+                    <p><strong>Be direct and get to the point</strong> - As a high-D, he values efficiency and dislikes beating around the bush. <strong>Show enthusiasm and energy</strong> - His secondary I appreciates engaging conversations. <strong>Focus on results and impact</strong> - Lead with outcomes and business value. <strong>Come prepared with data</strong> - His C score means he respects evidence and thoroughness. <strong>Allow for debate</strong> - He likely enjoys intellectual sparring and won't be put off by pushback.</p>
+                </div>
+            </div>
+
+            <!-- NEW: Influence Levers -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-INFERRED: Based on stated priorities and communication patterns.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Innovation & Impact:</div>
+                    <p>Motivated by novel solutions that create measurable business impact. The hAIdi award demonstrates his drive for recognized innovation.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Agility & Speed:</div>
+                    <p>Values quick execution and iterative approaches. His "Agile Analytics" philosophy suggests frustration with slow, bureaucratic processes.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Quality & Credibility:</div>
+                    <p>IBM background and Forbes membership indicate importance of professional credibility. NPS focus shows customer satisfaction matters.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Policy & Responsibility:</div>
+                    <p>Active in AI ethics networks. Likely responsive to discussions about responsible AI and societal impact, not just commercial outcomes.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Decision-Making Profile
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">INFERRED: Profile based on described approaches.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Primary Style</td><td>Action-Oriented Pragmatist</td></tr>
+                    <tr><td>Risk Tolerance</td><td>Moderate-High - startup founder comfort with uncertainty</td></tr>
+                    <tr><td>Time Horizon</td><td>Quick wins with strategic vision</td></tr>
+                    <tr><td>Information Needs</td><td>Data-backed but not analysis paralysis</td></tr>
+                    <tr><td>Collaboration Style</td><td>Direct engagement, values debate</td></tr>
+                    <tr><td>Trust Building</td><td>Through demonstrated expertise and shared values</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: Patterns from content analysis. Use as guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Entrepreneurial Drive:</div>
+                    <p>Left IBM partnership security to start Artifact. Indicates high risk tolerance and confidence in own capabilities.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Thought Leader Identity:</div>
+                    <p>Forbes Council member, conference speaker, published author. Values being seen as industry authority.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Swiss Values:</div>
+                    <p>Military service, quality focus (+85 NPS), responsible AI advocacy. Combines innovation with traditional Swiss values of reliability.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Bridge Builder:</div>
+                    <p>IBM enterprise experience + startup agility. Speaks to both corporate executives and innovators.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Phrases extracted from articles and posts.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>"Accelerating Impact"</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Company tagline and personal mission</td></tr>
+                        <tr><td>"Agile Analytics at Scale"</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>LinkedIn headline and methodology focus</td></tr>
+                        <tr><td>"Pragmatic yet scalable"</td><td><span class="probability-badge prob-high">High</span></td><td>Approach to AI implementation</td></tr>
+                        <tr><td>"Responsible AI"</td><td><span class="probability-badge prob-high">High</span></td><td>Ethics and policy discussions</td></tr>
+                        <tr><td>"Without hallucinations"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>hAIdi differentiator - reliability focus</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic Engagement SWOT
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: SWOT framed around meeting objectives and engagement opportunities.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>Strengths (For Your Meeting)</h4><ul>
+                        <li><div class="interactive-item">Award-winning track record - builds credibility<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Reference the Digital Economy Award as proof of his execution capability</div></div></li>
+                        <li><div class="interactive-item">17+ years enterprise AI experience<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>He can speak to both strategic and tactical AI challenges</div></div></li>
+                        <li><div class="interactive-item">Forbes Business Council member<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Connect on thought leadership and content creation</div></div></li>
+                        <li><div class="interactive-item">Swiss military leadership background<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Values discipline, structure, and reliability</div></div></li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>Potential Gaps</h4><ul>
+                        <li><div class="interactive-item">Small company scale vs. big consulting firms<div class="item-recommendation"><div class="item-recommendation-label">Opportunity</div>Position boutique focus as an advantage - personalized attention</div></div></li>
+                        <li><div class="interactive-item">Limited international footprint<div class="item-recommendation"><div class="item-recommendation-label">Opportunity</div>May be interested in partnership expansion discussions</div></div></li>
+                        <li><div class="interactive-item">Resource constraints of startup<div class="item-recommendation"><div class="item-recommendation-label">Opportunity</div>Could value strategic partnerships that extend capacity</div></div></li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>Opportunities (For Engagement)</h4><ul>
+                        <li><div class="interactive-item">Growing AI market demand<div class="item-recommendation"><div class="item-recommendation-label">Discuss</div>Market trends and how to capture growing demand together</div></div></li>
+                        <li><div class="interactive-item">GenAI wave creating new use cases<div class="item-recommendation"><div class="item-recommendation-label">Discuss</div>His views on GenAI vs. traditional ML</div></div></li>
+                        <li><div class="interactive-item">Swiss AI policy landscape<div class="item-recommendation"><div class="item-recommendation-label">Discuss</div>His work with KImpact and policy implications</div></div></li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>Competitive Context</h4><ul>
+                    <li><div class="interactive-item">Global consultancies entering AI space<div class="item-recommendation"><div class="item-recommendation-label">Discuss</div>How does Artifact differentiate vs. Accenture, McKinsey AI?</div></div></li>
+                    <li><div class="interactive-item">AI tool commoditization<div class="item-recommendation"><div class="item-recommendation-label">Discuss</div>His view on value-add when tools become commodities</div></div></li>
+                </ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-ESTIMATED: Positions based on market perception analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Market Expertise</span>
+                    <span class="scatter-axis-label x-label">Agility & Speed</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 85%; bottom: 75%;"><div class="scatter-tooltip">Artifact - High agility, Strong expertise</div></div>
+                        <div class="scatter-dot competitor1" style="left: 25%; bottom: 85%;"><div class="scatter-tooltip">Big 4 Consulting - High expertise, Lower agility</div></div>
+                        <div class="scatter-dot competitor2" style="left: 60%; bottom: 50%;"><div class="scatter-tooltip">Mid-size AI Boutiques</div></div>
+                        <div class="scatter-dot competitor3" style="left: 90%; bottom: 35%;"><div class="scatter-tooltip">Pure-play AI Startups - Fast but less depth</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Artifact (Michael's Company)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Big 4 Consulting</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Mid-size AI Boutiques</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> AI Startups</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From company website and marketing materials.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">+85</div>
+                        <div class="differentiator-label">NPS Score - Client Advocacy</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">50+</div>
+                        <div class="differentiator-label">Combined Years Founder Experience</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">Award</div>
+                        <div class="differentiator-label">Digital Innovation of the Year 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR Personal Interest Discussion
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">i</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities.</div></span>
+                </div>
+                <div class="strategy-content">This is a personal interest meeting, so authenticity is key. Michael values genuine connection and intellectual discourse. Lead with curiosity about his journey from IBM to founding Artifact. His DISC profile (High D, secondary I) means he'll appreciate direct conversation with energy. Discuss his views on AI's future, not just past achievements. The Swiss Armed Forces and policy work suggest he cares about broader societal impact - explore this dimension. Given the informal nature, be prepared for wide-ranging conversation.</div>
+            </div>
+
+            <!-- NEW: Value Exchange Map -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">What You Can Offer Him
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: Potential value exchange based on their stated needs.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--green-verified); color: white;">VALUE EXCHANGE</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Network Access:</div>
+                    <p>Given the personal nature of this meeting, genuine relationship and network expansion could be valuable. Introductions to other AI leaders or potential clients.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Fresh Perspectives:</div>
+                    <p>As a thought leader, Michael likely values intellectual stimulation and new ideas. Come prepared with interesting observations or questions.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Collaboration Opportunities:</div>
+                    <p>Artifact may be open to partnerships that extend their reach. If you have complementary capabilities, explore mutual benefit.</p>
+                </div>
+            </div>
+
+            <!-- NEW: Contact Strategy -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Optimal Contact Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Recommendations based on communication style analysis.</div></span>
+                    </h3>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Preferred Channel</td><td>Direct - LinkedIn message or email</td></tr>
+                    <tr><td>Optimal Timing</td><td>Morning (Swiss time) - startup founders often more available early</td></tr>
+                    <tr><td>Formality Level</td><td>Professional but warm - not overly formal</td></tr>
+                    <tr><td>First Touchpoint</td><td>Reference shared interest or recent achievement (Award win)</td></tr>
+                    <tr><td>Follow-up Approach</td><td>Be direct - suggest specific times rather than open-ended</td></tr>
+                </table>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Topics derived from recent activities and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>The hAIdi Journey</h4>
+                        <p>"What was the most surprising lesson from building hAIdi with Switzerland Tourism?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>IBM to Startup Transition</h4>
+                        <p>"What prompted the move from IBM partnership to founding Artifact? What do you miss, if anything?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Agile-AI Philosophy</h4>
+                        <p>"You've written about the 'thin line between Agile-AI naivety' - what's the most common mistake you see?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Swiss AI Landscape</h4>
+                        <p>"How do you see Switzerland's position in the global AI race evolving?"</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-INFERRED: Based on stated values and potential sensitivities.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Overly Sales-y Approach</h4>
+                        <p>This is a personal meeting. Avoid pitching products or services unless naturally relevant.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>AI Hype Without Substance</h4>
+                        <p>He's skeptical of "Agile-AI naivety" - don't make unfounded claims about AI capabilities.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Dismissing Swiss Values</h4>
+                        <p>Quality, reliability, and responsibility matter. Don't suggest cutting corners.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Potential common ground based on personal interest context.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Shared Swiss Connection:</div>
+                    <p>Both based in Switzerland. Explore shared understanding of Swiss business culture, quality focus, and the AI ecosystem.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Entrepreneurial Journey:</div>
+                    <p>If you have startup experience, compare notes on the challenges and rewards of building something new.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">AI Transformation Interest:</div>
+                    <p>Clearly passionate about AI's potential to transform businesses. Engage on future vision and possibilities.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Leadership & Military Service:</div>
+                    <p>His Swiss Armed Forces service indicates values around duty and leadership. May resonate with shared leadership interests.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Probability based on frequency in public content and meeting context.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Generative AI's business impact</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>His area of focus - be prepared with perspectives</td></tr>
+                        <tr><td>Swiss AI ecosystem</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Active in policy networks - knows the landscape</td></tr>
+                        <tr><td>Scaling AI in enterprises</td><td><span class="probability-badge prob-high">High</span></td><td>Core expertise from IBM and Artifact</td></tr>
+                        <tr><td>Responsible AI and ethics</td><td><span class="probability-badge prob-high">High</span></td><td>Active contributor to AI policy discussions</td></tr>
+                        <tr><td>Entrepreneurship journey</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Personal interest context makes this relevant</td></tr>
+                        <tr><td>Future of work with AI</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Broader societal implications</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Content discovered via web search.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>SwissCognitive Article</h4>
+                        <p>"The Thin Line Between Agile-AI Naivety" - July 2021 - Thought leadership on AI project delivery</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Thought Leadership</h4>
+                        <p>Regular posts on Generative AI, retail transformation, and AI strategy - 500+ connections</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Moneycab Interview</h4>
+                        <p>"Digital Economy Award: The media echo and feedback were overwhelming" - November 2024</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Forbes Business Council</h4>
+                        <p>Member contributions to Forbes platform</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From conference speaker pages and event listings.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>ISE 2025</h4>
+                        <p>Confirmed speaker at Integrated Systems Europe 2025</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>SwissCognitive Events</h4>
+                        <p>Regular presenter at SwissCognitive AI Hub events</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Digital Economy Award 2024</h4>
+                        <p>Award acceptance and presentation at Zurich ceremony</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>VIS x Artifact Event</h4>
+                        <p>"Navigating to Impact with AI" - ETH Zurich collaboration</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: Sentiment from coverage analysis. Award wins and positive press dominate.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <span class="bar-chart-y-axis">Sentiment Score</span>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2023: 85% positive, 15% neutral</div>
+                                <div class="bar" style="height: 180px;">
+                                    <div class="bar-segment positive" style="height: 85%;"></div>
+                                    <div class="bar-segment neutral" style="height: 15%;"></div>
+                                </div>
+                                <span class="bar-label">2023</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2024: 95% positive (Award win), 5% neutral</div>
+                                <div class="bar" style="height: 195px;">
+                                    <div class="bar-segment positive" style="height: 95%;"></div>
+                                    <div class="bar-segment neutral" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2024</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2025: 90% positive (ISE speaker), 10% neutral</div>
+                                <div class="bar" style="height: 185px;">
+                                    <div class="bar-segment positive" style="height: 90%;"></div>
+                                    <div class="bar-segment neutral" style="height: 10%;"></div>
+                                </div>
+                                <span class="bar-label">2025</span>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>Intelligence Sources (20+)</h3>
+            <div class="sources-grid">
+                <a href="https://www.linkedin.com/in/michael-wegmueller/" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile - Michael Wegmüller</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://artifact.swiss/" target="_blank" class="source-item">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">Artifact SA - Company Website</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://artifact.swiss/team/michael-wegmuller/" target="_blank" class="source-item">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">Artifact - Team Profile</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.moneyhouse.ch/en/company/artifact-sa-11775033231" target="_blank" class="source-item">
+                    <div class="source-icon">MH</div>
+                    <div class="source-info">
+                        <div class="source-name">Moneyhouse - Artifact SA Registry</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://swisscognitive.ch/person/michael-wegmuller/" target="_blank" class="source-item">
+                    <div class="source-icon">SC</div>
+                    <div class="source-info">
+                        <div class="source-name">SwissCognitive - Profile</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://swisscognitive.ch/2021/07/06/the-thin-line-between-agile-ai-naivety/" target="_blank" class="source-item">
+                    <div class="source-icon">SC</div>
+                    <div class="source-info">
+                        <div class="source-name">SwissCognitive - Agile-AI Article</div>
+                        <div class="source-meta">2021 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.iseurope.org/speakers/michael-wegmuller" target="_blank" class="source-item">
+                    <div class="source-icon">ISE</div>
+                    <div class="source-info">
+                        <div class="source-name">ISE 2025 - Speaker Profile</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.digitaleconomyaward.ch/" target="_blank" class="source-item">
+                    <div class="source-icon">DEA</div>
+                    <div class="source-info">
+                        <div class="source-name">Digital Economy Award</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.moneycab.com/it/michael-wegmueller-geschaeftsfuehrer-artifact-ueber-den-digital-economy-award-das-medienecho-und-das-feedback-waren-ueberwaeltigend/" target="_blank" class="source-item">
+                    <div class="source-icon">MC</div>
+                    <div class="source-info">
+                        <div class="source-name">Moneycab - Award Interview</div>
+                        <div class="source-meta">2024 | News Source</div>
+                    </div>
+                </a>
+                <a href="https://st.artifact.swiss/" target="_blank" class="source-item">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">hAIdi - Switzerland Tourism Project</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.startup.ch/Artifact" target="_blank" class="source-item">
+                    <div class="source-icon">ST</div>
+                    <div class="source-info">
+                        <div class="source-name">Startup.ch - Artifact Profile</div>
+                        <div class="source-meta">2025 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.startupticker.ch/en/companies/artifact-sa" target="_blank" class="source-item">
+                    <div class="source-icon">ST</div>
+                    <div class="source-info">
+                        <div class="source-name">Startupticker - Artifact SA</div>
+                        <div class="source-meta">2025 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://vis.ethz.ch/en/events/294/" target="_blank" class="source-item">
+                    <div class="source-icon">ETH</div>
+                    <div class="source-info">
+                        <div class="source-name">VIS x Artifact Event - ETH</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.newsleaf.com/switzerland-tourism-wins-digital-innovation-of-the-year-award-at-the-digital-economy-award-2024/" target="_blank" class="source-item">
+                    <div class="source-icon">NL</div>
+                    <div class="source-info">
+                        <div class="source-name">NewsLeaf - Award Coverage</div>
+                        <div class="source-meta">2024 | News Source</div>
+                    </div>
+                </a>
+                <a href="https://kleinreport.ch/news/haidi-chatbot-von-schweiz-tourismus-gewinnt-gold-105174/" target="_blank" class="source-item">
+                    <div class="source-icon">KR</div>
+                    <div class="source-info">
+                        <div class="source-name">Kleinreport - hAIdi Gold Win</div>
+                        <div class="source-meta">2024 | News Source</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>x</span>
+            <span class="footer-sailor">Sailor 2.0</span>
+        </div>
+        <p>Generated: February 4, 2026 | Sources: 20+ verified</p>
+        <p>Prepared for: Personal | Occasion: Personal Interest Discussion</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Michael Wegmüller, Artifact SA, Meeting to talk about personal interest"</div>
+        <div class="report-token">Report ID: 57242cfa</div>
+    </div>
+
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Michael Wegmüller Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
