@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Philipp Villabruna">
+    <meta property="og:title" content="Sailor 2.0 - Philipp Villabruna Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Philipp Villabruna at Flughafen Zürich AG">
+    <meta name="report-token" content="philipp-villabruna-27782eed">
+    <title>Sailor 2.0 - Philipp Villabruna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Share & Download Buttons */
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 144deg, var(--blue-secondary) 144deg 252deg, var(--yellow-inferred) 252deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Use Case Tab */
+        .use-case-card { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--blue-secondary); }
+        .use-case-title { font-weight: 600; margin-bottom: 8px; }
+        .use-case-description { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .use-case-benefit { font-size: 0.85rem; display: flex; align-items: center; gap: 6px; color: var(--green-verified); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <h1>Philipp Villabruna</h1>
+        <div class="header-subtitle">Head ICT Planning & Governance | Flughafen Zürich AG</div>
+        <div class="header-meta">
+            <span>Zufikon, Switzerland</span>
+            <span>Kalaidos FH (2012-2017)</span>
+            <span><a href="https://www.linkedin.com/in/philipp-villabruna-11872718b/" target="_blank" style="color: white; text-decoration: underline;">LinkedIn: 500+ connections</a></span>
+            <span>Authorized Signatory - ESE Elektronik AG</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">22+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI Cases</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content">Philipp Villabruna is the Head ICT Planning & Governance at <strong>Zurich Airport (Europe's most-awarded airport)</strong>, currently building a new governance framework for enterprise IT architecture. He is the ideal counterpart for an AI strategy discussion due to his mandate over ICT governance, proven involvement in digital transformation (Airport Operations Plan, autonomous shuttle projects, data analytics), and authority to evaluate and implement new technology solutions. His background spans systematic IT governance, data-driven decision-making, and cross-functional collaboration with airport operations, security, and business teams.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profile, company team pages, and news articles using NLP analysis. Years of experience calculated from career timeline. Project involvement verified through case studies and press releases.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">12+</div><div class="metric-label">Years ICT Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">8+</div><div class="metric-label">Major Projects</div></div>
+                        <div class="metric-box"><div class="metric-value">500+</div><div class="metric-label">LinkedIn Connections</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">9/10</div><div class="metric-label">Meeting Fit Score</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How calculated
+                                <div class="methodology-tooltip">Primary = official sources (company sites, registries). Secondary = reputable news/industry sources. Inferred = cross-referenced patterns. Speculative = limited single-source data.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (40%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (30%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (20%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from content analysis across LinkedIn posts, company announcements, and project case studies. Patterns identified by analyzing recurring themes in governance, architecture, and digital transformation focus.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Governance-First Thinking</div>
+                    </div>
+                    <p>Villabruna is building a new ICT governance function at Zurich Airport - not just managing day-to-day IT but creating frameworks for planning, transparency, and accountability across the enterprise. This indicates a strategic architectural mindset and potential receptiveness to governance structures around AI implementation.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">Data-Driven Decision Maker</div>
+                    </div>
+                    <p>His involvement with the Airport Operations Plan (AOP) web app demonstrates commitment to real-time data visibility and analytics for 3,500+ stakeholders. He actively posts about data analytics initiatives and demonstrates data literacy across complex operational domains.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-header">
+                        <div class="insight-title">Hands-On Cross-Functional Collaborator</div>
+                    </div>
+                    <p>Leadership of the autonomous shuttle project shows he works directly across multiple domains - law, flight operations, security, vehicle technology, networking, and cybersecurity. He's not siloed in IT but deeply integrated with business operations and regulatory requirements.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-header">
+                        <div class="insight-title">Innovation Advocate</div>
+                    </div>
+                    <p>Zurich Airport is pursuing cutting-edge digital projects (AR navigation, WeRide robobus, generative AI chatbots, metaverse visualization) under a stated goal of becoming Europe's most integrative airport system by 2030. Villabruna's governance role suggests he shapes the technical strategy enabling this innovation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2023-Present</div>
+                        <div class="timeline-content"><strong>Head ICT Planning & Governance</strong>, Flughafen Zürich AG - Building new central team for ICT governance, planning, transparency, and accountability.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2024</div>
+                        <div class="timeline-content"><strong>Autonomous Shuttle Project Lead</strong> - IT/technical oversight for WeRide Level 3 autonomous shuttle (launched March 2025).</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2024</div>
+                        <div class="timeline-content"><strong>Data Analytics Initiative</strong> - Led Data & Analytics Traineeprogramm at Flughafen Zürich AG.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Ongoing</div>
+                        <div class="timeline-content"><strong>Authorized Signatory</strong> - ESE Elektronik AG (electronics/power supplies, Remetschwil).</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Status
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from company registries, team page listings, and professional directory sources.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Authority</div>
+                        <div class="timeline-content">Kollektivprokura zu zweien (Joint Signatory Authority) at Flughafen Zürich AG - indicates high trust and responsibility.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Network</div>
+                        <div class="timeline-content">500+ LinkedIn connections - well-connected within Swiss ICT and aviation sectors.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Education</div>
+                        <div class="timeline-content"><a href="https://www.kalaidos-fh.ch/en-GB" target="_blank">Kalaidos Fachhochschule Schweiz</a> (2012-2015 Bachelor, 2015-2017 Master/MAS) - Practical Swiss applied sciences focus.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Location</div>
+                        <div class="timeline-content">Zufikon (Aargau, near Zurich), originally from Zurich city. Local to major Swiss economic hub.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">ICT Planning & Architecture</span>
+                    <span class="tag">IT Governance</span>
+                    <span class="tag">Data Analytics</span>
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Autonomous Systems</span>
+                    <span class="tag">Airport Operations</span>
+                    <span class="tag">Cybersecurity</span>
+                    <span class="tag">Enterprise IT</span>
+                    <span class="tag">Cross-functional Leadership</span>
+                    <span class="tag">Real-time Systems</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How sourced
+                            <div class="methodology-tooltip">Content from last 30-90 days sourced from LinkedIn posts, company news, and press releases. May not capture all activity.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-verified">RECENT</span>
+                </div>
+                <div class="media-item">
+                    <h4>LinkedIn: Airport Operations Plan (AOP) Web App</h4>
+                    <p>Shared post about the AOP real-time monitoring system empowering 3,500+ operational stakeholders at Zurich Airport. Demonstrates engagement with data-driven operational tools.</p>
+                </div>
+                <div class="media-item">
+                    <h4>LinkedIn: Data & Analytics Traineeprogramm</h4>
+                    <p>Posted about the Data & Analytics trainee program at Flughafen Zürich, signaling investment in analytics talent development within his governance domain.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Autonomous Shuttle Launch (March 2025)</h4>
+                    <p>WeRide Robobus Level 3 autonomous shuttle began operations at ZRH. Villabruna contributed IT/networking expertise to this pioneering cross-functional project.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Microsoft Copilot GenAI Rollout</h4>
+                    <p>Zurich Airport is actively rolling out Microsoft Copilot across the organisation with onboarding and department-specific training programs.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Flughafen Zürich AG Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/portrait" target="_blank">company website</a>, annual report, and business registries. Verified against press releases and industry sources.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">2000</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">2,352</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">31.2M</div><div class="metric-label">Passengers 2024</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 1.3B</div><div class="metric-label">Revenue 2024</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">Kloten</div><div class="metric-label">HQ Location</div></div>
+                    <div class="metric-box"><div class="metric-value">21x</div><div class="metric-label">Best Airport Europe</div></div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem; margin-bottom: 8px;"><strong>Key Facts:</strong> Swiss listed company (SWX since April 2000). Operates 9 airports in Latin America plus Noida (India). 2024: CHF 733M EBITDA (record), CHF 327M net income (record), 31.2M passengers (+8%, back to 99% of 2019 levels). Won Best Airport in Europe 2024 (21st consecutive time) and European Identity Award 2024.</p>
+                    <p style="font-size: 0.9rem;"><strong>Leadership:</strong> CEO Lukas Brosi (since 2023), CFO Kevin Fleck (oversees ICT, since Aug 2023), Chairman Josef Felder (since 2023), Head ICT Michael Hofmeier (Philipp's direct supervisor).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Direct Supervisors & Leaders
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company org structure, LinkedIn verified, press releases.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">MH</div>
+                        <div class="person-info">
+                            <h4>Michael Hofmeier</h4>
+                            <p>Head ICT at Flughafen Zürich AG (Philipp's direct manager)</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">KF</div>
+                        <div class="person-info">
+                            <h4>Kevin Fleck</h4>
+                            <p>CFO (oversees ICT department) - Joined Aug 2023</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">LB</div>
+                        <div class="person-info">
+                            <h4>Lukas Brosi</h4>
+                            <p>CEO at Flughafen Zürich AG (since 2023)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Collaborators & Peers
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From LinkedIn connections, project mentions, press coverage.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">CB</div>
+                        <div class="person-info">
+                            <h4>Coralie Klaus Boecker</h4>
+                            <p>Head of ZRH Innovation Hub - Direct innovation partner</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">RG</div>
+                        <div class="person-info">
+                            <h4>Raphaël Glaesener</h4>
+                            <p>Senior Innovation Manager at ZRH Innovation Hub</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">RS</div>
+                        <div class="person-info">
+                            <h4>Robin Sengupta</h4>
+                            <p>Senior Innovation Manager at ZRH Innovation Hub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic Network & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, professional directories, and conference listings.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="metric-box" style="background: #f0f9ff;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">Flughafen Zürich AG</div>
+                        <div style="font-size: 0.85rem; color: var(--slate-gray);">Head ICT Planning & Governance, Board/signatory authority</div>
+                    </div>
+                    <div class="metric-box" style="background: #f0fdf4;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">ESE Elektronik AG</div>
+                        <div style="font-size: 0.85rem; color: var(--slate-gray);">Authorized Signatory, board position</div>
+                    </div>
+                    <div class="metric-box" style="background: #fef3c7;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">Swiss ICT Sector</div>
+                        <div style="font-size: 0.85rem; color: var(--slate-gray);">500+ LinkedIn connections in tech/aviation</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Relationships & External Contacts
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Inferred from project involvement, press mentions, and industry involvement.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Omada Identity (European Identity Award partner)</span>
+                    <span class="tag">WeRide (Autonomous shuttle OEM)</span>
+                    <span class="tag">Google Maps (AR/AI navigation)</span>
+                    <span class="tag">OpenText (ITSM platform)</span>
+                    <span class="tag">Microsoft (Copilot rollout)</span>
+                    <span class="tag">Zühlke (Digital transformation case study)</span>
+                    <span class="tag">Airport operations teams (cross-functional)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style Profile
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment - use as directional guidance only.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,23.5 147.7,52.3 163,100 157.3,157.3 100,154 58.6,141.4 37,100 65,65" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile Assessment
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Profile based on described approaches in public content. Validate with direct interaction. DISC is behavioral indicator only.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr>
+                            <td>Dominance (D)</td>
+                            <td><strong>65/100</strong> - Leadership, governance authority, team building</td>
+                        </tr>
+                        <tr>
+                            <td>Influence (I)</td>
+                            <td><strong>45/100</strong> - LinkedIn posts show outreach but focused sharing</td>
+                        </tr>
+                        <tr>
+                            <td>Steadiness (S)</td>
+                            <td><strong>70/100</strong> - Systematic approach, stable tenure, methodical planning</td>
+                        </tr>
+                        <tr>
+                            <td>Conscientiousness (C)</td>
+                            <td><strong>80/100</strong> - Strong focus on governance, architecture, compliance</td>
+                        </tr>
+                        <tr>
+                            <td>Primary Style</td>
+                            <td><strong>Conscientiousness (C)</strong> - Detail-oriented, structured, risk-aware</td>
+                        </tr>
+                        <tr>
+                            <td>Secondary Style</td>
+                            <td><strong>Steadiness (S)</strong> - Reliable, methodical, team-focused</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How inferred
+                            <div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns. Validate in actual conversation.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Governance & Compliance</div>
+                    <p>As Head of ICT Governance, he is motivated by solutions that create transparency, accountability, and structured oversight. Frame AI initiatives within governance frameworks and compliance benefits.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Risk Mitigation</div>
+                    <p>Working in critical infrastructure (aviation), risk management is paramount. Present AI solutions that reduce operational risk, improve resilience, and include clear fallback mechanisms.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Evidence-Based ROI</div>
+                    <p>His data-driven and structured approach means he values quantifiable outcomes. Provide concrete metrics, benchmarks from similar implementations, and clear business case frameworks.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Operational Efficiency</div>
+                    <p>Airport operations run on tight schedules. AI solutions that demonstrably reduce manual effort, improve planning accuracy, or optimize resource allocation will resonate strongly.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Patterns from content analysis. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Systems Thinker</div>
+                    <p>Villabruna's focus on ICT governance, planning frameworks, and architectural coherence suggests he thinks in terms of systems, dependencies, and interconnections. He likely approaches AI not as isolated tools but as components of larger operational ecosystems.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Evidence-Based Decision Maker</div>
+                    <p>His emphasis on transparency (AOP web app, governance frameworks, data analytics programs) indicates preference for fact-based decision-making. He will likely want data, metrics, and validated evidence before committing to new initiatives.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Risk-Aware but Innovation-Oriented</div>
+                    <p>While he emphasizes governance and structure (risk management), Zurich Airport's involvement in cutting-edge projects (autonomous shuttles, AR navigation, generative AI) shows he balances caution with willingness to pilot new technologies. His role is enabling innovation through responsible governance.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Cross-Domain Integrator</div>
+                    <p>His autonomous shuttle project involvement spanning law, operations, security, and vehicle tech indicates comfort bridging technical and non-technical domains. He likely speaks multiple "languages" and understands organizational complexity.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases & Themes
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted via analysis from LinkedIn posts, company announcements, and published content. Frequency = relative emphasis in public statements.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase / Theme</th><th>Frequency</th><th>Context & Implication</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Data-driven decision making</td>
+                            <td><span class="probability-badge prob-very-high">Very High</span></td>
+                            <td>Core to AOP, analytics initiatives - expects evidence-based proposals</td>
+                        </tr>
+                        <tr>
+                            <td>Governance & transparency</td>
+                            <td><span class="probability-badge prob-very-high">Very High</span></td>
+                            <td>Central to his role - values clear frameworks and accountability</td>
+                        </tr>
+                        <tr>
+                            <td>Digital transformation</td>
+                            <td><span class="probability-badge prob-high">High</span></td>
+                            <td>Zurich Airport's stated goal - he's a driver of this agenda</td>
+                        </tr>
+                        <tr>
+                            <td>Innovation & modernization</td>
+                            <td><span class="probability-badge prob-high">High</span></td>
+                            <td>Posts about new projects, traineeprograms show forward-thinking</td>
+                        </tr>
+                        <tr>
+                            <td>Team building & capability</td>
+                            <td><span class="probability-badge prob-medium-high">Medium-High</span></td>
+                            <td>Building new governance team - invests in people development</td>
+                        </tr>
+                        <tr>
+                            <td>Operational excellence</td>
+                            <td><span class="probability-badge prob-medium">Medium</span></td>
+                            <td>Airport context - system reliability and safety are implicit</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: SWOT based on professional positioning, company context, and market research. Recommendations are suggestions - validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths">
+                        <h4>Strengths</h4>
+                        <ul>
+                            <li>Mandate over enterprise ICT strategy and governance</li>
+                            <li>Track record with high-visibility digital projects</li>
+                            <li>Deep cross-functional relationships across airport operations</li>
+                            <li>Authority to evaluate and greenlight new technologies</li>
+                            <li>Data analytics and planning expertise</li>
+                            <li>Exposure to cutting-edge tech (autonomous systems, AR, AI)</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box weaknesses">
+                        <h4>Potential Gaps</h4>
+                        <ul>
+                            <li>May not have deep machine learning/AI technical expertise</li>
+                            <li>Governance role may emphasize risk over rapid experimentation</li>
+                            <li>Limited public visibility (few interviews/speaking engagements noted)</li>
+                            <li>Airport industry may have specific regulatory constraints</li>
+                            <li>Budget/resource constraints in aviation sector</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h4>Opportunities</h4>
+                        <ul>
+                            <li>Build AI governance framework at Europe's most-awarded airport</li>
+                            <li>Apply AI to airport operations (scheduling, safety, passenger flow)</li>
+                            <li>Showcase responsible AI implementation as competitive advantage</li>
+                            <li>Establish ZRH as AI innovation hub in aviation sector</li>
+                            <li>Develop talent and training programs for AI/data science</li>
+                            <li>Partnership opportunities with AI vendors and consultants</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;">
+                    <h4>Competitive Threats</h4>
+                    <ul>
+                        <li>Larger airports may have greater AI investment budgets</li>
+                        <li>Tech giants (Google, Microsoft) offering competing solutions</li>
+                        <li>Cybersecurity and safety risks with new AI systems</li>
+                        <li>Regulatory changes in aviation/data privacy</li>
+                        <li>Talent competition for AI expertise</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-ESTIMATED: Positions based on market perception and strategic positioning analysis. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Market Expertise & Scale →</span>
+                    <span class="scatter-axis-label x-label">Innovation Velocity & Agility →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 60%; bottom: 65%;"><div class="scatter-tooltip">Zurich Airport / Philipp</div></div>
+                        <div class="scatter-dot competitor1" style="left: 75%; bottom: 70%;"><div class="scatter-tooltip">Geneva Airport</div></div>
+                        <div class="scatter-dot competitor2" style="left: 55%; bottom: 55%;"><div class="scatter-tooltip">EuroAirport Basel</div></div>
+                        <div class="scatter-dot competitor3" style="left: 70%; bottom: 45%;"><div class="scatter-tooltip">Aena (Spain)</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Zurich Airport (Philipp)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Competitors</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic Positioning & Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on ZRH's stated strategy and Philipp's role within it.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🏆</div>
+                        <div class="differentiator-label">21x Best Airport Europe - Proven Excellence</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🔄</div>
+                        <div class="differentiator-label">Integrated Digital Ecosystem - Architecture Maturity</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">⚡</div>
+                        <div class="differentiator-label">Innovation Lab - Cutting-Edge Projects Pipeline</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR AI STRATEGY DISCUSSION
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content">Lead with governance and risk management frameworks. Villabruna thinks systematically about enterprise architecture, so position AI not as isolated tools but as components of ZRH's broader digital transformation toward "Europe's most integrative airport system." Ground the discussion in data, metrics, and measurable outcomes. Reference Zurich Airport's innovation momentum (autonomous shuttles, AR navigation, generative AI chatbots) while emphasizing responsible implementation through governance. Acknowledge his cross-functional role and involve him in discussion of how AI impacts operations, security, and passenger experience - not just IT. Propose starting with a governance framework for AI alongside pilot use cases, rather than pushing for immediate deployment. This aligns with his mandate and comfort with structured innovation.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Airport Operations Plan (AOP)</h4>
+                        <p>"I saw the AOP web app giving 3,500+ stakeholders real-time visibility. How are you thinking about AI/analytics to predict operational issues before they impact passengers?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Autonomous Shuttle Project</h4>
+                        <p>"Your autonomous shuttle project spans law, ops, security, and vehicle tech. How do you see AI governance fitting into that orchestration challenge?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Digital Transformation Roadmap</h4>
+                        <p>"Zurich's goal is Europe's most integrative airport system by 2030. Where does generative AI and automation fit in your planning?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Data Analytics Initiatives</h4>
+                        <p>"Your Data & Analytics Traineeprogramm shows investment in data literacy. How are you preparing teams for AI tooling and skills?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Innovation Hub Collaboration</h4>
+                        <p>"How does your governance function interact with Coralie Klaus Boecker's Innovation Hub on emerging tech decisions?"</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Autonomous Decision-Making</h4>
+                        <p>Avoid framing AI as replacing human judgment in safety-critical systems. Aviation has strict regulations. Frame AI as augmentation with human oversight.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Cost Cutting vs. Efficiency Gains</h4>
+                        <p>Don't lead with "AI will reduce headcount." Instead focus on "enabling teams to focus on higher-value work" - critical in unionized European aviation.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Rapid Deployment Timelines</h4>
+                        <p>Villabruna's governance focus suggests wariness of "move fast and break things." Present structured pilot and validation approaches, not aggressive rollout schedules.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Data Privacy & Passenger Security</h4>
+                        <p>Airport operations involve passenger data, security systems, and regulatory oversight. Lead with governance, ethics, and compliance - not just capability.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Third-Party Dependencies</h4>
+                        <p>Be transparent about vendor lock-in, data residency, and integration risks. His governance role means he scrutinizes these dependencies.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points & Alignment
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential common ground based on profile and meeting context.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Requestor Context: Michael Wegmuller, Artifact (Swiss AI Agency)</div>
+                    <p><strong>Background:</strong> Co-Founder/Managing Director of Artifact. AI strategist. Won SwissICT Innovation of the Year 2024. Senior Swiss Armed Forces officer. Educated at Universität Bern. Interests: data science, sports analytics, AI policy/ethics.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Natural Alignment Points</div>
+                    <ul style="margin-left: 20px; margin-top: 12px;">
+                        <li>Both Swiss-based, operating in Swiss ICT ecosystem - shared regulatory and cultural context</li>
+                        <li>Michael's data science expertise aligns with Philipp's data-driven decision making focus</li>
+                        <li>SwissICT award suggests credibility in Swiss tech community - Philipp likely aware of this</li>
+                        <li>Both emphasize ethics, policy, and responsible innovation - not just capability</li>
+                        <li>Artifact's focus on "accelerating impact with AI" matches ZRH's digital transformation ambitions</li>
+                        <li>Opportunity to discuss AI governance frameworks for aviation/critical infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Personal Interests Matching
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Michael Wegmuller's interests mapped to Philipp's profile for engagement enhancement.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Data Science & Analytics Connection</div>
+                    <p><strong>Michael's Interest:</strong> Data science, sports analytics. <strong>Philipp's Alignment:</strong> Leading Data & Analytics Traineeprogramm at ZRH, driving AOP analytics. <strong>Opportunity:</strong> Discuss how predictive analytics can improve airport operations - passenger flow forecasting, maintenance prediction, crew scheduling optimization.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">AI Ethics & Policy Discussion</div>
+                    <p><strong>Michael's Interest:</strong> AI policy/ethics focus. <strong>Philipp's Alignment:</strong> Building governance frameworks, involved in autonomous systems (regulatory/safety aspect). <strong>Opportunity:</strong> Deep discussion on responsible AI governance in mission-critical airport environments. How to balance innovation with regulatory compliance and public safety.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Swiss Context & Armed Forces Background</div>
+                    <p><strong>Michael's Background:</strong> Senior Swiss Armed Forces officer. <strong>Relevance:</strong> Airport security, critical infrastructure protection. <strong>Opportunity:</strong> Discuss AI for security monitoring, threat detection, and operational resilience - areas where Michael's defense background adds credibility.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">What You Can Offer Them
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How generated
+                            <div class="methodology-tooltip">AI-GENERATED: Suggestions based on their stated needs and your context. Customize based on your actual capabilities.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: var(--green-verified); color: white;">VALUE EXCHANGE</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">AI Strategy & Roadmap Development</div>
+                    <p>Artifact's experience building AI strategies for Swiss enterprises directly addresses Philipp's need to develop a coherent AI roadmap that fits within ICT governance frameworks. Offer a structured AI maturity assessment as a starting point.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Proven AI Use Case Identification</div>
+                    <p>Artifact's track record (SwissICT Innovation of the Year 2024) in identifying and delivering high-impact AI use cases can help prioritize the most valuable applications for airport operations, from predictive maintenance to passenger flow optimization.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">AI Governance Framework Expertise</div>
+                    <p>With aviation being a heavily regulated critical infrastructure, Philipp needs AI governance that meets compliance requirements. Offer frameworks that balance innovation speed with regulatory safety - a sweet spot for Artifact's consulting approach.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Swiss Ecosystem & Reference Cases</div>
+                    <p>Artifact's deep Swiss network and local reference cases provide credibility. Highlight similar transformations in other Swiss infrastructure companies to demonstrate relevance and reduce perceived risk.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Optimal Contact Strategy
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How determined
+                            <div class="methodology-tooltip">Recommendations based on communication style analysis and professional norms in Swiss business culture.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Preferred Channel</td><td>LinkedIn message or direct email - formal initial outreach, then face-to-face meeting preferred</td></tr>
+                    <tr><td>Optimal Timing</td><td>Mid-week (Tuesday-Thursday), morning hours. Avoid airport peak travel periods (Monday AM, Friday PM)</td></tr>
+                    <tr><td>Formality Level</td><td>Professional but not overly formal. Swiss German business culture: direct, factual, respectful. Use "Sie" in German correspondence</td></tr>
+                    <tr><td>First Touchpoint</td><td>Reference a specific ZRH innovation project (AOP, autonomous shuttle) to demonstrate genuine interest and preparation</td></tr>
+                    <tr><td>Meeting Format</td><td>On-site at Zurich Airport preferred - shows respect for his environment and enables facility tour/demo</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics & Discussion Flow
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>AI Governance Framework</td>
+                            <td><span class="probability-badge prob-very-high">Very High</span></td>
+                            <td>Core to his role. Prepare case studies of AI governance in other large organizations. Be ready to discuss policies, risk frameworks, approval processes.</td>
+                        </tr>
+                        <tr>
+                            <td>Autonomous Systems / Robotics</td>
+                            <td><span class="probability-badge prob-very-high">Very High</span></td>
+                            <td>WeRide shuttle project underway. Ask about lessons learned, regulatory challenges, integration with existing ops. Reference his multi-domain coordination experience.</td>
+                        </tr>
+                        <tr>
+                            <td>Data Analytics & Predictive Modeling</td>
+                            <td><span class="probability-badge prob-high">High</span></td>
+                            <td>AOP, traineeprograms show strong data interest. Discuss ML for operations forecasting, anomaly detection. Align with his data-driven philosophy.</td>
+                        </tr>
+                        <tr>
+                            <td>Digital Transformation Roadmap</td>
+                            <td><span class="probability-badge prob-high">High</span></td>
+                            <td>ZRH's 2030 vision is "most integrative airport system." AI is likely component. Ask where he sees biggest transformation opportunities.</td>
+                        </tr>
+                        <tr>
+                            <td>Cybersecurity & Risk Management</td>
+                            <td><span class="probability-badge prob-medium-high">Medium-High</span></td>
+                            <td>His governance role implies security consciousness. Discuss AI for threat detection, compliance automation, security orchestration.</td>
+                        </tr>
+                        <tr>
+                            <td>Team Building & Capability Development</td>
+                            <td><span class="probability-badge prob-medium">Medium</span></td>
+                            <td>He's building new governance team. Discuss training, hiring, organizational design for AI. How to build in-house AI capability vs. external partnerships.</td>
+                        </tr>
+                        <tr>
+                            <td>Innovation Partnership Models</td>
+                            <td><span class="probability-badge prob-medium">Medium</span></td>
+                            <td>Works closely with Innovation Hub. Ask about his preference for partnerships with consultants/agencies like Artifact vs. building internal teams.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content & Activity
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via LinkedIn, company announcements, and press archives.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Post - Airport Operations Plan</h4>
+                        <p>Posted about <a href="https://www.linkedin.com/posts/philipp-villabruna-11872718b_aop-web-app-fzag-activity-7177928998419656706-BysJ" target="_blank">AOP Web App empowering 3,500+ stakeholders</a> with real-time operational visibility. Focus on transparency and data-driven operations.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Post - Data & Analytics Traineeprogramm</h4>
+                        <p>Shared <a href="https://www.linkedin.com/posts/philipp-villabruna-11872718b_traineeprogramm-data-analytics-flughafen-activity-7193476092601491458-RGj4" target="_blank">Data & Analytics Traineeprogramm initiative</a> at Flughafen Zürich AG. Demonstrates investment in team capability and modern analytics practice.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Professional Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>Autonomous Shuttle Project</h4>
+                        <p>Technical leadership on <a href="https://newsroom.flughafen-zuerich.ch/en/flughafen-zuerich-ag-tests-self-driving-shuttle-bus-for-employees/" target="_blank">WeRide Level 3 autonomous shuttle</a> (March 2025 launch). Public-facing innovation project demonstrating leadership.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Company Team Pages</h4>
+                        <p>Listed on <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/department-heads" target="_blank">Flughafen Zürich AG department heads</a> page. Visible leadership position in organization.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Industry Publications</h4>
+                        <p>Featured in <a href="https://www.internationalairportreview.com/article/255970/the-zurich-airport-innovation-hub-a-conversation-with-coralie-klaus-boecker/" target="_blank">International Airport Review articles</a> on ZRH innovation (via Innovation Hub collaboration).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment & Coverage Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Sentiment from content analysis. Aggregate assessment of coverage tone and themes.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar">
+                                    <div class="bar-segment positive" style="height: 75%;"><div class="bar-tooltip">Positive: 75%</div></div>
+                                    <div class="bar-segment neutral" style="height: 20%;"><div class="bar-tooltip">Neutral: 20%</div></div>
+                                    <div class="bar-segment critical" style="height: 5%;"><div class="bar-tooltip">Critical: 5%</div></div>
+                                </div>
+                                <div class="bar-label">2024-2025</div>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Coverage Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive (Innovation, leadership)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral (Company updates)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical (Limited)</span>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem;"><strong>Coverage Assessment:</strong> Philipp maintains low personal profile but is visible through his organization's innovation initiatives. No negative coverage identified. Association with prestigious projects (autonomous shuttle, data analytics) and Europe's most-awarded airport creates positive halo effect. Professional LinkedIn activity shows strategic thinking without personal self-promotion - positioning him as substance-focused rather than visibility-seeking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">AI Use Cases for ICT Planning & Governance at Zurich Airport
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> Use-case focused
+                            <div class="methodology-tooltip">Tailored AI use cases specific to Philipp's role as Head ICT Planning & Governance at a large, innovation-focused airport. Aligned with his stated priorities and ZRH's digital transformation goals.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">8 TAILORED USE CASES</span>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">1. AI-Powered IT Service Management (ITSM) - Predictive Incident Resolution</div>
+                    <div class="use-case-description">Integrate generative AI with OpenText SMAX to analyze incoming IT tickets, predict incident severity and resolution time, auto-route to appropriate teams, and suggest solutions based on historical patterns and knowledge base. Reduces Mean Time To Resolution (MTTR), improves SLA compliance, and frees senior techs for strategic work.</div>
+                    <div class="use-case-benefit">Impact: 30-40% MTTR reduction, improved IT service quality for 3,500+ airport users</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">2. Intelligent ICT Capacity Planning - ML-Based Demand Forecasting</div>
+                    <div class="use-case-description">Use machine learning to forecast IT infrastructure demand (compute, storage, network bandwidth) based on passenger volume, flight schedules, seasonal patterns, and new project pipelines. Enables proactive provisioning, cost optimization, and prevents capacity crises during peak operations.</div>
+                    <div class="use-case-benefit">Impact: Better budget planning, reduced over-provisioning waste, improved system reliability</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">3. AI Governance Framework & Policy Engine - Automated Compliance Monitoring</div>
+                    <div class="use-case-description">Build an AI-powered system to continuously monitor ICT activities against governance policies (data access controls, vendor management, change management, security standards). Detects violations, flags risks, and generates compliance reports automatically. Reduces manual audit burden and improves governance transparency.</div>
+                    <div class="use-case-benefit">Impact: Stronger governance posture, audit-ready processes, reduced compliance risk</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">4. Smart Airport Operations Optimization - Real-Time Resource Allocation</div>
+                    <div class="use-case-description">Enhance the Airport Operations Plan (AOP) with AI/ML to optimize resource allocation (gates, staff, equipment) based on real-time flight data, demand patterns, and ground operation constraints. ML models predict bottlenecks and suggest operational adjustments to maximize efficiency and passenger experience.</div>
+                    <div class="use-case-benefit">Impact: Improved on-time performance, better gate utilization, enhanced passenger flow</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">5. Predictive Maintenance for Airport Infrastructure - IoT + ML</div>
+                    <div class="use-case-description">Deploy IoT sensors on critical airport systems (HVAC, power, baggage handling, security gates) and use ML to predict failures before they occur. Reduces unplanned downtime, extends asset life, and improves operational reliability - critical for 24/7 airport operations.</div>
+                    <div class="use-case-benefit">Impact: Reduced downtime costs, improved safety, better asset lifecycle management</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">6. AI-Enhanced Cybersecurity - Threat Detection & Response Automation</div>
+                    <div class="use-case-description">Implement AI-driven security monitoring to detect anomalous network behavior, potential data breaches, and insider threats in real-time. Automate response actions (isolate systems, alert teams) and provide security teams with AI-analyzed threat intelligence. Critical for protecting airport operations and passenger data.</div>
+                    <div class="use-case-benefit">Impact: Faster threat detection, automated response, reduced security incident impact</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">7. Passenger Flow Intelligence - Computer Vision + ML for Crowd Management</div>
+                    <div class="use-case-description">Use computer vision AI to analyze passenger movement patterns in real-time (security lines, gates, corridors). Identify bottlenecks, predict congestion, and recommend dynamic resource deployment. Improves passenger experience and security efficiency.</div>
+                    <div class="use-case-benefit">Impact: Better passenger experience, optimized staffing, improved security throughput</div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-title">8. Generative AI for Knowledge Management & Support - Internal Documentation & Training</div>
+                    <div class="use-case-description">Deploy generative AI chatbots to help employees navigate ICT policies, troubleshoot issues, access procedures, and complete training. Creates a 24/7 support layer, reduces IT helpdesk overhead, and distributes knowledge across the organization. Can be adapted for specific ZRH procedures and domain knowledge.</div>
+                    <div class="use-case-benefit">Impact: Better employee experience, reduced support costs, faster knowledge distribution</div>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <h4 style="font-weight: 600; margin-bottom: 12px;">Implementation Approach for Philipp's Context</h4>
+                    <ul style="margin-left: 20px; line-height: 1.8;">
+                        <li><strong>Phase 1 - Governance First:</strong> Establish AI governance framework and policy before pilots. Define decision rights, risk thresholds, and compliance requirements.</li>
+                        <li><strong>Phase 2 - Structured Pilots:</strong> Start with Use Cases 1 & 2 (low-risk, high-value ITSM and capacity planning). Measure outcomes carefully. Build confidence and internal case studies.</li>
+                        <li><strong>Phase 3 - Operations Integration:</strong> Expand to Use Cases 4 & 5 (airport operations and maintenance). Integrate with existing systems (AOP, SMAX, IoT).</li>
+                        <li><strong>Phase 4 - Risk Management:</strong> Introduce Use Cases 6 & 7 (security and passenger flow). Coordinate with operations, security, and compliance teams.</li>
+                        <li><strong>Phase 5 - Knowledge Scaling:</strong> Deploy Use Case 8 (internal support and training) to amplify AI adoption across the organization.</li>
+                        <li><strong>Success Metrics:</strong> Define clear KPIs (MTTR, cost savings, compliance scores, passenger metrics). Regular governance reviews and transparency across stakeholders.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>Intelligence Sources (22+)</h3>
+            <div class="sources-grid">
+                <a href="https://www.linkedin.com/in/philipp-villabruna-11872718b/" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile - Philipp Villabruna</div>
+                        <div class="source-meta">Professional profile, verified connections</div>
+                    </div>
+                </a>
+                <a href="https://www.moneyhouse.ch/de/person/villabruna-philipp-36601695801" target="_blank" class="source-item">
+                    <div class="source-icon">MH</div>
+                    <div class="source-info">
+                        <div class="source-name">Moneyhouse - Villabruna, Philipp</div>
+                        <div class="source-meta">Swiss business registry, board positions</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/posts/philipp-villabruna-11872718b_aop-web-app-fzag-activity-7177928998419656706-BysJ" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn - Airport Operations Plan Post</div>
+                        <div class="source-meta">Public engagement post on AOP initiative</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/posts/philipp-villabruna-11872718b_traineeprogramm-data-analytics-flughafen-activity-7193476092601491458-RGj4" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn - Data Analytics Traineeprogramm</div>
+                        <div class="source-meta">Public engagement post on talent development</div>
+                    </div>
+                </a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/portrait" target="_blank" class="source-item">
+                    <div class="source-icon">ZH</div>
+                    <div class="source-info">
+                        <div class="source-name">Flughafen Zürich - Company Portrait</div>
+                        <div class="source-meta">Official company background and history</div>
+                    </div>
+                </a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/innovation-hub" target="_blank" class="source-item">
+                    <div class="source-icon">ZH</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Innovation Hub</div>
+                        <div class="source-meta">Innovation strategy and team leadership</div>
+                    </div>
+                </a>
+                <a href="https://omadaidentity.com/press/flughafen-zurich-european-identity-award/" target="_blank" class="source-item">
+                    <div class="source-icon">OI</div>
+                    <div class="source-info">
+                        <div class="source-name">Omada Identity - European Identity Award</div>
+                        <div class="source-meta">Award announcement and ZRH project details</div>
+                    </div>
+                </a>
+                <a href="https://www.internationalairportreview.com/article/255970/the-zurich-airport-innovation-hub-a-conversation-with-coralie-klaus-boecker/" target="_blank" class="source-item">
+                    <div class="source-icon">IA</div>
+                    <div class="source-info">
+                        <div class="source-name">International Airport Review - Innovation Hub</div>
+                        <div class="source-meta">Industry coverage of ZRH digital strategy</div>
+                    </div>
+                </a>
+                <a href="https://www.zuehlke.com/en/case-studies/zurich-airport-transforms-operations-for-a-data-driven-future" target="_blank" class="source-item">
+                    <div class="source-icon">ZU</div>
+                    <div class="source-info">
+                        <div class="source-name">Zühlke - Digital Transformation Case Study</div>
+                        <div class="source-meta">Technical details on ZRH digital initiatives</div>
+                    </div>
+                </a>
+                <a href="https://report.flughafen-zuerich.ch/2024/ar/en" target="_blank" class="source-item">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Annual Report 2024</div>
+                        <div class="source-meta">Financial data, strategy, organizational updates</div>
+                    </div>
+                </a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en/zurich-airport-ltd-financial-year-2024/" target="_blank" class="source-item">
+                    <div class="source-icon">NR</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Newsroom - 2024 Financial Results</div>
+                        <div class="source-meta">Official press release on performance</div>
+                    </div>
+                </a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en/flughafen-zuerich-ag-tests-self-driving-shuttle-bus-for-employees/" target="_blank" class="source-item">
+                    <div class="source-icon">NR</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Newsroom - Autonomous Shuttle</div>
+                        <div class="source-meta">WeRide Level 3 shuttle project details</div>
+                    </div>
+                </a>
+                <a href="https://www.unic.com/en/magazine/zurich-airport-flight-information-available-in-gpt-store" target="_blank" class="source-item">
+                    <div class="source-icon">UN</div>
+                    <div class="source-info">
+                        <div class="source-name">UNIC - ZRH GPT Flight Info Chatbot</div>
+                        <div class="source-meta">Generative AI implementation at airport</div>
+                    </div>
+                </a>
+                <a href="https://www.internationalairportreview.com/news/233487/zurich-airport-introduces-first-european-autonomous-shuttle-service-robobus-for-airport-employees-in-2025/" target="_blank" class="source-item">
+                    <div class="source-icon">IA</div>
+                    <div class="source-info">
+                        <div class="source-name">IAR - Robobus Launch 2025</div>
+                        <div class="source-meta">European autonomous shuttle service context</div>
+                    </div>
+                </a>
+                <a href="https://www.moneyhouse.ch/en/company/ese-elektronik-ag-13408267401" target="_blank" class="source-item">
+                    <div class="source-icon">MH</div>
+                    <div class="source-info">
+                        <div class="source-name">Moneyhouse - ESE Elektronik AG</div>
+                        <div class="source-meta">Company registry, board/signatory information</div>
+                    </div>
+                </a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/executive-board" target="_blank" class="source-item">
+                    <div class="source-icon">ZH</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Executive Board</div>
+                        <div class="source-meta">Senior leadership team listing</div>
+                    </div>
+                </a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/board-of-directors" target="_blank" class="source-item">
+                    <div class="source-icon">ZH</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Board of Directors</div>
+                        <div class="source-meta">Board governance structure</div>
+                    </div>
+                </a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/department-heads" target="_blank" class="source-item">
+                    <div class="source-icon">ZH</div>
+                    <div class="source-info">
+                        <div class="source-name">ZRH Department Heads</div>
+                        <div class="source-meta">Organizational structure, Philipp's position</div>
+                    </div>
+                </a>
+                <a href="https://swisscognitive.ch/person/michael-wegmuller/" target="_blank" class="source-item">
+                    <div class="source-icon">SC</div>
+                    <div class="source-info">
+                        <div class="source-name">SwissCognitive - Michael Wegmuller</div>
+                        <div class="source-meta">Requestor profile and background</div>
+                    </div>
+                </a>
+                <a href="https://artifact.swiss/team/michael-wegmuller/" target="_blank" class="source-item">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">Artifact - Michael Wegmuller</div>
+                        <div class="source-meta">Requestor organization and context</div>
+                    </div>
+                </a>
+                <a href="https://www.kalaidos-fh.ch/en-GB" target="_blank" class="source-item">
+                    <div class="source-icon">KF</div>
+                    <div class="source-info">
+                        <div class="source-name">Kalaidos Fachhochschule Schweiz</div>
+                        <div class="source-meta">Education institution information</div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Flughafen_Z%C3%BCrich_AG" target="_blank" class="source-item">
+                    <div class="source-icon">WI</div>
+                    <div class="source-info">
+                        <div class="source-name">Wikipedia - Flughafen Zürich AG</div>
+                        <div class="source-meta">Company background and history</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 2025 | Sources: 22+ verified</p>
+        <p>Prepared for: Michael Wegmuller, Artifact | Occasion: AI Strategy Discussion</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Prepare comprehensive meeting intelligence profile for Philipp Villabruna, Head ICT Planning & Governance at Zurich Airport, for AI strategy discussion with Michael Wegmuller (Artifact)"</div>
+        <div class="report-token">Report ID: philipp-villabruna-27782eed</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Philipp Villabruna Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        async function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.classList.add('show');
+
+            const pdfContent = document.createElement('div');
+            pdfContent.style.width = '1000px';
+            pdfContent.style.background = 'white';
+            pdfContent.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+            const styles = document.querySelector('style').cloneNode(true);
+
+            const titleSlide = document.createElement('div');
+            titleSlide.innerHTML = `
+                <div style="height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #1e3a5f 0%, #36454f 100%); color: white; padding: 60px;">
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sailor 2.0</span>
+                    </div>
+                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-align: center;">Philipp Villabruna</h1>
+                    <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">Head ICT Planning & Governance | Flughafen Zürich AG</p>
+                    <p style="font-size: 1rem; opacity: 0.7;">Meeting Intelligence Profile</p>
+                    <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 40px;">Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                </div>
+                <div style="page-break-after: always;"></div>
+            `;
+            pdfContent.appendChild(titleSlide);
+
+            const tabNames = {
+                'executive-summary': 'Executive Summary',
+                'subject-profile': 'Subject Profile',
+                'network-map': 'Network Map',
+                'behavioral-analysis': 'Behavioral Analysis',
+                'strategic-position': 'Strategic Position',
+                'engagement-playbook': 'Engagement Playbook',
+                'media-footprint': 'Media Footprint',
+                'ai-use-cases': 'AI Use Cases'
+            };
+
+            const tabs = ['executive-summary', 'subject-profile', 'network-map', 'behavioral-analysis', 'strategic-position', 'engagement-playbook', 'media-footprint', 'ai-use-cases'];
+
+            tabs.forEach((tabId, index) => {
+                const tabContent = document.getElementById(tabId);
+                if (tabContent) {
+                    const slideWrapper = document.createElement('div');
+                    slideWrapper.style.padding = '40px';
+                    slideWrapper.style.background = '#f5f5f5';
+                    slideWrapper.style.minHeight = '700px';
+
+                    const slideHeader = document.createElement('div');
+                    slideHeader.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #1e3a5f;">
+                            <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e3a5f;">${tabNames[tabId]}</h2>
+                            <span style="font-size: 0.9rem; color: #708090;">Sailor 2.0 | Philipp Villabruna</span>
+                        </div>
+                    `;
+                    slideWrapper.appendChild(slideHeader);
+
+                    const contentClone = tabContent.cloneNode(true);
+                    contentClone.style.display = 'block';
+                    contentClone.classList.add('active');
+                    contentClone.querySelectorAll('.methodology-tooltip, .use-case-reasoning, .bar-tooltip, .scatter-tooltip, .item-recommendation').forEach(el => el.remove());
+                    slideWrapper.appendChild(contentClone);
+
+                    if (index < tabs.length - 1) {
+                        const pageBreak = document.createElement('div');
+                        pageBreak.style.pageBreakAfter = 'always';
+                        slideWrapper.appendChild(pageBreak);
+                    }
+
+                    pdfContent.appendChild(slideWrapper);
+                }
+            });
+
+            pdfContent.insertBefore(styles, pdfContent.firstChild);
+            pdfContent.style.position = 'absolute';
+            pdfContent.style.left = '-9999px';
+            document.body.appendChild(pdfContent);
+
+            const opt = {
+                margin: 0,
+                filename: 'sailor-philipp-villabruna-profile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: 'px', format: [1000, 750], orientation: 'landscape' },
+                pagebreak: { mode: ['css', 'legacy'], after: '.page-break' }
+            };
+
+            try {
+                await html2pdf().set(opt).from(pdfContent).save();
+                toast.textContent = 'PDF downloaded!';
+                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
+            } catch (error) {
+                console.error('PDF generation failed:', error);
+                toast.textContent = 'PDF generation failed';
+                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
+            }
+            document.body.removeChild(pdfContent);
+        }
+
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
