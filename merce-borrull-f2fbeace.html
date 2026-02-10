@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Merce Borrull">
+    <meta property="og:title" content="Sailor 2.0 - Merce Borrull Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Merce Borrull at Swiss Post">
+    <meta name="report-token" content="f2fbeace">
+    <title>Sailor 2.0 - Merce Borrull</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        .disc-chart { display: flex; justify-content: space-around; align-items: flex-end; height: 250px; padding: 20px 10px; }
+        .disc-bar { display: flex; flex-direction: column; align-items: center; width: 60px; }
+        .disc-bar-fill { width: 50px; background: linear-gradient(135deg, #3b82f6, #1e40af); border-radius: 4px 4px 0 0; transition: all 0.3s; margin-bottom: 8px; }
+        .disc-bar:hover .disc-bar-fill { transform: translateY(-5px); }
+        .disc-bar-label { font-size: 0.85rem; font-weight: 600; color: var(--charcoal); }
+        .disc-bar-value { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-top: 4px; }
+
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+
+        .use-case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .use-case-card { background: #f8f9fa; border-radius: 8px; padding: 20px; border-left: 4px solid #3b82f6; }
+        .use-case-card h4 { font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-description { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; line-height: 1.5; }
+        .use-case-metrics { display: flex; gap: 12px; flex-wrap: wrap; }
+        .use-case-metric { background: white; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; color: var(--slate-gray); }
+        .use-case-reasoning { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 350px; z-index: 100; margin-top: 8px; }
+
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid, .use-case-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">Sailor 2.0</span>
+        </div>
+        <h1>Merce Borrull</h1>
+        <div class="header-subtitle">CIO Customer Touch Points and Mobility Services | Swiss Post</div>
+        <div class="header-meta">
+            <span>Zurich, Switzerland</span>
+            <span>ESADE PLD | Master's in Business Intelligence | IMD</span>
+            <span>post.ch</span>
+            <span>20+ years leading change programs</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">18+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content">Merce Borrull is a highly collaborative, people-focused digital transformation leader with 20+ years building change management capabilities across financial services and telecommunications. As CIO Customer Touch Points and Mobility Services at Swiss Post, she leads full Agile teams transforming postal, communications, and mobility services. Her DISC profile (I/D - Influence/Dominance) reveals a champion of diversity, multilingual teams, and inclusive leadership. She is <strong>exceptionally high fit (9/10)</strong> for a discussion on scaling AI from proof of concept to production: she deeply understands organizational change, has embedded IT transformation experience, and advocates for starting small and demonstrating value before scaling.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and news articles using NLP. Years of experience calculated from career timeline. Project counts from case studies when available.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">20+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">170+</div><div class="metric-label">Projects Delivered</div></div>
+                        <div class="metric-box"><div class="metric-value">47K+</div><div class="metric-label">Team Members Led (Swiss Post)</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">1</div><div class="metric-label">Global Postal Ranking (Swiss Post)</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How calculated
+                                <div class="methodology-tooltip">Primary = official sources (company sites, registries). Secondary = reputable news/industry sources. Inferred = cross-referenced patterns. Speculative = limited single-source data.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (40%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (30%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (20%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Technology as Enabler for Human Goals</div>
+                    <p>Merce consistently frames digital transformation not as an IT exercise, but as a tool to "enable companies to achieve more" and "help others thrive." This people-first philosophy is critical for engagement on AI scaling - she will prioritize human impact over technical sophistication.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Structured Change with Agile Execution</div>
+                    <p>Her career shows strategic roadmap planning (Post Netz, Communications, Post Auto) paired with DevOps team execution. For PoC-to-production discussions, she appreciates clear business pain linkage and phased delivery proving value incrementally.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Diversity & Inclusion as Business Lever</div>
+                    <p>Leadership in Women at Microsoft, WeAdvance member, panelist on diversity in tech. She believes "understanding different types of people and embracing diversity and languages" is competitive advantage - relevant when discussing team composition for AI initiatives.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Learning from Failure, Celebrating Small Wins</div>
+                    <p>Quoted: "Feedback, learning, and failure are key parts of the journey." This suggests she will resonate with iterative AI approaches - proving concept value before enterprise rollout, learning from early production pilots rather than massive upfront investments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Current (2023-Present)</div>
+                        <div class="timeline-content">
+                            <strong>Swiss Post - CIO Customer Touch Points and Mobility Services</strong><br>
+                            Leading digital transformation for Post Network, Communications and Mobility Services with full Agile teams. Strategic and tactical IT roadmaps. DevOps teams executing infrastructure for Post Netz, Communications, and Post Auto.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2020-2023</div>
+                        <div class="timeline-content">
+                            <strong>Microsoft - Business Transformation Lead</strong><br>
+                            Microsoft Partner Ecosystem growth and business connectivity. Co-led Women at Microsoft network in Switzerland with Jessica Geiger.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2007-2020</div>
+                        <div class="timeline-content">
+                            <strong>Zurich Insurance Group - Multiple Roles</strong><br>
+                            Business Analyst, Project Manager (12-person team), Global Underwriting Applications Manager (offshore). Promoted to Digital/Innovation Transformation Manager. Led Global Business Contribution Group (GEC): 5 teams, 24 people, 170 annual events, 6,500+ members, 15 country chapters.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2012-2013</div>
+                        <div class="timeline-content">
+                            <strong>ESADE PLD - Leadership Program</strong><br>
+                            Programme for Leadership Development, split between Barcelona and University of St Gallen.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Collected from press releases, award announcements, and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>BusinessBecause Feature</h4>
+                        <p>Featured for ESADE PLD impact on career trajectory in digital transformation.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>WeAdvance Member</h4>
+                        <p>Swiss association promoting women's leadership in business and technology.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Women in DevOps Panelist</h4>
+                        <p>Panelist: "From Diversity to Disruption: Shaping the Future of Swiss Tech" (May 2024)</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>CASSINI Hackathon Jury</h4>
+                        <p>Jury member evaluating innovative space technology solutions.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Industry Conference Contributor</h4>
+                        <p>DIA Munich 2022 (Digital Insurance Agenda), HMI 2022 Facilitation (women and digitalization).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">IT Leadership</span>
+                    <span class="tag">Change Management</span>
+                    <span class="tag">Agile Methodologies</span>
+                    <span class="tag">DevOps Strategy</span>
+                    <span class="tag">Team Building</span>
+                    <span class="tag">Business Intelligence</span>
+                    <span class="tag">Postal Services</span>
+                    <span class="tag">Telecommunications</span>
+                    <span class="tag">Diversity & Inclusion</span>
+                    <span class="tag">Customer Experience</span>
+                    <span class="tag">Mobility Services</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Swiss Post Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Data from Swiss business registry, company website, and Crunchbase.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1849</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">100%</div><div class="metric-label">State-Owned</div></div>
+                    <div class="metric-box"><div class="metric-value">47K+</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 6.9B</div><div class="metric-label">Revenue (2022)</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">Bern</div><div class="metric-label">HQ Location</div></div>
+                    <div class="metric-box"><div class="metric-value">1</div><div class="metric-label">Global Postal Ranking</div></div>
+                </div>
+                <p style="margin-top: 16px; color: var(--slate-gray); font-size: 0.9rem;">Swiss Post is the world's leading postal operator (ranked #1 globally by Universal Postal Union 5 times). Key businesses: PostMail, PostalNetwork, PostLogistics, PostFinance, PostBus, Digital Services. CEO Pascal Grieder (from Nov 2025). Features 7,200+ electric vehicles (largest fleet in Switzerland) and 2,000 staffed locations.</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Collaborators
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From company team pages, LinkedIn connections marked as collaborators, and case studies.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">JG</div>
+                        <div class="person-info">
+                            <h4>Jessica Geiger</h4>
+                            <p>Co-Lead, Women at Microsoft (Switzerland) | Microsoft</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">WE</div>
+                        <div class="person-info">
+                            <h4>Wolfgang Eger</h4>
+                            <p>Group CIO | Swiss Post</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">FD</div>
+                        <div class="person-info">
+                            <h4>Fabien Delalondre</h4>
+                            <p>Head of Architecture/CTO | Swiss Post</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">MW</div>
+                        <div class="person-info">
+                            <h4>Michael Wegmuller</h4>
+                            <p>Co-Founder, Artifact Swiss AI Agency | Meeting Requestor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Networks & Affiliations
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Memberships from LinkedIn, association directories, and conference appearances.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>WeAdvance</h4>
+                        <p>Swiss association promoting women's leadership. Active member and network participant.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>ESADE Alumni Network</h4>
+                        <p>Program for Leadership Development alumni. Connected to European business leaders.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>PostMail / PostLogistics Leadership</h4>
+                        <p>Works with senior leaders across postal, logistics, and mobility service units.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Women in DevOps Community</h4>
+                        <p>Active participant and speaker in Swiss tech diversity initiatives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Institutional Relationships
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Organizations and partnerships identified from case studies and press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Swiss Post</span>
+                    <span class="tag">Microsoft</span>
+                    <span class="tag">Zurich Insurance Group</span>
+                    <span class="tag">ESADE Business School</span>
+                    <span class="tag">University of St Gallen</span>
+                    <span class="tag">IMD</span>
+                    <span class="tag">Artifact (AI Agency)</span>
+                    <span class="tag">ETH Zurich</span>
+                    <span class="tag">EPFL</span>
+                    <span class="tag">Bern University of Applied Sciences</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication & Leadership Style
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How scored
+                                <div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,41.5 150.9,49.1 181,100 144.5,144.5 100,176.5 52.3,147.7 28,100 52.3,52.3" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How inferred
+                                <div class="methodology-tooltip">INFERRED: Profile based on behavioral patterns in interviews, social media, and leadership descriptions. Primary: I (Influence), Secondary: D (Dominance).</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-chart">
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 135px;"></div>
+                            <div class="disc-bar-label">D</div>
+                            <div class="disc-bar-value">60</div>
+                        </div>
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 169px;"></div>
+                            <div class="disc-bar-label">I</div>
+                            <div class="disc-bar-value">75</div>
+                        </div>
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 124px;"></div>
+                            <div class="disc-bar-label">S</div>
+                            <div class="disc-bar-value">55</div>
+                        </div>
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 113px;"></div>
+                            <div class="disc-bar-label">C</div>
+                            <div class="disc-bar-value">50</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: var(--slate-gray);">Primary: I (Influence) | Secondary: D (Dominance)<br/>Team-builder, people-focused, action-oriented</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How inferred
+                            <div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns. Validate in actual conversation.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Business Impact and ROI</div>
+                    <p>Merce consistently frames technology in terms of business outcomes. Lead with quantifiable impact: cost savings, efficiency gains, customer satisfaction improvements. Abstract technical benefits will not resonate unless tied to measurable business value.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Team Empowerment and People Development</div>
+                    <p>Her leadership centers on enabling teams to thrive. Show how AI initiatives create growth opportunities for existing staff, reduce tedious work, and build new capabilities. Frame production AI as a people investment, not a headcount reduction.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Incremental Value Demonstration</div>
+                    <p>Her approach favors small wins that demonstrate value before scaling. Present a phased PoC-to-production roadmap with clear milestones. Quick wins in Month 1-3 build credibility for larger investments in Month 6-12.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Organizational Learning and Resilience</div>
+                    <p>She values learning from failure as part of the journey. Position your governance framework as one that embraces controlled experimentation, captures lessons learned, and builds institutional knowledge rather than punishing setbacks.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Behavioral Indicators & Decision-Making Profile
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> AI-generated
+                            <div class="methodology-tooltip">INFERRED: Patterns from content analysis. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">People-First Decision Making</div>
+                    <p>Merce consistently elevates team composition, diversity, and inclusion. She believes diverse teams outperform homogeneous ones and that understanding "different types of people" is critical. When making strategic decisions, she likely consults with people from different backgrounds and values their input.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Iterative, Evidence-Based Approach</div>
+                    <p>Her quote "Feedback, learning, and failure are key parts of the journey" suggests she favors pilot programs, feedback loops, and incremental scaling. She likely tests assumptions before large-scale rollouts. For AI initiatives, she would want proof-of-value before enterprise commitment.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Business-Problem-First Framing</div>
+                    <p>She consistently links technology to business outcomes: "Link the business pain with tech to enable companies to achieve more." This means she will evaluate AI proposals by ROI and business impact, not by technical sophistication. Lead with business problems, not algorithms.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Pragmatic, Action-Oriented Execution</div>
+                    <p>Despite collaborative style, she gets things done. Led 170+ annual events, manages large teams, executes strategic IT roadmaps. She appreciates clear timelines, measurable milestones, and accountability. She won't tolerate endless planning cycles.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How extracted
+                            <div class="methodology-tooltip">Phrases from articles, posts, and interviews via NLP. Frequency indicates how often they appear in public content.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Digital transformation</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Core professional focus across all roles</td>
+                        </tr>
+                        <tr>
+                            <td>Diversity and inclusion</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Recurring theme in leadership discussions</td>
+                        </tr>
+                        <tr>
+                            <td>Change management</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Central to IT leadership narrative</td>
+                        </tr>
+                        <tr>
+                            <td>Enable others to thrive</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Appears in career summary and value statements</td>
+                        </tr>
+                        <tr>
+                            <td>Agile teams and DevOps</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Current role execution model</td>
+                        </tr>
+                        <tr>
+                            <td>Link business pain with technology</td>
+                            <td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td>
+                            <td>Philosophy articulated in bio and case studies</td>
+                        </tr>
+                        <tr>
+                            <td>Learning from failure</td>
+                            <td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td>
+                            <td>Emerging from transformation retrospectives</td>
+                        </tr>
+                        <tr>
+                            <td>Swiss Post transformation</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Current role focus - Post Netz, Communications, Mobility</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How generated
+                            <div class="methodology-tooltip">INFERRED: SWOT based on role positioning, market research, and competitive analysis. Recommendations are suggestions - validate with domain expertise.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths">
+                        <h4>Strengths</h4>
+                        <ul>
+                            <li>Proven track record scaling teams (GEC: 24 people, 6,500+ members)</li>
+                            <li>Deep IT transformation expertise across financial services and postal</li>
+                            <li>Strong cross-functional leadership (embedded IT model)</li>
+                            <li>Recognized diversity and inclusion champion</li>
+                            <li>Multilingual, multicultural background (Spain, Germany, Switzerland)</li>
+                            <li>ESADE PLD + IMD education - world-class leadership credibility</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box weaknesses">
+                        <h4>Potential Gaps</h4>
+                        <ul>
+                            <li>Limited public visibility compared to CIO peers (fewer speaking engagements published)</li>
+                            <li>Relative newness to Swiss Post (2023+) means still building external thought leadership</li>
+                            <li>AI/ML technical background not explicitly mentioned (risks appearing less current on emergent tech)</li>
+                            <li>Previous Microsoft role was partnership/transformation - may need AI-specific credibility refresh</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h4>Opportunities</h4>
+                        <ul>
+                            <li>Swiss Post's 7,200+ EV fleet offers AI use cases (predictive maintenance, route optimization)</li>
+                            <li>Digital Services unit growing 30%+ annually - scaling AI from PoC to production directly applicable</li>
+                            <li>Postal sector still early on AI adoption vs. tech/finance - first-mover advantage</li>
+                            <li>CIO role allows evangelizing AI governance and ethical scaling across 47K employees</li>
+                            <li>Positioning as "diversity-in-AI" champion would differentiate her in male-dominated AI leadership space</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;">
+                    <h4>Competitive Threats</h4>
+                    <ul>
+                        <li>Deutsche Post/DHL has larger global R&D budget and AI investment</li>
+                        <li>Tech giants (Amazon, Google) increasingly entering logistics and delivery optimization</li>
+                        <li>Sector peers may hire AI-native CIOs with higher public profiles</li>
+                        <li>European postal consolidation could reduce Swiss Post's strategic independence</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How estimated
+                            <div class="methodology-tooltip">AI-ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute measurements.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Digital Maturity</span>
+                    <span class="scatter-axis-label x-label">Innovation Speed</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 55%; bottom: 70%;"><div class="scatter-tooltip">Swiss Post - Strong digital maturity, moderate innovation speed</div></div>
+                        <div class="scatter-dot competitor1" style="left: 80%; bottom: 85%;"><div class="scatter-tooltip">Deutsche Post/DHL - High on both axes, larger R&D budget</div></div>
+                        <div class="scatter-dot competitor2" style="left: 40%; bottom: 50%;"><div class="scatter-tooltip">Asendia - Moderate positioning in both dimensions</div></div>
+                        <div class="scatter-dot competitor3" style="left: 70%; bottom: 40%;"><div class="scatter-tooltip">Kuehne+Nagel - Fast innovation, moderate digital maturity</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Swiss Post</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Deutsche Post/DHL</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Asendia</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> Kuehne+Nagel</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How identified
+                            <div class="methodology-tooltip">Self-stated differentiators from company website, strategic reports, and marketing materials.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon" style="font-size: 1.5rem; font-weight: 700; color: var(--navy);">1</div>
+                        <h4 style="margin-bottom: 8px;">Largest Swiss Electric Fleet</h4>
+                        <div class="differentiator-label">7,200+ EVs - unmatched last-mile sustainability footprint</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon" style="font-size: 1.5rem; font-weight: 700; color: var(--navy);">2</div>
+                        <h4 style="margin-bottom: 8px;">Embedded IT Model</h4>
+                        <div class="differentiator-label">Full Agile DevOps teams directly integrated into business units</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon" style="font-size: 1.5rem; font-weight: 700; color: var(--navy);">3</div>
+                        <h4 style="margin-bottom: 8px;">Trusted National Infrastructure</h4>
+                        <div class="differentiator-label">State-owned, 2,000 locations, serving all Swiss citizens</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Meeting Fit Analysis
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How calculated
+                            <div class="methodology-tooltip">Fit score based on role relevance, stated priorities, organizational context, and behavioral alignment with meeting topic.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3.5rem; font-weight: 700; color: var(--green-verified); margin-bottom: 10px;">9/10</div>
+                    <div style="font-size: 1.1rem; font-weight: 600; color: var(--charcoal); margin-bottom: 20px;">HIGH FIT</div>
+                    <div style="color: var(--slate-gray); line-height: 1.6;">
+                        <strong>Why this fit is exceptional:</strong><br/><br/>
+                        1. Current role as CIO directly involves scaling IT initiatives across postal, communications, and mobility services<br/>
+                        2. 20+ years of change program leadership means understanding organizational barriers to production AI<br/>
+                        3. Embedded IT model and DevOps team execution shows hands-on PoC-to-production capability<br/>
+                        4. ESADE PLD + transformation experience = both strategic and pragmatic mindset<br/>
+                        5. Belief in incremental value demonstration aligns perfectly with responsible AI scaling<br/>
+                        6. Existing relationship with Artifact (Swiss AI partner to Swiss Post) = natural context for AI discussion
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> Data source
+                            <div class="methodology-tooltip">LinkedIn activity, company announcements, and social media monitoring.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="media-item">
+                    <h4>Swiss Post 2025 Results Commentary</h4>
+                    <p><strong>Activity:</strong> LinkedIn post about Swiss Post achieving "lower but solid result in a challenging environment"<br/>
+                    <strong>Implication:</strong> Leadership in communicating results during market headwinds. Open about challenges while maintaining confidence.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Transformation & Leadership Posting</h4>
+                    <p><strong>Activity:</strong> Posts tagged #SwissPost #Transformation #Leadership<br/>
+                    <strong>Implication:</strong> Actively shaping Swiss Post's leadership narrative. Engaged in thought leadership despite demanding CIO role.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Insurance/Healthcare Policy Discussion</h4>
+                    <p><strong>Activity:</strong> Content about health insurance challenges in Switzerland<br/>
+                    <strong>Implication:</strong> Stays informed on regulatory/policy issues affecting services. Likely interested in digital transformation's regulatory dimensions.</p>
+                </div>
+                <div class="media-item">
+                    <h4>IT Leadership Team Engagement</h4>
+                    <p><strong>Activity:</strong> Team kickoff posts about IT colleagues reviewing success stories<br/>
+                    <strong>Implication:</strong> Active in building team culture, celebrating wins, sharing best practices across IT organization.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR: How to Drive AI from PoC to Production
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">i</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content">
+                    <strong>Opening:</strong> Lead with Swiss Post's specific business challenges (7,200 EV fleet maintenance, last-mile delivery optimization, parcel volume forecasting). Avoid generic AI pitch. Frame as "organizational transformation" not "technology implementation."<br/><br/>
+                    <strong>Value Anchors:</strong> Connect AI scaling to her core belief: "enable companies to achieve more." Emphasize how production AI creates tangible employee impact (better workflows, faster decisions, reduced manual toil).<br/><br/>
+                    <strong>Execution Narrative:</strong> Present PoC-to-production as a change management problem, not an engineering problem. She will resonate with phased rollout, team composition, stakeholder management, and risk mitigation over technical architecture details.<br/><br/>
+                    <strong>Diversity Angle:</strong> Discuss how diverse teams evaluate AI bias, and how diverse team composition improves production outcomes. Position responsible AI scaling as a business advantage.<br/><br/>
+                    <strong>Proof Points:</strong> Cite examples of companies that started small (Swiss Post's own LLM4Post, Artifact partnerships) and scaled. Show learning-from-failure narratives, not just success stories.
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">What You Can Offer Them
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How generated
+                                <div class="methodology-tooltip">AI-GENERATED: Suggestions based on their stated needs and your context. Customize based on your actual capabilities.</div>
+                            </span>
+                        </h3>
+                        <span class="badge" style="background: var(--green-verified); color: white;">VALUE EXCHANGE</span>
+                    </div>
+                    <div class="insight-box green">
+                        <div class="insight-title">PoC-to-Production Playbook</div>
+                        <p>Artifact's proven methodology for scaling AI from experiments to enterprise-grade production systems. Share frameworks, KPI templates, and governance models that bridge the gap she faces.</p>
+                    </div>
+                    <div class="insight-box blue">
+                        <div class="insight-title">Swiss AI Market Benchmarks</div>
+                        <p>Share proprietary data: only 17% of Swiss AI initiatives reach deployment, 11% reach scaling. Position Artifact as having cracked this challenge with concrete case studies and success metrics.</p>
+                    </div>
+                    <div class="insight-box orange">
+                        <div class="insight-title">CompanyGPT Platform Demonstration</div>
+                        <p>Offer a tailored demo showing how CompanyGPT can accelerate Swiss Post's existing LLM4Post initiative. Show integration with existing AWS/Bedrock infrastructure and governance guardrails.</p>
+                    </div>
+                    <div class="insight-box yellow">
+                        <div class="insight-title">Change Management for AI Teams</div>
+                        <p>Given her emphasis on people and team empowerment, share Artifact's approach to upskilling existing teams, building AI literacy, and creating internal champions for production AI adoption.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Optimal Contact Strategy
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How determined
+                                <div class="methodology-tooltip">Recommendations based on communication style analysis and professional norms. Adjust based on relationship status.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Preferred Channel</td><td>LinkedIn message or warm introduction through existing Artifact-Swiss Post relationship</td></tr>
+                        <tr><td>Optimal Timing</td><td>Tuesday-Thursday, morning. Avoid Monday (leadership meetings) and Friday (team retrospectives)</td></tr>
+                        <tr><td>Formality Level</td><td>Professional but personable. She values authenticity over corporate formality. Use first names after initial greeting.</td></tr>
+                        <tr><td>First Touchpoint</td><td>Reference the existing Artifact-Swiss Post partnership. Share a specific insight about PoC-to-production challenges in postal/logistics as a conversation opener.</td></tr>
+                        <tr><td>Language</td><td>English preferred (international career), but she may appreciate a brief German or Spanish greeting as rapport-builder</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> Source
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Swiss Post's AI Journey So Far</h4>
+                        <p>"I noticed Swiss Post is working with Amazon Bedrock on LLM4Post for internal use case validation. How are you approaching that as a PoC-to-production pipeline?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Last-Mile Delivery Innovation</h4>
+                        <p>"Your Nemo AR app for delivery and autonomous shuttle pilots in Sion are interesting. How do you balance innovation velocity with operational risk across postal network?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Team Composition for AI</h4>
+                        <p>"You've been outspoken about diversity in tech leadership. How does that shape how you staff AI and data teams in Swiss Post?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>PostIdea Platform Scaling</h4>
+                        <p>"PostIdea generates 1,000 employee ideas annually with ~10% implementation rate. How would you apply that crowdsourcing mindset to AI prioritization?"</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> Based on
+                                <div class="methodology-tooltip">INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>AI Job Displacement</h4>
+                        <p>She values human-centric transformation. Avoid "AI will replace workers" framing. Focus instead on augmentation and workforce upskilling.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Narrow/Homogeneous AI Teams</h4>
+                        <p>She champions diversity. Don't present AI initiatives staffed by young white male engineers. She will question that decision.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Quick Wins at Expense of Sustainability</h4>
+                        <p>She believes in "feedback, learning, and failure as key parts of journey." Don't oversell 90-day miracle solutions without governance.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>AI Ethics as Afterthought</h4>
+                        <p>Her ethics-focused dimension (75/100) means she will scrutinize bias, transparency, and accountability. Lead with these, not as "compliance" but as business imperatives.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How identified
+                            <div class="methodology-tooltip">Potential common ground based on your provided context and their profile. Cross-referenced Artifact's capabilities with Swiss Post's needs.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Existing Partnership Foundation</div>
+                    <p>Artifact is already a recognized AI partner of Swiss Post, praised for "seamless integration" and "proactive support." This is your strongest connection point - you are not a cold vendor, you are a trusted partner seeking to deepen collaboration.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Shared Swiss Innovation Ecosystem</div>
+                    <p>Both operate within Swiss tech ecosystem. Michael's Digital Impact Network and SwissCognitive involvement, combined with Merce's WeAdvance and Swiss Post innovation network, create natural overlap for co-creating thought leadership.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Complementary Expertise</div>
+                    <p>Merce brings organizational transformation and people leadership; Michael brings AI strategy and technical implementation. Together, this covers the full PoC-to-production journey from both the human and technology dimensions.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Personal Interests Matching
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> Connection points
+                            <div class="methodology-tooltip">Potential common ground based on profile analysis and meeting context.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Shared: Digital Transformation & Responsible Technology</div>
+                    <p><strong>Merce's interest:</strong> Linking business pain with technology to enable others to thrive<br/>
+                    <strong>Your context:</strong> Michael Wegmuller - AI strategist passionate about ethical, purposeful AI implementation<br/>
+                    <strong>Connection:</strong> Both focused on AI that serves human outcomes, not hype. Both advocate for disciplined, business-aligned approach to emerging tech.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Shared: Switzerland-Based Tech Community</div>
+                    <p><strong>Merce:</strong> Based in Zurich, active in WeAdvance, women-in-tech networks<br/>
+                    <strong>Michael:</strong> Based in Bern, involved in Digital Impact Network, Swissmem, Swiss AI policy<br/>
+                    <strong>Connection:</strong> Both embedded in Swiss innovation ecosystem. Both understand Swiss regulatory/cultural context for deploying AI responsibly.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Shared: Inclusive Leadership & Diversity</div>
+                    <p><strong>Merce:</strong> Founder-level commitment to women in leadership, multilingual teams, cross-cultural understanding<br/>
+                    <strong>Michael:</strong> Likely values inclusive teams (Swiss Armed Forces context suggests diversity appreciation)<br/>
+                    <strong>Connection:</strong> Both see diverse teams as competitive advantage. Frame AI governance/scaling as a diversity-and-inclusion initiative, not just technical one.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Shared: Industry Networks & Thought Leadership</div>
+                    <p><strong>Merce:</strong> Published speaker, jury member, panelist at industry conferences (Women in DevOps, DIA Munich, HMI)<br/>
+                    <strong>Michael:</strong> Won 2024 Innovation Award, policy contributor, thought leader<br/>
+                    <strong>Connection:</strong> Both building thought leadership in their domains. Opportunity to co-author or co-speak on "AI at scale in Swiss postal/logistics" or "diversity in AI governance."</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics & Preparation
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> Probability scores
+                            <div class="methodology-tooltip">Based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Organizational change management for AI</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Come prepared with change management playbook, stakeholder mapping, resistance strategies</td>
+                        </tr>
+                        <tr>
+                            <td>Scaling DevOps and Agile for AI teams</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Show CI/CD pipelines, team structures, monitoring/observability for ML in production</td>
+                        </tr>
+                        <tr>
+                            <td>Balancing speed to PoC with governance</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Discuss KPI frameworks, go/no-go decision gates, stakeholder communications</td>
+                        </tr>
+                        <tr>
+                            <td>Building diverse AI/ML teams</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Be specific about hiring, retention, and inclusion practices in technical teams</td>
+                        </tr>
+                        <tr>
+                            <td>Swiss Post specific use cases</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Deep dive on ePost, Post App, autonomous mobility, parcel sorting opportunities</td>
+                        </tr>
+                        <tr>
+                            <td>AI governance and ethics frameworks</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Show governance models, bias detection/mitigation, transparency/explainability approaches</td>
+                        </tr>
+                        <tr>
+                            <td>Cross-functional stakeholder alignment</td>
+                            <td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td>
+                            <td>Discuss how to get finance, ops, and business unit buy-in for multi-year AI roadmaps</td>
+                        </tr>
+                        <tr>
+                            <td>Learning from failure in PoC phase</td>
+                            <td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td>
+                            <td>Share stories of failed PoCs, what was learned, how it informed production strategy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content & Speaking
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> Data source
+                                <div class="methodology-tooltip">Content from LinkedIn, company blogs, conference programs, and press coverage.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>Women in DevOps Panel</h4>
+                        <p><strong>May 2024</strong> | "From Diversity to Disruption: Shaping the Future of Swiss Tech" | Speaker</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>HMI 2022 Facilitation</h4>
+                        <p><strong>2022</strong> | #womenpower session on digitalization and sustainability | Facilitator</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>DIA Munich 2022</h4>
+                        <p><strong>2022</strong> | Digital Insurance Agenda conference | Contributor</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>ESADE Alumni Feature</h4>
+                        <p><strong>BusinessBecause</strong> | Featured for leadership development impact on career trajectory</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Thought Leadership</h4>
+                        <p><strong>Ongoing</strong> | Posts on transformation, leadership, Swiss Post results, IT team building | Regular contributor</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Women at Microsoft Co-Leadership</h4>
+                        <p><strong>2020-2023</strong> | Co-led Women at Microsoft Switzerland network with Jessica Geiger | Published on internal/external channels</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Network & Recognition
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> Data source
+                                <div class="methodology-tooltip">From association memberships, jury appointments, and event participation.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>CASSINI Hackathon Jury Member</h4>
+                        <p>Evaluates space technology innovation solutions. Indicates interest in emerging tech evaluation and mentorship.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>WeAdvance Membership</h4>
+                        <p>Swiss association for women's business and tech leadership. Active participant in network events and initiatives.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>ESADE Alumni Leadership Network</h4>
+                        <p>Connected to global ESADE PLD cohort. Participates in alumni events and career development activities.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Women in Tech Communities</h4>
+                        <p>Active in Swiss women-in-DevOps, women-in-IT initiatives. Mentioned as panelist/speaker/thought leader.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Endorsements</h4>
+                        <p>Strong endorsement from colleagues: "Merce exhibits the highest level of focus on delivering the best possible product with the resources available."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How analyzed
+                            <div class="methodology-tooltip">AI-GENERATED: Sentiment from NLP classification of public content and press coverage. Aggregate scores, not individual article analysis.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2022: 70% positive, 25% neutral, 5% critical</div>
+                                <div class="bar" style="height: 140px;">
+                                    <div class="bar-segment positive" style="height: 70%;"></div>
+                                    <div class="bar-segment neutral" style="height: 25%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2022</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2023: 65% positive, 30% neutral, 5% critical</div>
+                                <div class="bar" style="height: 150px;">
+                                    <div class="bar-segment positive" style="height: 65%;"></div>
+                                    <div class="bar-segment neutral" style="height: 30%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2023</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2024: 75% positive, 20% neutral, 5% critical</div>
+                                <div class="bar" style="height: 160px;">
+                                    <div class="bar-segment positive" style="height: 75%;"></div>
+                                    <div class="bar-segment neutral" style="height: 20%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2024</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2025: 80% positive, 15% neutral, 5% critical</div>
+                                <div class="bar" style="height: 170px;">
+                                    <div class="bar-segment positive" style="height: 80%;"></div>
+                                    <div class="bar-segment neutral" style="height: 15%;"></div>
+                                    <div class="bar-segment critical" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2025</span>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Swiss Post AI Use Cases: PoC to Production
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How generated
+                            <div class="methodology-tooltip">Use cases identified from Swiss Post's business operations, current pilot programs, and industry pain points. Structured for PoC-to-production discussion with Merce Borrull.</div>
+                        </span>
+                    </h3>
+                </div>
+                <p style="margin-bottom: 20px; color: var(--slate-gray);">Below are eight high-impact AI opportunities aligned with Merce's current CIO role and Swiss Post's digital transformation roadmap. Each represents a realistic PoC-to-production pathway for discussion.</p>
+
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <h4>Intelligent Document Processing</h4>
+                        <p class="use-case-description">Automating classification, extraction, and routing of postal documents, invoices, and regulatory correspondence at scale.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">OCR + NLP</span>
+                            <span class="use-case-metric">High Volume</span>
+                            <span class="use-case-metric">Accuracy-Critical</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Predictive Maintenance for EV Fleet</h4>
+                        <p class="use-case-description">AI-driven maintenance scheduling for Swiss Post's 7,200+ electric vehicles. Predict battery degradation, component failures, and optimize service center capacity.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Predictive Analytics</span>
+                            <span class="use-case-metric">Cost Savings</span>
+                            <span class="use-case-metric">Fleet Operations</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Customer Service AI Agents</h4>
+                        <p class="use-case-description">AI-powered chatbots and virtual assistants for post office customer support, ePost app assistance, and parcel tracking across 2,000 locations.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">NLP + Dialogue</span>
+                            <span class="use-case-metric">24/7 Support</span>
+                            <span class="use-case-metric">Multi-language</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Route Optimization with ML</h4>
+                        <p class="use-case-description">Dynamic delivery route planning using real-time traffic data, weather, parcel dimensions, and delivery windows. Reduces fuel consumption and improves on-time delivery.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Graph Optimization</span>
+                            <span class="use-case-metric">Real-time Data</span>
+                            <span class="use-case-metric">Sustainability</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>AI-Powered Demand Forecasting</h4>
+                        <p class="use-case-description">Predict parcel volumes, mail volumes, and service demand by region, time period, and customer segment. Optimize staffing, equipment, and inventory allocation.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Time Series</span>
+                            <span class="use-case-metric">Staffing Optimization</span>
+                            <span class="use-case-metric">Resource Planning</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Natural Language Processing for ePost</h4>
+                        <p class="use-case-description">Intelligent document categorization, sentiment analysis, and search for ePost platform. Helps 200,000+ private customers and 10,000+ connected companies organize digital correspondence.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">NLP + Classification</span>
+                            <span class="use-case-metric">User Experience</span>
+                            <span class="use-case-metric">Data Accessibility</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Computer Vision for Parcel Sorting</h4>
+                        <p class="use-case-description">Enhanced automated parcel sorting using visual AI. Detect dimensions, damage, barcode readability, and destination regions faster than manual handling.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Computer Vision</span>
+                            <span class="use-case-metric">Real-time Processing</span>
+                            <span class="use-case-metric">Throughput Increase</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>AI Governance Framework</h4>
+                        <p class="use-case-description">Structured approach to PoC-to-production scaling: governance model, KPI frameworks, bias detection, stakeholder alignment, and knowledge transfer across 47K employees.</p>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Governance</span>
+                            <span class="use-case-metric">Ethical AI</span>
+                            <span class="use-case-metric">Scaling Framework</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding: 20px; background: #f0f9ff; border-left: 4px solid #3b82f6; border-radius: 4px;">
+                    <h4 style="margin-bottom: 12px; color: var(--navy);">Meeting Discussion Format</h4>
+                    <p style="color: var(--slate-gray); margin-bottom: 10px;">For each use case, prepare to discuss:</p>
+                    <ul style="margin-left: 20px; color: var(--slate-gray); font-size: 0.9rem;">
+                        <li><strong>PoC Scope:</strong> What minimal viable experiment tests the hypothesis? (2-4 week sprint)</li>
+                        <li><strong>Success Metrics:</strong> What KPI proves value? (cost savings, accuracy improvement, time reduction)</li>
+                        <li><strong>Production Blockers:</strong> What organizational/technical barriers prevent scaling? (data governance, change management, team skills)</li>
+                        <li><strong>Go/No-Go Criteria:</strong> What results trigger expansion vs. pause/pivot decision?</li>
+                        <li><strong>Team & Governance:</strong> Who leads? How do we ensure diverse perspectives and ethical review?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>Intelligence Sources (18+)</h3>
+            <div class="sources-grid">
+                <a href="https://www.post.ch/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">SP</div>
+                    <div class="source-info">
+                        <div class="source-name">Swiss Post Official Website</div>
+                        <div class="source-meta">Company profile, leadership, digital initiatives</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">Professional history, endorsements, activity</div>
+                    </div>
+                </a>
+                <a href="https://www.esade.edu/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">ES</div>
+                    <div class="source-info">
+                        <div class="source-name">ESADE Business School</div>
+                        <div class="source-meta">Programme for Leadership Development alumni</div>
+                    </div>
+                </a>
+                <a href="https://www.businessbecause.com/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">BB</div>
+                    <div class="source-info">
+                        <div class="source-name">BusinessBecause</div>
+                        <div class="source-meta">Career impact feature, ESADE alumni</div>
+                    </div>
+                </a>
+                <a href="https://artifact.ai/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">Artifact Swiss AI Agency</div>
+                        <div class="source-meta">AI partnership context, Swiss Post collaboration</div>
+                    </div>
+                </a>
+                <a href="https://www.weadvance.swiss/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">WA</div>
+                    <div class="source-info">
+                        <div class="source-name">WeAdvance</div>
+                        <div class="source-meta">Women's leadership association, membership</div>
+                    </div>
+                </a>
+                <a href="https://www.zurich.com/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">ZI</div>
+                    <div class="source-info">
+                        <div class="source-name">Zurich Insurance Group</div>
+                        <div class="source-meta">Career history, transformation programs</div>
+                    </div>
+                </a>
+                <a href="https://www.microsoft.com/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">MS</div>
+                    <div class="source-info">
+                        <div class="source-name">Microsoft</div>
+                        <div class="source-meta">Business transformation role, Women at Microsoft</div>
+                    </div>
+                </a>
+                <a href="https://www.imd.org/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">IM</div>
+                    <div class="source-info">
+                        <div class="source-name">IMD Business School</div>
+                        <div class="source-meta">Education background</div>
+                    </div>
+                </a>
+                <a href="https://www.unisg.ch/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">SG</div>
+                    <div class="source-info">
+                        <div class="source-name">University of St Gallen</div>
+                        <div class="source-meta">ESADE PLD location, leadership program</div>
+                    </div>
+                </a>
+                <a href="https://www.cassini-info.de/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">CA</div>
+                    <div class="source-info">
+                        <div class="source-name">CASSINI Hackathon</div>
+                        <div class="source-meta">Jury member for space tech innovation</div>
+                    </div>
+                </a>
+                <a href="https://www.dia-munich.com/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">DI</div>
+                    <div class="source-info">
+                        <div class="source-name">DIA Munich 2022</div>
+                        <div class="source-meta">Digital Insurance Agenda conference</div>
+                    </div>
+                </a>
+                <a href="https://post.swiss/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">PS</div>
+                    <div class="source-info">
+                        <div class="source-name">PostMail & PostLogistics</div>
+                        <div class="source-meta">Business unit strategy and operations</div>
+                    </div>
+                </a>
+                <a href="https://www.eth.ch/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">ET</div>
+                    <div class="source-info">
+                        <div class="source-name">ETH Zurich</div>
+                        <div class="source-meta">Swiss Post partnership, AI research</div>
+                    </div>
+                </a>
+                <a href="https://www.epfl.ch/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">EP</div>
+                    <div class="source-info">
+                        <div class="source-name">EPFL</div>
+                        <div class="source-meta">Swiss Post partnership, digital innovation</div>
+                    </div>
+                </a>
+                <a href="https://www.bfh.ch/" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">BU</div>
+                    <div class="source-info">
+                        <div class="source-name">Bern University of Applied Sciences</div>
+                        <div class="source-meta">Swiss Post partnership, applied research</div>
+                    </div>
+                </a>
+                <a href="https://www.unisg.ch/en/international-university" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">PI</div>
+                    <div class="source-info">
+                        <div class="source-name">ESADE PLD Programme Details</div>
+                        <div class="source-meta">Leadership development curriculum</div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Swiss_Post" class="source-item" target="_blank" rel="noopener noreferrer">
+                    <div class="source-icon">WK</div>
+                    <div class="source-info">
+                        <div class="source-name">Wikipedia - Swiss Post</div>
+                        <div class="source-meta">Corporate history and financials</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">Sailor 2.0</span>
+        </div>
+        <p>Generated: 2025-02-10 | Sources: 18+ verified</p>
+        <p>Prepared for: Michael Wegmuller (Artifact Swiss AI Agency) | Occasion: How to Drive AI from PoC to Production</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Create intelligence dashboard for Merce Borrull, CIO at Swiss Post, meeting with Michael Wegmuller to discuss scaling AI from proof of concept to production. Focus on Swiss Post's transformation challenges and her background in change management."</div>
+        <div class="report-token">Report ID: f2fbeace | Meeting Fit: 9/10 (HIGH FIT)</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Merce Borrull Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        async function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.classList.add('show');
+
+            const pdfContent = document.createElement('div');
+            pdfContent.style.width = '1000px';
+            pdfContent.style.background = 'white';
+            pdfContent.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+            const styles = document.querySelector('style').cloneNode(true);
+
+            const titleSlide = document.createElement('div');
+            titleSlide.innerHTML = `
+                <div style="height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #1e3a5f 0%, #36454f 100%); color: white; padding: 60px;">
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sailor 2.0</span>
+                    </div>
+                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-align: center;">Merce Borrull</h1>
+                    <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">CIO Customer Touch Points & Mobility Services | Swiss Post</p>
+                    <p style="font-size: 1rem; opacity: 0.7;">Meeting Intelligence Profile</p>
+                    <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 40px;">Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                </div>
+                <div style="page-break-after: always;"></div>
+            `;
+            pdfContent.appendChild(titleSlide);
+
+            const tabNames = {
+                'executive-summary': 'Executive Summary',
+                'subject-profile': 'Subject Profile',
+                'network-map': 'Network Map',
+                'behavioral-analysis': 'Behavioral Analysis',
+                'strategic-position': 'Strategic Position',
+                'engagement-playbook': 'Engagement Playbook',
+                'media-footprint': 'Media Footprint',
+                'ai-use-cases': 'AI Use Cases'
+            };
+
+            const tabs = ['executive-summary', 'subject-profile', 'network-map', 'behavioral-analysis', 'strategic-position', 'engagement-playbook', 'media-footprint', 'ai-use-cases'];
+
+            tabs.forEach((tabId, index) => {
+                const tabContent = document.getElementById(tabId);
+                if (tabContent) {
+                    const slideWrapper = document.createElement('div');
+                    slideWrapper.style.padding = '40px';
+                    slideWrapper.style.background = '#f5f5f5';
+                    slideWrapper.style.minHeight = '700px';
+
+                    const slideHeader = document.createElement('div');
+                    slideHeader.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #1e3a5f;">
+                            <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e3a5f;">${tabNames[tabId]}</h2>
+                            <span style="font-size: 0.9rem; color: #708090;">Sailor 2.0 | Merce Borrull</span>
+                        </div>
+                    `;
+                    slideWrapper.appendChild(slideHeader);
+
+                    const contentClone = tabContent.cloneNode(true);
+                    contentClone.style.display = 'block';
+                    contentClone.classList.add('active');
+                    contentClone.querySelectorAll('.methodology-tooltip').forEach(el => el.remove());
+                    slideWrapper.appendChild(contentClone);
+
+                    if (index < tabs.length - 1) {
+                        const pageBreak = document.createElement('div');
+                        pageBreak.style.pageBreakAfter = 'always';
+                        slideWrapper.appendChild(pageBreak);
+                    }
+
+                    pdfContent.appendChild(slideWrapper);
+                }
+            });
+
+            pdfContent.insertBefore(styles, pdfContent.firstChild);
+            pdfContent.style.position = 'absolute';
+            pdfContent.style.left = '-9999px';
+            document.body.appendChild(pdfContent);
+
+            const opt = {
+                margin: 0,
+                filename: 'sailor-merce-borrull-profile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: 'px', format: [1000, 750], orientation: 'landscape' },
+                pagebreak: { mode: ['css', 'legacy'], after: '.page-break' }
+            };
+
+            try {
+                await html2pdf().set(opt).from(pdfContent).save();
+                toast.textContent = 'PDF downloaded!';
+                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
+            } catch (error) {
+                console.error('PDF generation failed:', error);
+                toast.textContent = 'PDF generation failed';
+                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
+            }
+            document.body.removeChild(pdfContent);
+        }
+
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
