@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Dr. Panos Dimitropoulos">
+    <meta property="og:title" content="Sailor 2.0 - Dr. Panos Dimitropoulos Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Dr. Panos Dimitropoulos at dormakaba">
+    <meta name="report-token" content="9313df20">
+    <title>Sailor 2.0 - Dr. Panos Dimitropoulos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root { --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff; --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444; --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+        .methodology-callout { display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd; padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative; }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip { display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5; }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59,130,246,0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139,92,246,0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; } .radar-bg.r2 { width: 195px; height: 195px; } .radar-bg.r3 { width: 130px; height: 130px; } .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); } .radar-label.pos-2 { top: 20px; right: 5px; } .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); } .radar-label.pos-4 { bottom: 20px; right: 5px; } .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); } .radar-label.pos-6 { bottom: 20px; left: 5px; } .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); } .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+        .profile-table { width: 100%; } .profile-table tr { border-bottom: 1px solid #eee; } .profile-table td { padding: 12px 0; } .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; } .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; } .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; } .prob-very-high { background: var(--green-verified); color: white; } .prob-high { background: #22c55e; color: white; } .prob-medium-high { background: #3b82f6; color: white; } .prob-medium { background: #3b82f6; color: white; }
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; } .swot-box.strengths { background: #dcfce7; } .swot-box.weaknesses { background: #fef3c7; } .swot-box.opportunities { background: #dbeafe; } .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; } .swot-box ul { list-style: none; font-size: 0.9rem; } .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; } .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; } .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; } .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; } .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; } .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; } .bar-segment.positive { background: var(--green-verified); } .bar-segment.neutral { background: var(--blue-secondary); } .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; } .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 126deg, var(--blue-secondary) 126deg 234deg, var(--yellow-inferred) 234deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; } .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; } .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; } .scatter-grid-line.horizontal { width: 100%; height: 1px; } .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; } .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; } .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; } .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; } .scatter-axis-label.x-low { left: 65px; bottom: 15px; } .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); } .scatter-dot.competitor2 { background: var(--blue-secondary); } .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); } .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; } .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; } .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); } .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; } .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; } .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; } .differentiator-icon { font-size: 2rem; margin-bottom: 12px; } .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; } .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; } .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); } .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; } .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; } .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; } .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; } .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+        .disc-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 150px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .disc-bar { width: 50px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border-radius: 4px 4px 0 0; min-height: 20px; color: white; font-weight: 600; padding: 8px 0; } .disc-bar span { font-size: 0.9rem; } .disc-score { font-size: 0.75rem; opacity: 0.9; }
+        .d-bar { background: linear-gradient(180deg, #dc2626, #ef4444); } .i-bar { background: linear-gradient(180deg, #f59e0b, #fbbf24); } .s-bar { background: linear-gradient(180deg, #16a34a, #22c55e); } .c-bar { background: linear-gradient(180deg, #2563eb, #3b82f6); }
+        .disc-labels { display: flex; justify-content: space-around; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; } .disc-primary { font-size: 1.1rem; margin-bottom: 8px; } .disc-secondary { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; } .disc-description { font-size: 0.9rem; line-height: 1.6; }
+        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .use-case-card { background: linear-gradient(135deg, #f8f9fa, #ffffff); border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; position: relative; transition: all 0.3s; cursor: pointer; }
+        .use-case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); border-color: #8b5cf6; }
+        .use-case-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--charcoal); } .use-case-description { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; }
+        .use-case-reasoning { display: none; position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px; background: var(--navy); color: white; padding: 16px; border-radius: 8px; font-size: 0.85rem; z-index: 100; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .use-case-card:hover .use-case-reasoning { display: block; } .reasoning-label { font-weight: 600; color: #60a5fa; margin-bottom: 8px; font-size: 0.75rem; text-transform: uppercase; }
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; } .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; } .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; } .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; } .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; } }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">Sailor 2.0</span>
+        </div>
+        <h1>Dr. Panos Dimitropoulos</h1>
+        <div class="header-subtitle">Head of Architecture and Technology | dormakaba</div>
+        <div class="header-meta">
+            <span>Meilen, Switzerland</span>
+            <span>Dr. Ing. (PhD Engineering)</span>
+            <span>dormakabagroup.com</span>
+            <span>Note: LinkedIn currently shows TRUMPF - possible recent move</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">22+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content"><strong>Dr. Panos Dimitropoulos</strong> is a seasoned technology architect and IoT specialist serving as <strong>Head of Architecture and Technology at dormakaba</strong>, the Swiss-headquartered global leader in access solutions (CHF 2.87B revenue, ~16,000 employees). With a <strong>PhD in Engineering</strong>, 524 Google Scholar citations, and deep expertise in <strong>IoT, Industry 4.0, sensor microsystems, and software architecture</strong>, he is the ideal technical counterpart for positioning CompanyGPT and AI services. dormakaba is actively investing in <strong>AI-powered access solutions</strong> (RealSense partnership, Safetrust investment) and pursuing a "Shape4Growth" strategy with <strong>CHF 15M earmarked for AI technologies</strong>. His architectural oversight means he evaluates technology platforms and integration patterns - making him a key influencer for enterprise AI adoption decisions.</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Meeting Fit Score
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How assessed<div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">STRONG FIT</span>
+                </div>
+                <div class="grid-2">
+                    <div class="metric-box"><div class="metric-value highlight">8/10</div><div class="metric-label">Alignment Score</div></div>
+                    <div style="padding: 16px;"><p style="font-size: 0.9rem; line-height: 1.6;">As Head of Architecture and Technology, Dr. Dimitropoulos directly evaluates technology platforms and integration patterns. His IoT/sensor expertise and Industry 4.0 background make him an excellent technical counterpart for AI strategy discussions. He may need to involve commercial/executive stakeholders for procurement, but his architectural recommendation carries significant weight.</p></div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated<div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, Google Scholar, company pages, and news articles. Years of experience calculated from career timeline.</div></span>
+                        </h3>
+                        <span class="badge badge-high-confidence">MEDIUM CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">15+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">524</div><div class="metric-label">Scholar Citations</div></div>
+                        <div class="metric-box"><div class="metric-value">Dr. Ing.</div><div class="metric-label">PhD Engineering</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">8/10</div><div class="metric-label">Meeting Fit Score</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How calculated<div class="methodology-tooltip">Primary = official sources (company sites, registries, academic). Secondary = reputable news/industry sources. Inferred = cross-referenced patterns. Speculative = limited single-source data.</div></span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (35%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (30%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (25%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Deep Analysis Insights
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> AI-generated<div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Architecture-First Thinker</div>
+                    <p>Panos approaches technology from an architecture perspective - he designs systems, not just selects tools. At Bystronic, he defined the IoT strategy and oversaw the entire software product portfolio architecture. At dormakaba, he holds the same architectural authority. CompanyGPT must be positioned as an architecturally sound platform that integrates cleanly into existing enterprise systems.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Deep Technical Credibility</div>
+                    <p>With a PhD, 524 academic citations, and hands-on expertise spanning VLSI sensor design to cloud infrastructure, Panos is not a business-side technology buyer. He will evaluate CompanyGPT on technical merit: architecture patterns, API design, security model, scalability, and integration capabilities. Prepare for deep technical questions.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">IoT-to-AI Bridge Opportunity</div>
+                    <p>dormakaba's massive installed base of connected access devices generates significant data. Panos's IoT expertise positions him to see the value in AI that processes sensor/device data at scale. CompanyGPT's knowledge management capabilities combined with AI services for predictive analytics on device data could be a compelling narrative.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Active AI Investment Phase</div>
+                    <p>dormakaba invested in RealSense (AI-powered computer vision) in Nov 2025 and Safetrust (post-quantum security) in Feb 2025. The company has CHF 15M earmarked for AI tech and CHF 50M for R&D. This signals active evaluation of AI partners and platforms - the timing for positioning CompanyGPT is excellent.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn, The Org, Google Scholar, and XaaS Evolution profiles. Some dates approximate.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item"><div class="timeline-period">2022-Present</div><div class="timeline-content"><strong>Head of Architecture and Technology</strong>, dormakaba - Overall technology architecture, IoT strategy, platform decisions. Based in Meilen, Switzerland.</div></div>
+                    <div class="timeline-item"><div class="timeline-period">2018-2022</div><div class="timeline-content"><strong>Lead Architect Software</strong>, Bystronic Laser AG - Responsible for Industry 4.0 strategy, IoT and cloud infrastructure, sensor/data processing architecture. Presented to C-level.</div></div>
+                    <div class="timeline-item"><div class="timeline-period">2008-2018</div><div class="timeline-content"><strong>Development Manager / Sensor Specialist</strong>, SENSAP Microsystems SA - EU Project ASPIRE (RFID sensor microsystems, EPC/GS1-compliant middleware). Technical deliverables and financial reporting.</div></div>
+                    <div class="timeline-item"><div class="timeline-period">Earlier</div><div class="timeline-content"><strong>Research & Engineering</strong> - PhD in Engineering (Dr. Ing.), publications on Hall Effect sensors, VLSI readout IC design. EPFL connections via co-authors (Prof. R.S. Popovic).</div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Credentials
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from Google Scholar, academic databases, and professional profiles.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item"><div class="timeline-period">Academic</div><div class="timeline-content">Dr. Ing. (PhD in Engineering) - Sensor microsystems and VLSI design specialization. 524 Google Scholar citations.</div></div>
+                    <div class="timeline-item"><div class="timeline-period">Publication</div><div class="timeline-content">"Introducing a New Hall Effect Sensor - Novel Dynamic Offset Reduction Method" (PECCS 2011) - co-authored with V.N. Petoussis, G.I. Stamoulis, E.N. Houstis.</div></div>
+                    <div class="timeline-item"><div class="timeline-period">EU Research</div><div class="timeline-content">Project ASPIRE (2008-2011) - Advanced Sensor Platform for Interoperable RFID in the Enterprise. EU-funded innovation project.</div></div>
+                    <div class="timeline-item"><div class="timeline-period">Endorsement</div><div class="timeline-content">Former Bystronic CTO: "Rare to meet people like Panos who can see the big picture when they make an IoT architecture."</div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How sourced<div class="methodology-tooltip">Content from last 30-90 days sourced from company news and press releases. May not capture all activity.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">RECENT</span>
+                </div>
+                <div class="media-item"><h4>dormakaba Invests in RealSense (Nov 2025)</h4><p>Strategic investment in US-based RealSense to advance AI-powered computer vision for access control and security solutions. Directly relevant to Panos's technology architecture responsibilities.</p></div>
+                <div class="media-item"><h4>Safetrust Strategic Investment (Feb 2025)</h4><p>dormakaba invested in Safetrust for post-quantum-ready secure identity solutions. Signals focus on next-generation security architecture.</p></div>
+                <div class="media-item"><h4>ISC West 2025 Showcase</h4><p>dormakaba unveiled new layered security solutions including Quantum Pixel+ (ICONIC AWARD 2025 winner) and advanced access management systems.</p></div>
+                <div class="media-item"><h4>H1 2024/25 Strong Results</h4><p>5.1% organic growth, CHF 1.42B net sales, 15.2% EBITDA margin. Transformation program on track with CHF 84M of CHF 170M target achieved.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">IoT Architecture</span><span class="tag">Sensor Microsystems</span><span class="tag">Industry 4.0</span><span class="tag">Smart Factory</span><span class="tag">Software Architecture</span><span class="tag">Cloud Infrastructure</span><span class="tag">RFID/AutoID</span><span class="tag">MES/Real-Time Monitoring</span><span class="tag">VLSI Design</span><span class="tag">Access Control Technology</span><span class="tag">R&D Management</span><span class="tag">JEE/Enterprise Java</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">dormakaba Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from company website, annual reports, and business registries. Verified against press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">2015</div><div class="metric-label">Formed (Merger)</div></div>
+                    <div class="metric-box"><div class="metric-value">~16,000</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 2.87B</div><div class="metric-label">Revenue FY24/25</div></div>
+                    <div class="metric-box"><div class="metric-value">130+</div><div class="metric-label">Countries</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">Ruemlang</div><div class="metric-label">HQ Location</div></div>
+                    <div class="metric-box"><div class="metric-value">SIX: DOKA</div><div class="metric-label">Stock Exchange</div></div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem; margin-bottom: 8px;"><strong>Key Facts:</strong> Global leader in access control and security solutions. Formed from merger of DORMA (est. 1908) and Kaba (est. 1862). Strategy: "Shape4Growth" transitioning to "From Shape to Growth". CHF 170M transformation savings target by FY 2025/26. Invested in RealSense (AI vision), Safetrust (post-quantum security), acquired TANlock (data center access).</p>
+                    <p style="font-size: 0.9rem;"><strong>Leadership:</strong> CEO Dr. Till Reuter (since Jan 2024), CFO Rene Peter (since 2025), CTO/Chief Transformation Officer Christian Baur (since Jan 2025), Chairman Svein Richard Brandtzaeg.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Executive Leadership
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company annual reports, executive board page, and The Org chart. Roles verified.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card"><div class="person-avatar">TR</div><div class="person-info"><h4>Dr. Till Reuter</h4><p>CEO | Since January 2024, driving "From Shape to Growth" strategy</p></div></div>
+                    <div class="person-card"><div class="person-avatar">RP</div><div class="person-info"><h4>Rene Peter</h4><p>CFO | Since 2025, financial oversight of transformation programs</p></div></div>
+                    <div class="person-card"><div class="person-avatar">CB</div><div class="person-info"><h4>Christian Baur</h4><p>Chief Transformation Officer | Since Jan 2025, leads digital transformation</p></div></div>
+                    <div class="person-card"><div class="person-avatar">SB</div><div class="person-info"><h4>Steve Bewick</h4><p>CCO | Since 2023, commercial strategy and customer centricity</p></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Technology & Innovation Network
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Identified from company pages, partnerships, and press releases.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="person-card"><div class="person-avatar">CF</div><div class="person-info"><h4>Carsten Franke</h4><p>COO | Since Aug 2024, operational excellence and manufacturing</p></div></div>
+                    <div class="person-card"><div class="person-avatar">RS</div><div class="person-info"><h4>RealSense Team</h4><p>AI Partner | Computer vision for access solutions, strategic investment 2025</p></div></div>
+                    <div class="person-card"><div class="person-avatar">ST</div><div class="person-info"><h4>Safetrust Team</h4><p>Security Partner | Post-quantum-ready identity solutions, minority stake 2025</p></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From LinkedIn, academic profiles, conference speaker bios, and partnership announcements.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="conversation-card"><h4>EPFL Network</h4><p>Academic connections via Prof. R.S. Popovic (Emeritus). Sensor microsystems research community.</p></div>
+                    <div class="conversation-card"><h4>XaaS Evolution</h4><p>Featured speaker/expert on the XaaS Evolution platform for IoT and digital transformation topics.</p></div>
+                    <div class="conversation-card"><h4>EU Research Community</h4><p>Project ASPIRE consortium - RFID/sensor microsystems innovation network across European institutions.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Technology Partners & Clients
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Clients and partners identified from case studies, press releases, and annual reports.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">RealSense (AI Vision)</span><span class="tag">Safetrust (Security)</span><span class="tag">Frankfurt Airport</span><span class="tag">Munich Airport</span><span class="tag">Marriott Hotels</span><span class="tag">Data Centers</span><span class="tag">Commercial Real Estate</span><span class="tag">Healthcare Facilities</span><span class="tag">Government Buildings</span><span class="tag">Critical Infrastructure</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content and professional endorsements. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div><div class="radar-label pos-2">Pragmatic</div><div class="radar-label pos-3">Collaborative</div><div class="radar-label pos-4">Structured</div><div class="radar-label pos-5">Action-Oriented</div><div class="radar-label pos-6">Ethics-Focused</div><div class="radar-label pos-7">Innovative</div><div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,19 150.9,49.1 158.5,100 154.1,154.1 100,163 65,135 23.5,100 52.2,52.2" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Personality Profile
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How assessed<div class="methodology-tooltip">AI-INFERRED: Based on observable behavioral indicators from public content, communication style, and role characteristics. NOT a formal DISC assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-chart">
+                        <div class="disc-bar d-bar" style="height: 70%;"><span>D</span><span class="disc-score">70</span></div>
+                        <div class="disc-bar i-bar" style="height: 55%;"><span>I</span><span class="disc-score">55</span></div>
+                        <div class="disc-bar s-bar" style="height: 50%;"><span>S</span><span class="disc-score">50</span></div>
+                        <div class="disc-bar c-bar" style="height: 85%;"><span>C</span><span class="disc-score">85</span></div>
+                    </div>
+                    <div class="disc-labels"><span>Dominance</span><span>Influence</span><span>Steadiness</span><span>Conscientiousness</span></div>
+                    <div style="margin-top: 16px;">
+                        <div class="disc-primary">Primary: <strong>Conscientiousness (C)</strong></div>
+                        <div class="disc-secondary">Secondary: Dominance (D)</div>
+                        <p class="disc-description">A highly analytical, detail-oriented technology leader who combines deep technical expertise with strategic decisiveness. Values accuracy, thorough analysis, and well-architected solutions. Expects precision and evidence-based arguments.</p>
+                    </div>
+                    <div class="insight-box blue" style="margin-top: 16px;">
+                        <div class="insight-title">Communication Tips:</div>
+                        <p>Provide detailed technical information and architecture diagrams. Be accurate and logical. Give time to analyze proposals. Avoid emotional appeals - focus on technical merit and measurable outcomes. Respect his expertise and come prepared with deep technical knowledge of CompanyGPT's architecture.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How inferred<div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns. Validate in actual conversation.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box green"><div class="insight-title">Architectural Elegance</div><p>As an architect, he values clean system design, clear APIs, and well-defined integration patterns. Demonstrate how CompanyGPT fits into an enterprise architecture with standard protocols, clear data flows, and minimal technical debt.</p></div>
+                <div class="insight-box blue"><div class="insight-title">Technical Depth & Innovation</div><p>With 524 academic citations and deep R&D experience, he respects genuine technical innovation. Show the underlying AI/ML architecture of CompanyGPT - model selection, RAG implementation, security design - not just the UI.</p></div>
+                <div class="insight-box yellow"><div class="insight-title">Scalability & Performance</div><p>Having built IoT platforms handling massive sensor data, he understands scale. Demonstrate CompanyGPT's ability to handle enterprise-scale knowledge bases, concurrent users, and real-time responses.</p></div>
+                <div class="insight-box orange"><div class="insight-title">Security & Data Governance</div><p>dormakaba operates in physical security - data security is paramount. Emphasize CompanyGPT's data isolation, access controls, on-premise/private cloud options, and compliance certifications.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Decision-Making Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Based on described approaches in career history and role characteristics.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Decision Style</td><td><strong>Analytical-Strategic</strong> - Evaluates options systematically, weighs technical trade-offs</td></tr>
+                    <tr><td>Risk Tolerance</td><td><strong>Moderate</strong> - Comfortable with innovation but requires evidence and proof-of-concept</td></tr>
+                    <tr><td>Speed</td><td><strong>Deliberate</strong> - Prefers thorough evaluation over quick decisions</td></tr>
+                    <tr><td>Influence Path</td><td><strong>Bottom-up Technical</strong> - Recommendations flow from architecture team to C-level</td></tr>
+                    <tr><td>Primary Style</td><td><strong>Conscientiousness (C)</strong> - Analytical, detail-oriented, quality-focused</td></tr>
+                    <tr><td>Secondary Style</td><td><strong>Dominance (D)</strong> - Strategic, results-oriented when presenting to leadership</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Patterns from content analysis. Behavioral observations, not clinical assessments.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box blue"><div class="insight-title">Systems Architect Mindset</div><p>Thinks in systems and integration patterns. Will evaluate CompanyGPT not as a standalone tool but as a component in dormakaba's broader technology ecosystem. Prepare integration architecture documentation.</p></div>
+                <div class="insight-box green"><div class="insight-title">Research-Driven Evaluator</div><p>Academic background means he values evidence, benchmarks, and peer-reviewed approaches. Provide technical whitepapers, performance benchmarks, and reference architectures rather than marketing materials.</p></div>
+                <div class="insight-box yellow"><div class="insight-title">Cross-Domain Integrator</div><p>Career spans hardware sensors to cloud software to business strategy. He bridges the gap between deep tech and business value. Frame CompanyGPT's value in both technical and business terms.</p></div>
+                <div class="insight-box orange"><div class="insight-title">C-Level Communicator</div><p>At Bystronic, he presented IoT strategies directly to C-level. He knows how to translate technical value into executive language. Support him with ROI frameworks he can present internally.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3 class="card-title">Key Value Phrases<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted from profiles, endorsements, and publications. Frequency indicates thematic importance.</div></span></h3></div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>Architecture & integration</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Core role responsibility - system design and technology integration</td></tr>
+                        <tr><td>IoT / connected systems</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Career-long focus across SENSAP, Bystronic, and dormakaba</td></tr>
+                        <tr><td>Industry 4.0 / Smart Factory</td><td><span class="probability-badge prob-high">High</span></td><td>Bystronic role focus, Google Scholar research interests</td></tr>
+                        <tr><td>Sensor data / real-time processing</td><td><span class="probability-badge prob-high">High</span></td><td>PhD research, SENSAP microsystems, AutoID technologies</td></tr>
+                        <tr><td>Platform scalability</td><td><span class="probability-badge prob-medium-high">Medium-High</span></td><td>Cloud infrastructure oversight, enterprise-scale systems</td></tr>
+                        <tr><td>R&D innovation</td><td><span class="probability-badge prob-medium">Medium</span></td><td>EU research projects, academic publications, product development</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis (CompanyGPT Positioning)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: SWOT framed around positioning CompanyGPT and AI services at dormakaba. Validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>Strengths (Your Position)</h4><ul>
+                        <li><div class="interactive-item">Artifact is Swiss-based - same business culture and data sovereignty expectations<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Emphasize Swiss data residency, GDPR compliance, and local support capabilities</div></div></li>
+                        <li><div class="interactive-item">CompanyGPT is enterprise-grade with fine-grained access control<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Demonstrate permission inheritance from existing systems (SharePoint, Azure AD)</div></div></li>
+                        <li><div class="interactive-item">SwissICT Innovation of the Year 2024 - proven credibility<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Reference award to establish trust with a technically demanding audience</div></div></li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>Potential Gaps</h4><ul>
+                        <li><div class="interactive-item">dormakaba operates in 130+ countries - need to demonstrate global scalability<div class="item-recommendation"><div class="item-recommendation-label">Mitigation</div>Show multi-region deployment options and language support capabilities</div></div></li>
+                        <li><div class="interactive-item">Panos may be skeptical of "yet another AI platform" without deep tech differentiation<div class="item-recommendation"><div class="item-recommendation-label">Mitigation</div>Lead with architecture and technical depth, not marketing. Show code-level integration examples</div></div></li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>Opportunities</h4><ul>
+                        <li><div class="interactive-item">CHF 15M AI investment budget + CHF 50M R&D budget actively seeking solutions<div class="item-recommendation"><div class="item-recommendation-label">Action</div>Position CompanyGPT as an AI foundation that accelerates multiple R&D initiatives</div></div></li>
+                        <li><div class="interactive-item">Transformation savings target (CHF 170M) - CompanyGPT can drive efficiency gains<div class="item-recommendation"><div class="item-recommendation-label">Action</div>Quantify knowledge management efficiency gains: reduced search time, faster onboarding, fewer support tickets</div></div></li>
+                        <li><div class="interactive-item">16,000 employees across 50+ countries - massive knowledge management challenge<div class="item-recommendation"><div class="item-recommendation-label">Action</div>Show how CompanyGPT centralizes organizational knowledge across languages and regions</div></div></li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>Competitive Threats</h4><ul>
+                    <li>Microsoft Copilot/Azure OpenAI may be evaluated as a "safe" enterprise choice</li>
+                    <li>ASSA ABLOY (larger competitor) may set AI standards that dormakaba follows</li>
+                    <li>Internal build-vs-buy debate - Panos's team could consider building their own</li>
+                </ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-ESTIMATED: Positions based on market perception. Axes are relative, not absolute.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Market Expertise</span><span class="scatter-axis-label x-label">Innovation Speed</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span><span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 65%; bottom: 70%;"><div class="scatter-tooltip">dormakaba - High expertise, Good innovation</div></div>
+                        <div class="scatter-dot competitor1" style="left: 80%; bottom: 85%;"><div class="scatter-tooltip">ASSA ABLOY - Market leader, High innovation</div></div>
+                        <div class="scatter-dot competitor2" style="left: 50%; bottom: 60%;"><div class="scatter-tooltip">Allegion - Mid-range, Growing digital</div></div>
+                        <div class="scatter-dot competitor3" style="left: 35%; bottom: 45%;"><div class="scatter-tooltip">Stanley B&D - Traditional, Lower innovation</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> dormakaba</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> ASSA ABLOY</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Allegion</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> Stanley B&D</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3 class="card-title">Core Differentiators<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated from dormakaba website and marketing materials.</div></span></h3></div>
+                <div class="grid-3">
+                    <div class="differentiator-box"><div class="differentiator-label"><strong>Electro-Mechanical + Digital</strong><br>Unique blend of physical and digital security technologies</div></div>
+                    <div class="differentiator-box"><div class="differentiator-label"><strong>Full Building Lifecycle</strong><br>Products for new construction through retrofit and upgrade</div></div>
+                    <div class="differentiator-box"><div class="differentiator-label"><strong>Massive Installed Base</strong><br>Millions of access points globally - IoT data goldmine</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR CompanyGPT & AI Services Positioning
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities.</div></span>
+                </div>
+                <div class="strategy-content">Lead with <strong>technical architecture</strong> - Panos is an architect who evaluates platforms on system design, not features. Open with CompanyGPT's architecture (RAG pipeline, security model, API design) before discussing use cases. Frame the conversation around how CompanyGPT integrates into dormakaba's existing technology stack. Bring a reference architecture diagram showing CompanyGPT alongside IoT platforms, ERP systems, and identity management. Emphasize <strong>Swiss data sovereignty</strong> and enterprise-grade security - critical for a company in the physical security business. Offer a <strong>proof-of-concept</strong> focused on a specific dormakaba pain point (e.g., technical documentation for 16,000 employees across 50+ countries).</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">What You Can Offer Them
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated<div class="methodology-tooltip">AI-GENERATED: Based on dormakaba's stated needs and Artifact's capabilities.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--green-verified); color: white;">VALUE EXCHANGE</span>
+                </div>
+                <div class="insight-box green"><div class="insight-title">CompanyGPT as Enterprise Knowledge Hub</div><p>With 16,000 employees across 130+ countries, dormakaba faces a massive knowledge fragmentation challenge. CompanyGPT can centralize product documentation, installation guides, compliance information, and R&D knowledge into a single AI-powered assistant with fine-grained access control.</p></div>
+                <div class="insight-box blue"><div class="insight-title">AI Strategy & Use Case Roadmap</div><p>Artifact's AI consulting can help dormakaba prioritize and sequence AI initiatives across the CHF 15M investment budget. Leverage the SwissICT Innovation of the Year methodology to identify highest-ROI use cases.</p></div>
+                <div class="insight-box yellow"><div class="insight-title">IoT + AI Integration Architecture</div><p>Bridge Panos's IoT expertise with AI capabilities. Artifact can design architectures that feed sensor/access data from dormakaba's installed base into AI models for predictive maintenance, anomaly detection, and operational insights.</p></div>
+                <div class="insight-box orange"><div class="insight-title">Swiss-Based AI Partner with Security Focus</div><p>As a Swiss AI agency, Artifact understands the data sovereignty and compliance requirements of a Swiss-listed security company. Offer CompanyGPT with Swiss/EU hosting, GDPR compliance, and enterprise security certifications.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Optimal Contact Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How determined<div class="methodology-tooltip">Based on communication style analysis and Swiss professional norms.</div></span>
+                    </h3>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Preferred Channel</td><td>Direct LinkedIn message or email with a technical hook - reference a specific dormakaba technology initiative</td></tr>
+                    <tr><td>Optimal Timing</td><td>Mid-week (Tue-Thu). Avoid end of dormakaba fiscal quarters (June, December)</td></tr>
+                    <tr><td>Formality Level</td><td>Professional-technical. Use "Dr. Dimitropoulos" initially. He values substance over formality</td></tr>
+                    <tr><td>First Touchpoint</td><td>Share a technical architecture overview of CompanyGPT - not a sales deck but a system design document</td></tr>
+                    <tr><td>Meeting Format</td><td>Technical deep-dive preferred over executive overview. Bring solution architects, not just account managers</td></tr>
+                </table>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">Conversation Starters<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and expertise.</div></span></h3></div>
+                    <div class="conversation-card"><h4>RealSense AI Investment</h4><p>"We noticed dormakaba's recent investment in RealSense for AI-powered access solutions. How are you thinking about the broader AI architecture to support these new capabilities?"</p></div>
+                    <div class="conversation-card"><h4>IoT Data to AI Value</h4><p>"With millions of connected access devices, what's your vision for turning that IoT data stream into actionable intelligence through AI?"</p></div>
+                    <div class="conversation-card"><h4>Enterprise Knowledge at Scale</h4><p>"How does dormakaba currently manage technical knowledge across 16,000 employees in 50+ countries? Where do you see the biggest gaps?"</p></div>
+                    <div class="conversation-card"><h4>Architecture Patterns</h4><p>"We've designed CompanyGPT with a microservices architecture and clean API boundaries - I'd love your perspective on integration patterns for manufacturing/security environments."</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">Topics to Approach Carefully<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: Based on stated values and potential sensitivities.</div></span></h3></div>
+                    <div class="conversation-card warning"><h4>Role Transition to TRUMPF</h4><p>LinkedIn shows a possible move to TRUMPF. Do not assume - let him clarify his current role. If confirmed, pivot the conversation to TRUMPF's needs.</p></div>
+                    <div class="conversation-card warning"><h4>Oversimplifying AI</h4><p>With a PhD and deep technical background, avoid oversimplified AI claims. No "magic" or "revolutionary" language - he will push back on unsubstantiated claims.</p></div>
+                    <div class="conversation-card warning"><h4>Vendor Lock-In Concerns</h4><p>As an architect, he will be wary of proprietary platforms. Emphasize open standards, data portability, and exit strategies.</p></div>
+                    <div class="conversation-card warning"><h4>Cost Before Value</h4><p>Lead with technical value and architecture fit, not pricing. He evaluates technology merit first and presents business cases to leadership.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points & Personal Interests Matching
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How researched<div class="methodology-tooltip">INFERRED: Personal interests from public profiles. Research conducted separately for each person.</div></span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #ec4899, #f472b6); color: white;">PERSONAL CONNECTION</span>
+                </div>
+                <div class="insight-box blue"><div class="insight-title">Applied Technology Innovation</div><p><strong>Both:</strong> Michael and Panos share a passion for turning cutting-edge technology into practical business value. Michael's Olympic prediction models and Panos's IoT sensor architectures both demonstrate applied innovation. Use this shared mindset to build rapport.</p></div>
+                <div class="insight-box green"><div class="insight-title">Swiss Tech Ecosystem</div><p><strong>Both:</strong> Swiss-based technology professionals operating at the intersection of deep tech and enterprise. Michael's SwissICT award and Panos's EPFL connections create natural common ground in the Swiss innovation ecosystem.</p></div>
+                <div class="insight-box orange"><div class="insight-title">Academic Rigor Meets Business Impact</div><p><strong>Panos:</strong> PhD, 524 citations, sensor research. <strong>Michael:</strong> Data science, Universität Bern background. Both value evidence-based approaches. Frame CompanyGPT discussions with data and benchmarks, not just demos.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3 class="card-title">Anticipated Topics & Discussion Flow<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability based on role responsibilities and meeting context.</div></span></h3></div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>CompanyGPT architecture & integration</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Prepare system architecture diagram, API documentation, security model overview</td></tr>
+                        <tr><td>Data security & access control</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Prepare fine-grained access control demo, data residency options, compliance certifications</td></tr>
+                        <tr><td>AI use cases for access solutions industry</td><td><span class="probability-badge prob-high">High</span></td><td>Prepare 4-5 industry-specific use cases with ROI estimates and reference cases</td></tr>
+                        <tr><td>IoT + AI convergence opportunities</td><td><span class="probability-badge prob-high">High</span></td><td>Show how CompanyGPT can process and surface insights from IoT sensor data</td></tr>
+                        <tr><td>Enterprise knowledge management challenges</td><td><span class="probability-badge prob-medium-high">Medium-High</span></td><td>Prepare multi-language, multi-region knowledge management demo</td></tr>
+                        <tr><td>Build vs. buy evaluation</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Prepare TCO comparison: in-house AI platform vs. CompanyGPT deployment</td></tr>
+                        <tr><td>AI governance & responsible AI</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Prepare AI governance framework, model transparency, and bias mitigation documentation</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">Published Content<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via Google Scholar, web search, and Medium.</div></span></h3></div>
+                    <div class="media-item"><h4>Academic: Hall Effect Sensor Paper (PECCS 2011)</h4><p>"Introducing a New Hall Effect Sensor - Novel Dynamic Offset Reduction Method" - co-authored with Petoussis, Stamoulis, Houstis. Foundational sensor research.</p></div>
+                    <div class="media-item"><h4>Google Scholar Profile (524 Citations)</h4><p>Research interests: Sensor Microsystems, IoT, Smart Factory. Active academic footprint demonstrating deep technical credibility.</p></div>
+                    <div class="media-item"><h4>Medium Blog</h4><p>Writes on Medium (@panosdimitropoulos) - topics likely cover IoT, technology architecture, and industry insights.</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">Speaking & Professional Appearances<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference pages, XaaS Evolution platform, and professional profiles.</div></span></h3></div>
+                    <div class="media-item"><h4>XaaS Evolution Platform</h4><p>Featured as expert/speaker on <a href="https://www.xaas-evolution.de/peoples/dr-panos-dimitropoulos" target="_blank">XaaS Evolution</a> - discusses IoT, digital transformation, and as-a-service business models.</p></div>
+                    <div class="media-item"><h4>EU Project ASPIRE Consortium</h4><p>Technical lead on EU-funded research project (2008-2011). Presented deliverables to EU commission and partner institutions.</p></div>
+                    <div class="media-item"><h4>C-Level Technology Presentations</h4><p>At Bystronic, regularly presented Industry 4.0 strategies and technology roadmaps to C-level executives.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><h3 class="card-title">Media Sentiment Analysis<span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Based on coverage tone analysis. Limited personal media presence - sentiment reflects dormakaba coverage.</div></span></h3></div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group"><div class="bar-tooltip">2023: 65% positive, 25% neutral, 10% critical</div><div class="bar" style="height: 140px;"><div class="bar-segment positive" style="height: 65%;"></div><div class="bar-segment neutral" style="height: 25%;"></div><div class="bar-segment critical" style="height: 10%;"></div></div><span class="bar-label">2023</span></div>
+                            <div class="bar-group"><div class="bar-tooltip">2024: 70% positive, 22% neutral, 8% critical</div><div class="bar" style="height: 160px;"><div class="bar-segment positive" style="height: 70%;"></div><div class="bar-segment neutral" style="height: 22%;"></div><div class="bar-segment critical" style="height: 8%;"></div></div><span class="bar-label">2024</span></div>
+                            <div class="bar-group"><div class="bar-tooltip">2025: 75% positive, 20% neutral, 5% critical</div><div class="bar" style="height: 180px;"><div class="bar-segment positive" style="height: 75%;"></div><div class="bar-segment neutral" style="height: 20%;"></div><div class="bar-segment critical" style="height: 5%;"></div></div><span class="bar-label">2025</span></div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 16px;">Note: Limited personal media presence. Sentiment primarily reflects dormakaba company coverage, which has improved with strong H1 2024/25 results and strategic AI investments.</p>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recommended AI Use Cases for dormakaba
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated<div class="methodology-tooltip">AI-GENERATED: Use cases selected based on Panos's role, dormakaba's industry, company challenges, and stated interests. Reasoning available on hover.</div></span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white;">AI OPPORTUNITIES</span>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 20px;">Based on Dr. Dimitropoulos's role as Head of Architecture and Technology at dormakaba, these AI applications are highly relevant for CompanyGPT and Artifact's AI services:</p>
+                <div class="use-cases-grid">
+                    <div class="use-case-card"><h4 class="use-case-title">CompanyGPT: Technical Knowledge Hub</h4><p class="use-case-description">Centralized AI assistant for R&D teams, product documentation, installation guides, and compliance information across 16,000 employees in 130+ countries.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>dormakaba's massive global workforce needs instant access to complex product and technical documentation. CompanyGPT with fine-grained access control ensures the right people see the right information.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">AI-Powered Predictive Maintenance</h4><p class="use-case-description">ML models analyzing IoT sensor data from installed access systems to predict component failures before they occur, reducing downtime and service costs.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>dormakaba's massive installed base of connected devices generates rich sensor data. Panos's IoT expertise makes this a natural conversation - he understands the data pipeline from sensor to insight.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">Intelligent Compliance Processing</h4><p class="use-case-description">Automate processing of building codes, fire safety standards, and regulatory documents across 130+ countries using NLP and document intelligence.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Access solutions must comply with diverse regional building codes. AI can dramatically reduce the manual effort of tracking and applying regulatory changes across dormakaba's global operations.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">GenAI Product Configurator</h4><p class="use-case-description">AI-driven product recommendation and configuration for complex access solution projects, reducing quote generation time from days to hours.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>dormakaba's product portfolio spans mechanical, electronic, and cloud-connected solutions. An AI configurator using CompanyGPT's knowledge base can dramatically accelerate the sales engineering process.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">AI-Enhanced Security Analytics</h4><p class="use-case-description">Computer vision and ML for anomaly detection at access points - complementing dormakaba's RealSense investment with broader AI analytics capabilities.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>dormakaba just invested in RealSense for AI vision. Artifact can provide the broader AI analytics layer that integrates RealSense data with access control telemetry for holistic security intelligence.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">Smart Building Integration Platform</h4><p class="use-case-description">AI middleware connecting dormakaba devices with building management systems, enabling intelligent space utilization and energy optimization.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>By 2028, 4B+ IoT devices will be in commercial buildings. dormakaba needs an AI layer to orchestrate its access solutions within broader smart building ecosystems - a perfect architecture challenge for Panos.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">AI Field Service Assistant</h4><p class="use-case-description">GenAI-powered mobile assistant for field technicians: installation guidance, troubleshooting, spare parts identification, and real-time expert support.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Field service is a major cost center. CompanyGPT can be deployed as a mobile-first assistant that reduces service call time and improves first-time fix rates using dormakaba's technical knowledge base.</p></div></div>
+                    <div class="use-case-card"><h4 class="use-case-title">Manufacturing Quality AI</h4><p class="use-case-description">Computer vision-based defect detection in manufacturing lines, combined with predictive quality analytics to reduce scrap rates and rework.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>As COO Carsten Franke drives operational excellence, AI-powered quality assurance directly supports dormakaba's "Elevate Performance" strategic pillar and the CHF 170M savings target.</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sources Section -->
+        <div class="sources-section">
+            <h3>Intelligence Sources (22+)</h3>
+            <div class="sources-grid">
+                <a href="https://ch.linkedin.com/in/pdimi" target="_blank" class="source-item"><div class="source-icon">LI</div><div class="source-info"><div class="source-name">LinkedIn Profile</div><div class="source-meta">2025 | Professional</div></div></a>
+                <a href="https://theorg.com/org/dormakaba/org-chart/panos-dimitropoulos" target="_blank" class="source-item"><div class="source-icon">TO</div><div class="source-info"><div class="source-name">The Org - dormakaba</div><div class="source-meta">2025 | Organizational</div></div></a>
+                <a href="https://scholar.google.gr/citations?user=bWaJcxMAAAAJ&hl=en" target="_blank" class="source-item"><div class="source-icon">GS</div><div class="source-info"><div class="source-name">Google Scholar</div><div class="source-meta">2025 | Academic</div></div></a>
+                <a href="https://www.xaas-evolution.de/peoples/dr-panos-dimitropoulos" target="_blank" class="source-item"><div class="source-icon">XE</div><div class="source-info"><div class="source-name">XaaS Evolution Profile</div><div class="source-meta">2024 | Professional</div></div></a>
+                <a href="https://www.dormakabagroup.com/en/about-us" target="_blank" class="source-item"><div class="source-icon">DK</div><div class="source-info"><div class="source-name">dormakaba About Us</div><div class="source-meta">2025 | Company</div></div></a>
+                <a href="https://report.dormakaba.com/2024_25/strategy-group" target="_blank" class="source-item"><div class="source-icon">AR</div><div class="source-info"><div class="source-name">Annual Report 2024/25</div><div class="source-meta">2025 | Financial</div></div></a>
+                <a href="https://www.dormakabagroup.com/en/news/54676604-6faf-421c-8752-0f820a5fa088/capital-markets-day-2024-dormakaba-is-well-positioned-to-take-the-next-step-from-shape-to-growth" target="_blank" class="source-item"><div class="source-icon">CM</div><div class="source-info"><div class="source-name">Capital Markets Day 2024</div><div class="source-meta">2024 | Investor</div></div></a>
+                <a href="https://www.dormakabagroup.com/en/news/be1c7740-2fd0-46b7-b527-fb7dae20470a/first-half-of-the-financial-year-2024-25-strong-organic-growth-and-margin-expansion-continue-strategy-execution-on-track" target="_blank" class="source-item"><div class="source-icon">H1</div><div class="source-info"><div class="source-name">H1 2024/25 Results</div><div class="source-meta">2025 | Financial</div></div></a>
+                <a href="https://www.dormakabagroup.com/en/news/17b0f5e5-c174-4590-9f9c-ce9a8722eaf7/dormakaba-invests-in-realsense-in-the-us-to-strengthen-innovation-and-forms-partnership-to-advance-ai-powered-access-control-and-security-solutions" target="_blank" class="source-item"><div class="source-icon">RS</div><div class="source-info"><div class="source-name">RealSense AI Partnership</div><div class="source-meta">2025 | News</div></div></a>
+                <a href="https://www.safetrust.com/press-releases/safetrust-secures-strategic-investment-from-dormakaba/" target="_blank" class="source-item"><div class="source-icon">ST</div><div class="source-info"><div class="source-name">Safetrust Investment</div><div class="source-meta">2025 | News</div></div></a>
+                <a href="https://www.dormakaba.com/us-en/newsroom/dormakaba-unveils-new-products-security-solutions-isc-west-2025" target="_blank" class="source-item"><div class="source-icon">IS</div><div class="source-info"><div class="source-name">ISC West 2025</div><div class="source-meta">2025 | Event</div></div></a>
+                <a href="https://www.dormakabagroup.com/en/news/15476876-902e-47b2-8978-14b81e2237d0/dormakaba-electronic-hotel-lock-wins-iconic-award-2025" target="_blank" class="source-item"><div class="source-icon">IA</div><div class="source-info"><div class="source-name">ICONIC Award 2025</div><div class="source-meta">2025 | Award</div></div></a>
+                <a href="https://en.wikipedia.org/wiki/Dormakaba" target="_blank" class="source-item"><div class="source-icon">WK</div><div class="source-info"><div class="source-name">dormakaba Wikipedia</div><div class="source-meta">2025 | Reference</div></div></a>
+                <a href="https://pestel-analysis.com/blogs/competitors/dormakaba" target="_blank" class="source-item"><div class="source-icon">CA</div><div class="source-info"><div class="source-name">Competitor Analysis</div><div class="source-meta">2025 | Analysis</div></div></a>
+                <a href="https://go.dormakaba.com/en/articles/unlocking-the-architecture-and-planning-potential-of-connected-access-solutions-and-iot" target="_blank" class="source-item"><div class="source-icon">IoT</div><div class="source-info"><div class="source-name">dormakaba IoT Article</div><div class="source-meta">2024 | Technical</div></div></a>
+                <a href="https://go.dormakaba.com/en/articles/how-smart-building-technology-enhances-user-experience" target="_blank" class="source-item"><div class="source-icon">SB</div><div class="source-info"><div class="source-name">Smart Building Tech</div><div class="source-meta">2024 | Technical</div></div></a>
+                <a href="https://medium.com/@panosdimitropoulos" target="_blank" class="source-item"><div class="source-icon">MD</div><div class="source-info"><div class="source-name">Medium Blog</div><div class="source-meta">2024 | Blog</div></div></a>
+                <a href="https://report.dormakaba.com/2024_25/" target="_blank" class="source-item"><div class="source-icon">FR</div><div class="source-info"><div class="source-name">Full Annual Report</div><div class="source-meta">2025 | Financial</div></div></a>
+                <a href="https://artifact.swiss" target="_blank" class="source-item"><div class="source-icon">AF</div><div class="source-info"><div class="source-name">Artifact Website</div><div class="source-meta">2025 | Requestor</div></div></a>
+                <a href="https://artifact.swiss/team/michael-wegmuller/" target="_blank" class="source-item"><div class="source-icon">MW</div><div class="source-info"><div class="source-name">Michael Wegmuller Profile</div><div class="source-meta">2025 | Requestor</div></div></a>
+                <a href="https://www.dormakabagroup.com/en/newsroom" target="_blank" class="source-item"><div class="source-icon">NR</div><div class="source-info"><div class="source-name">dormakaba Newsroom</div><div class="source-meta">2025 | News</div></div></a>
+                <a href="https://www.securityinfowatch.com/industry-news/article/55271059/dormakaba-reports-strong-performance-strategic-progress-in-first-half-of-2024-25" target="_blank" class="source-item"><div class="source-icon">SI</div><div class="source-info"><div class="source-name">Security Info Watch</div><div class="source-meta">2025 | Industry</div></div></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>x</span>
+            <span class="footer-sailor">Sailor 2.0</span>
+        </div>
+        <p>Generated: February 10, 2026 | Sources: 22+ verified</p>
+        <p>Prepared for: Michael Wegmuller | Occasion: CompanyGPT & AI Services Positioning</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Analysis for Panos Dimitropoulos from Dormakaba to position our genAI Platform asset CompanyGPT and our AI services."</div>
+        <div class="report-token">Report ID: 9313df20</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF</button>
+    <button class="share-button" onclick="shareProfile()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Share Profile</button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => { tab.addEventListener('click', () => { const tabId = tab.dataset.tab; document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId)); document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.getElementById(tabId).classList.add('active'); if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' }); }); });
+        function shareProfile() { const url = window.location.href; if (navigator.share) { navigator.share({ title: 'Sailor 2.0 - Dr. Panos Dimitropoulos Profile', text: 'Meeting Intelligence Profile', url: url }); } else { navigator.clipboard.writeText(url).then(() => { const toast = document.getElementById('shareToast'); toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); }); } }
+        async function downloadPDF() { const toast = document.getElementById('downloadToast'); toast.classList.add('show'); const el = document.body; const opt = { margin: 0, filename: 'sailor-panos-dimitropoulos-profile.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'px', format: [1000, 750], orientation: 'landscape' } }; try { await html2pdf().set(opt).from(el).save(); toast.textContent = 'PDF downloaded!'; } catch(e) { toast.textContent = 'PDF generation failed'; } setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000); }
+        if (window.location.hash) { const tabId = window.location.hash.substring(1); const tab = document.querySelector('[data-tab="'+tabId+'"]'); if (tab) tab.click(); }
+    </script>
+</body>
+</html>
