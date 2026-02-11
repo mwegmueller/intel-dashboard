@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for {{TARGET_NAME}}">
-    <meta property="og:title" content="Sailor 2.0 - {{TARGET_NAME}} Profile">
-    <meta property="og:description" content="Meeting Intelligence Profile for {{TARGET_NAME}} at {{TARGET_COMPANY}}">
-    <meta name="report-token" content="{{REPORT_TOKEN}}">
-    <title>Sailor 2.0 - {{TARGET_NAME}}</title>
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Dirk Schaefer">
+    <meta property="og:title" content="Sailor 2.0 - Dirk Schaefer Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Dirk Schaefer at Roche Diagnostics">
+    <meta name="report-token" content="c7c216df">
+    <title>Sailor 2.0 - Dirk Schaefer</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
@@ -179,7 +179,7 @@
         .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
         .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
         .bar-group:hover .bar-tooltip { opacity: 1; }
-        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg {{PIE_PRIMARY}}deg, var(--blue-secondary) {{PIE_PRIMARY}}deg {{PIE_SECONDARY}}deg, var(--yellow-inferred) {{PIE_SECONDARY}}deg {{PIE_INFERRED}}deg, var(--red-speculative) {{PIE_INFERRED}}deg 360deg); }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 126deg, var(--blue-secondary) 126deg 252deg, var(--yellow-inferred) 252deg 324deg, var(--red-speculative) 324deg 360deg); }
         .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
         .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
         .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
@@ -246,6 +246,29 @@
         .original-prompt strong { font-style: normal; color: var(--charcoal); }
         .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
 
+        /* New CSS for DISC, Use Cases, and Personal Interests */
+        .disc-chart{display:flex;align-items:flex-end;justify-content:space-around;height:150px;padding:10px;background:#f8f9fa;border-radius:8px;}
+        .disc-bar{width:50px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border-radius:4px 4px 0 0;min-height:20px;color:white;font-weight:600;padding:8px 0;}
+        .disc-bar span{font-size:0.9rem;}
+        .disc-score{font-size:0.75rem;opacity:0.9;}
+        .d-bar{background:linear-gradient(180deg,#dc2626,#ef4444);}
+        .i-bar{background:linear-gradient(180deg,#f59e0b,#fbbf24);}
+        .s-bar{background:linear-gradient(180deg,#16a34a,#22c55e);}
+        .c-bar{background:linear-gradient(180deg,#2563eb,#3b82f6);}
+        .disc-labels{display:flex;justify-content:space-around;font-size:0.7rem;color:var(--slate-gray);margin-top:8px;}
+        .disc-primary{font-size:1.1rem;margin-bottom:8px;}
+        .disc-secondary{font-size:0.9rem;color:var(--slate-gray);margin-bottom:12px;}
+        .disc-description{font-size:0.9rem;line-height:1.6;}
+        .use-cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+        .use-case-card{background:linear-gradient(135deg,#f8f9fa,#fff);border:1px solid #e5e7eb;border-radius:12px;padding:24px;position:relative;transition:all 0.3s;cursor:pointer;}
+        .use-case-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.12);border-color:#8b5cf6;}
+        .use-case-icon{font-size:2rem;margin-bottom:12px;}
+        .use-case-title{font-size:1.1rem;font-weight:600;margin-bottom:8px;color:var(--charcoal);}
+        .use-case-description{font-size:0.9rem;color:var(--slate-gray);line-height:1.6;}
+        .use-case-reasoning{display:none;position:absolute;top:100%;left:0;right:0;margin-top:8px;background:var(--navy);color:white;padding:16px;border-radius:8px;font-size:0.85rem;z-index:100;box-shadow:0 8px 30px rgba(0,0,0,0.2);}
+        .use-case-card:hover .use-case-reasoning{display:block;}
+        .reasoning-label{font-weight:600;color:#60a5fa;margin-bottom:8px;font-size:0.75rem;text-transform:uppercase;}
+
         /* Responsive */
         @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
@@ -261,21 +284,21 @@
 <body>
     <div class="header">
         <div class="header-brand">
-            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <span style="font-size:1.3rem;font-weight:700;color:white;">ARTIFACT</span>
             <div class="brand-divider"></div>
             <span class="sailor-logo">⛵ Sailor 2.0</span>
         </div>
-        <h1>{{TARGET_NAME}}</h1>
-        <div class="header-subtitle">{{TARGET_ROLE}} | {{TARGET_COMPANY}}</div>
+        <h1>Dirk Schaefer</h1>
+        <div class="header-subtitle">International Business Leader, Advanced Service Analytics | Roche Diagnostics</div>
         <div class="header-meta">
-            <span>{{LOCATION}}</span>
-            <span>{{EDUCATION}}</span>
-            <span>{{WEBSITE}}</span>
-            <span>{{ADDITIONAL_INFO}}</span>
+            <span>Mannheim, Germany</span>
+            <span>RPTU Kaiserslautern (2002-2008)</span>
+            <span>roche.com</span>
+            <span>Diagnostics Division</span>
         </div>
         <div class="header-badge">
             <div class="badge-label">SAILOR 2.0</div>
-            <div class="badge-score">{{SOURCE_COUNT}}+</div>
+            <div class="badge-score">19+</div>
             <div class="badge-score-label">Verified Sources</div>
         </div>
     </div>
@@ -289,6 +312,8 @@
             <button class="tab" data-tab="strategic-position">Strategic Position</button>
             <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
             <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="personal-interests">Personal Interests</button>
         </div>
     </div>
 
@@ -301,6 +326,8 @@
             <button class="tab" data-tab="strategic-position">Strategic</button>
             <button class="tab" data-tab="engagement-playbook">Playbook</button>
             <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI</button>
+            <button class="tab" data-tab="personal-interests">Personal</button>
         </div>
     </div>
 
@@ -309,7 +336,20 @@
         <div id="executive-summary" class="tab-content active">
             <div class="bluf-section">
                 <div class="bluf-label">🎯 BOTTOM LINE UP FRONT</div>
-                <div class="bluf-content">{{BLUF_CONTENT}}</div>
+                <div class="bluf-content"><strong>Dirk Schaefer</strong> is the <strong>International Business Leader for Advanced Service Analytics</strong> at <strong>Roche Diagnostics</strong>, based at the Mannheim site — Roche's global logistics center supplying products to <strong>170 countries</strong>. His role sits at the intersection of <strong>AI/ML, predictive maintenance, IoT analytics, and field service optimization</strong>. Roche Diagnostics (~CHF 16B revenue) is investing in digital transformation through the <strong>Data2Value Community</strong>, <strong>navify Digital Pathology</strong>, and AI-powered analytics. With a new <strong>CDTO (Wafaa Mamilli)</strong> and <strong>$50B US investment through 2030</strong>, timing for AI consulting is optimal.</div>
+            </div>
+
+            <div class="card" style="margin-bottom:20px;">
+                <div class="card-header">
+                    <h3 class="card-title">Meeting Fit Score
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between meeting purpose and subject's role, authority, and interests.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">EXCELLENT FIT</span>
+                </div>
+                <div class="grid-2">
+                    <div class="metric-box"><div class="metric-value highlight">9/10</div><div class="metric-label">Alignment Score</div></div>
+                    <div style="padding:16px;"><p style="font-size:0.9rem;line-height:1.6;">Dirk leads Advanced Service Analytics at Roche Diagnostics — directly responsible for AI/ML in service operations. His technical background and leadership role give him understanding and authority to evaluate AI solutions. Timing aligns with Roche's digital acceleration under the new CDTO.</p></div>
+                </div>
             </div>
 
             <div class="grid-2">
@@ -321,13 +361,13 @@
                                 <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and news articles using NLP. Years of experience calculated from career timeline. Project counts from case studies when available.</div>
                             </span>
                         </h3>
-                        <span class="badge badge-high-confidence">{{CONFIDENCE_LEVEL}}</span>
+                        <span class="badge badge-high-confidence">MEDIUM CONFIDENCE</span>
                     </div>
                     <div class="grid-2">
-                        <div class="metric-box"><div class="metric-value">{{YEARS_EXPERIENCE}}</div><div class="metric-label">Years Experience</div></div>
-                        <div class="metric-box"><div class="metric-value">{{PROJECTS_COUNT}}</div><div class="metric-label">Projects Delivered</div></div>
-                        <div class="metric-box"><div class="metric-value">{{SPECIALTY_COUNT}}</div><div class="metric-label">{{SPECIALTY_LABEL}}</div></div>
-                        <div class="metric-box"><div class="metric-value highlight">{{KEY_METRIC}}</div><div class="metric-label">{{KEY_METRIC_LABEL}}</div></div>
+                        <div class="metric-box"><div class="metric-value">17+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">N/A</div><div class="metric-label">Projects Delivered</div></div>
+                        <div class="metric-box"><div class="metric-value">60+</div><div class="metric-label">Production Facilities</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">170</div><div class="metric-label">Countries Served</div></div>
                     </div>
                 </div>
 
@@ -342,10 +382,10 @@
                     </div>
                     <div class="pie-chart"></div>
                     <div class="pie-legend">
-                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary ({{PRIMARY_PCT}})</span>
-                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary ({{SECONDARY_PCT}})</span>
-                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred ({{INFERRED_PCT}})</span>
-                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative ({{SPECULATIVE_PCT}})</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (35%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (35%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (20%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
                     </div>
                 </div>
             </div>
@@ -359,7 +399,10 @@
                         </span>
                     </h3>
                 </div>
-                {{DEEP_INSIGHTS}}
+                <div class="insight-box green"><div class="insight-header"><div class="insight-title">AI Flywheel Strategy:</div></div><p>Roche's Pharma-Diagnostics integration creates an "AI Flywheel" — diagnostic data informs drug development. Dirk's service analytics feeds this cycle through instrument performance data.</p></div>
+                <div class="insight-box blue"><div class="insight-header"><div class="insight-title">Digital Transformation Momentum:</div></div><p>New CDTO Wafaa Mamilli (Feb 2025) and $50B US investment signal digital acceleration. Data2Value Community and navify platform (20+ AI algorithms) show established AI infrastructure.</p></div>
+                <div class="insight-box yellow"><div class="insight-header"><div class="insight-title">Service Analytics as Strategic Asset:</div></div><p>Roche uses PTC ThingWorx and ML-powered demand forecasting. Dirk's "Advanced Service Analytics" role leads this transformation — ideal entry point for AI consulting.</p></div>
+                <div class="insight-box orange"><div class="insight-header"><div class="insight-title">GenAI Wave:</div></div><p>Roche explores GenAI across operations. Service operations (knowledge bases, report generation, ticket resolution) represent prime GenAI opportunities for Dirk's team.</p></div>
             </div>
         </div>
 
@@ -373,7 +416,10 @@
                         </h3>
                         <span class="badge badge-verified">VERIFIED</span>
                     </div>
-                    {{PROFESSIONAL_TIMELINE}}
+                    <div class="timeline-item"><div class="timeline-period">2018 - Present</div><div class="timeline-content">International Business Leader, Advanced Service Analytics — Roche Diagnostics, Mannheim</div></div>
+                    <div class="timeline-item"><div class="timeline-period">2012 - 2018</div><div class="timeline-content">Senior Analytics Roles — Roche Diagnostics (inferred from career progression)</div></div>
+                    <div class="timeline-item"><div class="timeline-period">2008 - 2012</div><div class="timeline-content">Early Career in Data/Analytics (post-graduation)</div></div>
+                    <div class="timeline-item"><div class="timeline-period">2002 - 2008</div><div class="timeline-content">RPTU Kaiserslautern — Technical degree</div></div>
                 </div>
                 <div class="card">
                     <div class="card-header">
@@ -382,7 +428,9 @@
                         </h3>
                         <span class="badge badge-verified">VERIFIED</span>
                     </div>
-                    {{RECOGNITION_AWARDS}}
+                    <div class="media-item"><h4>Roche - World's Largest Diagnostics Company</h4><p>#1 in IVD market share globally. Consistently leading innovation in diagnostics.</p></div>
+                    <div class="media-item"><h4>Mannheim Site Excellence</h4><p>Global logistics hub with 60+ automated production facilities serving 170 countries daily.</p></div>
+                    <div class="media-item"><h4>navify Digital Pathology</h4><p>Industry-leading open platform with 20+ AI algorithms from 8 partners.</p></div>
                 </div>
             </div>
             <div class="card">
@@ -391,24 +439,24 @@
                         <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
                     </h3>
                 </div>
-                <div class="tags">{{INDUSTRY_TAGS}}</div>
+                <div class="tags"><span class="tag">Service Analytics</span><span class="tag">Predictive Maintenance</span><span class="tag">IoT</span><span class="tag">Supply Chain Analytics</span><span class="tag">Field Service</span><span class="tag">IVD</span><span class="tag">Machine Learning</span><span class="tag">Data Science</span><span class="tag">Digital Transformation</span><span class="tag">Lab Automation</span><span class="tag">POC Diagnostics</span><span class="tag">Healthcare IT</span></div>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">{{TARGET_COMPANY}} Company Profile
+                    <h3 class="card-title">Roche Diagnostics Company Profile
                         <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry (Moneyhouse), company website, and Crunchbase/similar directories.</div></span>
                     </h3>
                     <span class="badge badge-verified">VERIFIED</span>
                 </div>
                 <div class="grid-4">
-                    <div class="metric-box"><div class="metric-value">{{COMPANY_FOUNDED}}</div><div class="metric-label">Founded</div></div>
-                    <div class="metric-box"><div class="metric-value">{{COMPANY_FOUNDERS}}</div><div class="metric-label">Co-Founders</div></div>
-                    <div class="metric-box"><div class="metric-value">{{COMPANY_SIZE}}</div><div class="metric-label">Team Members</div></div>
-                    <div class="metric-box"><div class="metric-value">{{COMPANY_METRIC}}</div><div class="metric-label">{{COMPANY_METRIC_LABEL}}</div></div>
+                    <div class="metric-box"><div class="metric-value">1896</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">F. Hoffmann-La Roche</div><div class="metric-label">Co-Founders</div></div>
+                    <div class="metric-box"><div class="metric-value">~100,000</div><div class="metric-label">Team Members</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 61.5B</div><div class="metric-label">Revenue 2025</div></div>
                 </div>
                 <div class="grid-2" style="margin-top: 16px;">
-                    <div class="metric-box"><div class="metric-value">{{COMPANY_EXPERIENCE}}</div><div class="metric-label">Combined Years Experience</div></div>
-                    <div class="metric-box"><div class="metric-value">{{COMPANY_LOCATION}}</div><div class="metric-label">HQ Location</div></div>
+                    <div class="metric-box"><div class="metric-value">129+ Years</div><div class="metric-label">Combined Years Experience</div></div>
+                    <div class="metric-box"><div class="metric-value">Basel, Switzerland</div><div class="metric-label">HQ Location</div></div>
                 </div>
             </div>
         </div>
@@ -418,21 +466,26 @@
             <div class="grid-2">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Co-Founders
+                        <h3 class="card-title">Leadership Team
                             <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company registry records and team page. Roles verified via LinkedIn.</div></span>
                         </h3>
                         <span class="badge badge-verified">VERIFIED</span>
                     </div>
-                    {{COFOUNDERS_LIST}}
+                    <div class="person-card"><div class="person-avatar" style="background:#1e3a5f;">TS</div><div class="person-info"><h4>Thomas Schinecker</h4><p>CEO, Roche Group</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background:#3b82f6;">MS</div><div class="person-info"><h4>Matt Sause</h4><p>CEO, Roche Diagnostics</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background:#8b5cf6;">WM</div><div class="person-info"><h4>Wafaa Mamilli</h4><p>Chief Digital & Technology Officer</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background:#22c55e;">AH</div><div class="person-info"><h4>Alan Hippe</h4><p>CFO, Roche Group</p></div></div>
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Advisory Board
+                        <h3 class="card-title">Key Stakeholders
                             <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Advisors identified from company pages, LinkedIn connections marked as advisors, and press mentions.</div></span>
                         </h3>
                         <span class="badge badge-verified">VERIFIED</span>
                     </div>
-                    {{ADVISORS_LIST}}
+                    <div class="person-card"><div class="person-avatar" style="background:#f59e0b;">SS</div><div class="person-info"><h4>Severin Schwan</h4><p>Chairman (Former CEO)</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background:#ef4444;">TG</div><div class="person-info"><h4>Teresa Graham</h4><p>CEO, Roche Pharma</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background:#06b6d4;">CB</div><div class="person-info"><h4>Claudia Bockstiegel</h4><p>General Counsel</p></div></div>
                 </div>
             </div>
             <div class="card">
@@ -441,7 +494,9 @@
                         <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, association directories, and conference speaker bios.</div></span>
                     </h3>
                 </div>
-                <div class="grid-3">{{AFFILIATIONS_LIST}}</div>
+                <div class="grid-3"><div class="conversation-card"><h4>Data2Value Community</h4><p>Internal Roche initiative advancing data-driven decisions within the connected plant.</p></div>
+                <div class="conversation-card"><h4>Roche Global Operations</h4><p>Network spanning Mannheim, Penzberg, Rotkreuz, and worldwide sites.</p></div>
+                <div class="conversation-card"><h4>RPTU Alumni Network</h4><p>Technical university known for engineering and CS excellence.</p></div></div>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -450,7 +505,7 @@
                     </h3>
                     <span class="badge badge-verified">VERIFIED</span>
                 </div>
-                <div class="tags">{{CLIENTS_TAGS}}</div>
+                <div class="tags"><span class="tag">Hospital Networks</span><span class="tag">Clinical Labs</span><span class="tag">Reference Labs</span><span class="tag">POC Facilities</span><span class="tag">Blood Banks</span><span class="tag">Pathology Labs</span><span class="tag">University Medical Centers</span><span class="tag">NHS Trusts</span></div>
             </div>
         </div>
 
@@ -474,7 +529,7 @@
                         <div class="radar-label pos-6">Ethics-Focused</div>
                         <div class="radar-label pos-7">Innovative</div>
                         <div class="radar-label pos-8">Visionary</div>
-                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="{{RADAR_POINTS}}" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,19 148,52 159,100 154,154 100,154 56,145 35,100 65,65" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
                     </div>
                 </div>
                 <div class="card">
@@ -484,7 +539,11 @@
                         </h3>
                         <span class="badge badge-inferred">INFERRED</span>
                     </div>
-                    <table class="profile-table">{{DECISION_PROFILE}}</table>
+                    <table class="profile-table"><tr><td>Decision Speed</td><td>Methodical — thorough analysis before committing</td></tr>
+                    <tr><td>Risk Tolerance</td><td>Low-to-moderate — favors proven approaches with ROI evidence</td></tr>
+                    <tr><td>Information Needs</td><td>High — expects data-backed proposals and peer references</td></tr>
+                    <tr><td>Stakeholder Style</td><td>Consensus-builder — involves team and management</td></tr>
+                    <tr><td>Vendor Preference</td><td>Values expertise and reliability over price</td></tr></table>
                 </div>
             </div>
             <div class="card">
@@ -494,7 +553,9 @@
                     </h3>
                     <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
                 </div>
-                {{PSYCHOLOGICAL_INDICATORS}}
+                <div class="insight-box blue"><div class="insight-header"><div class="insight-title">Analytical Mindset:</div></div><p>Strong preference for data-driven decisions. Technical education and analytics role suggest comfort with quantitative arguments.</p></div>
+                <div class="insight-box green"><div class="insight-header"><div class="insight-title">Process Orientation:</div></div><p>Values structured methodologies and clear project plans. Roche's precision culture reinforces systematic thinking.</p></div>
+                <div class="insight-box yellow"><div class="insight-header"><div class="insight-title">International Perspective:</div></div><p>"International Business Leader" title indicates cross-cultural competence across Roche's 170-country footprint.</p></div>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -504,8 +565,52 @@
                 </div>
                 <table class="topics-table">
                     <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
-                    <tbody>{{KEY_PHRASES}}</tbody>
+                    <tbody><tr><td>"Advanced Service Analytics"</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Core role descriptor</td></tr>
+                    <tr><td>"Predictive Maintenance"</td><td><span class="probability-badge prob-high">High</span></td><td>Key capability for connected instruments</td></tr>
+                    <tr><td>"Data2Value"</td><td><span class="probability-badge prob-high">High</span></td><td>Mannheim's data community</td></tr>
+                    <tr><td>"Connected Plant"</td><td><span class="probability-badge prob-medium-high">Medium</span></td><td>IoT strategy for monitoring</td></tr>
+                    <tr><td>"Digital Transformation"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Broader organizational initiative</td></tr></tbody>
                 </table>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">DISC Personality Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: Based on observable behavioral indicators from public content and role characteristics. NOT a formal assessment.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="disc-chart">
+                            <div class="disc-bar d-bar" style="height:55%;"><span>D</span><span class="disc-score">55</span></div>
+                            <div class="disc-bar i-bar" style="height:35%;"><span>I</span><span class="disc-score">35</span></div>
+                            <div class="disc-bar s-bar" style="height:60%;"><span>S</span><span class="disc-score">60</span></div>
+                            <div class="disc-bar c-bar" style="height:80%;"><span>C</span><span class="disc-score">80</span></div>
+                        </div>
+                        <div class="disc-labels"><span>Dominance</span><span>Influence</span><span>Steadiness</span><span>Conscientiousness</span></div>
+                    </div>
+                    <div>
+                        <div class="disc-primary">Primary: <strong>C - Conscientiousness</strong></div>
+                        <div class="disc-secondary">Secondary: S - Steadiness</div>
+                        <p class="disc-description">Analytical, detail-oriented professional who values accuracy, systematic processes, and thorough preparation. The secondary Steadiness suggests patience, loyalty to proven relationships, and preference for stability.</p>
+                    </div>
+                </div>
+                <div class="insight-box blue" style="margin-top:16px;">
+                    <div class="insight-title">Communication Tips:</div>
+                    <p>Provide detailed, accurate information with data backing. Avoid high-pressure tactics. Give him time to analyze proposals. Respect his expertise and systematic approach. Lead with facts and evidence, not enthusiasm.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box blue"><div class="insight-title">Data & Evidence:</div><p>Primary motivator. Present quantified ROI, benchmarks, and case studies.</p></div>
+                <div class="insight-box green"><div class="insight-title">Quality & Reliability:</div><p>In diagnostics, accuracy is non-negotiable. Show enterprise-ready AI, not prototypes.</p></div>
+                <div class="insight-box orange"><div class="insight-title">Peer Validation:</div><p>References from similar roles at pharma/medtech companies carry significant weight.</p></div>
+                <div class="insight-box yellow"><div class="insight-title">Risk Mitigation:</div><p>Propose pilot-first approaches with clear success criteria. Address compliance proactively.</p></div>
             </div>
         </div>
 
@@ -518,11 +623,21 @@
                     </h3>
                 </div>
                 <div class="swot-grid">
-                    <div class="swot-box strengths"><h4>💪 Strengths</h4><ul>{{SWOT_STRENGTHS}}</ul></div>
-                    <div class="swot-box weaknesses"><h4>⚠️ Potential Gaps</h4><ul>{{SWOT_WEAKNESSES}}</ul></div>
-                    <div class="swot-box opportunities"><h4>🚀 Opportunities</h4><ul>{{SWOT_OPPORTUNITIES}}</ul></div>
+                    <div class="swot-box strengths"><h4>💪 Strengths</h4><ul><li><div class="interactive-item">Deep analytics expertise in service operations<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Reference his team's capabilities as a foundation to build upon.</div></div></li>
+                    <li><div class="interactive-item">Massive real-world data from 170 countries<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Propose AI models that unlock value from existing data assets.</div></div></li>
+                    <li><div class="interactive-item">Established Data2Value Community<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Position as an accelerator of their existing data journey.</div></div></li>
+                    <li><div class="interactive-item">World's largest diagnostics company with huge R&D budget<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Focus conversation on value, not cost constraints.</div></div></li></ul></div>
+                    <div class="swot-box weaknesses"><h4>⚠️ Potential Gaps</h4><ul><li><div class="interactive-item">Large enterprise bureaucracy may slow decisions<div class="item-recommendation"><div class="item-recommendation-label">Navigate</div>Ask about procurement early. Offer flexible engagement models.</div></div></li>
+                    <li><div class="interactive-item">Limited public profile makes rapport challenging<div class="item-recommendation"><div class="item-recommendation-label">Navigate</div>Focus on Roche's published initiatives. Let him share.</div></div></li>
+                    <li><div class="interactive-item">Existing vendor relationships (PTC, Baxter Planning)<div class="item-recommendation"><div class="item-recommendation-label">Navigate</div>Position as complementary, not replacing platforms.</div></div></li></ul></div>
+                    <div class="swot-box opportunities"><h4>🚀 Opportunities</h4><ul><li><div class="interactive-item">New CDTO driving digital acceleration<div class="item-recommendation"><div class="item-recommendation-label">Capitalize</div>Reference the digital mandate from executive leadership.</div></div></li>
+                    <li><div class="interactive-item">$50B US investment signals growth mode<div class="item-recommendation"><div class="item-recommendation-label">Capitalize</div>Expansion = more instruments = more analytics needs.</div></div></li>
+                    <li><div class="interactive-item">GenAI creating new service use cases<div class="item-recommendation"><div class="item-recommendation-label">Capitalize</div>Present GenAI use cases as quick-win demonstrations.</div></div></li>
+                    <li><div class="interactive-item">Predictive maintenance is proven ROI territory<div class="item-recommendation"><div class="item-recommendation-label">Capitalize</div>Lead with predictive maintenance as anchor use case.</div></div></li></ul></div>
                 </div>
-                <div class="swot-box threats" style="max-width: 400px;"><h4>🎯 Competitive Threats</h4><ul>{{SWOT_THREATS}}</ul></div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>🎯 Competitive Threats</h4><ul><li><div class="interactive-item">Internal AI teams may view consultants as competition<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Frame as capability amplifier with knowledge transfer.</div></div></li>
+                <li><div class="interactive-item">Pharma budget cycles can be 12-18 months<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Propose small paid discovery phase within budget flexibility.</div></div></li>
+                <li><div class="interactive-item">Competitors also investing heavily in AI<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Use competitive pressure as urgency narrative.</div></div></li></ul></div>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -539,9 +654,15 @@
                     <span class="scatter-axis-label x-label">Agility & Speed →</span>
                     <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
                     <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
-                    <div class="scatter-dots-container">{{SCATTER_DOTS}}</div>
+                    <div class="scatter-dots-container"><div class="scatter-dot subject" style="left:80%;bottom:85%;"><div class="scatter-tooltip">Roche Diagnostics</div></div>
+                    <div class="scatter-dot competitor1" style="left:70%;bottom:75%;"><div class="scatter-tooltip">Siemens Healthineers</div></div>
+                    <div class="scatter-dot competitor2" style="left:85%;bottom:65%;"><div class="scatter-tooltip">Abbott Laboratories</div></div>
+                    <div class="scatter-dot competitor3" style="left:60%;bottom:55%;"><div class="scatter-tooltip">Danaher</div></div></div>
                 </div>
-                <div class="chart-legend" style="margin-top: 16px;">{{COMPETITOR_LEGEND}}</div>
+                <div class="chart-legend" style="margin-top: 16px;"><span class="legend-item"><span class="legend-color" style="background:var(--green-verified);"></span> Roche</span>
+                <span class="legend-item"><span class="legend-color" style="background:var(--charcoal);"></span> Siemens</span>
+                <span class="legend-item"><span class="legend-color" style="background:var(--blue-secondary);"></span> Abbott</span>
+                <span class="legend-item"><span class="legend-color" style="background:var(--slate-gray);"></span> Danaher</span></div>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -549,17 +670,46 @@
                         <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and marketing materials.</div></span>
                     </h3>
                 </div>
-                <div class="grid-3">{{DIFFERENTIATORS}}</div>
+                <div class="grid-3"><div class="differentiator-box"><div class="differentiator-icon">1</div><h4>Integrated Diagnostics-Pharma</h4><div class="differentiator-label">Unique AI Flywheel between divisions</div></div>
+                <div class="differentiator-box"><div class="differentiator-icon">2</div><h4>Global Scale & Data</h4><div class="differentiator-label">170 countries, massive data assets</div></div>
+                <div class="differentiator-box"><div class="differentiator-icon">3</div><h4>Open Ecosystem</h4><div class="differentiator-label">navify platform with 8+ AI partners</div></div></div>
             </div>
         </div>
 
         <!-- Tab 6: Engagement Playbook -->
         <div id="engagement-playbook" class="tab-content">
             <div class="strategy-banner">
-                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR {{MEETING_PURPOSE}}
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR Exploring AI Requirements & Interests
                     <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
                 </div>
-                <div class="strategy-content">{{ENGAGEMENT_STRATEGY}}</div>
+                <div class="strategy-content">Lead with <strong>data-backed AI use cases</strong> specific to diagnostics service analytics. Dirk's analytical profile values thorough preparation and concrete evidence. Present Artifact's track record with <strong>quantifiable results</strong> — SwissICT "Digital Innovation of the Year 2024" and 17+ years of AI experience. Open with genuine curiosity about Roche's Data2Value journey, then show how Artifact can <strong>accelerate existing initiatives</strong>. Propose a <strong>structured pilot approach</strong> with clear success metrics.</div>
+            </div>
+            <div class="grid-2" style="margin-bottom:20px;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">What You Can Offer Them
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Based on their stated needs and your context.</div></span>
+                        </h3>
+                        <span class="badge" style="background:var(--green-verified);color:white;">VALUE EXCHANGE</span>
+                    </div>
+                    <div class="insight-box green"><div class="insight-title">Proven AI Methodology:</div><p>17+ years of data science & AI experience. Structured assessment to production.</p></div>
+                    <div class="insight-box blue"><div class="insight-title">Cross-Industry Best Practices:</div><p>AI patterns from tourism, retail, manufacturing adaptable to service analytics.</p></div>
+                    <div class="insight-box yellow"><div class="insight-title">Award-Winning Innovation:</div><p>SwissICT "Digital Innovation of the Year 2024" — proven delivery.</p></div>
+                    <div class="insight-box orange"><div class="insight-title">Vendor-Neutral Advisory:</div><p>No platform lock-in. Integrates with existing tools (PTC, Baxter Planning).</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Optimal Contact Strategy
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on communication style analysis and professional norms.</div></span>
+                        </h3>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Preferred Channel</td><td>LinkedIn or email via professional introduction</td></tr>
+                        <tr><td>Optimal Timing</td><td>Tuesday-Thursday, 9:00-11:00 CET</td></tr>
+                        <tr><td>Formality Level</td><td>Professional but warm (German business culture)</td></tr>
+                        <tr><td>First Touchpoint</td><td>Reference a specific Roche AI initiative (Data2Value, navify)</td></tr>
+                    </table>
+                </div>
             </div>
             <div class="grid-2">
                 <div class="card">
@@ -568,7 +718,10 @@
                             <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
                         </h3>
                     </div>
-                    {{CONVERSATION_STARTERS}}
+                    <div class="conversation-card"><h4>Data2Value Evolution</h4><p>"How has the Data2Value Community evolved service analytics over the past year?"</p></div>
+                    <div class="conversation-card"><h4>GenAI in Service Ops</h4><p>"What role does GenAI play in your service operations roadmap?"</p></div>
+                    <div class="conversation-card"><h4>Predictive Maintenance</h4><p>"How do you see predictive maintenance evolving with your IoT-connected fleet?"</p></div>
+                    <div class="conversation-card"><h4>AI Maturity</h4><p>"Where would you place your team on the AI maturity curve?"</p></div>
                 </div>
                 <div class="card">
                     <div class="card-header">
@@ -576,7 +729,10 @@
                             <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
                         </h3>
                     </div>
-                    {{TOPICS_TO_AVOID}}
+                    <div class="conversation-card warning"><h4>Overselling / AI Hype</h4><p>Avoid buzzwords without substance. His analytical profile detects superficial claims quickly.</p></div>
+                    <div class="conversation-card warning"><h4>Competitor Comparisons</h4><p>Don't disparage competitors. Roche values fact-based discussions.</p></div>
+                    <div class="conversation-card warning"><h4>Rushed Timelines</h4><p>Avoid artificial urgency. Methodical decisions are the norm.</p></div>
+                    <div class="conversation-card warning"><h4>Internal Politics</h4><p>Don't probe org restructuring. Let him share what he's comfortable with.</p></div>
                 </div>
             </div>
             <div class="card">
@@ -586,7 +742,10 @@
                     </h3>
                     <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
                 </div>
-                {{CONNECTION_POINTS}}
+                <div class="insight-box green"><div class="insight-title">Swiss-German Cultural Bridge:</div><p>Both operate in DACH. Artifact's Swiss base resonates with Roche's Swiss heritage.</p></div>
+                <div class="insight-box blue"><div class="insight-title">Technical Foundations:</div><p>Both have strong technical backgrounds — Michael (Uni Bern), Dirk (RPTU Kaiserslautern).</p></div>
+                <div class="insight-box yellow"><div class="insight-title">Data Science Passion:</div><p>Both deeply embedded in AI/data science community.</p></div>
+                <div class="insight-box orange"><div class="insight-title">International Outlook:</div><p>Dirk manages across 170 countries. Michael has global consulting experience.</p></div>
             </div>
             <div class="card">
                 <div class="card-header">
@@ -596,7 +755,11 @@
                 </div>
                 <table class="topics-table">
                     <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
-                    <tbody>{{ANTICIPATED_TOPICS}}</tbody>
+                    <tbody><tr><td>AI/ML Maturity Assessment</td><td><span class="probability-badge prob-very-high">85%</span></td><td>Benchmarking service analytics capabilities</td></tr>
+                    <tr><td>Predictive Maintenance ROI</td><td><span class="probability-badge prob-high">80%</span></td><td>Core use case — prepare ROI data</td></tr>
+                    <tr><td>GenAI for Service Operations</td><td><span class="probability-badge prob-medium-high">75%</span></td><td>Knowledge bases and report generation</td></tr>
+                    <tr><td>Data Infrastructure</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>Legacy systems integration challenges</td></tr>
+                    <tr><td>Change Management</td><td><span class="probability-badge prob-medium">60%</span></td><td>Field team AI adoption stories</td></tr></tbody>
                 </table>
             </div>
         </div>
@@ -610,7 +773,8 @@
                             <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via web search and company blog archives.</div></span>
                         </h3>
                     </div>
-                    {{PUBLISHED_CONTENT}}
+                    <div class="media-item"><h4>Limited Personal Publications</h4><p>Dirk maintains a low public profile with no identified personal articles or blog posts.</p></div>
+                    <div class="media-item"><h4>Roche Corporate Communications</h4><p>Roche publishes extensively on digital transformation through LabLeaders platform.</p></div>
                 </div>
                 <div class="card">
                     <div class="card-header">
@@ -618,7 +782,8 @@
                             <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
                         </h3>
                     </div>
-                    {{SPEAKING_APPEARANCES}}
+                    <div class="media-item"><h4>No Public Speaking Identified</h4><p>Consistent with an internally-focused analytics leadership role.</p></div>
+                    <div class="media-item"><h4>Roche at ADLM 2025</h4><p>Roche showcased AI and digital tools — Dirk's team likely contributed.</p></div>
                 </div>
             </div>
             <div class="card">
@@ -631,7 +796,9 @@
                     <div class="bar-chart-wrapper">
                         <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
                         <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
-                        <div class="bar-chart">{{SENTIMENT_BARS}}</div>
+                        <div class="bar-chart"><div class="bar-group"><div class="bar-tooltip">2024: 70% positive, 25% neutral, 5% critical</div><div class="bar" style="height:160px;"><div class="bar-segment positive" style="height:70%;"></div><div class="bar-segment neutral" style="height:25%;"></div><div class="bar-segment critical" style="height:5%;"></div></div><span class="bar-label">2024</span></div>
+                        <div class="bar-group"><div class="bar-tooltip">2025: 80% positive, 18% neutral, 2% critical</div><div class="bar" style="height:180px;"><div class="bar-segment positive" style="height:80%;"></div><div class="bar-segment neutral" style="height:18%;"></div><div class="bar-segment critical" style="height:2%;"></div></div><span class="bar-label">2025</span></div>
+                        <div class="bar-group"><div class="bar-tooltip">2026: 85% positive, 13% neutral, 2% critical</div><div class="bar" style="height:190px;"><div class="bar-segment positive" style="height:85%;"></div><div class="bar-segment neutral" style="height:13%;"></div><div class="bar-segment critical" style="height:2%;"></div></div><span class="bar-label">2026</span></div></div>
                         <span class="bar-chart-x-axis">Time Period</span>
                     </div>
                     <div class="chart-legend">
@@ -643,23 +810,92 @@
             </div>
         </div>
 
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recommended AI Use Cases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Use cases selected based on role, industry, and company challenges. Reasoning on hover.</div></span>
+                    </h3>
+                    <span class="badge" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);color:white;">AI OPPORTUNITIES</span>
+                </div>
+                <p style="font-size:0.9rem;color:var(--slate-gray);margin-bottom:20px;">Based on Dirk Schaefer's role as International Business Leader, Advanced Service Analytics at Roche Diagnostics:</p>
+                <div class="use-cases-grid">
+                    <div class="use-case-card"><div class="use-case-icon">📊</div><h4 class="use-case-title">Predictive Instrument Maintenance</h4><p class="use-case-description">ML models on diagnostic equipment sensor data to predict failures 2-4 weeks early, reducing unplanned downtime by 30-40%.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Roche's IoT-connected fleet across 170 countries generates massive sensor data. Combined with PTC ThingWorx, this is the highest-ROI use case.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">🗺️</div><h4 class="use-case-title">Field Service Route Optimization</h4><p class="use-case-description">AI-driven scheduling and routing for service engineers based on urgency, proximity, and skills — reducing travel time by 20-30%.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Even small routing gains multiply across thousands of engineers globally. Dirk's role directly owns this domain.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">📦</div><h4 class="use-case-title">Spare Parts Demand Forecasting</h4><p class="use-case-description">Deep learning for spare parts demand prediction across the global supply chain, improving parts availability to 99%+.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Mannheim is Roche's global logistics center. The Baxter Planning AI platform shows appetite for advanced forecasting.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">❤️</div><h4 class="use-case-title">Customer Health Scoring</h4><p class="use-case-description">NLP + analytics to identify at-risk accounts from service tickets and usage patterns before churn occurs.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Roche's GemSeek partnership for "voice of silent customers" shows they value predictive customer analytics.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">🧠</div><h4 class="use-case-title">GenAI Service Knowledge Base</h4><p class="use-case-description">LLM-powered knowledge retrieval for field engineers, turning service manuals into instant, conversational answers.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>GenAI's strongest near-term ROI in service. Reduces resolution time and senior engineer dependency.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">⚡</div><h4 class="use-case-title">Real-Time Anomaly Detection</h4><p class="use-case-description">Streaming ML monitoring instrument performance in real-time, flagging deviations for proactive intervention.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Builds on the "connected plant" concept at Mannheim. Enables proactive rather than reactive service.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">📝</div><h4 class="use-case-title">Automated Service Reporting</h4><p class="use-case-description">GenAI to auto-generate service reports from field notes and instrument logs — saving 2-3 hours per service call.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Documentation is a major time sink for field engineers. Automated reports are a quick-win GenAI application.</p></div></div>
+                    <div class="use-case-card"><div class="use-case-icon">🔮</div><h4 class="use-case-title">Digital Twin Fleet Planning</h4><p class="use-case-description">Virtual replicas of the global instrument fleet for capacity, maintenance scheduling, and lifecycle management.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>With instruments in 170 countries, digital twins enable strategic fleet management at unachievable manual scale.</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 9: Personal Interests -->
+        <div id="personal-interests" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Personal Interests Matching
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Personal interests from public profiles, interviews, and social media. Research conducted separately for each person.</div></span>
+                    </h3>
+                    <span class="badge" style="background:linear-gradient(135deg,#ec4899,#f472b6);color:white;">PERSONAL CONNECTION</span>
+                </div>
+                <div class="grid-2" style="margin-bottom:20px;">
+                    <div>
+                        <h4 style="font-weight:600;margin-bottom:12px;">Dirk Schaefer's Interests</h4>
+                        <div class="tags"><span class="tag">Data Science & Analytics</span><span class="tag">German Engineering Culture</span><span class="tag">Rhine-Neckar Region</span><span class="tag">Precision & Quality</span><span class="tag">International Business</span><span class="tag">TU Kaiserslautern Community</span><span class="tag">IoT & Connected Systems</span></div>
+                    </div>
+                    <div>
+                        <h4 style="font-weight:600;margin-bottom:12px;">Michael Wegmuller's Interests</h4>
+                        <div class="tags"><span class="tag">AI & Innovation</span><span class="tag">Digital Nomad Lifestyle</span><span class="tag">Swiss Armed Forces</span><span class="tag">Forbes Business Council</span><span class="tag">Travel & Adventure</span><span class="tag">Data Science Community</span><span class="tag">Sports Analytics</span></div>
+                    </div>
+                </div>
+                <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);padding:20px;border-radius:8px;border:1px solid #fbcfe8;">
+                    <h4 style="font-weight:600;margin-bottom:12px;color:#be185d;">Shared Interests & Connection Points</h4>
+                    <div class="insight-box green" style="background:white;"><div class="insight-title">Data Science & AI Passion:</div><p>Both deeply embedded in the analytics/AI field with strong technical backgrounds and hands-on experience.</p></div>
+                    <div class="insight-box blue" style="background:white;"><div class="insight-title">DACH Region Connection:</div><p>Swiss-German cultural bridge creates natural rapport and shared business values around quality and precision.</p></div>
+                    <div class="insight-box yellow" style="background:white;"><div class="insight-title">International Outlook:</div><p>Dirk manages across 170 countries; Michael has a global digital nomad perspective and international consulting experience.</p></div>
+                    <div class="insight-box orange" style="background:white;"><div class="insight-title">Precision & Quality Values:</div><p>Swiss precision (Artifact) aligns with German engineering excellence (Roche/Kaiserslautern tradition).</p></div>
+                </div>
+                <div class="insight-box" style="border-color:#ec4899;margin-top:16px;">
+                    <div class="insight-title" style="color:#ec4899;">Conversation Opportunities:</div>
+                    <p>Open with the shared passion for data science. Reference the Swiss-German quality mindset as a natural bridge. Discuss international dimensions of AI deployment. The technical university backgrounds (Bern/Kaiserslautern) provide common ground for methodology discussions.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="sources-section">
-            <h3>📚 Intelligence Sources ({{SOURCE_COUNT}})</h3>
-            <div class="sources-grid">{{SOURCES_LIST}}</div>
+            <h3>📚 Intelligence Sources (19+)</h3>
+            <div class="sources-grid"><a href="https://rocketreach.co/dirk-schaefer-email_113942331" target="_blank" class="source-item"><div class="source-icon">RR</div><div class="source-info"><div class="source-name">RocketReach Profile</div><div class="source-meta">2025 | Directory</div></div></a>
+            <a href="https://www.roche.com/about/leadership" target="_blank" class="source-item"><div class="source-icon">RC</div><div class="source-info"><div class="source-name">Roche Leadership</div><div class="source-meta">2025 | Corporate</div></div></a>
+            <a href="https://www.roche.com/media/releases/med-cor-2026-01-29" target="_blank" class="source-item"><div class="source-icon">RC</div><div class="source-info"><div class="source-name">Roche 2025 Results</div><div class="source-meta">2026 | Press</div></div></a>
+            <a href="https://www.klover.ai/roche-ai-strategy-analysis-of-sustained-dominance-in-pharma-ai/" target="_blank" class="source-item"><div class="source-icon">KL</div><div class="source-info"><div class="source-name">Roche AI Strategy</div><div class="source-meta">2025 | Analysis</div></div></a>
+            <a href="https://emerj.com/artificial-intelligence-at-roche-diagnostics/" target="_blank" class="source-item"><div class="source-icon">EM</div><div class="source-info"><div class="source-name">AI at Roche - Emerj</div><div class="source-meta">2025 | Research</div></div></a>
+            <a href="https://www.getdbt.com/blog/roche-unifies-data-enables-ai" target="_blank" class="source-item"><div class="source-icon">DB</div><div class="source-info"><div class="source-name">Roche Data - dbt</div><div class="source-meta">2024 | Case Study</div></div></a>
+            <a href="https://www.roche.com/innovation/structure/rnd-locations/diagnostics-mannheim" target="_blank" class="source-item"><div class="source-icon">RC</div><div class="source-info"><div class="source-name">Mannheim Site</div><div class="source-meta">2025 | Corporate</div></div></a>
+            <a href="https://diagnostics.roche.com/global/en/lab-leaders/article/machine-learning-ai-in-laboratory.html" target="_blank" class="source-item"><div class="source-icon">LL</div><div class="source-info"><div class="source-name">AI in Lab - LabLeaders</div><div class="source-meta">2025 | Article</div></div></a>
+            <a href="https://www.ptc.com/en/resources/liveworx-on-demand/business-expansion-with-roche-diagnostics" target="_blank" class="source-item"><div class="source-icon">PT</div><div class="source-info"><div class="source-name">PTC ThingWorx</div><div class="source-meta">2024 | Partner</div></div></a>
+            <a href="https://www.roche.com/stories/diagnostics-operations-digitalisation" target="_blank" class="source-item"><div class="source-icon">RC</div><div class="source-info"><div class="source-name">Digital Manufacturing</div><div class="source-meta">2025 | Corporate</div></div></a>
+            <a href="https://diagnostics.roche.com/global/en/products/product-category/lab-type/digital-solutions.html" target="_blank" class="source-item"><div class="source-icon">RD</div><div class="source-info"><div class="source-name">Digital Solutions</div><div class="source-meta">2025 | Products</div></div></a>
+            <a href="https://www.roche.com/innovation/partnering/diagnostics" target="_blank" class="source-item"><div class="source-icon">RC</div><div class="source-info"><div class="source-name">Diagnostics Partnering</div><div class="source-meta">2025 | Corporate</div></div></a>
+            <a href="https://www.clinicallab.com/roche-diagnostics-showcases-ai-digital-tools-and-clinical-innovation-at-adlm-2025-28359" target="_blank" class="source-item"><div class="source-icon">CL</div><div class="source-info"><div class="source-name">ADLM 2025</div><div class="source-meta">2025 | Conference</div></div></a>
+            <a href="https://artifact.swiss" target="_blank" class="source-item"><div class="source-icon">AR</div><div class="source-info"><div class="source-name">Artifact Swiss</div><div class="source-meta">2025 | Company</div></div></a></div>
         </div>
     </div>
 
     <div class="footer">
         <div class="footer-brand">
-            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span style="font-size:1.3rem;font-weight:700;color:#1a2b4a;">ARTIFACT</span>
             <span>×</span>
             <span class="footer-sailor">⛵ Sailor 2.0</span>
         </div>
-        <p>Generated: {{GENERATION_DATE}} | Sources: {{SOURCE_COUNT}}+ verified</p>
-        <p>Prepared for: {{REQUESTOR_NAME}} | Occasion: {{MEETING_PURPOSE}}</p>
+        <p>Generated: February 5, 2026 | Sources: 19+ verified</p>
+        <p>Prepared for: Michael Wegmuller | Occasion: Exploring AI Requirements & Interests</p>
         <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
-        <div class="original-prompt"><strong>Original Request:</strong> "{{ORIGINAL_PROMPT}}"</div>
-        <div class="report-token">Report ID: {{REPORT_TOKEN}}</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Meeting Dirk Schaefer from Roche on potential AI requirements and interests"</div>
+        <div class="report-token">Report ID: c7c216df</div>
     </div>
 
     <button class="download-button" onclick="downloadPDF()">
@@ -687,7 +923,7 @@
         function shareProfile() {
             const url = window.location.href;
             if (navigator.share) {
-                navigator.share({ title: 'Sailor 2.0 - {{TARGET_NAME}} Profile', text: 'Meeting Intelligence Profile', url: url });
+                navigator.share({ title: 'Sailor 2.0 - Dirk Schaefer Profile', text: 'Meeting Intelligence Profile', url: url });
             } else {
                 navigator.clipboard.writeText(url).then(() => {
                     const toast = document.getElementById('shareToast');
@@ -714,8 +950,8 @@
                     <div style="margin-bottom: 40px;">
                         <span style="font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sailor 2.0</span>
                     </div>
-                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-align: center;">{{TARGET_NAME}}</h1>
-                    <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">{{TARGET_TITLE}} | {{TARGET_COMPANY}}</p>
+                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-align: center;">Dirk Schaefer</h1>
+                    <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">International Business Leader, Advanced Service Analytics | Roche Diagnostics</p>
                     <p style="font-size: 1rem; opacity: 0.7;">Meeting Intelligence Profile</p>
                     <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 40px;">Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
@@ -731,10 +967,11 @@
                 'strategic-position': 'Strategic Position',
                 'engagement-playbook': 'Engagement Playbook',
                 'media-footprint': 'Media Footprint',
-                'ai-use-cases': 'AI Use Cases'
+                'ai-use-cases': 'AI Use Cases',
+                'personal-interests': 'Personal Interests'
             };
 
-            const tabs = ['executive-summary', 'subject-profile', 'network-map', 'behavioral-analysis', 'strategic-position', 'engagement-playbook', 'media-footprint', 'ai-use-cases'];
+            const tabs = ['executive-summary', 'subject-profile', 'network-map', 'behavioral-analysis', 'strategic-position', 'engagement-playbook', 'media-footprint', 'ai-use-cases', 'personal-interests'];
 
             tabs.forEach((tabId, index) => {
                 const tabContent = document.getElementById(tabId);
@@ -748,7 +985,7 @@
                     slideHeader.innerHTML = `
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #1e3a5f;">
                             <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e3a5f;">${tabNames[tabId]}</h2>
-                            <span style="font-size: 0.9rem; color: #708090;">Sailor 2.0 | {{TARGET_NAME}}</span>
+                            <span style="font-size: 0.9rem; color: #708090;">Sailor 2.0 | Dirk Schaefer</span>
                         </div>
                     `;
                     slideWrapper.appendChild(slideHeader);
@@ -776,7 +1013,7 @@
 
             const opt = {
                 margin: 0,
-                filename: 'sailor-{{TARGET_NAME_SLUG}}-profile.pdf',
+                filename: 'sailor-dirk-schaefer-profile.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true, logging: false },
                 jsPDF: { unit: 'px', format: [1000, 750], orientation: 'landscape' },

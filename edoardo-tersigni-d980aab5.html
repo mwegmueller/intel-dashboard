@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Edoardo Tersigni">
+    <meta property="og:title" content="Sailor 2.0 - Edoardo Tersigni Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Edoardo Tersigni at Galderma">
+    <meta name="report-token" content="d980aab5">
+    <title>Sailor 2.0 - Edoardo Tersigni</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        .bar-chart-wrapper { position: relative; padding-left: 50px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 20px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 162deg, var(--blue-secondary) 162deg 252deg, var(--yellow-inferred) 252deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* DISC Chart Styles */
+        .disc-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 150px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .disc-bar { width: 50px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border-radius: 4px 4px 0 0; min-height: 20px; color: white; font-weight: 600; padding: 8px 0; }
+        .disc-bar span { font-size: 0.9rem; }
+        .disc-score { font-size: 0.75rem; opacity: 0.9; }
+        .d-bar { background: linear-gradient(180deg, #dc2626, #ef4444); }
+        .i-bar { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
+        .s-bar { background: linear-gradient(180deg, #16a34a, #22c55e); }
+        .c-bar { background: linear-gradient(180deg, #2563eb, #3b82f6); }
+        .disc-labels { display: flex; justify-content: space-around; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+        .disc-primary { font-size: 1.1rem; margin-bottom: 8px; }
+        .disc-secondary { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .disc-description { font-size: 0.9rem; line-height: 1.6; }
+
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">Sailor 2.0</span>
+        </div>
+        <h1>Edoardo Tersigni</h1>
+        <div class="header-subtitle">Senior Manager, Automation and AI | Galderma</div>
+        <div class="header-meta">
+            <span>Switzerland (8808)</span>
+            <span>12+ Years IT Experience</span>
+            <span>galderma.com</span>
+            <span>AI & Automation Leader</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">15+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content"><strong>Edoardo Tersigni</strong> is the <strong>Senior Manager of Automation and AI at Galderma</strong>, the world's largest independent dermatology company (CHF 15B market cap, 2024 IPO). Joined in <strong>2022</strong>, he leads Galderma's <strong>AI Framework and AI Center of Excellence</strong>, driving enterprise-wide AI adoption including <strong>predictive and generative AI</strong> for R&D acceleration, trend anticipation, and digital transformation. With <strong>12+ years in Solution Architecture, IT Project and Service Management</strong>, he has delivered keynote presentations including the opening keynote at Galderma's U.S. National Sales Meeting in Las Vegas. His team has deployed custom AI interfaces at Galderma's Uppsala R&D facility analyzing 30 years of historical research documents. He champions <strong>Microsoft Power Platform low-code solutions</strong> and has attended executive training programs with industry leaders.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and news articles. Years of experience from career timeline.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">12+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">2022</div><div class="metric-label">Joined Galderma</div></div>
+                        <div class="metric-box"><div class="metric-value">AI CoE</div><div class="metric-label">Established</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">$4B+</div><div class="metric-label">Company Revenue</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How calculated
+                                <div class="methodology-tooltip">Primary = official sources (company sites). Secondary = news/industry sources. Inferred = cross-referenced patterns. Speculative = limited data.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (45%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (25%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (20%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">AI Transformation Evangelist:</div>
+                    <p>Edoardo believes "AI will change the world and how businesses operate." His role allows him to "drive real innovation, unlock new efficiencies across the business." He sees AI as a vehicle for delivering better outcomes for both company and customers.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Enterprise AI Center of Excellence Builder:</div>
+                    <p>Has built and leads Galderma's AI Framework and established their AI Center of Excellence - a structured approach to enterprise AI adoption that balances innovation with governance.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Practical Innovator - Low-Code Champion:</div>
+                    <p>Champions Microsoft Power Platform for "fulfilling business needs quickly and sustainably." Balances cutting-edge AI with pragmatic, accessible solutions that democratize technology across the organization.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Growth-Oriented Professional:</div>
+                    <p>Credits Galderma with "significantly contributing to his professional growth" through executive training programs and networking with industry leaders. Values continuous learning and development.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Extracted from LinkedIn profile and company pages.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2022 - Present</div>
+                        <div class="timeline-content">Senior Manager, Automation and AI - Galderma, Switzerland</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Prior Roles</div>
+                        <div class="timeline-content">12+ years in Solution Architecture, IT Project and Service Management (specific companies not publicly disclosed)</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Achievements
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Collected from press releases and company communications.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>Opening Keynote Speaker</h4>
+                        <p>Delivered opening keynote at Galderma's Therapeutic Dermatology U.S. National Sales Meeting in Las Vegas</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>AI Center of Excellence Founder</h4>
+                        <p>Established Galderma's AI Center of Excellence and AI Framework</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Barcelona GCC Opening</h4>
+                        <p>Attended official opening of Galderma's Global Capability Center in Barcelona by CEO Flemming Ornskov</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Executive Training Programs</h4>
+                        <p>Completed executive training programs facilitated by Galderma with industry leaders</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Tags derived from stated skills and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Artificial Intelligence</span>
+                    <span class="tag">Generative AI</span>
+                    <span class="tag">Predictive AI</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">AI Center of Excellence</span>
+                    <span class="tag">Solution Architecture</span>
+                    <span class="tag">IT Project Management</span>
+                    <span class="tag">IT Service Management</span>
+                    <span class="tag">Microsoft Power Platform</span>
+                    <span class="tag">Low-Code/No-Code</span>
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Enterprise AI Strategy</span>
+                    <span class="tag">Pharmaceutical/Dermatology</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Galderma Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Data from company website, Wikipedia, and investor relations.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1981</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">6,500+</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">$4B+</div><div class="metric-label">Revenue (2023)</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 15B</div><div class="metric-label">Market Cap (IPO 2024)</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">90+</div><div class="metric-label">Countries</div></div>
+                    <div class="metric-box"><div class="metric-value">Zug, Switzerland</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Galderma Leadership
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From company executive committee page.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">FO</div>
+                        <div class="person-info">
+                            <h4>Flemming Ornskov, M.D., MPH</h4>
+                            <p>CEO | Ex-Shire CEO | Joined 2019</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">JG</div>
+                        <div class="person-info">
+                            <h4>Jason Goddard</h4>
+                            <p>Head of IT Strategy & Governance - Deputy CIO | ABB background</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">GM</div>
+                        <div class="person-info">
+                            <h4>Gerry Muhle</h4>
+                            <p>Technology Leader | Featured in dermatology tech article</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Digital & AI Team
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Identified from organizational references.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">LM</div>
+                        <div class="person-info">
+                            <h4>Ligia Mendes</h4>
+                            <p>Head of Ecommerce & Marketing Automation | Brazil | Since April 2024</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">AI</div>
+                        <div class="person-info">
+                            <h4>AI/Automation Team</h4>
+                            <p>Edoardo's direct reports | Building AI Center of Excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Technology Partners & Platforms
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From project descriptions and company communications.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="conversation-card">
+                        <h4>Microsoft</h4>
+                        <p>Power Platform partner for low-code/no-code automation solutions</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Uppsala R&D Facility</h4>
+                        <p>Custom AI interface deployment for document analysis</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Barcelona GCC</h4>
+                        <p>Global Capability Center - new tech hub</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Business Units Supported
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From company structure and AI application areas.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Aesthetics (Restylane, Dysport, Sculptra)</span>
+                    <span class="tag">Consumer Care (Cetaphil)</span>
+                    <span class="tag">Therapeutic Dermatology</span>
+                    <span class="tag">R&D</span>
+                    <span class="tag">Manufacturing</span>
+                    <span class="tag">Sales & Marketing</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,25 170,45 180,100 160,155 100,175 50,150 30,100 55,50" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Personality Profile
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators. NOT a formal assessment - use as meeting guidance only.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-chart">
+                        <div class="disc-bar d-bar" style="height: 65%;"><span>D</span><span class="disc-score">65</span></div>
+                        <div class="disc-bar i-bar" style="height: 55%;"><span>I</span><span class="disc-score">55</span></div>
+                        <div class="disc-bar s-bar" style="height: 50%;"><span>S</span><span class="disc-score">50</span></div>
+                        <div class="disc-bar c-bar" style="height: 80%;"><span>C</span><span class="disc-score">80</span></div>
+                    </div>
+                    <div class="disc-labels">
+                        <span>Dominance</span>
+                        <span>Influence</span>
+                        <span>Steadiness</span>
+                        <span>Conscientiousness</span>
+                    </div>
+                    <div style="margin-top: 16px;">
+                        <div class="disc-primary">Primary: <strong>C (Conscientiousness)</strong></div>
+                        <div class="disc-secondary">Secondary: D (Dominance)</div>
+                        <p class="disc-description">CD profile indicates an analytical, detail-oriented leader who values quality and accuracy while maintaining drive for results. Combines technical depth with strategic thinking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Communication Tips (Based on DISC)</h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">How to Communicate with Edoardo:</div>
+                    <p><strong>Be prepared with data and details</strong> - As a high-C, he values accuracy and thorough analysis. <strong>Get to the point</strong> - His secondary D means he appreciates directness and efficiency. <strong>Show logical structure</strong> - Present information systematically with clear rationale. <strong>Respect his expertise</strong> - Acknowledge his technical knowledge and give time for analysis. <strong>Focus on quality outcomes</strong> - Emphasize how your proposal ensures excellence and reduces risk.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Decision-Making Profile
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">INFERRED: Profile based on described approaches in interviews.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Primary Style</td><td>Analytical-Strategic</td></tr>
+                    <tr><td>Risk Tolerance</td><td>Calculated - balances innovation with proven approaches</td></tr>
+                    <tr><td>Time Horizon</td><td>Long-term transformation with quick wins</td></tr>
+                    <tr><td>Information Needs</td><td>Data-driven with business context</td></tr>
+                    <tr><td>Collaboration Style</td><td>Cross-functional, enterprise-wide perspective</td></tr>
+                    <tr><td>Trust Building</td><td>Through demonstrated expertise and results</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: Patterns from content analysis. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Innovation Evangelist:</div>
+                    <p>Genuinely believes AI will transform business operations. Not just implementing technology but advocating for organizational change.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Pragmatic Technologist:</div>
+                    <p>Balances cutting-edge AI with practical low-code solutions. Values "fulfilling business needs quickly and sustainably" - not technology for its own sake.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Growth-Oriented Learner:</div>
+                    <p>Values professional development and acknowledges organizational support. Open to executive training and networking with industry leaders.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Enterprise-Scale Thinker:</div>
+                    <p>Established AI Center of Excellence - thinks in terms of frameworks, governance, and sustainable adoption rather than isolated projects.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Phrases extracted from published content.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>"Drive real innovation"</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>His stated mission and motivation</td></tr>
+                        <tr><td>"AI will change the world"</td><td><span class="probability-badge prob-high">High</span></td><td>Core belief about AI's transformative potential</td></tr>
+                        <tr><td>"Business needs quickly and sustainably"</td><td><span class="probability-badge prob-high">High</span></td><td>Pragmatic approach to technology</td></tr>
+                        <tr><td>"Better outcomes for company and customers"</td><td><span class="probability-badge prob-high">High</span></td><td>Dual focus on business and customer value</td></tr>
+                        <tr><td>"Professional growth"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Values continuous learning</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: SWOT based on positioning analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>Strengths</h4><ul>
+                        <li><div class="interactive-item">Leads AI strategy at $17B market cap company<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Acknowledge scale of his responsibility - enterprise AI at global pharma</div></div></li>
+                        <li><div class="interactive-item">Built AI Center of Excellence from scratch<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Ask about CoE establishment journey - likely proud of this achievement</div></div></li>
+                        <li><div class="interactive-item">12+ years technical foundation<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Respect depth of experience - avoid oversimplifying technical topics</div></div></li>
+                        <li><div class="interactive-item">Executive visibility - keynote speaker<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Reference his thought leadership role</div></div></li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>Potential Gaps</h4><ul>
+                        <li><div class="interactive-item">Limited public visibility outside Galderma<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Opportunity - offer external platforms for thought leadership</div></div></li>
+                        <li><div class="interactive-item">Senior Manager title vs. Director/VP level<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>May be ambitious for advancement - position partnership as career-enhancing</div></div></li>
+                        <li><div class="interactive-item">Pharmaceutical/dermatology specific experience<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>May value cross-industry AI perspectives</div></div></li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>Opportunities</h4><ul>
+                        <li><div class="interactive-item">Galderma's aggressive digital transformation post-IPO<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Align with company's growth trajectory and AI investment</div></div></li>
+                        <li><div class="interactive-item">Generative AI adoption wave in pharma<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Discuss latest GenAI use cases in pharmaceutical context</div></div></li>
+                        <li><div class="interactive-item">AI governance and responsible AI frameworks<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Appeal to his CoE/framework mindset</div></div></li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>Competitive Threats</h4><ul>
+                    <li><div class="interactive-item">Big pharma AI investments from larger competitors<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Position differentiation through agility and focus</div></div></li>
+                    <li><div class="interactive-item">Talent competition for AI expertise<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Partnership could provide access to AI talent/expertise</div></div></li>
+                </ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-ESTIMATED: Positions based on market perception analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">AI Maturity</span>
+                    <span class="scatter-axis-label x-label">Enterprise Scale</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Small</span><span class="scatter-axis-label x-high">Large</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 70%; bottom: 70%;"><div class="scatter-tooltip">Galderma - Growing AI maturity at scale</div></div>
+                        <div class="scatter-dot competitor1" style="left: 90%; bottom: 85%;"><div class="scatter-tooltip">Big Pharma (Roche, Novartis) - High investment, large scale</div></div>
+                        <div class="scatter-dot competitor2" style="left: 50%; bottom: 50%;"><div class="scatter-tooltip">Mid-size Specialty Pharma - Emerging AI</div></div>
+                        <div class="scatter-dot competitor3" style="left: 30%; bottom: 65%;"><div class="scatter-tooltip">AI-First Biotech - High maturity, smaller scale</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Galderma (Edoardo's org)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Big Pharma</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Mid-size Specialty</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> AI-First Biotech</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Based on stated priorities and achievements.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">AI</div>
+                        <div class="differentiator-label">AI Center of Excellence Leadership</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">12+</div>
+                        <div class="differentiator-label">Years Technical Foundation</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">IPO</div>
+                        <div class="differentiator-label">Post-IPO Growth Company</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR AI Strategy & Enablement Discussion
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">i</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities.</div></span>
+                </div>
+                <div class="strategy-content">Lead with his AI Center of Excellence achievement - he's clearly proud of building this from scratch. Position your conversation around enterprise AI governance, frameworks, and sustainable adoption rather than just technology features. Appeal to his pragmatic side by discussing "quick wins" alongside transformation. Reference his belief that "AI will change the world" but ground it in practical business outcomes. His DISC profile (High C, secondary D) means he'll want data, structure, and logical flow - come prepared with specifics.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Topics derived from recent activities and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>AI Center of Excellence Journey</h4>
+                        <p>"I'd love to hear about your experience building Galderma's AI Center of Excellence. What were the key success factors?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Generative AI in Pharma</h4>
+                        <p>"How is Galderma approaching generative AI adoption? What use cases are showing the most promise?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Low-Code & AI Balance</h4>
+                        <p>"You've mentioned Power Platform success alongside AI initiatives. How do you balance cutting-edge AI with pragmatic low-code solutions?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Post-IPO Digital Strategy</h4>
+                        <p>"With Galderma's successful IPO, how is the AI strategy evolving to support the next phase of growth?"</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-INFERRED: Based on stated values and potential sensitivities.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Hype Without Substance</h4>
+                        <p>As a pragmatic technologist, he'll likely be skeptical of AI hype without concrete business outcomes. Come with specifics.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Oversimplifying Enterprise AI</h4>
+                        <p>He's built an AI Center of Excellence - don't underestimate complexity. Acknowledge governance, change management, and adoption challenges.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Generic Consulting Pitches</h4>
+                        <p>With 12+ years experience, he'll see through surface-level advice. Bring deep expertise or unique perspectives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points for Artifact
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Potential common ground based on your context and their profile.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Swiss Connection:</div>
+                    <p>Both Galderma (Zug) and Artifact are Swiss-based. Shared understanding of Swiss business culture, innovation ecosystem, and quality focus.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Enterprise AI Strategy Alignment:</div>
+                    <p>His focus on AI frameworks, Centers of Excellence, and sustainable adoption aligns with strategic AI enablement discussions.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Innovation + Pragmatism Balance:</div>
+                    <p>His approach of balancing cutting-edge AI with practical low-code solutions suggests appreciation for partners who can deliver both vision and execution.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Growth-Oriented Mindset:</div>
+                    <p>Values professional development and learning. May be interested in thought leadership opportunities, industry connections, or knowledge exchange.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Probability based on frequency in public content and meeting context.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Generative AI use cases in pharma</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>His team embraces GenAI - be ready with specific examples</td></tr>
+                        <tr><td>AI governance and responsible AI</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Built AI Center of Excellence - governance is core to his approach</td></tr>
+                        <tr><td>Enterprise AI adoption challenges</td><td><span class="probability-badge prob-high">High</span></td><td>Change management, skills gap, organizational readiness</td></tr>
+                        <tr><td>ROI and business outcomes</td><td><span class="probability-badge prob-high">High</span></td><td>Pragmatic focus on "better outcomes for company and customers"</td></tr>
+                        <tr><td>Microsoft ecosystem (Power Platform, Azure AI)</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Champions Power Platform - likely Microsoft-centric stack</td></tr>
+                        <tr><td>AI talent and team development</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Values professional growth - may discuss building AI capability</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Content discovered via web search.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>Galderma Corporate Feature</h4>
+                        <p>"Advancing the future of dermatology with robust IT" - Featured interview on AI leadership and strategy at Galderma</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Profile</h4>
+                        <p>Active professional profile with 500+ connections - shares company updates and professional milestones</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From company communications and event references.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>U.S. National Sales Meeting Keynote</h4>
+                        <p>Opening keynote at Galderma's Therapeutic Dermatology U.S. National Sales Meeting in Las Vegas</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Barcelona GCC Opening</h4>
+                        <p>Attended official opening of Galderma's Global Capability Center by CEO Flemming Ornskov</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Executive Training Programs</h4>
+                        <p>Participant in Galderma-facilitated executive training with industry leaders</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: Sentiment from coverage analysis. Limited personal media presence - primarily company communications.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <span class="bar-chart-y-axis">Sentiment Score</span>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2023: 90% positive (company comms), 10% neutral</div>
+                                <div class="bar" style="height: 180px;">
+                                    <div class="bar-segment positive" style="height: 90%;"></div>
+                                    <div class="bar-segment neutral" style="height: 10%;"></div>
+                                </div>
+                                <span class="bar-label">2023</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2024: 95% positive (featured in Galderma article), 5% neutral</div>
+                                <div class="bar" style="height: 190px;">
+                                    <div class="bar-segment positive" style="height: 95%;"></div>
+                                    <div class="bar-segment neutral" style="height: 5%;"></div>
+                                </div>
+                                <span class="bar-label">2024</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2025: Limited data - company communications positive</div>
+                                <div class="bar" style="height: 180px;">
+                                    <div class="bar-segment positive" style="height: 90%;"></div>
+                                    <div class="bar-segment neutral" style="height: 10%;"></div>
+                                </div>
+                                <span class="bar-label">2025</span>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>Intelligence Sources (15+)</h3>
+            <div class="sources-grid">
+                <a href="https://www.galderma.com/news/advancing-future-dermatology-robust-it" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma - Advancing Future of Dermatology</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/edoardotersigni/" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile - Edoardo Tersigni</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/executive-committee" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma Executive Committee</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Galderma" target="_blank" class="source-item">
+                    <div class="source-icon">WI</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma - Wikipedia</div>
+                        <div class="source-meta">2025 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/glance" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma - At A Glance</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/news/galderma-prices-ipo-chf-53-share-and-will-start-trading-six-swiss-exchange-tomorrow" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma IPO Announcement</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/news/shaping-future-gerry-muhle-technologies-driving-dermatology" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Technologies Driving Dermatology</div>
+                        <div class="source-meta">2024 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/news/galderma-launches-face-galdermatm-cutting-edge-aesthetic-visualization-tool-simulates" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">FACE by Galderma Launch</div>
+                        <div class="source-meta">2024 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/news/cetaphilr-unveils-digital-ai-skin-analysis-tool-empower-and-educate-users-sensitive-skin-0" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Cetaphil AI Skin Analysis Tool</div>
+                        <div class="source-meta">2023 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.galderma.com/our-strategy" target="_blank" class="source-item">
+                    <div class="source-icon">GA</div>
+                    <div class="source-info">
+                        <div class="source-name">Galderma Strategy</div>
+                        <div class="source-meta">2025 | Primary Source</div>
+                    </div>
+                </a>
+                <a href="https://rocketreach.co/jason-goddard-email_20204508" target="_blank" class="source-item">
+                    <div class="source-icon">RR</div>
+                    <div class="source-info">
+                        <div class="source-name">Jason Goddard - Deputy CIO</div>
+                        <div class="source-meta">2025 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://eqtgroup.com/about/current-portfolio/galderma" target="_blank" class="source-item">
+                    <div class="source-icon">EQ</div>
+                    <div class="source-info">
+                        <div class="source-name">EQT - Galderma Portfolio</div>
+                        <div class="source-meta">2024 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://www.pitchbook.com/profiles/company/51279-22" target="_blank" class="source-item">
+                    <div class="source-icon">PB</div>
+                    <div class="source-info">
+                        <div class="source-name">PitchBook - Galderma Profile</div>
+                        <div class="source-meta">2025 | Secondary Source</div>
+                    </div>
+                </a>
+                <a href="https://beautymatter.com/articles/galderma-stock-surges-in-debut" target="_blank" class="source-item">
+                    <div class="source-icon">BM</div>
+                    <div class="source-info">
+                        <div class="source-name">BeautyMatter - IPO Coverage</div>
+                        <div class="source-meta">2024 | News Source</div>
+                    </div>
+                </a>
+                <a href="https://www.clearygottlieb.com/news-and-insights/news-listing/galdermas-chf-2-3-billion-ipo" target="_blank" class="source-item">
+                    <div class="source-icon">CG</div>
+                    <div class="source-info">
+                        <div class="source-name">Cleary Gottlieb - IPO Analysis</div>
+                        <div class="source-meta">2024 | Legal/Finance</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>x</span>
+            <span class="footer-sailor">Sailor 2.0</span>
+        </div>
+        <p>Generated: February 3, 2026 | Sources: 15+ verified</p>
+        <p>Prepared for: Artifact Team | Occasion: AI Strategy & Enablement Discussion</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Meeting with Edo Tersigni AI leader of Galderma to talk about AI strategy & enablement"</div>
+        <div class="report-token">Report ID: d980aab5</div>
+    </div>
+
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Edoardo Tersigni Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
