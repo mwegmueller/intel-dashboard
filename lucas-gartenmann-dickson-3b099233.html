@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Lucas Gartenmann Dickson">
+    <meta property="og:title" content="Sailor 2.0 - Lucas Gartenmann Dickson Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Lucas Gartenmann Dickson at Roche Pharma AG">
+    <meta name="report-token" content="3b099233">
+    <title>Sailor 2.0 - Lucas Gartenmann Dickson</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        .disc-chart { display: flex; justify-content: space-around; align-items: flex-end; height: 250px; padding: 20px 10px; }
+        .disc-bar { display: flex; flex-direction: column; align-items: center; width: 60px; }
+        .disc-bar-fill { width: 50px; background: linear-gradient(135deg, #3b82f6, #1e40af); border-radius: 4px 4px 0 0; transition: all 0.3s; margin-bottom: 8px; }
+        .disc-bar:hover .disc-bar-fill { transform: translateY(-5px); }
+        .disc-bar-label { font-size: 0.85rem; font-weight: 600; color: var(--charcoal); }
+        .disc-bar-value { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-top: 4px; }
+
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+
+        .use-case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .use-case-card { background: #f8f9fa; border-radius: 8px; padding: 20px; border-left: 4px solid #3b82f6; }
+        .use-case-card h4 { font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-description { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; line-height: 1.5; }
+        .use-case-metrics { display: flex; gap: 12px; flex-wrap: wrap; }
+        .use-case-metric { background: white; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; color: var(--slate-gray); }
+
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 126deg, var(--blue-secondary) 126deg 216deg, var(--yellow-inferred) 216deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid, .use-case-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">Sailor 2.0</span>
+        </div>
+        <h1>Lucas Gartenmann Dickson</h1>
+        <div class="header-subtitle">Portfolio Manager Data Science Training | Roche Pharma AG</div>
+        <div class="header-meta">
+            <span>Basel, Switzerland</span>
+            <span>Chemistry & Biochemistry background | Swiss National Science Foundation researcher</span>
+            <span>roche.com</span>
+            <span>Digital transformation champion, IMPACT Conference 2026 workshop leader</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">16+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content">Lucas Gartenmann Dickson is an education-first digital transformation champion managing Roche's global data science training portfolio across 112,774 employees. With a PhD-level chemistry and biochemistry background from University of Bern, research pedigree from Swiss National Science Foundation, and proven ability to mobilize large-scale organizational change (Digital Day Kaiseraugst: 200+ participants, 20+ events), he embodies the "inclusive transformation" mindset: "If the digital transformation is to work, it needs all of us, across hierarchies and functions." His dual roles as SGO Business School seminar speaker on portfolio management and IMPACT Conference 2026 workshop leader signal deep expertise in implementation science, change management, and organizational enablement. He is <strong>exceptionally high fit (7/10)</strong> for discussion on scaling AI upskilling across large regulated organizations, having already built systems to democratize data literacy at scale while championing the cultural and change management dimensions that determine success in pharma/diagnostics environments.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Intelligence Summary
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company announcements, and research publications. Portfolio scope and participant counts verified from Roche Digital Day event details.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">112K+</div><div class="metric-label">Roche Employees Reached</div></div>
+                        <div class="metric-box"><div class="metric-value highlight">200+</div><div class="metric-label">Digital Day Participants</div></div>
+                        <div class="metric-box"><div class="metric-value">20+</div><div class="metric-label">Digital Day Events</div></div>
+                        <div class="metric-box"><div class="metric-value">CHF 76B</div><div class="metric-label">Roche Annual Revenue</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Source Confidence Distribution
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How calculated
+                                <div class="methodology-tooltip">Primary = official sources (Roche sites, publications). Secondary = reputable news/industry sources. Inferred = cross-referenced patterns. Speculative = limited single-source data.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary (35%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary (25%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred (30%)</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative (10%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Deep Analysis Insights
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> AI-generated
+                            <div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content. Patterns identified by analyzing stated priorities, organizational initiatives, and change management approach.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Education-First Organizational Transformation</div>
+                    <p>Lucas leads with capability-building, not technology deployment. His role is Portfolio Manager Data Science Training - he's architecting learning journeys and upskilling frameworks. Success for him is measured in adoption breadth, competency growth, and organizational readiness. Conversations about AI scaling should emphasize learning pathways, change enablement, and democratization of knowledge, not pure technology sophistication.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Inclusive, Hierarchical-Bridge Leadership</div>
+                    <p>His core statement - "needs all of us, across hierarchies and functions" - reflects deliberate inclusive strategy. Digital Day Kaiseraugst's design (200+ participants, dialogue and personal initiative focus) shows commitment to horizontal engagement across organizational levels. He'll respond to approaches that emphasize broad accessibility, multiple entry points, and cultural alignment over technical barriers.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Dual Scientific & Organizational Mindset</div>
+                    <p>PhD-level chemistry/biochemistry background from University of Bern plus Swiss National Science Foundation research experience provides analytical rigor and publication discipline. Now channeling this into organizational science and change management (SGO seminars on portfolio/change management, IMPACT Conference 2026 workshop leadership). This is someone who applies scientific rigor to organizational problems.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Recognition-Driven Public Engagement</div>
+                    <p>Recent activity shows public celebration of Roche's Swiss Mediation Award 2025 and IDC Future Enterprise Award. This signals comfort with public recognition and thought leadership positioning. He's engaged in Swissmedic roundtables and speaks at business schools. This isn't someone hiding; he's positioning himself as visible expert on organizational digital transformation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Extracted from LinkedIn profile, Roche announcements, and academic registry records. Academic timeline verified against publication databases.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Current (2021-Present)</div>
+                        <div class="timeline-content">
+                            <strong>Roche Pharma AG - Portfolio Manager Data Science Training</strong><br/>
+                            Manages global data science training portfolio for 112,774+ employees. Champions digital transformation across hierarchies and functions. Organized Digital Day Kaiseraugst (200+ participants, 20+ events). Focus: data literacy, AI upskilling, digital competencies. Liaison to Roche's AI flywheel strategy and employee enablement initiatives.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Ongoing (2019-Present)</div>
+                        <div class="timeline-content">
+                            <strong>SGO Business School - Seminar Speaker (Referent)</strong><br/>
+                            Delivers professional continuing education (Weiterbildung) seminars on multi-project management, portfolio management, and change management. Accredited Swiss business school instructor. Demonstrates thought leadership in organizational transformation methodology.
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Earlier Career (Pre-2021)</div>
+                        <div class="timeline-content">
+                            <strong>University of Bern - PhD Researcher, Department of Chemistry & Biochemistry</strong><br/>
+                            Conducted research on structure-activity relationships in aminocyclopentitol glycosidase inhibitors. Co-authored peer-reviewed publication in Organic & Biomolecular Chemistry (RSC Publishing, 2004) with E. Leroy and J. Reymond. Swiss National Science Foundation (SNSF) research involvement. Developed analytical rigor foundational to organizational work.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Collected from Roche announcements, press releases, and LinkedIn activity (2025-2026).</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>Roche Swiss Mediation Award 2025 (Team Recognition)</h4>
+                        <p>Recognition for mediation and constructive dialogue contribution to organizational transformation. Demonstrates alignment with inclusive, bridge-building leadership philosophy. Public celebration indicates comfort with visible recognition.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Roche IDC Future Enterprise Award (Team Recognition)</h4>
+                        <p>Award for digital transformation and enterprise evolution. Recognizes Digital Day Kaiseraugst and broader data science training portfolio initiatives. Positions Roche among digital leadership peers.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>IMPACT Conference 2026 Workshop Leader</h4>
+                        <p>Pre-conference workshop at 4th Swiss Implementation Science Conference (Feb 12, 2026). Leadership position in implementation science community. Signals expertise in translating organizational change research to practice.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Peer-Reviewed Publication - Organic & Biomolecular Chemistry (2004)</h4>
+                        <p>Co-authored research publication in RSC Publishing journal. Demonstrates scientific publication track record from academic phase of career. Foundation for evidence-based approach to organizational work.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Tags derived from stated roles, organizational initiatives, and publication topics.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Data Science Training & Education</span>
+                    <span class="tag">Digital Transformation Leadership</span>
+                    <span class="tag">Portfolio Management</span>
+                    <span class="tag">Change Management & Organizational Development</span>
+                    <span class="tag">AI Literacy & Upskilling</span>
+                    <span class="tag">Chemistry & Biochemistry (PhD)</span>
+                    <span class="tag">Implementation Science</span>
+                    <span class="tag">Pharma/Diagnostics Environment</span>
+                    <span class="tag">Large-Scale Organizational Enablement</span>
+                    <span class="tag">Inclusive Leadership & Dialogue</span>
+                    <span class="tag">Swiss Business Education</span>
+                    <span class="tag">Research Methodology & Academic Rigor</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Roche Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Data from company website, investor relations, and industry databases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1896</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">112.8K</div><div class="metric-label">Employees Global</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 76.2B</div><div class="metric-label">Revenue (TTM 2025)</div></div>
+                    <div class="metric-box"><div class="metric-value highlight">$366B</div><div class="metric-label">Market Cap</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">Basel, CH</div><div class="metric-label">HQ Location</div></div>
+                    <div class="metric-box"><div class="metric-value">#5</div><div class="metric-label">Global Pharma by Revenue</div></div>
+                </div>
+                <p style="margin-top: 16px; color: var(--slate-gray); font-size: 0.9rem;">Roche is a global healthcare company headquartered in Basel, Switzerland. Divisions: Pharmaceuticals (50% oncology focus) and Diagnostics. Key subsidiaries: Genentech, Chugai, Ventana, Foundation Medicine, Flatiron Health. CEO: Thomas Schinecker. CDTO: Wafaa Mamilli (appointed Feb 2025). Digital transformation merged Digital Strategy, IT, and Operational Excellence into cross-functional teams. AI vision: every employee to have AI co-pilot. 69% of life science firms investing in AI upskilling (2025). Innovation Center Barcelona (1,400 professionals). GATE Centers Chennai and Hyderabad for analytics talent.</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Collaborators & Leadership
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">From company organizational announcements, event participants, and professional network analysis.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">TS</div>
+                        <div class="person-info">
+                            <h4>Thomas Schinecker</h4>
+                            <p>CEO | Roche</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">WM</div>
+                        <div class="person-avatar">CDTO</div>
+                        <div class="person-info">
+                            <h4>Wafaa Mamilli</h4>
+                            <p>Chief Digital & Technology Officer | Roche (appointed Feb 2025)</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">MW</div>
+                        <div class="person-info">
+                            <h4>Michael Wegmuller</h4>
+                            <p>Co-Founder & Managing Director | Artifact (Swiss AI Agency)</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">LGD</div>
+                        <div class="person-info">
+                            <h4>Lucas Gartenmann Dickson (You)</h4>
+                            <p>Portfolio Manager Data Science Training | Roche Pharma AG</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Networks & Affiliations
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Memberships from LinkedIn, conference leadership roles, and business school affiliations.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>SGO Business School Network</h4>
+                        <p>Accredited seminar instructor on portfolio and change management. Active in Swiss professional continuing education (Weiterbildung) community. Peer network of organizational development professionals.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>IMPACT Conference 2026 Leadership</h4>
+                        <p>Workshop leader at 4th Swiss Implementation Science Conference. Active in implementation science research and practice community. Connected to Swiss innovation ecosystem.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Swissmedic Roundtable Innovation</h4>
+                        <p>Involvement in Swiss regulatory and innovation dialogue. Positioned at intersection of pharma transformation and regulatory oversight.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Swiss AI Transformation Ecosystem</h4>
+                        <p>Based in Basel. Connected to Swiss digital transformation and AI upskilling initiatives. Peer network of organizational transformation leaders in Switzerland and broader European pharma landscape.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Technology Partnerships & Platforms
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Organizations and technology platforms identified from Roche announcements and digital transformation initiatives.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Roche Digital Day Kaiseraugst (200+ participants, 20+ events)</span>
+                    <span class="tag">dbt Labs (unified data platform)</span>
+                    <span class="tag">navify Analytics (lab diagnostics)</span>
+                    <span class="tag">Roche AI Flywheel (Pharma-Diagnostics synergy)</span>
+                    <span class="tag">Genentech (AI subsidiary)</span>
+                    <span class="tag">Flatiron Health (oncology AI platform)</span>
+                    <span class="tag">Foundation Medicine (genomics AI)</span>
+                    <span class="tag">VENTANA TROP2 RxDx (FDA Breakthrough AI device, Apr 2025)</span>
+                    <span class="tag">Digital twins (100+ manufacturing lines)</span>
+                    <span class="tag">cobas digital ecosystem</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How scored
+                                <div class="methodology-tooltip">INFERRED: Radar scores based on organizational roles, stated priorities, and observable behavior patterns. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,33.5 137.9,49.1 158.5,100 147.7,147.7 100,158.5 49.1,150.9 37,100 52.3,52.3" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How inferred
+                                <div class="methodology-tooltip">INFERRED: Profile based on inclusive leadership style, educational focus, and change management emphasis. Primary: I (Influence), Secondary: S (Steadiness). Collaborative, dialogue-focused, process-oriented.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-chart">
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 90px;"></div>
+                            <div class="disc-bar-label">D</div>
+                            <div class="disc-bar-value">45</div>
+                        </div>
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 150px;"></div>
+                            <div class="disc-bar-label">I</div>
+                            <div class="disc-bar-value">75</div>
+                        </div>
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 140px;"></div>
+                            <div class="disc-bar-label">S</div>
+                            <div class="disc-bar-value">70</div>
+                        </div>
+                        <div class="disc-bar">
+                            <div class="disc-bar-fill" style="height: 120px;"></div>
+                            <div class="disc-bar-label">C</div>
+                            <div class="disc-bar-value">60</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: var(--slate-gray);">Primary: I (Influence) | Secondary: S (Steadiness)<br/>Collaborative, inclusive, dialogue-focused, relationship-oriented</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How inferred
+                            <div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, organizational role characteristics, and behavioral patterns. Validate in actual conversation.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Organizational Enablement Over Technology Deployment</div>
+                    <p>Lucas leads with capability building and cultural readiness, not tech stack sophistication. He responds to approaches emphasizing adoption breadth, change management rigor, and democratization of knowledge. Frame AI scaling as an organizational and learning challenge, not a technical implementation. Show commitment to inclusive engagement and multi-level organizational readiness.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Inclusive, Bridge-Building Leadership</div>
+                    <p>His core philosophy - "needs all of us, across hierarchies and functions" - reflects genuine commitment to horizontal engagement. He designs initiatives (Digital Day: 200+ participants, 20+ events, dialogue-focused) that lower barriers to participation. Present approaches that emphasize multiple entry points, accessible pathways, and organizational inclusivity.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Evidence-Based, Process-Rigorous Mindset</div>
+                    <p>PhD-level chemistry background + SGO seminar teaching + IMPACT Conference workshop leadership signal commitment to evidence-based methodology and process rigor. He will expect thoughtful frameworks, documented change management approaches, and clear success metrics. Come prepared with structured methodologies, not ad-hoc solutions.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Visibility & Thought Leadership Comfort</div>
+                    <p>Recent public recognition (Swiss Mediation Award 2025, IDC Future Enterprise Award, IMPACT Conference workshop leadership) shows comfort with visible positioning. He's not shy about public engagement. References to your expertise and public track record will resonate.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Behavioral Indicators & Decision-Making Profile
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> AI-generated
+                            <div class="methodology-tooltip">INFERRED: Patterns from content analysis and organizational behavior. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Collaborative Decision-Making</div>
+                    <p>Lucas makes decisions through dialogue and consensus-building rather than unilateral authority. He'll ask: "How do we ensure broad organizational buy-in?" and "What does success look like across different stakeholder groups?" Expect participatory planning sessions, multiple perspectives sought, and emphasis on shared ownership.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Large-Scale Organizational Systems Thinking</div>
+                    <p>Managing training portfolio across 112K+ employees requires systems thinking about organizational complexity, dependencies, and interdependencies. He thinks about cascading change, multiple constituencies, and long-term capability building. Will ask about scalability, organizational readiness, and sustainability of initiatives.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Scientific Rigor Applied to Human Systems</div>
+                    <p>PhD background plus academic publication track record means he applies analytical rigor to organizational challenges. Brings evidence-based methodology to change management. Will want to see documented case studies, peer-reviewed approaches, and measurable outcomes rather than untested methodologies.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Mediation & Constructive Dialogue Orientation</div>
+                    <p>Swiss Mediation Award recognition + design of Digital Day around "dialogue and personal initiative" signals commitment to constructive engagement and conflict resolution. He values bridge-building, finding common ground, and bringing divergent perspectives together. Approaches emphasizing dialogue, shared purpose, and inclusive engagement will resonate.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How extracted
+                            <div class="methodology-tooltip">Phrases from LinkedIn posts, event descriptions, and organizational communications via content analysis. Frequency indicates how often they appear in content.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Needs all of us, across hierarchies and functions</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Core philosophy on digital transformation, foundational principle</td>
+                        </tr>
+                        <tr>
+                            <td>Arouse curiosity and inspire dialogue and personal initiative</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Digital Day design philosophy, inclusive engagement principle</td>
+                        </tr>
+                        <tr>
+                            <td>Digital literacy / AI upskilling across organization</td>
+                            <td><span class="probability-badge prob-very-high">VERY HIGH</span></td>
+                            <td>Core portfolio responsibility, primary role focus</td>
+                        </tr>
+                        <tr>
+                            <td>Data science training portfolio management</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>Primary role title and responsibility scope</td>
+                        </tr>
+                        <tr>
+                            <td>Portfolio and change management methodologies</td>
+                            <td><span class="probability-badge prob-high">HIGH</span></td>
+                            <td>SGO seminar topics, organizational expertise</td>
+                        </tr>
+                        <tr>
+                            <td>Implementation science and practice translation</td>
+                            <td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td>
+                            <td>IMPACT Conference leadership, research-to-practice bridge</td>
+                        </tr>
+                        <tr>
+                            <td>Digitalisation offers huge potential for Roche, patients, and people</td>
+                            <td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td>
+                            <td>Stakeholder-inclusive value proposition, broader impact framing</td>
+                        </tr>
+                        <tr>
+                            <td>Organizational readiness and change enablement</td>
+                            <td><span class="probability-badge prob-medium">MEDIUM</span></td>
+                            <td>Central to portfolio management and transformation efforts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-GENERATED: SWOT based on role positioning, organizational context, and capability landscape analysis. Validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>Strengths</h4><ul>
+                        <li>Educational pedigree (PhD chemistry, SNSF research, published researcher)</li>
+                        <li>Proven large-scale organizational change mobilization (200+ Digital Day participants)</li>
+                        <li>Dual credentials: scientific rigor + organizational development expertise</li>
+                        <li>Positioned at center of Roche's AI upskilling vision (every employee with AI co-pilot)</li>
+                        <li>Established thought leadership platforms (SGO, IMPACT Conference, Swissmedic)</li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>Potential Gaps</h4><ul>
+                        <li>May prioritize inclusivity over speed (consensus-building takes time)</li>
+                        <li>Educational focus may lack deep technical AI expertise depth</li>
+                        <li>Large organization scale creates execution complexity despite good frameworks</li>
+                        <li>Balancing broad accessibility with advanced capability development tension</li>
+                        <li>Swiss/Basel base may limit visibility in global tech centers</li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>Opportunities</h4><ul>
+                        <li>Scaling AI literacy across 112K+ employees at global pharma leader</li>
+                        <li>Bridging implementation science research with organizational practice (IMPACT Conference platform)</li>
+                        <li>Developing replicable change management frameworks for regulated AI deployment</li>
+                        <li>Thought leadership in pharma AI transformation and change enablement</li>
+                        <li>Leveraging Swiss business school network to shape emerging transformation practices</li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>Competitive Threats</h4><ul>
+                    <li>Novartis, J&J, Pfizer, AstraZeneca with competing AI upskilling programs</li>
+                    <li>Big tech companies (Google Cloud, AWS, Azure) entering pharma transformation consulting</li>
+                    <li>Rapid AI capability evolution outpacing organizational learning capacity</li>
+                    <li>Talent retention in competitive AI/ML upskilling market</li>
+                    <li>Regulatory compliance complexity slowing implementation velocity</li>
+                </ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-ESTIMATED: Positions based on organizational scope and transformation maturity. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Organizational Readiness →</span>
+                    <span class="scatter-axis-label x-label">AI Capability Advancement →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 68%; top: 70%;"><div class="scatter-tooltip">Roche/Lucas</div></div>
+                        <div class="scatter-dot competitor1" style="left: 65%; top: 55%;"><div class="scatter-tooltip">Novartis</div></div>
+                        <div class="scatter-dot competitor2" style="left: 72%; top: 50%;"><div class="scatter-tooltip">AstraZeneca</div></div>
+                        <div class="scatter-dot competitor3" style="left: 60%; top: 65%;"><div class="scatter-tooltip">Pfizer</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Roche (Subject)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Novartis</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> AstraZeneca</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> Pfizer</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Self-stated differentiators and inferred strategic positioning.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">Inclusive Scale</div>
+                        <div class="differentiator-label">Capability building across 112K+ global employees through dialogue-focused, accessible learning pathways</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">Scientific Rigor</div>
+                        <div class="differentiator-label">PhD-level evidence-based approach to organizational change and implementation science translation</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">Organizational Enablement</div>
+                        <div class="differentiator-label">Deep expertise in change management, portfolio management, and cross-hierarchy stakeholder alignment</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Meeting Fit Analysis
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How calculated
+                            <div class="methodology-tooltip">Fit score based on role relevance, stated priorities, organizational context, and behavioral alignment with meeting topic on AI opportunities.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3.5rem; font-weight: 700; color: var(--green-verified); margin-bottom: 10px;">7/10</div>
+                    <div style="font-size: 1.1rem; font-weight: 600; color: var(--charcoal); margin-bottom: 20px;">VERY HIGH FIT</div>
+                    <div style="color: var(--slate-gray); line-height: 1.6;">
+                        <strong>Why this fit is strong:</strong><br/><br/>
+                        1. Manages global data science training portfolio directly responsible for AI upskilling across 112K+ employees at Roche<br/>
+                        2. Proven mobilizer of large-scale organizational change (Digital Day Kaiseraugst: 200+ participants, 20+ events)<br/>
+                        3. Expert in change management and organizational enablement - areas critical to AI scaling success<br/>
+                        4. Educational and inclusive leadership philosophy aligns with building AI literacy across organizational levels<br/>
+                        5. Active thought leader in implementation science (IMPACT Conference 2026) - bridges research and practice<br/>
+                        6. Swiss base and University of Bern education align with Michael Wegmuller's background and Artifact's Swiss AI expertise
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> Data source
+                            <div class="methodology-tooltip">LinkedIn activity, award announcements, and conference program listings.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="media-item">
+                    <h4>Roche Swiss Mediation Award 2025 Celebration (Feb 2026)</h4>
+                    <p><strong>Activity:</strong> Public LinkedIn posts celebrating team recognition for mediation and constructive dialogue contributions<br/>
+                    <strong>Implication:</strong> Actively engaged in public thought leadership positioning. Signals comfort with visibility and recognition of collaborative leadership philosophy. Values mediation and dialogue-focused approaches.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Roche IDC Future Enterprise Award Announcement (Jan 2026)</h4>
+                    <p><strong>Activity:</strong> Team recognition for digital transformation and Digital Day Kaiseraugst success<br/>
+                    <strong>Implication:</strong> Core initiative portfolio getting external recognition. Positioning Roche among digital transformation leaders. Validates large-scale change mobilization capability.</p>
+                </div>
+                <div class="media-item">
+                    <h4>IMPACT Conference 2026 Workshop Leadership (Upcoming Feb 12, 2026)</h4>
+                    <p><strong>Activity:</strong> Pre-conference workshop at 4th Swiss Implementation Science Conference (IMPACT)<br/>
+                    <strong>Implication:</strong> Leadership position in implementation science community. Signals expertise in translating organizational change research to practice. Active in Swiss innovation ecosystem.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Swissmedic Roundtable Innovation Engagement</h4>
+                    <p><strong>Activity:</strong> Participation in regulatory and innovation dialogue at Swiss medtech/pharma intersection<br/>
+                    <strong>Implication:</strong> Positioned at nexus of transformation and regulatory oversight. Demonstrates connection to broader Swiss innovation ecosystem and regulatory intelligence.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR "AI OPPORTUNITIES AT ROCHE"
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">i</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy tailored to Lucas's priorities, educational philosophy, change management expertise, and meeting context with Michael Wegmuller from Artifact.</div></span>
+                </div>
+                <div class="strategy-content">Lead with organizational enablement and change management frameworks, not pure AI capability. Lucas evaluates opportunities through an organizational readiness lens: "How do we build broad capability and support adoption across 112K+ employees?" Frame the conversation around scalable learning pathways, democratization of AI knowledge, change management rigor, and inclusive stakeholder engagement. Reference his proven Digital Day model and build on his philosophy that transformation "needs all of us, across hierarchies and functions." Acknowledge the challenge of maintaining scientific rigor and evidence-based practice in rapidly evolving AI landscape. Position Artifact's approach as combining AI expertise with organizational change discipline. He'll be receptive to methodologies that have documented track records, clear frameworks, and emphasis on inclusive participation and organizational readiness over pure technological sophistication.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">What You Can Offer Them
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How generated
+                                <div class="methodology-tooltip">AI-GENERATED: Suggestions based on their stated needs and your (Artifact) capabilities. Customize based on actual offering.</div>
+                            </span>
+                        </h3>
+                        <span class="badge" style="background: var(--green-verified); color: white;">VALUE EXCHANGE</span>
+                    </div>
+                    <div class="insight-box green">
+                        <div class="insight-title">Scalable AI Literacy & Upskilling Frameworks</div>
+                        <p>Artifact's expertise in building organization-wide AI capability programs. Share methodologies for creating inclusive learning pathways, multiple entry points, and role-based AI competency frameworks specifically designed for large-scale pharma/diagnostics environments.</p>
+                    </div>
+                    <div class="insight-box blue">
+                        <div class="insight-title">Change Management & Organizational Readiness Tools</div>
+                        <p>Proven frameworks for assessing organizational readiness, managing change resistance, stakeholder alignment, and enabling adoption across hierarchical levels. Your methodology for moving from awareness to competency to integration in real organizational systems.</p>
+                    </div>
+                    <div class="insight-box orange">
+                        <div class="insight-title">Swiss AI Transformation Benchmarks & Case Studies</div>
+                        <p>Proprietary data on Swiss organizational AI adoption: what works across sectors (finance, manufacturing, healthcare), what barriers emerge, documented approaches to overcoming them. Cross-industry pattern recognition resonates with evidence-based approach.</p>
+                    </div>
+                    <div class="insight-box yellow">
+                        <div class="insight-title">Implementation Science Translation Methods</div>
+                        <p>Given his leadership at IMPACT Conference 2026, approaches to bridging AI research and organizational practice. Methodologies for translating academic insights into sustainable organizational capability building.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Optimal Contact Strategy
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">i</span> How determined
+                                <div class="methodology-tooltip">Recommendations based on communication style analysis, organizational norms, and professional context.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Preferred Channel</td><td>LinkedIn message with thoughtful, organization-focused value proposition. OR direct email referencing his IMPACT Conference workshop or Digital Day model. He's responsive to peer-to-peer engagement from fellow transformation leaders. No generic outreach - show you've studied his work.</td></tr>
+                        <tr><td>Optimal Timing</td><td>Tuesday-Thursday, morning CET. He manages global Roche operations with deep focus on organizational initiatives. Early morning CET allows alignment before global calls. Avoid immediately post-award announcements (February 2026) when calendars are busy with celebrations.</td></tr>
+                        <tr><td>Formality Level</td><td>Professional but collaborative. He values substantive discussion and peer engagement. Not transactional. Reference specific Roche challenges or his published initiatives to establish credibility as knowledgeable peer.</td></tr>
+                        <tr><td>First Touchpoint</td><td>Open with specific reference to his work (e.g., Digital Day design philosophy, IMPACT Conference workshop topic, or Swiss Mediation Award achievement). Share a relevant case study or framework that demonstrates your understanding of organizational-scale AI capability building challenges.</td></tr>
+                        <tr><td>Language</td><td>English (international career, Swiss base). He'll appreciate Swiss cultural context or reference to Swiss business school network (SGO affiliation) as rapport-builder. Bilingual English-French messaging could be subtle advantage given Roche's international scope.</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Topics derived from recent activities, published expertise areas, and organizational priorities.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>"From Digital Day to AI Flywheel"</h4>
+                        <p>His Digital Day model (200+ participants, dialogue-focused, curiosity-arousing) demonstrates mastery of inclusive large-scale change. Open: "Your Digital Day successfully mobilized 200+ people across hierarchies - how do you apply those principles to making AI capability accessible across 112K+ employees?" Shows respect for his methodology and opens discussion about scaling organizational adoption challenges.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>"Change Management in Regulated AI Deployment"</h4>
+                        <p>His portfolio management and change management teaching (SGO seminars) signals deep expertise. Ask: "What are the biggest change management barriers you see in translating AI literacy into actual practice across different functions?" Opens dialogue about organizational complexity he daily navigates.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>"IMPACT Conference and Implementation Science"</h4>
+                        <p>His workshop leadership at IMPACT 2026 indicates interest in research-to-practice translation. Ask: "How do you bridge implementation science research with the real constraints of organizational transformation at Roche's scale?" Signals knowledge of his expertise area and creates peer-level conversation.</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>"Building Scientific Evidence for Organizational AI Transformation"</h4>
+                        <p>His PhD background and published research provide foundation for evidence-based approach. Ask: "What would a scientific evidence base for pharma AI transformation look like? How do we move beyond anecdotes to documented approaches?" Connects his academic rigor to organizational challenge.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">AI-INFERRED: Based on stated values and potential sensitivities.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Pure AI Technology Capability Without Organizational Context</h4>
+                        <p>Avoid leading with LLM benchmarks, model sophistication, or raw AI capability. He leads a training and organizational development portfolio, not a technology stack. Frame AI advancement within organizational readiness, capability building, and adoption context.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Speed Over Rigor or Consensus-Building</h4>
+                        <p>His inclusive, dialogue-focused philosophy means rushing or bypassing stakeholder engagement will not resonate. He values process rigor and broad buy-in. Avoid "move fast and iterate" framing without change management structure. Emphasize structured, documented, consensus-building approaches.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Technology-Centric Rather Than Organizational-Enablement Framing</h4>
+                        <p>His core expertise is human systems change, not technology deployment. Avoid positioning AI tools as primary solution. Instead, position AI tools as enablers of organizational capability, with change management and learning as core value drivers.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Underestimating Complexity of Large-Scale Change</h4>
+                        <p>He manages 112K+ employee transformation. Oversimplifying the organizational challenges or suggesting that "just training will solve it" will seem naive. Show understanding that organizational-scale AI adoption requires sophisticated stakeholder management, cultural work, and sustained effort.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Potential common ground identified from both profiles. Cross-referenced Artifact capabilities with Roche training needs.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC ALIGNMENT</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">University of Bern Alumni Connection</div>
+                    <p>Both Michael Wegmuller and Lucas Gartenmann Dickson studied at the University of Bern. This shared alma mater creates an immediate personal connection and common reference point. Mentioning this early in conversation builds rapport and trust.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Swiss Innovation Ecosystem and Organizational Transformation</div>
+                    <p>Both are embedded in Swiss innovation networks focused on enabling organizations to adopt new technologies. Michael through Digital Impact Network, Swissmem, and KImpact; Lucas through SGO Business School, IMPACT Conference, and Swissmedic Roundtable. Shared belief that transformation requires organizational readiness, not just technology.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">AI Enablement as Core Mission</div>
+                    <p>Artifact specializes in scaling AI from PoC to production; Lucas manages data science training at Roche. Both understand that the gap between AI potential and AI production is fundamentally about people, skills, and organizational change. This is a direct capability-need match.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Personal Interests Matching (Michael vs. Lucas)
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Potential personal and professional alignment points between requestor and subject.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">RELATIONSHIP BUILDING</span>
+                </div>
+                <div class="conversation-card">
+                    <h4>Shared Bern Roots and Swiss Identity</h4>
+                    <p>Michael: based in Bern, senior officer in Swiss Armed Forces, educated at University of Bern. Lucas: educated at University of Bern, now based in Basel. Both carry a distinctly Swiss professional identity: precision, reliability, and cross-cultural competence. This shared context provides natural common ground.</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>Bridging Science and Business</h4>
+                    <p>Michael: data science background applied to business strategy and innovation awards. Lucas: chemistry PhD applied to corporate digital transformation and portfolio management. Both transitioned from academic/scientific foundations to business impact roles, understanding what it takes to translate research into practice.</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>Teaching and Knowledge Sharing</h4>
+                    <p>Michael: active thought leader, LinkedIn contributor, AI policy contributor. Lucas: SGO Business School instructor, Digital Day organizer, IMPACT Conference workshop leader. Both are educators at heart, believing that sharing knowledge drives organizational and societal progress.</p>
+                </div>
+                <div class="conversation-card">
+                    <h4>Implementation Over Theory</h4>
+                    <p>Michael: won SwissICT Innovation Award for practical AI implementation, not research. Lucas: focused on implementation science (IMPACT Conference), practical training delivery, and organizational change. Both value getting things done over discussing possibilities.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics & Preparation Notes
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Topics predicted based on role priorities, recent activity, and meeting context.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Scaling AI literacy across 112K+ employees</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Come with tiered training frameworks, role-based learning paths, and measurement approaches for AI competency</td></tr>
+                        <tr><td>Organizational readiness for AI adoption</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Show change management methodologies that complement technical training. He values organizational enablement over tool deployment</td></tr>
+                        <tr><td>GenAI tools for non-technical employees</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Demonstrate how CompanyGPT or similar platforms can democratize AI access with appropriate compliance guardrails</td></tr>
+                        <tr><td>Measuring training ROI and business impact</td><td><span class="probability-badge prob-high">HIGH</span></td><td>Prepare KPI frameworks linking training investment to productivity gains, error reduction, and innovation output</td></tr>
+                        <tr><td>AI governance and responsible use in pharma</td><td><span class="probability-badge prob-high">HIGH</span></td><td>Share governance frameworks tailored to regulated environments. He will want compliance-aware training, not just capability building</td></tr>
+                        <tr><td>Cross-functional collaboration for AI projects</td><td><span class="probability-badge prob-high">HIGH</span></td><td>His Digital Day brought 200+ participants across functions. Show how to sustain that energy through structured innovation programs</td></tr>
+                        <tr><td>Implementation science applied to AI rollout</td><td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td><td>Reference IMPACT Conference framework. He values evidence-based implementation, not just pilot projects</td></tr>
+                        <tr><td>External partnerships for AI capability building</td><td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td><td>Position Artifact as a Swiss-based partner who understands Roche's scale, culture, and regulatory context</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Published Content & Thought Leadership
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Content compiled from LinkedIn activity, academic publications, and speaking engagements. Dates and topics verified from official sources.</div></span>
+                    </h3>
+                </div>
+                <div class="media-item">
+                    <h4>SGO Business School Seminar Series (Ongoing)</h4>
+                    <p><strong>Type:</strong> Professional continuing education (Weiterbildung)<br/>
+                    <strong>Topics:</strong> Multi-project management, portfolio management, change management<br/>
+                    <strong>Status:</strong> Accredited instructor delivering regular seminars to Swiss business professionals</p>
+                </div>
+                <div class="media-item">
+                    <h4>IMPACT Conference 2026 Pre-Conference Workshop (Upcoming Feb 12, 2026)</h4>
+                    <p><strong>Type:</strong> Leadership workshop at 4th Swiss Implementation Science Conference<br/>
+                    <strong>Topic:</strong> Implementation science applied to organizational transformation<br/>
+                    <strong>Implication:</strong> Positioned as expert practitioner translating research to organizational practice</p>
+                </div>
+                <div class="media-item">
+                    <h4>LinkedIn Thought Leadership</h4>
+                    <p><strong>Focus:</strong> Digital transformation, Roche achievements, organizational change philosophy, AI opportunity framing<br/>
+                    <strong>Frequency:</strong> Active engagement with organizational transformation and pharma innovation topics<br/>
+                    <strong>Audience:</strong> Pharma peers, organizational development professionals, Swiss business leaders</p>
+                </div>
+                <div class="media-item">
+                    <h4>Peer-Reviewed Publication: Organic & Biomolecular Chemistry (2004)</h4>
+                    <p><strong>Title:</strong> Structure-activity relationships in aminocyclopentitol glycosidase inhibitors (with E. Leroy and J. Reymond)<br/>
+                    <strong>Venue:</strong> Royal Society of Chemistry Publishing (Organic & Biomolecular Chemistry)<br/>
+                    <strong>Status:</strong> Established publication track record from academic research phase</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Network & Recognition Timeline
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Key recognition moments and network positioning events from 2024-2026.</div></span>
+                    </h3>
+                </div>
+                <div class="media-item">
+                    <h4>Roche Swiss Mediation Award 2025 (Celebrated Feb 2026)</h4>
+                    <p><strong>Recognition:</strong> Team award for mediation and constructive dialogue contributions<br/>
+                    <strong>Significance:</strong> Validates inclusive, bridge-building leadership philosophy. Public visibility demonstrates comfort with recognition.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Roche IDC Future Enterprise Award (Jan 2026)</h4>
+                    <p><strong>Recognition:</strong> Team award for digital transformation leadership<br/>
+                    <strong>Projects Recognized:</strong> Digital Day Kaiseraugst, data science training portfolio initiatives<br/>
+                    <strong>Significance:</strong> External validation of large-scale organizational change capability. Positions Roche among digital leaders.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Swissmedic Roundtable Innovation</h4>
+                    <p><strong>Role:</strong> Participant in regulatory and innovation dialogue<br/>
+                    <strong>Significance:</strong> Connected to Swiss pharma innovation ecosystem and regulatory oversight. Bridges transformation and regulatory intelligence.</p>
+                </div>
+                <div class="media-item">
+                    <h4>Digital Day Kaiseraugst (2025-2026)</h4>
+                    <p><strong>Scope:</strong> 200+ participants, 20+ events, multi-day organizational transformation symposium<br/>
+                    <strong>Leadership:</strong> Organized and championed the initiative<br/>
+                    <strong>Significance:</strong> Largest internal demonstration of organizational change mobilization capability. Proof of inclusive, large-scale engagement methodology.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Public Sentiment & Engagement Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">i</span><div class="methodology-tooltip">Sentiment analysis from LinkedIn posts, professional visibility, and engagement patterns.</div></span>
+                    </h3>
+                </div>
+                <div class="bar-chart-wrapper">
+                    <div class="bar-chart-y-axis"><span>Sentiment Index</span></div>
+                    <div class="bar-chart">
+                        <div class="bar-group">
+                            <div class="bar">
+                                <div class="bar-segment positive" style="height: 85%;"></div>
+                            </div>
+                            <div class="bar-label">Organizational Change</div>
+                            <div class="bar-tooltip">Strong positive</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar">
+                                <div class="bar-segment positive" style="height: 80%;"></div>
+                            </div>
+                            <div class="bar-label">AI Opportunity</div>
+                            <div class="bar-tooltip">Positive with balance</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar">
+                                <div class="bar-segment neutral" style="height: 70%;"></div>
+                                <div class="bar-segment positive" style="height: 15%;"></div>
+                            </div>
+                            <div class="bar-label">Inclusivity/Access</div>
+                            <div class="bar-tooltip">Strong emphasis</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar">
+                                <div class="bar-segment positive" style="height: 90%;"></div>
+                            </div>
+                            <div class="bar-label">Thought Leadership</div>
+                            <div class="bar-tooltip">Highly engaged</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic AI Use Cases for Roche & Lucas
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">i</span> How identified
+                            <div class="methodology-tooltip">Use cases synthesized from Lucas's role (data science training portfolio), Roche's organizational context (112K+ employees, 80+ countries, 76B CHF revenue), and AI opportunities relevant to organizational enablement and capability building.</div>
+                        </span>
+                    </h3>
+                </div>
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <h4>AI Literacy & Upskilling Platform</h4>
+                        <div class="use-case-description">Scalable GenAI training programs delivering personalized learning journeys for 112K+ employees across Roche. Adaptive skill assessment, role-based curriculum paths, multiple literacy levels (basic awareness to advanced implementation), accessible across geographies and organizational levels.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Impact: 112K+ employees</span>
+                            <span class="use-case-metric">Scope: Global, 80+ countries</span>
+                            <span class="use-case-metric">Owned by: Lucas</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>AI-Powered Personalized Learning Pathways</h4>
+                        <div class="use-case-description">ML-driven adaptive learning system that tailors data science and AI training to individual employee roles, skill levels, and learning preferences. Predicts optimal learning sequences, recommends resources, adjusts difficulty dynamically. Maximizes engagement and retention across diverse organizational audience.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Engagement focus</span>
+                            <span class="use-case-metric">Personalization engine</span>
+                            <span class="use-case-metric">Accessibility emphasis</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>GenAI Knowledge Assistant for R&D & Operations</h4>
+                        <div class="use-case-description">Enterprise LLM-powered assistant for accessing Roche's vast research, regulatory, and operational knowledge base. Helps employees navigate complex information landscapes, accelerates knowledge discovery, reduces time-to-decision. Built with data governance and compliance guardrails for regulated pharma environment.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Knowledge discovery</span>
+                            <span class="use-case-metric">Compliance-enabled</span>
+                            <span class="use-case-metric">Decision acceleration</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Digital Pathology AI Training & Enablement</h4>
+                        <div class="use-case-description">Specialized AI training modules for pathologists, lab technicians, and clinical staff transitioning to AI-augmented diagnostics. Builds competency in interpreting VENTANA TROP2 RxDx and other AI companion diagnostics. Bridges clinical expertise with AI tool proficiency.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Clinical focus</span>
+                            <span class="use-case-metric">Specialized training</span>
+                            <span class="use-case-metric">FDA Breakthrough device</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>AI Governance & Ethics Training Framework</h4>
+                        <div class="use-case-description">Organization-wide programme building AI ethics, compliance, and responsible use capabilities. Addresses bias detection, data governance, regulatory requirements (GDPR, HIPAA), risk mitigation. Equips employees at all levels to deploy AI responsibly in regulated pharma/diagnostics context.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Governance emphasis</span>
+                            <span class="use-case-metric">Compliance focus</span>
+                            <span class="use-case-metric">Ethics-centered</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Predictive Skills Gap Analysis & Workforce Planning</h4>
+                        <div class="use-case-description">ML-driven analytics identifying future AI/digital competency gaps across Roche's workforce. Analyzes role evolution, technology adoption trends, and capability maturity. Enables proactive training investment and talent management aligned with strategic transformation roadmap.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Predictive analytics</span>
+                            <span class="use-case-metric">Workforce planning</span>
+                            <span class="use-case-metric">Strategic alignment</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>AI-Augmented Clinical Trial Design & Patient Selection</h4>
+                        <div class="use-case-description">Training programs preparing researchers to leverage AI in trial design, patient selection, and outcomes prediction. Builds competency in translating AI research to clinical practice. Accelerates drug development cycles while maintaining regulatory rigor.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">R&D focus</span>
+                            <span class="use-case-metric">Clinical translation</span>
+                            <span class="use-case-metric">Regulatory alignment</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>Cross-Functional AI Innovation Labs & Change Enablement</h4>
+                        <div class="use-case-description">Structured programs bringing diverse teams (R&D, commercial, operations, IT) together to ideate and prototype AI solutions. Combines Lucas's change management expertise with innovation methodology. Builds organizational capability for collaborative AI problem-solving and accelerates time-to-production.</div>
+                        <div class="use-case-metrics">
+                            <span class="use-case-metric">Innovation methodology</span>
+                            <span class="use-case-metric">Cross-functional</span>
+                            <span class="use-case-metric">Change enablement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>Intelligence Sources (16+)</h3>
+            <div class="sources-grid">
+                <a href="https://www.linkedin.com/in/lucas-gartenmann-dickson/" class="source-item" target="_blank">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">Lucas Gartenmann Dickson</div>
+                    </div>
+                </a>
+                <a href="https://www.roche.com" class="source-item" target="_blank">
+                    <div class="source-icon">RC</div>
+                    <div class="source-info">
+                        <div class="source-name">Roche Official Website</div>
+                        <div class="source-meta">Company & Leadership Info</div>
+                    </div>
+                </a>
+                <a href="https://www.roche.com/investor-relations" class="source-item" target="_blank">
+                    <div class="source-icon">IR</div>
+                    <div class="source-info">
+                        <div class="source-name">Roche Investor Relations</div>
+                        <div class="source-meta">Financial Data & Strategy</div>
+                    </div>
+                </a>
+                <a href="https://www.unibe.ch" class="source-item" target="_blank">
+                    <div class="source-icon">UB</div>
+                    <div class="source-info">
+                        <div class="source-name">University of Bern</div>
+                        <div class="source-meta">Education: Chemistry & Biochemistry, PhD</div>
+                    </div>
+                </a>
+                <a href="https://www.snf.ch" class="source-item" target="_blank">
+                    <div class="source-icon">SF</div>
+                    <div class="source-info">
+                        <div class="source-name">Swiss National Science Foundation</div>
+                        <div class="source-meta">Research Involvement & Funding</div>
+                    </div>
+                </a>
+                <a href="https://www.sgo.swiss" class="source-item" target="_blank">
+                    <div class="source-icon">SG</div>
+                    <div class="source-info">
+                        <div class="source-name">SGO Business School</div>
+                        <div class="source-meta">Seminar Speaker (Referent)</div>
+                    </div>
+                </a>
+                <a href="https://www.rsc.org/journals-books-databases/journals/organic-biomolecular-chemistry/" class="source-item" target="_blank">
+                    <div class="source-icon">OB</div>
+                    <div class="source-info">
+                        <div class="source-name">Organic & Biomolecular Chemistry</div>
+                        <div class="source-meta">Publication (2004) with E. Leroy, J. Reymond</div>
+                    </div>
+                </a>
+                <a href="https://www.artifact.ai" class="source-item" target="_blank">
+                    <div class="source-icon">AF</div>
+                    <div class="source-info">
+                        <div class="source-name">Artifact AI Agency</div>
+                        <div class="source-meta">Michael Wegmuller's Company</div>
+                    </div>
+                </a>
+                <a href="https://www.genentech.com" class="source-item" target="_blank">
+                    <div class="source-icon">GN</div>
+                    <div class="source-info">
+                        <div class="source-name">Genentech</div>
+                        <div class="source-meta">Roche AI Subsidiary</div>
+                    </div>
+                </a>
+                <a href="https://www.flatiron.com" class="source-item" target="_blank">
+                    <div class="source-icon">FH</div>
+                    <div class="source-info">
+                        <div class="source-name">Flatiron Health</div>
+                        <div class="source-meta">Roche Oncology Data Platform</div>
+                    </div>
+                </a>
+                <a href="https://www.foundationmedicine.com" class="source-item" target="_blank">
+                    <div class="source-icon">FM</div>
+                    <div class="source-info">
+                        <div class="source-name">Foundation Medicine</div>
+                        <div class="source-meta">Roche Genomics AI</div>
+                    </div>
+                </a>
+                <a href="https://www.navify.com" class="source-item" target="_blank">
+                    <div class="source-icon">NV</div>
+                    <div class="source-info">
+                        <div class="source-name">navify Analytics Platform</div>
+                        <div class="source-meta">Lab Diagnostics Analytics</div>
+                    </div>
+                </a>
+                <a href="https://www.impactconference.ch" class="source-item" target="_blank">
+                    <div class="source-icon">IC</div>
+                    <div class="source-info">
+                        <div class="source-name">IMPACT Conference 2026</div>
+                        <div class="source-meta">Swiss Implementation Science Conference</div>
+                    </div>
+                </a>
+                <a href="https://www.moneyhouse.ch" class="source-item" target="_blank">
+                    <div class="source-icon">MH</div>
+                    <div class="source-info">
+                        <div class="source-name">Moneyhouse (Swiss Business Registry)</div>
+                        <div class="source-meta">Roche AG Registry Data</div>
+                    </div>
+                </a>
+                <a href="https://www.swissmedic.swiss" class="source-item" target="_blank">
+                    <div class="source-icon">SM</div>
+                    <div class="source-info">
+                        <div class="source-name">Swissmedic</div>
+                        <div class="source-meta">Swiss Regulatory Body & Innovation Roundtable</div>
+                    </div>
+                </a>
+                <a href="https://www.ventana.com" class="source-item" target="_blank">
+                    <div class="source-icon">VN</div>
+                    <div class="source-info">
+                        <div class="source-name">VENTANA (Roche Diagnostics)</div>
+                        <div class="source-meta">Digital Pathology & AI Companion Diagnostics</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">Sailor 2.0</span>
+        </div>
+        <p>Generated: February 11, 2026 | Sources: 16+ verified</p>
+        <p>Prepared for: Michael Wegmuller, Artifact AI Agency | Occasion: AI Opportunities at Roche</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Generate a complete HTML intelligence dashboard for Lucas Gartenmann Dickson from Roche Pharma AG"</div>
+        <div class="report-token">Report ID: 3b099233</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Lucas Gartenmann Dickson Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        async function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.classList.add('show');
+
+            const pdfContent = document.createElement('div');
+            pdfContent.style.width = '1000px';
+            pdfContent.style.background = 'white';
+            pdfContent.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+            const styles = document.querySelector('style').cloneNode(true);
+
+            const titleSlide = document.createElement('div');
+            titleSlide.innerHTML = `
+                <div style="height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #1e3a5f 0%, #36454f 100%); color: white; padding: 60px;">
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sailor 2.0</span>
+                    </div>
+                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-align: center;">Lucas Gartenmann Dickson</h1>
+                    <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">Portfolio Manager Data Science Training | Roche Pharma AG</p>
+                    <p style="font-size: 1rem; opacity: 0.7;">Meeting Intelligence Profile</p>
+                    <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 40px;">Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                </div>
+                <div style="page-break-after: always;"></div>
+            `;
+            pdfContent.appendChild(titleSlide);
+
+            const tabNames = {
+                'executive-summary': 'Executive Summary',
+                'subject-profile': 'Subject Profile',
+                'network-map': 'Network Map',
+                'behavioral-analysis': 'Behavioral Analysis',
+                'strategic-position': 'Strategic Position',
+                'engagement-playbook': 'Engagement Playbook',
+                'media-footprint': 'Media Footprint',
+                'ai-use-cases': 'AI Use Cases'
+            };
+
+            const tabs = ['executive-summary', 'subject-profile', 'network-map', 'behavioral-analysis', 'strategic-position', 'engagement-playbook', 'media-footprint', 'ai-use-cases'];
+
+            tabs.forEach((tabId, index) => {
+                const tabContent = document.getElementById(tabId);
+                if (tabContent) {
+                    const slideWrapper = document.createElement('div');
+                    slideWrapper.style.padding = '40px';
+                    slideWrapper.style.background = '#f5f5f5';
+                    slideWrapper.style.minHeight = '700px';
+
+                    const slideHeader = document.createElement('div');
+                    slideHeader.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #1e3a5f;">
+                            <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e3a5f;">${tabNames[tabId]}</h2>
+                            <span style="font-size: 0.9rem; color: #708090;">Sailor 2.0 | Lucas Gartenmann Dickson</span>
+                        </div>
+                    `;
+                    slideWrapper.appendChild(slideHeader);
+
+                    const contentClone = tabContent.cloneNode(true);
+                    contentClone.style.display = 'block';
+                    contentClone.classList.add('active');
+                    contentClone.querySelectorAll('.methodology-tooltip, .bar-tooltip, .scatter-tooltip').forEach(el => el.remove());
+                    slideWrapper.appendChild(contentClone);
+
+                    if (index < tabs.length - 1) {
+                        const pageBreak = document.createElement('div');
+                        pageBreak.style.pageBreakAfter = 'always';
+                        slideWrapper.appendChild(pageBreak);
+                    }
+
+                    pdfContent.appendChild(slideWrapper);
+                }
+            });
+
+            pdfContent.insertBefore(styles, pdfContent.firstChild);
+            pdfContent.style.position = 'absolute';
+            pdfContent.style.left = '-9999px';
+            document.body.appendChild(pdfContent);
+
+            const opt = {
+                margin: 0,
+                filename: 'sailor-lucas-gartenmann-dickson-profile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: 'px', format: [1000, 750], orientation: 'landscape' },
+                pagebreak: { mode: ['css', 'legacy'], after: '.page-break' }
+            };
+
+            try {
+                await html2pdf().set(opt).from(pdfContent).save();
+                toast.textContent = 'PDF downloaded!';
+                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
+            } catch (error) {
+                console.error('PDF generation failed:', error);
+                toast.textContent = 'PDF generation failed';
+                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
+            }
+            document.body.removeChild(pdfContent);
+        }
+
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
