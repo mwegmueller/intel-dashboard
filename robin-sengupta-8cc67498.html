@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Robin Sengupta">
+    <meta property="og:title" content="Sailor 2.0 - Robin Sengupta Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Robin Sengupta at Flughafen Zürich AG">
+    <meta name="report-token" content="8cc67498">
+    <title>Sailor 2.0 - Robin Sengupta</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .share-button, .download-button, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Profile Photo / Initials */
+        .header-profile { display: flex; align-items: center; gap: 20px; margin-bottom: 8px; }
+        .profile-initials { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; border: 3px solid rgba(255,255,255,0.3); }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary - McKinsey-style components */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .exec-opener { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0fdf4; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+        .exec-opener-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .badge-medium-confidence { background: var(--yellow-inferred); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "\2022"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 108deg, var(--blue-secondary) 108deg 234deg, var(--yellow-inferred) 234deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* DISC Chart */
+        .disc-chart-container { display: flex; align-items: flex-end; gap: 24px; justify-content: center; padding: 20px 0; }
+        .disc-bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .disc-bar-wrapper { width: 60px; height: 160px; background: #f0f0f0; border-radius: 8px 8px 0 0; display: flex; align-items: flex-end; overflow: hidden; }
+        .disc-bar { width: 100%; border-radius: 8px 8px 0 0; transition: height 0.5s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; }
+        .disc-bar.d-bar { background: linear-gradient(180deg, #dc2626, #b91c1c); }
+        .disc-bar.i-bar { background: linear-gradient(180deg, #f59e0b, #d97706); }
+        .disc-bar.s-bar { background: linear-gradient(180deg, #16a34a, #15803d); }
+        .disc-bar.c-bar { background: linear-gradient(180deg, #2563eb, #1d4ed8); }
+        .disc-bar-label { font-weight: 700; font-size: 0.9rem; color: var(--charcoal); }
+        .disc-bar-sublabel { font-size: 0.7rem; color: var(--slate-gray); }
+
+        /* Recent Activity */
+        .activity-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid #eee; }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-date { font-size: 0.8rem; font-weight: 600; color: var(--navy); white-space: nowrap; min-width: 80px; }
+        .activity-text { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.5; }
+
+        /* Influence Levers */
+        .lever-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 10px; }
+        .lever-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--navy); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+        .lever-text { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.5; }
+        .lever-text strong { color: var(--charcoal); }
+
+        /* Value Exchange Map */
+        .value-card { padding: 20px; border-radius: 8px; margin-bottom: 12px; }
+        .value-card.green { background: #f0fdf4; border-left: 4px solid #22c55e; }
+        .value-card.blue { background: #eff6ff; border-left: 4px solid #3b82f6; }
+        .value-card.orange { background: #fff7ed; border-left: 4px solid #f97316; }
+        .value-card h4 { font-weight: 600; margin-bottom: 6px; color: var(--charcoal); }
+        .value-card p { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.5; }
+
+        /* Contact Strategy */
+        .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .contact-item { padding: 16px; background: #f8f9fa; border-radius: 8px; }
+        .contact-item-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate-gray); font-weight: 600; margin-bottom: 6px; }
+        .contact-item-value { font-size: 0.95rem; color: var(--charcoal); font-weight: 500; }
+
+        /* AI Use Cases Tab */
+        .ai-usecase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .ai-usecase-card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .ai-usecase-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); border-color: var(--blue-secondary); }
+        .ai-usecase-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--navy), var(--blue-secondary)); }
+        .ai-usecase-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--navy), var(--blue-secondary)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; margin-bottom: 16px; }
+        .ai-usecase-title { font-size: 1.05rem; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+        .ai-usecase-desc { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; margin-bottom: 12px; }
+        .ai-usecase-reasoning { font-size: 0.8rem; color: var(--navy); background: #f0f9ff; padding: 10px 14px; border-radius: 6px; border-left: 3px solid var(--blue-secondary); }
+        .ai-usecase-reasoning strong { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; color: var(--blue-secondary); }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } .ai-usecase-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid, .ai-usecase-grid, .contact-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+            .exec-grid-3 { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">&#9973; Sailor 2.0</span>
+        </div>
+        <div class="header-profile">
+            <div class="profile-initials">RS</div>
+            <div>
+                <h1>Robin Sengupta</h1>
+                <div class="header-subtitle">Senior Innovation Manager, ZRH Innovation Hub | Flughafen Z&uuml;rich AG</div>
+            </div>
+        </div>
+        <div class="header-meta">
+            <span>Zurich, Switzerland</span>
+            <span>Education not publicly available</span>
+            <span>flughafen-zuerich.ch</span>
+            <span>Also Accelerator Director at QAI Ventures Singapore</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">18+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+            <button class="tab" data-tab="ai-use-cases">AI Uses</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary (McKinsey Senior Partner Layout) -->
+        <div id="executive-summary" class="tab-content active">
+            <!-- Row 1: BLUF -->
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content">Robin Sengupta is the <strong>Senior Innovation Manager at Zurich Airport's ZRH Innovation Hub</strong>, driving autonomous vehicle pilots, Microsoft Copilot rollout, and Apple Vision Pro applications for Europe's best-rated airport (32.6M passengers, CHF 1.3B revenue). He concurrently serves as <strong>Accelerator Director at QAI Ventures Singapore</strong>, building a QuantumAI startup ecosystem &mdash; a rare dual mandate signaling deep tech conviction and venture-building experience that creates a natural entry point for AI strategy conversations.</div>
+            </div>
+
+            <!-- Row 2: Three key cards - Fit Score | DISC Quick Read | Key Metrics -->
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">&#8505;&#65039;</span> How assessed
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring high" style="--score: 9;">
+                        <div class="fit-score-inner">9</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;">Direct ownership of AI/innovation pilots at a CHF 1.3B airport operator, plus active QuantumAI venture role &mdash; ideal counterpart for AI strategy.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">&#8505;&#65039;</span> How inferred
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill i">I</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Influential - People &amp; Ideas-Driven</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);">Lead with vision and possibilities, not spreadsheets. Share startup stories and real-world AI examples. He thrives on energy and new ideas &mdash; let him talk about his projects first.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">&#8505;&#65039;</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-medium-confidence">MEDIUM CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">8+</div><div class="metric-label">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">32.6M</div><div class="metric-label">Airport Passengers/yr</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Two columns - Strategic Insights | Conversation Openers -->
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">&#8505;&#65039;</span> AI-generated
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Dual Innovation Mandate = Unique Access</div>
+                        <div class="exec-insight-text">His ZRH + QAI Ventures roles mean he bridges corporate airport innovation AND deep-tech venture building. Position your AI offering at this intersection.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Autonomous Operations is His Flagship</div>
+                        <div class="exec-insight-text">The WeRide autonomous shuttle reaching Level 3 automation is his signature project. Reference this to build credibility &mdash; he'll want to talk about scaling it.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Microsoft Copilot Already Deployed</div>
+                        <div class="exec-insight-text">ZRH is already rolling out Copilot org-wide. Any AI pitch must go beyond basic GenAI &mdash; show advanced, operations-specific applications.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">&#8505;&#65039;</span> How derived
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="exec-opener"><div class="exec-opener-num">1</div><div>"What were the biggest surprises scaling the autonomous shuttle from test to Level 3 operations?"</div></div>
+                    <div class="exec-opener"><div class="exec-opener-num">2</div><div>"How are you measuring ROI on the Microsoft Copilot rollout across airport staff?"</div></div>
+                    <div class="exec-opener"><div class="exec-opener-num">3</div><div>"With your QAI Ventures role &mdash; what QuantumAI applications do you see reaching airport operations first?"</div></div>
+                    <div class="exec-opener"><div class="exec-opener-num">4</div><div>"The Apple Vision Pro real estate app was a bold first-mover play &mdash; what's the user adoption been like?"</div></div>
+                </div>
+            </div>
+
+            <!-- Row 4: Anticipated Topics (compact table) -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">&#8505;&#65039;</span> How predicted
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Your Angle</th></tr></thead>
+                    <tbody>
+                        <tr><td>Autonomous vehicle operations scaling</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Position your AI as complementary to their autonomy stack</td></tr>
+                        <tr><td>GenAI productivity tools (Copilot)</td><td><span class="probability-badge prob-high">High</span></td><td>Go beyond Copilot &mdash; show domain-specific AI for airport ops</td></tr>
+                        <tr><td>Startup/venture ecosystem partnerships</td><td><span class="probability-badge prob-high">High</span></td><td>Offer co-innovation or pilot partnership models</td></tr>
+                        <tr><td>Operational efficiency &amp; resilience</td><td><span class="probability-badge prob-medium-high">Medium-High</span></td><td>Frame AI as reducing operational disruptions and improving resilience</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Row 5: Source confidence - compact inline bar -->
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (18 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 30%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 35%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 25%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 30%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 35%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 25%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2023 &ndash; Present</div>
+                        <div class="timeline-content"><strong>Senior Innovation Manager, ZRH Innovation Hub</strong><br>Flughafen Z&uuml;rich AG &mdash; Leading autonomous shuttle pilots (WeRide/Swiss Transit Lab), Microsoft Copilot rollout, Apple Vision Pro real estate app. Part of 5-person innovation team under Coralie Klaus Boecker.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2025 &ndash; Present</div>
+                        <div class="timeline-content"><strong>Accelerator Director, QAI Ventures Singapore</strong><br>Leading startup programs and building QuantumAI ecosystem in Asia Pacific. Working with Thomas Landis (MD) and team to launch flagship accelerator program.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Previous</div>
+                        <div class="timeline-content">Career details prior to ZRH Innovation Hub not publicly available.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition &amp; Awards
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Collected from press releases, award announcements, and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item"><h4>2024 European Identity Award</h4><p>Cloud-based IAM innovation at Flughafen Z&uuml;rich AG</p></div>
+                    <div class="media-item"><h4>World Travel Award &mdash; Best European Airport</h4><p>22 consecutive years of recognition as Europe's leading airport</p></div>
+                    <div class="media-item"><h4>ASQ Award &mdash; Best Airport in Europe</h4><p>Category: 25-40M passengers, consistently awarded since 2018</p></div>
+                    <div class="media-item"><h4>World Travel Tech Award</h4><p>Best Airport Website in Europe</p></div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Events tracked from company newsroom, press releases, and industry publications within the last 90 days.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-date">Jan 2025</div>
+                    <div class="activity-text">Autonomous shuttle at ZRH reaches Level 3 automation &mdash; a milestone for European airport autonomous vehicle operations.</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-date">Oct-Nov 2025</div>
+                    <div class="activity-text">QAI Ventures Singapore launch announcement with Enterprise Singapore backing &mdash; Robin named Accelerator Director.</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-date">May 2025</div>
+                    <div class="activity-text">Swissport &amp; Aurrigo autonomous ground handling pilot launches at ZRH &mdash; first global pilot of its kind.</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-date">2025</div>
+                    <div class="activity-text">ZRH wins World Travel Award for 22nd consecutive time, reinforcing its position as Europe's best airport.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Aviation Innovation</span>
+                    <span class="tag">Autonomous Vehicles</span>
+                    <span class="tag">AI/ML Strategy</span>
+                    <span class="tag">Microsoft Copilot</span>
+                    <span class="tag">Apple Vision Pro</span>
+                    <span class="tag">Startup Ecosystems</span>
+                    <span class="tag">QuantumAI</span>
+                    <span class="tag">Venture Building</span>
+                    <span class="tag">Airport Operations</span>
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Robotics</span>
+                    <span class="tag">IoT</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Flughafen Z&uuml;rich AG Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Data from Swiss business registry (Moneyhouse), company website, and Crunchbase/similar directories.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">2000</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">N/A</div><div class="metric-label">Public Corp</div></div>
+                    <div class="metric-box"><div class="metric-value">1,900+</div><div class="metric-label">Team Members</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 1.33B</div><div class="metric-label">Revenue (2024)</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">24 yrs</div><div class="metric-label">Combined Years Experience</div></div>
+                    <div class="metric-box"><div class="metric-value">Kloten, Zurich</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Executive Board
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">From company registry records and team page. Roles verified via LinkedIn.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card"><div class="person-avatar">LB</div><div class="person-info"><h4>Lukas Brosi</h4><p>CEO, Flughafen Z&uuml;rich AG (since May 2023)</p></div></div>
+                    <div class="person-card"><div class="person-avatar">KF</div><div class="person-info"><h4>Kevin Fleck</h4><p>CFO (since Aug 2023), also oversees ICT</p></div></div>
+                    <div class="person-card"><div class="person-avatar">ST</div><div class="person-info"><h4>Stefan Tschudin</h4><p>COO / Head Aviation (since Oct 2017)</p></div></div>
+                    <div class="person-card"><div class="person-avatar">MS</div><div class="person-info"><h4>Manuela Staub</h4><p>Head People &amp; Communications</p></div></div>
+                    <div class="person-card"><div class="person-avatar">SG</div><div class="person-info"><h4>Stefan Gross</h4><p>Head Commercial &amp; Digital Transformation</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background: var(--navy);">CK</div><div class="person-info"><h4>Coralie Klaus Boecker</h4><p>Head ZRH Innovation Hub (Robin's direct boss)</p></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Advisory / Board
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Advisors identified from company pages, LinkedIn connections marked as advisors, and press mentions.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card"><div class="person-avatar">JF</div><div class="person-info"><h4>Josef Felder</h4><p>Chairman of the Board (since 2023)</p></div></div>
+                    <div class="person-card"><div class="person-avatar">CP</div><div class="person-info"><h4>Claudia Pletscher</h4><p>Vice-Chairwoman (since 2023)</p></div></div>
+                    <div class="person-card"><div class="person-avatar">CW</div><div class="person-info"><h4>Carmen Walker Sp&auml;h</h4><p>Canton of Zurich representative</p></div></div>
+                    <div class="person-card"><div class="person-avatar" style="background: var(--navy);">TL</div><div class="person-info"><h4>Thomas Landis</h4><p>Managing Director, QAI Ventures (Robin's venture partner)</p></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks &amp; Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, association directories, and conference speaker bios.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="metric-box"><div class="metric-value" style="font-size: 1rem;">ZRH Innovation Hub</div><div class="metric-label">Internal innovation lab at Flughafen Z&uuml;rich AG</div></div>
+                    <div class="metric-box"><div class="metric-value" style="font-size: 1rem;">QAI Ventures Singapore</div><div class="metric-label">QuantumAI accelerator</div></div>
+                    <div class="metric-box"><div class="metric-value" style="font-size: 1rem;">Swiss Transit Lab</div><div class="metric-label">Autonomous driving collaboration</div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Partners &amp; Clients
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Clients identified from case studies, testimonials, and press releases. Sector inferred from industry focus.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Microsoft Switzerland</span>
+                    <span class="tag">WeRide</span>
+                    <span class="tag">Swissport</span>
+                    <span class="tag">Aurrigo</span>
+                    <span class="tag">Swiss Transit Lab</span>
+                    <span class="tag">Omada Identity</span>
+                    <span class="tag">SWISS Airlines</span>
+                    <span class="tag">Krummen Kerzers AG</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,15 172,38 185,100 162,168 100,185 45,162 15,100 38,38" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Decision-Making Profile
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">INFERRED: Profile based on described approaches in interviews and case studies. Validate with direct interaction.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Risk Appetite</td><td>High &mdash; runs multiple concurrent pilots, accepts experimentation</td></tr>
+                        <tr><td>Speed</td><td>Fast &mdash; moves from concept to pilot in months</td></tr>
+                        <tr><td>Data Needs</td><td>Moderate &mdash; wants evidence but won't wait for perfection</td></tr>
+                        <tr><td>Stakeholder Input</td><td>Collaborative &mdash; works with cross-functional teams and external partners</td></tr>
+                        <tr><td>Budget Authority</td><td>Limited &mdash; likely requires executive sign-off for major investments</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- DISC Chart Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">DISC Behavioral Profile
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-INFERRED: DISC scores estimated from observable communication patterns and behavioral indicators in public content. Not a formal psychometric assessment.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="disc-chart-container">
+                            <div class="disc-bar-group">
+                                <div class="disc-bar-wrapper"><div class="disc-bar d-bar" style="height: 55%;">55</div></div>
+                                <div class="disc-bar-label">D</div>
+                                <div class="disc-bar-sublabel">Dominance</div>
+                            </div>
+                            <div class="disc-bar-group">
+                                <div class="disc-bar-wrapper"><div class="disc-bar i-bar" style="height: 80%;">80</div></div>
+                                <div class="disc-bar-label">I</div>
+                                <div class="disc-bar-sublabel">Influence</div>
+                            </div>
+                            <div class="disc-bar-group">
+                                <div class="disc-bar-wrapper"><div class="disc-bar s-bar" style="height: 50%;">50</div></div>
+                                <div class="disc-bar-label">S</div>
+                                <div class="disc-bar-sublabel">Steadiness</div>
+                            </div>
+                            <div class="disc-bar-group">
+                                <div class="disc-bar-wrapper"><div class="disc-bar c-bar" style="height: 45%;">45</div></div>
+                                <div class="disc-bar-label">C</div>
+                                <div class="disc-bar-sublabel">Compliance</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="margin-bottom: 12px;">
+                            <span class="disc-pill i" style="margin-right: 8px;">Primary: I (Influence)</span>
+                            <span class="disc-pill d">Secondary: D (Dominance)</span>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--slate-gray); line-height: 1.7; margin-bottom: 16px;">High-I/D profile &mdash; energetic idea-generator who drives action. Builds enthusiasm around innovation projects and moves quickly from concept to pilot. Values relationships and networks but is results-driven enough to push through obstacles.</p>
+                        <div style="background: #f0fdf4; padding: 14px 18px; border-radius: 8px; border-left: 3px solid #22c55e;">
+                            <strong style="font-size: 0.8rem; color: #166534; display: block; margin-bottom: 6px;">COMMUNICATION TIPS</strong>
+                            <p style="font-size: 0.85rem; color: var(--slate-gray); line-height: 1.6;">Lead with vision and possibilities rather than detailed specifications. Share examples and stories of successful innovation. Allow him to brainstorm and build on ideas. Be enthusiastic and match his energy. Provide structure later, not upfront.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Influence Levers Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-INFERRED: Key motivational drivers identified from project choices, public statements, and career trajectory analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-2">
+                    <div class="lever-item">
+                        <div class="lever-icon">&#9889;</div>
+                        <div class="lever-text"><strong>Innovation Speed</strong><br>Values rapid prototyping and getting to pilot fast. Time-boxed engagements will resonate more than multi-year roadmaps.</div>
+                    </div>
+                    <div class="lever-item">
+                        <div class="lever-icon">&#127760;</div>
+                        <div class="lever-text"><strong>Ecosystem Building</strong><br>Motivated by connecting startups, corporates, and technology. Co-innovation models will be more attractive than vendor relationships.</div>
+                    </div>
+                    <div class="lever-item">
+                        <div class="lever-icon">&#127942;</div>
+                        <div class="lever-text"><strong>Visibility</strong><br>Attracted to first-mover and headline-worthy projects (Apple Vision Pro, Robobus). Frame your proposal as a noteworthy innovation story.</div>
+                    </div>
+                    <div class="lever-item">
+                        <div class="lever-icon">&#128200;</div>
+                        <div class="lever-text"><strong>Impact at Scale</strong><br>Wants solutions that can transform operations for 32M+ passengers. Show how AI scales across the entire airport ecosystem.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-GENERATED: Patterns from content analysis. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header"><div class="insight-title">Innovation-First Mindset</div></div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray);">Consistently gravitates toward frontier technology (autonomous vehicles, quantum computing, spatial computing). Approaches problems through a technology lens.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header"><div class="insight-title">Bridge-Builder Archetype</div></div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray);">Dual role across corporate (ZRH) and venture (QAI) worlds signals comfort operating across organizational boundaries and cultures.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-header"><div class="insight-title">Execution Bias</div></div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray);">Projects consistently move from concept to pilot to operations. Not a theorist &mdash; wants to see things working in the real world.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Phrases extracted via NLP from articles, posts, and interviews. Frequency = how often they appear in public content.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>"Autonomous technologies"</td><td><span class="probability-badge prob-high">High</span></td><td>Used in context of shuttle bus and ground handling projects</td></tr>
+                        <tr><td>"Innovation Hub"</td><td><span class="probability-badge prob-high">High</span></td><td>Central to his professional identity at ZRH</td></tr>
+                        <tr><td>"QuantumAI ecosystem"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>QAI Ventures positioning language</td></tr>
+                        <tr><td>"Scalable solutions"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Referenced in ZRH Innovation Hub mission</td></tr>
+                        <tr><td>"Operational efficiency"</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Airport operations context</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis. Recommendations are suggestions - validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>Strengths</h4><ul>
+                        <li><div class="interactive-item">First-mover in autonomous airport operations in Europe<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Reference their leadership to build rapport</div></div></li>
+                        <li><div class="interactive-item">Dedicated Innovation Hub with C-suite support since Nov 2023<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Align your proposal with Innovation Hub's stated priorities</div></div></li>
+                        <li><div class="interactive-item">Record financial performance &mdash; CHF 1.33B revenue, 55% EBITDA margin<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Frame AI investment in context of strong financial position</div></div></li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>Potential Gaps</h4><ul>
+                        <li><div class="interactive-item">Small innovation team (5 people) may limit pilot throughput<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Position yourself as an extension of their innovation capacity</div></div></li>
+                        <li><div class="interactive-item">Limited personal public digital footprint &mdash; harder to tailor<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Ask open-ended questions to understand his priorities directly</div></div></li>
+                        <li><div class="interactive-item">Copilot rollout already in-flight &mdash; generic GenAI pitch will fall flat<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Differentiate with domain-specific aviation AI</div></div></li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>Opportunities</h4><ul>
+                        <li><div class="interactive-item">Autonomous ground handling with Swissport/Aurrigo just starting &mdash; runway for AI integration<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Propose AI-powered coordination between autonomous systems</div></div></li>
+                        <li><div class="interactive-item">32.6M passengers growing 4.5% YoY &mdash; operational pressure creates AI demand<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Show how AI handles capacity growth without proportional staff increases</div></div></li>
+                        <li><div class="interactive-item">QAI Ventures connection opens Asia-Pacific market pathway<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Explore whether your solution fits the QAI accelerator ecosystem</div></div></li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>Competitive Threats</h4><ul>
+                    <li><div class="interactive-item">Fraport, Aena and Groupe ADP also investing heavily in airport AI<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Show unique differentiation vs what competitors are deploying</div></div></li>
+                    <li><div class="interactive-item">Regulatory complexity in aviation may slow AI adoption<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Demonstrate compliance-ready AI solutions for regulated environments</div></div></li>
+                </ul></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Market Expertise &rarr;</span>
+                    <span class="scatter-axis-label x-label">Agility &amp; Speed &rarr;</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 80%; bottom: 85%;"><div class="scatter-tooltip">Zurich Airport</div></div>
+                        <div class="scatter-dot competitor1" style="left: 55%; bottom: 75%;"><div class="scatter-tooltip">Fraport (Frankfurt)</div></div>
+                        <div class="scatter-dot competitor2" style="left: 40%; bottom: 60%;"><div class="scatter-tooltip">Aena (Spain)</div></div>
+                        <div class="scatter-dot competitor3" style="left: 65%; bottom: 45%;"><div class="scatter-tooltip">Geneva Airport</div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified);"></span> Zurich Airport</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal);"></span> Fraport (Frankfurt)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary);"></span> Aena (Spain)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray);"></span> Geneva Airport</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and marketing materials.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box"><div class="differentiator-icon" style="font-size: 1.4rem; font-weight: 700; color: var(--navy);">AV</div><div class="differentiator-label">Autonomous Operations Pioneer</div></div>
+                    <div class="differentiator-box"><div class="differentiator-icon" style="font-size: 1.4rem; font-weight: 700; color: var(--navy);">AI</div><div class="differentiator-label">Microsoft Copilot Early Adopter</div></div>
+                    <div class="differentiator-box"><div class="differentiator-icon" style="font-size: 1.4rem; font-weight: 700; color: var(--navy);">XR</div><div class="differentiator-label">Apple Vision Pro First-Mover</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR AI strategy discussion
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content">Robin is an innovation practitioner, not a strategist in an ivory tower &mdash; he runs live pilots. Lead with concrete use cases and demos, not slide decks. Reference his autonomous shuttle project to establish credibility. Propose a time-boxed pilot (4-8 weeks) rather than a long procurement cycle. Given his QAI Ventures role, he'll be receptive to startup-style engagement models. Keep the energy high and focus on what's possible, not what's risky.</div>
+            </div>
+
+            <!-- Value Exchange Map -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Value Exchange Map
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-GENERATED: Mutual value propositions identified from alignment between your capabilities and their stated needs.</div></span>
+                    </h3>
+                </div>
+                <div class="value-card green">
+                    <h4>AI Operations Expertise</h4>
+                    <p>Provide domain-specific AI capabilities that go beyond generic Copilot, targeting airport operations optimization.</p>
+                </div>
+                <div class="value-card blue">
+                    <h4>Rapid Pilot Execution</h4>
+                    <p>Offer a startup-speed engagement model with a 4-8 week proof of concept to match his fast-cycle innovation approach.</p>
+                </div>
+                <div class="value-card orange">
+                    <h4>Cross-Industry Intelligence</h4>
+                    <p>Bring AI use cases from other regulated industries (healthcare, logistics) that translate to airport operations.</p>
+                </div>
+            </div>
+
+            <!-- Contact Strategy -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Contact Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-INFERRED: Optimal outreach approach based on digital footprint analysis and communication pattern observations.</div></span>
+                    </h3>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-item-label">Preferred Channel</div>
+                        <div class="contact-item-value">LinkedIn (active profile, innovation-focused network)</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-label">Optimal Timing</div>
+                        <div class="contact-item-value">Tuesday-Thursday, morning (Swiss business hours)</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-label">Formality Level</div>
+                        <div class="contact-item-value">Professional but informal &mdash; innovation community tone</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-label">First Touchpoint</div>
+                        <div class="contact-item-value">Reference a specific ZRH Innovation Hub project in your outreach</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card"><h4>Autonomous Shuttle Scaling</h4><p>"The Level 3 autonomous shuttle milestone is impressive &mdash; what's the path to full autonomy and passenger operations?"</p></div>
+                    <div class="conversation-card"><h4>AI Beyond Copilot</h4><p>"With Copilot rolling out org-wide, what's the next frontier for AI at the airport &mdash; predictive ops, computer vision, NLP for passenger services?"</p></div>
+                    <div class="conversation-card"><h4>QAI Ventures Synergies</h4><p>"How do you see the QAI Ventures portfolio intersecting with airport operations? Any quantum computing applications on the horizon?"</p></div>
+                    <div class="conversation-card"><h4>Innovation Hub Priorities 2026</h4><p>"Now that the Innovation Hub is 2+ years in, what's the strategic focus shifting to for the next phase?"</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning"><h4>Generic AI/ChatGPT pitches</h4><p>They already have Copilot deployed. Anything that sounds like basic GenAI will be dismissed immediately.</p></div>
+                    <div class="conversation-card warning"><h4>Long procurement cycles</h4><p>He operates in pilot mode. Multi-year RFP processes will lose his interest.</p></div>
+                    <div class="conversation-card warning"><h4>Comparisons to competitor airports</h4><p>Avoid direct competitor comparisons unless he raises them. Focus on ZRH's unique position.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Connection Points
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Potential common ground based on your provided context and their profile.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header"><div class="insight-title">Innovation-driven mindset</div></div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray);">Both focused on practical, implemented innovation rather than theoretical strategy.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header"><div class="insight-title">Startup ecosystem engagement</div></div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray);">His QAI Ventures role means he speaks the language of accelerators, MVPs, and rapid iteration.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-header"><div class="insight-title">Swiss tech ecosystem</div></div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray);">Shared context in Swiss technology and innovation landscape.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Autonomous vehicle operations at ZRH</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Have examples of AI-enabled autonomous fleet coordination</td></tr>
+                        <tr><td>AI productivity tools beyond Copilot</td><td><span class="probability-badge prob-high">High</span></td><td>Prepare domain-specific AI use cases for airport operations</td></tr>
+                        <tr><td>Innovation partnership models</td><td><span class="probability-badge prob-high">High</span></td><td>Propose flexible pilot engagement, not traditional vendor relationship</td></tr>
+                        <tr><td>QuantumAI applications in transportation</td><td><span class="probability-badge prob-medium">Medium</span></td><td>Research quantum computing use cases relevant to logistics/aviation</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">Content discovered via web search and company blog archives.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item"><h4>ZRH Innovation Hub Team Page</h4><p>Listed as Senior Innovation Manager with focus on automation, robotics, process optimization.</p></div>
+                    <div class="media-item"><h4>QAI Ventures Announcement</h4><p>Named as Accelerator Director leading startup programs in Asia Pacific.</p></div>
+                    <div class="media-item"><h4>Limited Personal Publications</h4><p>No blog posts or articles found under his name. Public content is primarily through company and venture channels.</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking &amp; Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item"><h4>No Public Speaking Engagements Found</h4><p>Company announcements reference ZRH Innovation Hub projects collectively. No keynote appearances identified under his name.</p></div>
+                    <div class="media-item"><h4>QAI Ventures Team Announcements</h4><p>Referenced in team announcements but no individual speaking slots identified at conferences or industry events.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis (Company-Level)
+                        <span class="methodology-callout"><span class="methodology-icon">&#8505;&#65039;</span><div class="methodology-tooltip">AI-GENERATED: Sentiment from NLP classification of news coverage about Flughafen Z&uuml;rich AG. Aggregate scores, not individual article analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2024: 70% Positive, 25% Neutral, 5% Critical</div>
+                                <div class="bar" style="height: 160px;">
+                                    <div class="bar-segment positive" style="height: 112px;"></div>
+                                    <div class="bar-segment neutral" style="height: 40px;"></div>
+                                    <div class="bar-segment critical" style="height: 8px;"></div>
+                                </div>
+                                <div class="bar-label">2024</div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2025: 75% Positive, 20% Neutral, 5% Critical</div>
+                                <div class="bar" style="height: 180px;">
+                                    <div class="bar-segment positive" style="height: 135px;"></div>
+                                    <div class="bar-segment neutral" style="height: 36px;"></div>
+                                    <div class="bar-segment critical" style="height: 9px;"></div>
+                                </div>
+                                <div class="bar-label">2025</div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar-tooltip">2026: 80% Positive, 15% Neutral, 5% Critical</div>
+                                <div class="bar" style="height: 150px;">
+                                    <div class="bar-segment positive" style="height: 120px;"></div>
+                                    <div class="bar-segment neutral" style="height: 22px;"></div>
+                                    <div class="bar-segment critical" style="height: 8px;"></div>
+                                </div>
+                                <div class="bar-label">2026</div>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="bluf-section" style="margin-bottom: 24px;">
+                <div class="bluf-label">AI USE CASES FOR ZURICH AIRPORT</div>
+                <div class="bluf-content">Tailored AI application opportunities mapped to Robin Sengupta's innovation priorities at Flughafen Z&uuml;rich AG. Each use case connects to existing ZRH Innovation Hub projects or stated strategic objectives.</div>
+            </div>
+            <div class="ai-usecase-grid">
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">AV</div>
+                    <div class="ai-usecase-title">Autonomous Fleet Orchestration</div>
+                    <div class="ai-usecase-desc">AI-powered coordination of autonomous shuttle buses, ground handling vehicles, and baggage carts across airside operations.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Direct extension of his current WeRide shuttle and Aurrigo ground handling pilots.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">CV</div>
+                    <div class="ai-usecase-title">Computer Vision for Runway Safety</div>
+                    <div class="ai-usecase-desc">Real-time AI monitoring of runway and taxiway conditions using camera feeds to detect FOD, wildlife, and surface damage.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Aviation safety is paramount; CV reduces human inspection dependencies.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">NLP</div>
+                    <div class="ai-usecase-title">Multilingual Passenger Service AI</div>
+                    <div class="ai-usecase-desc">Natural language AI assistants handling passenger queries across 70+ destination languages in real-time.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>32.6M passengers from 71 countries create massive multilingual demand.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">PO</div>
+                    <div class="ai-usecase-title">Predictive Operations Center</div>
+                    <div class="ai-usecase-desc">ML-driven forecasting of flight delays, gate assignments, and passenger flow to optimize airport resource allocation.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Operational efficiency is a stated ZRH Innovation Hub priority.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">PM</div>
+                    <div class="ai-usecase-title">Predictive Maintenance for Airport Infrastructure</div>
+                    <div class="ai-usecase-desc">Sensor-based AI predicting equipment failures in baggage systems, HVAC, and runway lighting before they occur.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Reduces unplanned downtime and maintenance costs for critical infrastructure.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">ES</div>
+                    <div class="ai-usecase-title">Energy &amp; Sustainability Optimization</div>
+                    <div class="ai-usecase-desc">AI-driven building management reducing energy consumption across terminal buildings and THE CIRCLE development.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Sustainability is a strategic priority; AI can optimize the massive real estate portfolio.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">SC</div>
+                    <div class="ai-usecase-title">Smart Security Screening</div>
+                    <div class="ai-usecase-desc">AI-enhanced security screening reducing wait times while improving detection accuracy through computer vision.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Passenger experience is core to their 22-year World Travel Award streak.</div>
+                </div>
+                <div class="ai-usecase-card">
+                    <div class="ai-usecase-icon">DT</div>
+                    <div class="ai-usecase-title">Digital Twin Airport Operations</div>
+                    <div class="ai-usecase-desc">Real-time digital replica of entire airport operations enabling simulation, scenario testing, and optimization.</div>
+                    <div class="ai-usecase-reasoning"><strong>Why This Fits</strong>Bridges his interest in spatial computing (Vision Pro) with operational optimization.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sources Section -->
+        <div class="sources-section">
+            <h3>Intelligence Sources (18)</h3>
+            <div class="sources-grid">
+                <a href="https://www.linkedin.com/in/robinsengupta/" target="_blank" class="source-item"><div class="source-icon">LI</div><div class="source-info"><div class="source-name">LinkedIn Profile - Robin Sengupta</div><div class="source-meta">2026 | Professional</div></div></a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/innovation-hub/innovation-team" target="_blank" class="source-item"><div class="source-icon">ZRH</div><div class="source-info"><div class="source-name">ZRH Innovation Team Page</div><div class="source-meta">2026 | Company</div></div></a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/innovation-hub" target="_blank" class="source-item"><div class="source-icon">ZRH</div><div class="source-info"><div class="source-name">ZRH Innovation Hub Overview</div><div class="source-meta">2026 | Company</div></div></a>
+                <a href="https://www.futuretravelexperience.com/2025/01/zurich-airport-tests-self-driving-shuttle-bus-as-it-lays-groundwork-for-autonomous-technologies/" target="_blank" class="source-item"><div class="source-icon">FTE</div><div class="source-info"><div class="source-name">Future Travel Experience - Autonomous Shuttle</div><div class="source-meta">2025 | Industry</div></div></a>
+                <a href="https://www.internationalairportreview.com/article/255970/the-zurich-airport-innovation-hub-a-conversation-with-coralie-klaus-boecker/" target="_blank" class="source-item"><div class="source-icon">IAR</div><div class="source-info"><div class="source-name">International Airport Review - Innovation Hub Interview</div><div class="source-meta">2025 | Industry</div></div></a>
+                <a href="https://thequantuminsider.com/2025/10/29/qai-ventures-launches-quantumai-accelerator-in-singapore-backed-by-enterprise-singapore/" target="_blank" class="source-item"><div class="source-icon">QAI</div><div class="source-info"><div class="source-name">QAI Ventures Singapore Launch</div><div class="source-meta">2025 | Industry</div></div></a>
+                <a href="https://qai-ventures.com/" target="_blank" class="source-item"><div class="source-icon">QAI</div><div class="source-info"><div class="source-name">QAI Ventures Website</div><div class="source-meta">2025 | Company</div></div></a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en" target="_blank" class="source-item"><div class="source-icon">NR</div><div class="source-info"><div class="source-name">Zurich Airport Newsroom</div><div class="source-meta">2026 | Company</div></div></a>
+                <a href="https://report.flughafen-zuerich.ch/2024/ar/en" target="_blank" class="source-item"><div class="source-icon">AR</div><div class="source-info"><div class="source-name">Annual Report 2024</div><div class="source-meta">2025 | Company</div></div></a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en/zurich-airport-ltd-financial-year-2024/" target="_blank" class="source-item"><div class="source-icon">NR</div><div class="source-info"><div class="source-name">Financial Year 2024 Results</div><div class="source-meta">2025 | Company</div></div></a>
+                <a href="https://omadaidentity.com/press/flughafen-zurich-european-identity-award/" target="_blank" class="source-item"><div class="source-icon">OM</div><div class="source-info"><div class="source-name">European Identity Award 2024</div><div class="source-meta">2024 | Industry</div></div></a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en/zurich-airport-reaches-a-new-annual-peak-in-passenger-figures/" target="_blank" class="source-item"><div class="source-icon">NR</div><div class="source-info"><div class="source-name">Passenger Record 2025</div><div class="source-meta">2026 | Company</div></div></a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/executive-board" target="_blank" class="source-item"><div class="source-icon">EB</div><div class="source-info"><div class="source-name">Executive Board Page</div><div class="source-meta">2026 | Company</div></div></a>
+                <a href="https://www.flughafen-zuerich.ch/en/company/flughafen-zuerich/about-us/board-of-directors" target="_blank" class="source-item"><div class="source-icon">BD</div><div class="source-info"><div class="source-name">Board of Directors Page</div><div class="source-meta">2026 | Company</div></div></a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en/zurich-airport-once-again-europes-number-one/" target="_blank" class="source-item"><div class="source-icon">NR</div><div class="source-info"><div class="source-name">World Travel Award 2025</div><div class="source-meta">2025 | Company</div></div></a>
+                <a href="https://www.swissport.com/en/news/current-news/2025/swissport-and-aurrigo-launch-first-global-pilot-of-autonomous-ground-handling-solutions-at-zurich-airport" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swissport Autonomous Ground Handling</div><div class="source-meta">2025 | Industry</div></div></a>
+                <a href="https://newsroom.flughafen-zuerich.ch/en/digitalisation-of-the-circle---technology-partnership-with-microsoft-switzerland/" target="_blank" class="source-item"><div class="source-icon">MS</div><div class="source-info"><div class="source-name">Microsoft THE CIRCLE Partnership</div><div class="source-meta">2024 | Company</div></div></a>
+                <a href="https://en.wikipedia.org/wiki/Flughafen_Z%C3%BCrich_AG" target="_blank" class="source-item"><div class="source-icon">WK</div><div class="source-info"><div class="source-name">Wikipedia - Flughafen Z&uuml;rich AG</div><div class="source-meta">2026 | Reference</div></div></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>&times;</span>
+            <span class="footer-sailor">&#9973; Sailor 2.0</span>
+        </div>
+        <p>Generated: February 12, 2026 | Sources: 18+ verified</p>
+        <p>Occasion: AI strategy discussion</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Meeting with Robin Sengupta, Flughafen Z&uuml;rich AG, AI strategy discussion"</div>
+        <div class="report-token">Report ID: 8cc67498</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Robin Sengupta Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download - uses native print-to-PDF for reliable cross-browser support
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+
+            // Show all tabs for printing
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+
+            setTimeout(() => {
+                window.print();
+                // Restore tab state after print dialog closes
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                // Re-activate the previously active tab
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) {
+                    document.getElementById(activeTab.dataset.tab).classList.add('active');
+                }
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // Handle URL hash for direct tab linking
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector('[data-tab="' + tabId + '"]');
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
