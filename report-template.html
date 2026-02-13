@@ -20,7 +20,16 @@
         .tab-content.active { animation: fadeIn 0.3s ease-out; }
         .card { animation: fadeIn 0.4s ease-out; }
         .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
-        @media print { .tabs-container, .share-button, .mobile-nav, .methodology-callout { display: none !important; } .tab-content { display: block !important; } }
+        @media print {
+            .tabs-container, .share-button, .download-button, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
 
         /* Header with real logo */
         .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
@@ -49,6 +58,26 @@
         }
         .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
         .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary - McKinsey-style components */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .exec-opener { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0fdf4; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+        .exec-opener-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
 
         /* Share & Download Buttons */
         .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
@@ -305,61 +334,124 @@
     </div>
 
     <div class="content">
-        <!-- Tab 1: Executive Summary -->
+        <!-- Tab 1: Executive Summary (McKinsey Senior Partner Layout) -->
         <div id="executive-summary" class="tab-content active">
+            <!-- Row 1: BLUF - crisp, 2-3 sentences max -->
             <div class="bluf-section">
-                <div class="bluf-label">🎯 BOTTOM LINE UP FRONT</div>
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
                 <div class="bluf-content">{{BLUF_CONTENT}}</div>
             </div>
 
-            <div class="grid-2">
+            <!-- Row 2: Three key cards - Fit Score | DISC Quick Read | Key Metrics -->
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How assessed
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring {{FIT_SCORE_CLASS}}" style="--score: {{MEETING_FIT_SCORE}};">
+                        <div class="fit-score-inner">{{MEETING_FIT_SCORE}}</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;">{{MEETING_FIT_RATIONALE}}</p>
+                </div>
+
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Key Intelligence Summary
+                        <h3 class="card-title">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How inferred
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill {{DISC_PRIMARY_CLASS}}">{{DISC_PRIMARY_TYPE}}</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">{{DISC_PRIMARY_LABEL}}</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);">{{DISC_COMMUNICATION_TIPS}}</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Facts
                             <span class="methodology-callout">
                                 <span class="methodology-icon">ℹ️</span> How generated
-                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and news articles using NLP. Years of experience calculated from career timeline. Project counts from case studies when available.</div>
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
                             </span>
                         </h3>
                         <span class="badge badge-high-confidence">{{CONFIDENCE_LEVEL}}</span>
                     </div>
                     <div class="grid-2">
                         <div class="metric-box"><div class="metric-value">{{YEARS_EXPERIENCE}}</div><div class="metric-label">Years Experience</div></div>
-                        <div class="metric-box"><div class="metric-value">{{PROJECTS_COUNT}}</div><div class="metric-label">Projects Delivered</div></div>
-                        <div class="metric-box"><div class="metric-value">{{SPECIALTY_COUNT}}</div><div class="metric-label">{{SPECIALTY_LABEL}}</div></div>
-                        <div class="metric-box"><div class="metric-value highlight">{{KEY_METRIC}}</div><div class="metric-label">{{KEY_METRIC_LABEL}}</div></div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Source Confidence Distribution
-                            <span class="methodology-callout">
-                                <span class="methodology-icon">ℹ️</span> How calculated
-                                <div class="methodology-tooltip">Primary = official sources (company sites, registries). Secondary = reputable news/industry sources. Inferred = cross-referenced patterns. Speculative = limited single-source data.</div>
-                            </span>
-                        </h3>
-                    </div>
-                    <div class="pie-chart"></div>
-                    <div class="pie-legend">
-                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Primary ({{PRIMARY_PCT}})</span>
-                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Secondary ({{SECONDARY_PCT}})</span>
-                        <span class="legend-item"><span class="legend-color" style="background: var(--yellow-inferred)"></span> Inferred ({{INFERRED_PCT}})</span>
-                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Speculative ({{SPECULATIVE_PCT}})</span>
+                        <div class="metric-box"><div class="metric-value">{{KEY_METRIC}}</div><div class="metric-label">{{KEY_METRIC_LABEL}}</div></div>
                     </div>
                 </div>
             </div>
 
+            <!-- Row 3: Two columns - Strategic Insights | Conversation Openers -->
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> AI-generated
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    {{STRATEGIC_INSIGHTS}}
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How derived
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    {{EXEC_CONVERSATION_OPENERS}}
+                </div>
+            </div>
+
+            <!-- Row 4: Anticipated Topics (compact table) -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">🧠 Deep Analysis Insights
+                    <h3 class="card-title">Anticipated Discussion Topics
                         <span class="methodology-callout">
-                            <span class="methodology-icon">ℹ️</span> AI-generated
-                            <div class="methodology-tooltip">Insights synthesized from topic modeling across all collected content. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            <span class="methodology-icon">ℹ️</span> How predicted
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
                         </span>
                     </h3>
                 </div>
-                {{DEEP_INSIGHTS}}
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Your Angle</th></tr></thead>
+                    <tbody>{{EXEC_ANTICIPATED_TOPICS}}</tbody>
+                </table>
+            </div>
+
+            <!-- Row 5: Source confidence - compact inline bar -->
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence ({{SOURCE_COUNT}} sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: {{PRIMARY_PCT}}; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: {{SECONDARY_PCT}}; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: {{INFERRED_PCT}}; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: {{SPECULATIVE_PCT}}; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary {{PRIMARY_PCT}}</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary {{SECONDARY_PCT}}</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred {{INFERRED_PCT}}</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative {{SPECULATIVE_PCT}}</span>
+                </div>
             </div>
         </div>
 
@@ -673,8 +765,8 @@
     <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
     <div class="share-toast" id="downloadToast">Generating PDF...</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
+        // Tab navigation
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 const tabId = tab.dataset.tab;
@@ -684,6 +776,8 @@
                 if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
+
+        // Share functionality
         function shareProfile() {
             const url = window.location.href;
             if (navigator.share) {
@@ -697,104 +791,32 @@
             }
         }
 
-        async function downloadPDF() {
+        // PDF Download - uses native print-to-PDF for reliable cross-browser support
+        function downloadPDF() {
             const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
             toast.classList.add('show');
 
-            const pdfContent = document.createElement('div');
-            pdfContent.style.width = '1000px';
-            pdfContent.style.background = 'white';
-            pdfContent.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            // Show all tabs for printing
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
 
-            const styles = document.querySelector('style').cloneNode(true);
-
-            const titleSlide = document.createElement('div');
-            titleSlide.innerHTML = `
-                <div style="height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #1e3a5f 0%, #36454f 100%); color: white; padding: 60px;">
-                    <div style="margin-bottom: 40px;">
-                        <span style="font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sailor 2.0</span>
-                    </div>
-                    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-align: center;">{{TARGET_NAME}}</h1>
-                    <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">{{TARGET_TITLE}} | {{TARGET_COMPANY}}</p>
-                    <p style="font-size: 1rem; opacity: 0.7;">Meeting Intelligence Profile</p>
-                    <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 40px;">Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                </div>
-                <div style="page-break-after: always;"></div>
-            `;
-            pdfContent.appendChild(titleSlide);
-
-            const tabNames = {
-                'executive-summary': 'Executive Summary',
-                'subject-profile': 'Subject Profile',
-                'network-map': 'Network Map',
-                'behavioral-analysis': 'Behavioral Analysis',
-                'strategic-position': 'Strategic Position',
-                'engagement-playbook': 'Engagement Playbook',
-                'media-footprint': 'Media Footprint',
-                'ai-use-cases': 'AI Use Cases'
-            };
-
-            const tabs = ['executive-summary', 'subject-profile', 'network-map', 'behavioral-analysis', 'strategic-position', 'engagement-playbook', 'media-footprint', 'ai-use-cases'];
-
-            tabs.forEach((tabId, index) => {
-                const tabContent = document.getElementById(tabId);
-                if (tabContent) {
-                    const slideWrapper = document.createElement('div');
-                    slideWrapper.style.padding = '40px';
-                    slideWrapper.style.background = '#f5f5f5';
-                    slideWrapper.style.minHeight = '700px';
-
-                    const slideHeader = document.createElement('div');
-                    slideHeader.innerHTML = `
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #1e3a5f;">
-                            <h2 style="font-size: 1.8rem; font-weight: 700; color: #1e3a5f;">${tabNames[tabId]}</h2>
-                            <span style="font-size: 0.9rem; color: #708090;">Sailor 2.0 | {{TARGET_NAME}}</span>
-                        </div>
-                    `;
-                    slideWrapper.appendChild(slideHeader);
-
-                    const contentClone = tabContent.cloneNode(true);
-                    contentClone.style.display = 'block';
-                    contentClone.classList.add('active');
-                    contentClone.querySelectorAll('.methodology-tooltip, .use-case-reasoning, .bar-tooltip, .scatter-tooltip, .item-recommendation').forEach(el => el.remove());
-                    slideWrapper.appendChild(contentClone);
-
-                    if (index < tabs.length - 1) {
-                        const pageBreak = document.createElement('div');
-                        pageBreak.style.pageBreakAfter = 'always';
-                        slideWrapper.appendChild(pageBreak);
-                    }
-
-                    pdfContent.appendChild(slideWrapper);
+            setTimeout(() => {
+                window.print();
+                // Restore tab state after print dialog closes
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                // Re-activate the previously active tab
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) {
+                    document.getElementById(activeTab.dataset.tab).classList.add('active');
                 }
-            });
-
-            pdfContent.insertBefore(styles, pdfContent.firstChild);
-            pdfContent.style.position = 'absolute';
-            pdfContent.style.left = '-9999px';
-            document.body.appendChild(pdfContent);
-
-            const opt = {
-                margin: 0,
-                filename: 'sailor-{{TARGET_NAME_SLUG}}-profile.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, logging: false },
-                jsPDF: { unit: 'px', format: [1000, 750], orientation: 'landscape' },
-                pagebreak: { mode: ['css', 'legacy'], after: '.page-break' }
-            };
-
-            try {
-                await html2pdf().set(opt).from(pdfContent).save();
-                toast.textContent = 'PDF downloaded!';
-                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
-            } catch (error) {
-                console.error('PDF generation failed:', error);
-                toast.textContent = 'PDF generation failed';
-                setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Generating PDF...'; }, 2000);
-            }
-            document.body.removeChild(pdfContent);
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
         }
 
+        // Handle URL hash for direct tab linking
         if (window.location.hash) {
             const tabId = window.location.hash.substring(1);
             const tab = document.querySelector(`[data-tab="${tabId}"]`);
