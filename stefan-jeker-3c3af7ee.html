@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Stefan Jeker">
+    <meta property="og:title" content="Sailor 2.0 - Stefan Jeker Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Stefan Jeker at Raiffeisen Schweiz">
+    <meta name="report-token" content="3c3af7ee">
+    <title>Sailor 2.0 - Stefan Jeker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .share-button, .download-button, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+
+        /* Strategy Banner */
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+
+        /* AI Use Cases Grid */
+        .use-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .use-case-card { background: #f8f9fa; border-radius: 8px; padding: 20px; border-left: 4px solid var(--blue-secondary); }
+        .use-case-card h4 { font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-card p { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .use-case-metric { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0; border-top: 1px solid #eee; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Chart Legend */
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Media Items */
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Profile Photo */
+        .profile-photo { width: 120px; height: 120px; border-radius: 8px; background: linear-gradient(135deg, #3b82f6, #1e3a5f); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700; margin-bottom: 16px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { 
+            .header { padding: 24px; } 
+            .header h1 { font-size: 2rem; } 
+            .content { padding: 24px; } 
+            .grid-4 { grid-template-columns: repeat(2, 1fr); } 
+        }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } 
+            .header h1 { font-size: 1.6rem; } 
+            .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } 
+            .mobile-nav { display: block; } 
+            .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } 
+            .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } 
+            .share-button { bottom: 70px; } 
+            .sources-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) { 
+            .header h1 { font-size: 1.4rem; } 
+            .badge-score { font-size: 2rem; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <h1>Stefan Jeker</h1>
+        <div class="header-subtitle">Head of GenAI & Head Innovation Management | Raiffeisen Schweiz</div>
+        <div class="header-meta">
+            <span>📍 St. Gallen, Switzerland</span>
+            <span>🎓 Bankausbildung, MIT Program</span>
+            <span>🔗 raiffeisen.ch</span>
+            <span>🏆 HarbourClub, F10 Fintech Incubator</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">20+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content"><strong>Stefan Jeker</strong> is the <strong>Head of Innovation Management & Digital Transformation</strong> at <strong>Raiffeisen Schweiz</strong>, Switzerland's <strong>3rd largest banking group</strong> (3.6M clients, 824 branches). A former <strong>startup co-founder</strong> turned corporate innovator, he built the <strong>RAI Lab</strong> from scratch—reviewing <strong>200+ startups</strong> and running pilot projects across fintech, proptech, and regtech. He now leads Raiffeisen's <strong>GenAI strategy</strong>, having trained <strong>300 AI Champions</strong>, deployed <strong>Microsoft Copilot</strong> across the organization, and activated <strong>4,000+ employees</strong> through multilingual promptathons. Stefan is a <strong>HWZ lecturer</strong>, <strong>HarbourClub member</strong>, and a vocal advocate for balancing <strong>technological innovation with human-centric banking</strong>. For a conversation about <strong>GenAI topics, use cases, and strategy</strong>, he is the ideal counterpart—he owns the mandate, has proven execution capability, and is actively scaling.</div>
+            </div>
+
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring high" style="--score: 10;">
+                        <div class="fit-score-inner">10</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;">Stefan Jeker is THE decision-maker for GenAI at Raiffeisen Schweiz. He leads both innovation management and digital transformation, with a specific mandate for GenAI strategy. He has already deployed GenAI at scale (300 AI champions, 4000+ employees activated) and is actively seeking next-level use cases. Perfect alignment with a GenAI strategy and use case discussion.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill i">I</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Influencer + Dominance</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);">Be enthusiastic and visionary in your approach. Lead with big-picture opportunities and stories of success, not spreadsheets. Allow time for relationship building and exchange of ideas. Show energy and passion for the topic - Stefan responds to people who share his excitement for innovation. Keep the conversation dynamic and future-oriented.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">7+</div><div class="metric-label">Years at Raiffeisen</div></div>
+                        <div class="metric-box"><div class="metric-value">4000+</div><div class="metric-label">Employees Activated</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">GENAI MATURITY & MOMENTUM</div>
+                        <div class="exec-insight-text">Stefan has moved Raiffeisen from GenAI pilot (Copilot deployment, March 2024) to scaled enablement (300 AI Champions, 4000+ employees, 50% adoption increase). Next phase: value-creating use cases and RAG-powered solutions.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">INNOVATION WITHIN SYSTEMS</div>
+                        <div class="exec-insight-text">Stefan understands corporate "immune systems" that treat innovation as threats. He advocates for simple processes, risk culture, and courage to experiment—balancing speed with the cooperative banking model's values.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">HUMAN + TECHNOLOGY BALANCE</div>
+                        <div class="exec-insight-text">Despite enthusiasm for AI progress, Stefan explicitly acknowledges limits. Human intuition and experience remain irreplaceable—he's not a techno-utopian but a pragmatic innovator.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>🚀 GenAI Deployment Scale</h4>
+                        <p>"Your 50% adoption increase with Copilot Chat is impressive for an organization of 10,000. What's driving adoption now, and where do you see the next bottleneck?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>🎯 Use Case Evolution</h4>
+                        <p>"You've trained 300 AI Champions and run 6 promptathons. Are you seeing patterns in which use cases deliver value vs. novelty? What's next beyond adoption?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>🏛️ RAG & Knowledge Management</h4>
+                        <p>"Many banks are exploring RAG for internal knowledge. At Raiffeisen's scale (824 branches, 3.6M customers), how are you thinking about RAG for customer-facing vs. internal workflows?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>💡 Swiss Banking Advantage</h4>
+                        <p>"Raiffeisen recognized as top 3 Swiss banks in GenAI visibility. How do you balance competitive differentiation with the cooperative model's transparency values?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span>
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Your Angle</th></tr></thead>
+                    <tbody>
+                        <tr><td>GenAI Strategy & Roadmap</td><td><span class="probability-badge prob-very-high">95%</span></td><td>Ask about scaling GenAI value creation beyond enablement</td></tr>
+                        <tr><td>Use Case Identification & Prioritization</td><td><span class="probability-badge prob-very-high">90%</span></td><td>Share use case frameworks or industry benchmarks from other banks</td></tr>
+                        <tr><td>AI Governance & Risk Management</td><td><span class="probability-badge prob-very-high">85%</span></td><td>FINMA compliance, audit trail, GenAI governance models</td></tr>
+                        <tr><td>Customer-Facing AI Applications</td><td><span class="probability-badge prob-high">80%</span></td><td>Chatbots, advisory, personalization within regulatory bounds</td></tr>
+                        <tr><td>RAG & Knowledge Systems</td><td><span class="probability-badge prob-high">75%</span></td><td>Implementation patterns, data governance, measurement</td></tr>
+                        <tr><td>Internal Process Automation</td><td><span class="probability-badge prob-high">75%</span></td><td>Document processing, branch operations, back office</td></tr>
+                        <tr><td>Talent & Change Management</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>Upskilling 10,000 employees, change resistance, leadership buy-in</td></tr>
+                        <tr><td>Swiss Banking Competitive Position</td><td><span class="probability-badge prob-medium-high">65%</span></td><td>vs. UBS, ZKB, PostFinance positioning in GenAI</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (20 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 30%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 35%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 25%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 30%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 35%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 25%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2017–Present</div>
+                        <div class="timeline-content"><strong>Head Innovation Management & Digital Transformation</strong>, Raiffeisen Schweiz. Built RAI Lab from scratch (200+ startups reviewed, 5+ pilots). Now leading GenAI strategy with 300 AI Champions trained, 50% Copilot adoption, 4000+ employees activated.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2017–Present (Earlier)</div>
+                        <div class="timeline-content"><strong>Head of Electronic Channels</strong>, Raiffeisen Schweiz. Responsible for all digital offerings on IT side before transition to innovation leadership.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Post-Bankausbildung</div>
+                        <div class="timeline-content"><strong>Co-founder, International Startups</strong>. Built two international startups in fintech/innovation space before returning to corporate innovation.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Ongoing</div>
+                        <div class="timeline-content"><strong>Lecturer, HWZ Hochschule für Wirtschaft Zürich</strong>. Teaching Corporate Innovation & Digital Leadership to MBA students.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Early Career</div>
+                        <div class="timeline-content"><strong>Banking Education</strong> (Bankausbildung). Traditional Swiss banking training before entrepreneurial ventures.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recent Activity (Last 90 Days)
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from press releases, conference announcements, and company communications.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Q4 2025</div>
+                        <div class="timeline-content"><strong>Leading GenAI Enablement at Scale.</strong> Trained 300 "AI Champions," held promptathons, achieved 50% rise in Microsoft Copilot Chat adoption, activated 4000+ employees through multilingual formats (DE, FR, IT).</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Q4 2025</div>
+                        <div class="timeline-content"><strong>Launched "10 Days of Copilot" Virtual Training Series.</strong> Multilingual, interactive training for employees across Raiffeisen's 824 branches.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Q4 2025</div>
+                        <div class="timeline-content"><strong>Raiffeisen Recognized Top 3 Swiss Banks in GenAI Visibility.</strong> IFZ study (October 2025) places Raiffeisen in elite group with UBS and ZKB.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Oct 2025</div>
+                        <div class="timeline-content"><strong>Presented at DigIT AI & Banken Conference.</strong> Speaking on GenAI strategy and implementation in banking.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Ongoing</div>
+                        <div class="timeline-content"><strong>Internal Prompt Library & Ambassador Program.</strong> Established to scale GenAI knowledge across organization.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Quotes
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Direct quotations from interviews, conference talks, and published content.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">On Innovation Philosophy</div>
+                    <p>"<em>Innovation bedeutet auch einmal nicht dem hellsten Licht zu folgen</em>" (Innovation also means sometimes not following the brightest light)</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">On Corporate Immune Systems</div>
+                    <p>Companies have their own "immune system" that treats new ideas as threats. This must be managed with simple processes, risk culture, and courage to experiment.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">On Decision Speed</div>
+                    <p>Slow decision-making can kill innovation. Need simple processes, risk culture, courage to experiment. Speed + structure is the balance.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">On RAI Lab</div>
+                    <p>"The RAI Lab is <em>eigentlich ein Acceleration-Programm</em>" (essentially an acceleration program for startups and internal innovation)</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">On AI Limits</div>
+                    <p>Despite enthusiasm for technological progress, there are many areas where AI reaches its limits. Human intuition and experience remain irreplaceable.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Generative AI</span>
+                    <span class="tag">Innovation Management</span>
+                    <span class="tag">Digital Transformation</span>
+                    <span class="tag">Banking & Finance</span>
+                    <span class="tag">Fintech Ecosystem</span>
+                    <span class="tag">Corporate Innovation</span>
+                    <span class="tag">Startup Acceleration</span>
+                    <span class="tag">Regtech</span>
+                    <span class="tag">Proptech</span>
+                    <span class="tag">Change Management</span>
+                    <span class="tag">AI Governance</span>
+                    <span class="tag">Microsoft Copilot</span>
+                    <span class="tag">RAG & Knowledge Systems</span>
+                    <span class="tag">Swiss Banking</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Raiffeisen Schweiz Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry and company website.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1899</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">~10K</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">824+</div><div class="metric-label">Branches</div></div>
+                    <div class="metric-box"><div class="metric-value">3rd</div><div class="metric-label">Swiss Bank Ranking</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">3.6M</div><div class="metric-label">Clients</div></div>
+                    <div class="metric-box"><div class="metric-value">St. Gallen</div><div class="metric-label">HQ Location</div></div>
+                </div>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>Key Facts:</strong> Raiffeisen Schweiz is the umbrella organization for 263 independent Raiffeisen banks operating the cooperative model. Founded on Friedrich Wilhelm Raiffeisen's principles. 1.9 million cooperative members. CHF 250B+ in assets under management. Joined SDX for digital assets, partnering with Backbase for engagement banking.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Raiffeisen Leadership Team
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company leadership pages and verified organizational charts.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">HH</div>
+                        <div class="person-info">
+                            <h4>Heinz Huber</h4>
+                            <p>CEO, Raiffeisen Schweiz</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">CP</div>
+                        <div class="person-info">
+                            <h4>Christian Poerschke</h4>
+                            <p>Leadership Team</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">UK</div>
+                        <div class="person-info">
+                            <h4>Uwe Krakau</h4>
+                            <p>Leadership Team</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">DC</div>
+                        <div class="person-info">
+                            <h4>Daniel Cohen</h4>
+                            <p>Leadership Team</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Innovation & Digital Team
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Close collaborators on GenAI and innovation initiatives.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">LE</div>
+                        <div class="person-info">
+                            <h4>L.-Eduardo Ernst</h4>
+                            <p>Deputy Head Innovation Management</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">OG</div>
+                        <div class="person-info">
+                            <h4>Oliver Gerstlauer</h4>
+                            <p>Managing Digital Integration</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">DB</div>
+                        <div class="person-info">
+                            <h4>Damir Bogdan</h4>
+                            <p>Former CIO, now Actvide AG (CDO Roundtable Founder)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn and professional directories.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="metric-box">
+                        <strong>HarbourClub</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">Chief Communications Officers network</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>F10 Fintech Incubator</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">Fintech ecosystem & accelerator</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>HWZ Hochschule</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">Lecturer in Corporate Innovation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Banking & FinTech Ecosystem
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Related organizations, ecosystem contacts, and peer networks.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">RAI Lab (Raiffeisen Acceleration & Innovation)</span>
+                    <span class="tag">UBS (Competitor)</span>
+                    <span class="tag">Zurich Cantonal Bank ZKB (Competitor)</span>
+                    <span class="tag">PostFinance (Competitor)</span>
+                    <span class="tag">Julius Baer (Competitor)</span>
+                    <span class="tag">SwissCognitive Network</span>
+                    <span class="tag">Swiss Banking Association (SBA)</span>
+                    <span class="tag">IQPC Conference Speakers</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,42 151,49 168,100 138,138 100,177 59,141 15,100 43,43" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile Assessment
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Profile based on described approaches in interviews and case studies. Not a formal assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Dominance (D)</td><td>65/100</td></tr>
+                        <tr><td>Influence (I)</td><td><strong>80/100 ⭐ PRIMARY</strong></td></tr>
+                        <tr><td>Steadiness (S)</td><td>55/100</td></tr>
+                        <tr><td>Conscientiousness (C)</td><td>60/100</td></tr>
+                    </table>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 16px;"><strong>Profile Summary:</strong> Stefan is a charismatic innovation leader combining enthusiasm and persuasion with drive for results. I-D profile means he leads through inspiration, storytelling, and coalition-building within Raiffeisen's cooperative structure. Values speed, experimentation, and bold moves over lengthy analysis. Startup background gives bias toward action; years at Raiffeisen show ability to navigate complex corporate politics.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Patterns from content analysis. These are behavioral observations, not clinical assessments.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🎯 Achievement Motivation</div>
+                    <p>Strong drive to build, scale, and deliver tangible results. Started with RAI Lab prototype, now scaling GenAI to 4000+ employees. Success measured in adoption, impact, not theory.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">💡 Entrepreneurial Mindset</div>
+                    <p>Co-founded two international startups before corporate role. Brings startup speed and bias-to-action within Raiffeisen's traditional structure. Comfort with ambiguity and calculated risk.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🤝 Coalition Builder</div>
+                    <p>Lecturer at HWZ, HarbourClub member, F10 ecosystem participant. Invests in relationships, knowledge sharing, personal branding. Uses speaking & networks to amplify ideas.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">⚖️ Pragmatic Idealist</div>
+                    <p>Believes in innovation's potential BUT acknowledges corporate "immune systems," AI limits, and irreplaceable human factors. Not a techno-utopian; calls out both opportunity and reality.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🎬 Storyteller & Communicator</div>
+                    <p>Uses metaphors ("immune system," "following the brightest light"), personal branding (professional photos, lecturer role), conference speaking to make ideas resonate beyond slides.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Key factors that motivate, inspire, or resonate with Stefan's profile.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">🚀 Big Vision & Bold Opportunity</div>
+                    <p>Lead with where GenAI can transform banking, not incremental improvements. Stefan is energized by strategic possibilities, not tactical optimization.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">📊 Proof Points & Case Studies</div>
+                    <p>Share concrete examples: how other banks use RAG, GenAI customer advisory, automation ROI. Stefan responds to evidence of what works, not theory.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">🤝 Peer & Ecosystem Validation</div>
+                    <p>Reference HarbourClub discussions, F10 fintech trends, or peer bank initiatives. Stefan values community insights and ecosystem momentum.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">⏱️ Speed & Agility Framing</div>
+                    <p>Position solutions as "pilot fast, learn quickly, scale proven ideas." Stefan dislikes lengthy processes; he favors MVPs and rapid iteration.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">💬 Dialogue & Co-Creation</div>
+                    <p>Give him space to think and refine ideas. Stefan is collaborative—position as a thought partner, not a vendor. Two-way conversation, not pitch.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted from articles, posts, and interviews. Frequency shows emphasis.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>Innovation / GenAI</td><td>Very High</td><td>Core professional identity and passion</td></tr>
+                        <tr><td>Transformation & Digital</td><td>High</td><td>Organizational change, modernization</td></tr>
+                        <tr><td>Ecosystem / Startups</td><td>High</td><td>Innovation culture, external perspectives</td></tr>
+                        <tr><td>Practical / Pragmatic</td><td>Medium-High</td><td>Real-world impact over theory</td></tr>
+                        <tr><td>Human + Technology</td><td>Medium</td><td>Balance, not techno-utopianism</td></tr>
+                        <tr><td>Risk Culture / Courage</td><td>Medium</td><td>Organizational willingness to experiment</td></tr>
+                        <tr><td>Speed / Agility</td><td>Medium</td><td>Dislikes bureaucracy and slow processes</td></tr>
+                        <tr><td>Cooperative Values</td><td>Medium</td><td>Banking heritage, member-focused model</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4>💪 Strengths (Raiffeisen)</h4><ul>
+                        <li>Largest branch network in Switzerland (824 locations)</li>
+                        <li>3.6M clients + 1.9M cooperative members = deep customer base</li>
+                        <li>Early GenAI mover in Swiss banking (top 3 visibility)</li>
+                        <li>Stefan's proven execution: 300 AI Champions, 4000+ activated</li>
+                        <li>RAI Lab with 200+ startup relationships across fintech/proptech/regtech</li>
+                        <li>Cooperative model = unique member trust advantage</li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4>⚠️ Potential Gaps</h4><ul>
+                        <li>Distributed structure (263 independent banks) may slow innovation rollout</li>
+                        <li>Traditional banking heritage can create resistance to rapid AI adoption</li>
+                        <li>Smaller tech budget than UBS/ZKB for large-scale AI infrastructure</li>
+                        <li>RAG & knowledge systems still in early pilots (not yet scaled)</li>
+                        <li>Customer-facing AI apps not yet publicly announced (vs. competitors)</li>
+                        <li>AI governance/FINMA compliance still being formalized</li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4>🚀 Opportunities</h4><ul>
+                        <li>GenAI-powered mortgage advisory (complex product, high-value use case)</li>
+                        <li>Intelligent document processing (KYC/AML automation at 824 branches)</li>
+                        <li>Multilingual chatbot for 3 languages (German, French, Italian)</li>
+                        <li>Personalized financial coaching leveraging member data</li>
+                        <li>RAG for branch employee self-service & knowledge management</li>
+                        <li>Predictive credit risk with alternative data sources</li>
+                        <li>Agentic AI for branch operations (scheduling, follow-ups, prep)</li>
+                        <li>Marketing content factory for 263 local banks (localization at scale)</li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;"><h4>🎯 Competitive Threats</h4><ul>
+                    <li><strong>UBS:</strong> Massive AI investment + global scale</li>
+                    <li><strong>ZKB:</strong> Strong digital positioning + GenAI public roadmap</li>
+                    <li><strong>PostFinance:</strong> Digital-first strategy, rapid AI rollout</li>
+                    <li><strong>Julius Baer:</strong> 1B+ CHF tech investment, GenAI for content/advisory</li>
+                    <li><strong>Big Tech:</strong> Google, OpenAI, Microsoft bundling banking APIs into AI platforms</li>
+                    <li><strong>Fintech disruption:</strong> Neobanks + AI eroding branch-based banking advantage</li>
+                </ul></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-ESTIMATED: Positions based on market perception analysis. Relative positioning.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">GenAI Expertise & Maturity →</span>
+                    <span class="scatter-axis-label x-label">Agility & Speed of Deployment →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 65%; top: 60%;"><span class="scatter-tooltip">Raiffeisen (SJ)</span></div>
+                        <div class="scatter-dot competitor1" style="left: 80%; top: 75%;"><span class="scatter-tooltip">UBS</span></div>
+                        <div class="scatter-dot competitor2" style="left: 75%; top: 70%;"><span class="scatter-tooltip">ZKB</span></div>
+                        <div class="scatter-dot competitor3" style="left: 55%; top: 65%;"><span class="scatter-tooltip">PostFinance</span></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Raiffeisen (Stefan Jeker)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> UBS</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> ZKB</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> PostFinance</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and market positioning.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="metric-box">
+                        <strong>🏘️ Branch Network</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">824 locations = most extensive in Switzerland</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>🤝 Cooperative Model</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">1.9M members = deeper trust than shareholder banks</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>⚡ GenAI Execution</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">4000+ employees activated, top 3 Swiss visibility</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recommended GenAI Use Cases for Raiffeisen
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-generated use cases based on Raiffeisen's 824-branch network, 3.6M customers, and Stefan Jeker's innovation mandate. Aligned with GenAI best practices and banking regulatory context.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">8 USE CASES</span>
+                </div>
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <h4>1. GenAI-Powered Mortgage Advisory</h4>
+                        <p>AI-assisted mortgage consultation combining property data, customer financial profiles, and market trends for personalized recommendations across 824 branches.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 4–6 months</span>
+                            <span>Scope: Branch Staff Training</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>2. Intelligent Document Processing for KYC/AML</h4>
+                        <p>Automated extraction and verification of customer documents for compliance, reducing manual review time while maintaining FINMA regulatory standards.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: MEDIUM-HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 5–7 months</span>
+                            <span>Scope: Compliance & Operations</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>3. Multilingual Customer Service Chatbot</h4>
+                        <p>24/7 intelligent chatbot serving German, French, and Italian speaking customers with context-aware responses for common banking queries.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM-HIGH</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 3–5 months</span>
+                            <span>Scope: Customer Service</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>4. Personalized Financial Coaching</h4>
+                        <p>AI-driven financial wellness recommendations for cooperative members based on spending patterns, savings goals, and life events (marriage, home purchase, retirement).</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM-HIGH</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 4–6 months</span>
+                            <span>Scope: Retail Banking & Digital</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>5. RAG-Powered Knowledge Management</h4>
+                        <p>Retrieval-Augmented Generation system connecting internal policies, product documentation, and regulatory guidelines for employee self-service and faster onboarding.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: MEDIUM-HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 3–4 months</span>
+                            <span>Scope: HR & Operations</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>6. Predictive Credit Risk Assessment</h4>
+                        <p>ML models enhancing credit decisions for SME and retail lending by analyzing alternative data sources alongside traditional financial metrics for faster approvals.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 6–8 months</span>
+                            <span>Scope: Credit & Risk</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>7. Agentic AI for Branch Operations</h4>
+                        <p>Autonomous AI agents handling routine branch tasks like appointment scheduling, document preparation, follow-up communications, and lead prioritization.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 3–4 months</span>
+                            <span>Scope: Branch Management</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>8. GenAI Content Factory for Marketing</h4>
+                        <p>Automated generation of compliant marketing content across three languages, maintaining brand consistency while enabling 263 local Raiffeisen banks to personalize campaigns.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM-HIGH</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 2–3 months</span>
+                            <span>Scope: Marketing & Communications</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
+                    <h4 style="margin-bottom: 12px;">Implementation Priorities</h4>
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>Quick Wins (0–3 months):</strong> Use Case #8 (Content Factory), #7 (Branch Agents), #3 (Chatbot)</p>
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>High Impact (3–6 months):</strong> Use Case #5 (RAG), #1 (Mortgage Advisory), #2 (KYC/AML), #4 (Financial Coaching)</p>
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>Strategic (6–8 months):</strong> Use Case #6 (Predictive Credit Risk)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 7: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR GENAI STRATEGY & USE CASE DISCUSSION
+                </div>
+                <div class="strategy-content">Lead with shared passion for practical AI implementation in Swiss enterprise context. Stefan values speed, experimentation, and tangible results over theoretical frameworks. Open with Raiffeisen's impressive GenAI rollout (300 champions, 4000 employees) and explore where they want to go next. Position external AI strategy expertise as complementary to Raiffeisen's internal execution capabilities. Stefan responds to energy, vision, and concrete examples—bring case studies and quick-win scenarios. Reference Swiss AI ecosystem (SwissCognitive, Digital Impact Network) and peer bank initiatives to build credibility. Keep conversation dynamic: ask about barriers to scaling GenAI value, what's working vs. what's stalled, and where they see the biggest white space. Aim for collaborative discussion, not pitch.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>GenAI Momentum at Raiffeisen</h4>
+                        <p>"Your 50% increase in Copilot adoption and 300 AI Champions is impressive scaling. What drove that uptake—was it the promptathons, internal advocacy, or structured rollout?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Value Creation Beyond Enablement</h4>
+                        <p>"Many banks are in the same place—great adoption of Copilot, but struggling to show ROI on GenAI. Are you seeing specific use cases drive measurable value yet?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>RAG for Swiss Banking</h4>
+                        <p>"You have 824 branches and 3.6M customers. How are you thinking about RAG—more for employee knowledge or customer-facing applications?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>AI Governance & Risk</h4>
+                        <p>"With FINMA scrutiny on GenAI, how are you balancing speed of innovation with governance requirements? What's your approach to AI audit trails and compliance?"</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🚫 Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values and potential sensitivities.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>⚠️ Job Displacement from AI</h4>
+                        <p>Stefan is innovation-focused but also emphasizes human value. Avoid framing GenAI as replacing workers—instead frame as augmentation and skill evolution.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>⚠️ Generic Vendor Pitches</h4>
+                        <p>Stefan dislikes slow, bureaucratic processes and generic solutions. Avoid one-size-fits-all pitches. He wants tailored, context-aware partnerships.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>⚠️ Cost Cutting as Primary Goal</h4>
+                        <p>While efficiency matters, Stefan is motivated by innovation and customer value, not just cost reduction. Lead with impact, not savings.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>⚠️ Ignoring Cooperative Model</h4>
+                        <p>Raiffeisen's cooperative structure and member-centric values are core to identity. Don't pitch solutions that treat it as a liability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💡 Connection Points (Michael Wegmueller & Artifact)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential common ground based on your profile and Stefan's interests.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">SHARED INTERESTS</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🔗 Innovation & AI Passion (Both)</div>
+                    <p><strong>You:</strong> 17+ years in AI/Data Science, Co-Founder of Artifact, Digital Economy Award 2024. <strong>Stefan:</strong> GenAI leader, startup founder, innovation evangelist. <strong>Common Ground:</strong> Deep enthusiasm for practical AI implementation in enterprise. Share your journey from founding Artifact and AI expertise perspective.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🏗️ Swiss Innovation Ecosystem</div>
+                    <p><strong>You:</strong> Digital Impact Network, KImpact, SwissCognitive connections. <strong>Stefan:</strong> F10 Fintech Incubator, HarbourClub, HWZ teaching. <strong>Common Ground:</strong> Both active in Swiss AI/fintech community. Reference ecosystem connections: "I know several folks in F10 and SwissCognitive—great momentum on GenAI in Swiss banking."</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">📢 Thought Leadership & Speaking</div>
+                    <p><strong>You:</strong> ISE 2025 speaker, personal branding on LinkedIn. <strong>Stefan:</strong> DigIT AI & Banken speaker, HWZ lecturer, investor in personal branding. <strong>Common Ground:</strong> Both amplify ideas through speaking and content. Offer to co-author a piece on "GenAI Strategy for Swiss Banks" or invite him as panelist.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🚀 Startup Mentality</div>
+                    <p><strong>You:</strong> Founded Artifact, understanding of startup-to-scale journey. <strong>Stefan:</strong> Co-founded two international startups, now scaling GenAI within Raiffeisen. <strong>Common Ground:</strong> Shared appreciation for speed, experimentation, and bold moves. Speak his language: "Let's run this as a sprint pilot—MVP in 6 weeks, learn quickly, scale what works."</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">🎯 Pragmatic Problem-Solving</div>
+                    <p><strong>You:</strong> Data-driven methodology, award-winning AI Assistant, real-world implementation focus. <strong>Stefan:</strong> Pragmatist who values execution over theory, acknowledges AI limits, balances vision with reality. <strong>Common Ground:</strong> Both problem-solvers. Lead with case studies, proven frameworks, not hype.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>GenAI Use Case Roadmap</td><td><span class="probability-badge prob-very-high">95%</span></td><td>Prepare 3–5 use case examples for Swiss banking. Have implementation timeline & risk mitigation ready.</td></tr>
+                        <tr><td>Scaling GenAI Across 824 Branches</td><td><span class="probability-badge prob-very-high">90%</span></td><td>Address logistics, training, governance at branch level. How do you customize for 263 independent banks?</td></tr>
+                        <tr><td>RAG & Knowledge Management Implementation</td><td><span class="probability-badge prob-very-high">85%</span></td><td>Be ready with RAG architecture, data governance, and success metrics. Reference banking examples if possible.</td></tr>
+                        <tr><td>FINMA Compliance & AI Governance</td><td><span class="probability-badge prob-high">80%</span></td><td>Understand Swiss regulatory requirements. Have governance templates, audit frameworks, and compliance checklists.</td></tr>
+                        <tr><td>Customer-Facing AI Applications</td><td><span class="probability-badge prob-high">78%</span></td><td>Prepare examples: AI mortgage advisor, intelligent chatbot, personalized coaching. Show regulatory compliance.</td></tr>
+                        <tr><td>AI Talent & Change Management</td><td><span class="probability-badge prob-high">75%</span></td><td>Discuss upskilling strategies, change resistance, how to sustain momentum post-enablement.</td></tr>
+                        <tr><td>ROI & Value Measurement</td><td><span class="probability-badge prob-high">72%</span></td><td>Have metrics framework: adoption rates, cost savings, revenue impact, customer satisfaction improvements.</td></tr>
+                        <tr><td>Competitive Positioning (vs. UBS/ZKB)</td><td><span class="probability-badge prob-medium-high">65%</span></td><td>Know how UBS and ZKB are positioning GenAI. What's Raiffeisen's unique advantage?</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📊 Value Exchange Map
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">What Artifact/Michael can offer vs. what Raiffeisen/Stefan needs. Framework for mutual benefit.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-2">
+                    <div style="padding: 20px; background: #f0fdf4; border-radius: 8px; border-left: 4px solid var(--green-verified);">
+                        <h4 style="margin-bottom: 12px; color: var(--charcoal);">What Artifact/Michael Offers</h4>
+                        <ul style="font-size: 0.9rem; color: var(--slate-gray); list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;">✅ External AI strategy perspective (17+ years, award-winning)</li>
+                            <li style="margin-bottom: 8px;">✅ Use case identification & prioritization methodology</li>
+                            <li style="margin-bottom: 8px;">✅ Cross-industry AI implementation benchmarks</li>
+                            <li style="margin-bottom: 8px;">✅ Award-winning AI Assistant capabilities (Digital Economy Award 2024)</li>
+                            <li style="margin-bottom: 8px;">✅ Access to broader Swiss AI ecosystem (SwissCognitive, Digital Impact Network)</li>
+                            <li style="margin-bottom: 8px;">✅ Objective assessment of GenAI maturity & next steps</li>
+                            <li style="margin-bottom: 8px;">✅ Thought partnership on AI governance & compliance</li>
+                        </ul>
+                    </div>
+                    <div style="padding: 20px; background: #dbeafe; border-radius: 8px; border-left: 4px solid var(--blue-secondary);">
+                        <h4 style="margin-bottom: 12px; color: var(--charcoal);">What Raiffeisen/Stefan Needs</h4>
+                        <ul style="font-size: 0.9rem; color: var(--slate-gray); list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;">🎯 Next-level GenAI use cases beyond Copilot deployment</li>
+                            <li style="margin-bottom: 8px;">🎯 Industry-specific AI strategy refinement</li>
+                            <li style="margin-bottom: 8px;">🎯 Customer-facing AI applications for cooperative banking</li>
+                            <li style="margin-bottom: 8px;">🎯 RAG implementation best practices</li>
+                            <li style="margin-bottom: 8px;">🎯 GenAI governance framework & FINMA compliance</li>
+                            <li style="margin-bottom: 8px;">🎯 Scaling from enablement to value creation</li>
+                            <li style="margin-bottom: 8px;">🎯 Organizational change management & adoption strategies</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding: 16px; background: #fef3c7; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <h4 style="margin-bottom: 8px; color: var(--charcoal);">💼 Potential Engagement Model</h4>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray); margin: 0;"><strong>Phase 1 (Discovery):</strong> 2-week sprint to assess current GenAI maturity, identify top 5 use cases, prioritize roadmap. Output: Strategic recommendations & implementation roadmap.</p>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray); margin-top: 8px;"><strong>Phase 2 (Execution):</strong> Thought partnership on priority use case (e.g., RAG, customer chatbot), governance framework, change management. Output: Pilot design, governance model, training materials.</p>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray); margin-top: 8px;"><strong>Phase 3 (Scaling):</strong> Support rollout across branches, measure impact, refine. Output: Proof of value, scaling playbook, organizational case study.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📬 Contact Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">How to approach Stefan most effectively based on his profile and communication preferences.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Channel: LinkedIn Direct Message (RECOMMENDED)</div>
+                    <p><strong>Why:</strong> Stefan invests in personal branding and is active on LinkedIn. A thoughtful DM that references shared ecosystem connections (HarbourClub, F10, SwissCognitive) will stand out vs. cold email. Shows you've done homework and respect his time.</p>
+                    <p style="margin-top: 8px;"><strong>Example opening:</strong> "Hi Stefan, I've been following Raiffeisen's impressive GenAI rollout (300 Champions, 4000+ activated). Given your work scaling innovation, I thought you'd appreciate a conversation on next-level use case strategy. I'm connected to [person in shared network], and think there's real synergy here. Open to a 20-minute call?"</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Timing: Tuesday–Thursday Mornings (Swiss Business Hours)</div>
+                    <p><strong>Avoid:</strong> Mondays (catch-up), Fridays (wind-down), evenings (personal time). Stefan is busy; respect his calendar.</p>
+                    <p style="margin-top: 8px;"><strong>Optimal window:</strong> 9:00 AM – 12:00 PM CET. If scheduling a call, offer 4–6 weeks out to show respect for his schedule.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Formality: Semi-Formal, Collegial Swiss Business Style</div>
+                    <p><strong>Tone:</strong> Professional but warm. Avoid corporate jargon. Stefan values straight talk and pragmatic problem-solving. Use "du" (informal you) only after he suggests it.</p>
+                    <p style="margin-top: 8px;"><strong>Example phrasing:</strong> "Ich denke, da gibt es echte Synergien bei GenAI-Usecases" (I think there's real synergy on GenAI use cases) is more Stefan's style than buzzword-heavy English.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">First Touchpoint: Reference Shared Ecosystem</div>
+                    <p><strong>Leverage:</strong> Mention someone he knows, or reference recent GenAI initiatives in Swiss banking (e.g., "I saw Raiffeisen was recognized top 3 in GenAI visibility by IFZ—impressive momentum.")</p>
+                    <p style="margin-top: 8px;"><strong>Avoid:</strong> Generic "let's connect" messages. Show you understand his world and have thought through why a conversation benefits both sides.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>📍 DigIT AI & Banken Conference (Oct 2025)</h4>
+                        <p>Presented on GenAI strategy and implementation in banking sector. Recognized as industry thought leader on GenAI deployment at scale.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📍 RAI Lab Basecamp & Pitching Events</h4>
+                        <p>Regular speaker at Raiffeisen startup acceleration events. Shares perspectives on innovation, fintech trends, and strategic partnerships.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📍 Rotary Club Basel (2019)</h4>
+                        <p>Lunch lecture on RAI Lab innovation, startup partnerships, and corporate-startup ecosystems. Shows commitment to local business community.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>📍 HWZ Corporate Innovation Lectures</h4>
+                        <p>Regular teaching on digital leadership and corporate innovation. Shapes next generation of Swiss business leaders.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Network Presence
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Profile presence and activity on professional platforms.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>🔗 LinkedIn Profile</h4>
+                        <p>Active user, ~500+ connections, regular engagement on innovation and banking topics. Invests in personal branding and thought leadership visibility.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🏢 HarbourClub Profile</h4>
+                        <p>Member of exclusive Chief Communications Officers network. Participates in CEO/C-suite peer discussions and strategic roundtables.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🚀 F10 Fintech Incubator Alumni</h4>
+                        <p>Actively involved in fintech ecosystem. Access to startup founders, investors, and innovation partners across Europe.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>🐦 Twitter/X (@stefanjeker)</h4>
+                        <p>Shares insights on innovation, banking trends, and AI developments. Engaged in Swiss fintech community discussions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Coverage & Visibility
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Press mentions, industry features, and thought leadership visibility.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Raiffeisen Recognized Top 3 Swiss Banks in GenAI Visibility</div>
+                    <p>IFZ Study (October 2025) places Raiffeisen alongside UBS and ZKB. Direct attribution to Stefan Jeker's GenAI leadership and public visibility.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">RAI Lab Media Coverage</div>
+                    <p>Regular features in fintech and banking publications (StartupTicker, FintechNews.ch, Vector8 case study). Positions Raiffeisen as innovation leader among Swiss banks.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Personal Branding Investment</div>
+                    <p>Professional photo shoot with Boris Baldinger (personal branding photographer, 2017). Indicates deliberate investment in executive visibility and professional image.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>📚 Intelligence Sources (20)</h3>
+            <div class="sources-grid">
+                <a href="https://www.linkedin.com/in/stefanjeker/" class="source-item" target="_blank">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">2026 • Professional</div>
+                    </div>
+                </a>
+                <a href="https://www.iqpc.com/events-digit-finance/speakers/stefan-jeker" class="source-item" target="_blank">
+                    <div class="source-icon">DIG</div>
+                    <div class="source-info">
+                        <div class="source-name">DigIT AI & Banken Speaker</div>
+                        <div class="source-meta">2025 • Conference</div>
+                    </div>
+                </a>
+                <a href="https://harbourclub.ch/en/detail-person/stefan-jeker" class="source-item" target="_blank">
+                    <div class="source-icon">HC</div>
+                    <div class="source-info">
+                        <div class="source-name">HarbourClub Profile</div>
+                        <div class="source-meta">2025 • Network</div>
+                    </div>
+                </a>
+                <a href="https://www.startupticker.ch/en/news/das-innovationslabor-der-raiffeisen-zieht-bilanz" class="source-item" target="_blank">
+                    <div class="source-icon">ST</div>
+                    <div class="source-info">
+                        <div class="source-name">StartupTicker RAI Lab</div>
+                        <div class="source-meta">2018 • News</div>
+                    </div>
+                </a>
+                <a href="https://hwzdigital.ch/corporate-ecosystems-and-innovation/" class="source-item" target="_blank">
+                    <div class="source-icon">HWZ</div>
+                    <div class="source-info">
+                        <div class="source-name">HWZ Digital Innovation</div>
+                        <div class="source-meta">2019 • Academic</div>
+                    </div>
+                </a>
+                <a href="https://www.boris-baldinger.com/personal-branding-mit-stefan-jeker/" class="source-item" target="_blank">
+                    <div class="source-icon">BB</div>
+                    <div class="source-info">
+                        <div class="source-name">Personal Branding Shoot</div>
+                        <div class="source-meta">2017 • Personal</div>
+                    </div>
+                </a>
+                <a href="https://www.heads.ch/2020/01/16/innovation-durch-irrtum-zu-fortschritt/" class="source-item" target="_blank">
+                    <div class="source-icon">HD</div>
+                    <div class="source-info">
+                        <div class="source-name">heads.ch Innovation Article</div>
+                        <div class="source-meta">2020 • Event</div>
+                    </div>
+                </a>
+                <a href="http://docplayer.org/77624092-Bank-it-artificial-intelligence-und-robotics-in-banken-stefan-jeker-leiter-rai-lab-raiffeisen-schweiz.html" class="source-item" target="_blank">
+                    <div class="source-icon">DP</div>
+                    <div class="source-info">
+                        <div class="source-name">BANK-IT AI Presentation</div>
+                        <div class="source-meta">2018 • Conference</div>
+                    </div>
+                </a>
+                <a href="https://www.raiffeisen.ch/aarau-lenzburg/de/ueber-uns/ihre-bank-vor-ort/100-jahre-raiffeisenbank-aarau-lenzburg/blick-in-die-zukunft.html" class="source-item" target="_blank">
+                    <div class="source-icon">RF</div>
+                    <div class="source-info">
+                        <div class="source-name">Raiffeisen Future of Banking</div>
+                        <div class="source-meta">2024 • Company</div>
+                    </div>
+                </a>
+                <a href="https://www.vector8.com/en/case-studies/raiffeisen-2" class="source-item" target="_blank">
+                    <div class="source-icon">V8</div>
+                    <div class="source-info">
+                        <div class="source-name">Vector8 GenAI Case Study</div>
+                        <div class="source-meta">2025 • Case Study</div>
+                    </div>
+                </a>
+                <a href="https://fintechnews.ch/aifintech/who-are-the-leading-swiss-banks-in-genai-visibility/80071/" class="source-item" target="_blank">
+                    <div class="source-icon">FN</div>
+                    <div class="source-info">
+                        <div class="source-name">FintechNews GenAI Visibility</div>
+                        <div class="source-meta">2025 • Research</div>
+                    </div>
+                </a>
+                <a href="https://www.swissbanking.ch/_Resources/Persistent/2/0/3/b/203b937e175f25819ea271c883a095fe1dfa1ee0/SBA_Generative-AI-in-Banking_EN.pdf" class="source-item" target="_blank">
+                    <div class="source-icon">SBA</div>
+                    <div class="source-info">
+                        <div class="source-name">SBA GenAI Banking Report</div>
+                        <div class="source-meta">2025 • Industry</div>
+                    </div>
+                </a>
+                <a href="https://theorg.com/org/raiffeisen-switzerland/teams/leadership-team-1" class="source-item" target="_blank">
+                    <div class="source-icon">ORG</div>
+                    <div class="source-info">
+                        <div class="source-name">TheOrg Leadership Team</div>
+                        <div class="source-meta">2025 • Directory</div>
+                    </div>
+                </a>
+                <a href="https://www.raiffeisen.ch" class="source-item" target="_blank">
+                    <div class="source-icon">RF</div>
+                    <div class="source-info">
+                        <div class="source-name">Raiffeisen Official Site</div>
+                        <div class="source-meta">2026 • Company</div>
+                    </div>
+                </a>
+                <a href="https://rocketreach.co/stefan-jeker-email_88865309" class="source-item" target="_blank">
+                    <div class="source-icon">RR</div>
+                    <div class="source-info">
+                        <div class="source-name">RocketReach Profile</div>
+                        <div class="source-meta">2025 • Directory</div>
+                    </div>
+                </a>
+                <a href="https://medium.com/@marion.schleifer/from-hack-zurich-to-railab-basecamp-dbdd11d892b9" class="source-item" target="_blank">
+                    <div class="source-icon">MD</div>
+                    <div class="source-info">
+                        <div class="source-name">RAI Lab Basecamp Blog</div>
+                        <div class="source-meta">2018 • Blog</div>
+                    </div>
+                </a>
+                <a href="https://www.rotary-club-basel.ch/en/activities/agenda/100589/lunch-referat-stefan-jeker-leiter-rai-lab-innovation-mit-fintechs" class="source-item" target="_blank">
+                    <div class="source-icon">RC</div>
+                    <div class="source-info">
+                        <div class="source-name">Rotary Club Basel Talk</div>
+                        <div class="source-meta">2019 • Speaking</div>
+                    </div>
+                </a>
+                <a href="https://twitter.com/stefanjeker" class="source-item" target="_blank">
+                    <div class="source-icon">TW</div>
+                    <div class="source-info">
+                        <div class="source-name">Twitter/X Profile</div>
+                        <div class="source-meta">2024 • Social</div>
+                    </div>
+                </a>
+                <a href="https://fintechnews.ch/aifintech/swiss-bankers-report-genai-poised-to-transform-swiss-banking/76149/" class="source-item" target="_blank">
+                    <div class="source-icon">FN</div>
+                    <div class="source-info">
+                        <div class="source-name">SBA GenAI Report Coverage</div>
+                        <div class="source-meta">2025 • News</div>
+                    </div>
+                </a>
+                <a href="https://www.lokalhelden.ch/user/stefan-jeker" class="source-item" target="_blank">
+                    <div class="source-icon">LH</div>
+                    <div class="source-info">
+                        <div class="source-name">Lokalhelden Raiffeisen</div>
+                        <div class="source-meta">2020 • Community</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 17, 2026 | Sources: 20+ verified</p>
+        <p>Prepared for: Michael Wegmueller | Occasion: GenAI topics, use cases, and strategy</p>
+        <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Stefan Jeker from Raiffeisen Gruppe as head of GenAI on a potential approach on GenAI Topics / Use cases and strategy"</div>
+        <div class="report-token">Report ID: 3c3af7ee</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Stefan Jeker Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) {
+                    document.getElementById(activeTab.dataset.tab).classList.add('active');
+                }
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // Handle URL hash
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
