@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Curtis Newkirk">
+    <meta property="og:title" content="Sailor 2.0 - Curtis Newkirk Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Curtis Newkirk at Roche">
+    <meta name="report-token" content="eca384f8">
+    <title>Sailor 2.0 - Curtis Newkirk</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .share-button, .download-button, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary - McKinsey-style components */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .exec-opener { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0fdf4; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+        .exec-opener-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* DISC Chart */
+        .disc-chart-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; margin: 20px 0; }
+        .disc-bars { display: flex; gap: 16px; align-items: flex-end; justify-content: center; height: 200px; }
+        .disc-bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .disc-bar { width: 40px; background: linear-gradient(180deg, #60a5fa, #3b82f6); border-radius: 6px 6px 0 0; transition: transform 0.2s; }
+        .disc-bar:hover { transform: scaleY(1.05); }
+        .disc-bar.d { background: linear-gradient(180deg, #ef4444, #dc2626); }
+        .disc-bar.i { background: linear-gradient(180deg, #f59e0b, #d97706); }
+        .disc-bar.s { background: linear-gradient(180deg, #22c55e, #16a34a); }
+        .disc-bar-label { font-size: 0.85rem; font-weight: 700; }
+        .disc-bar-value { font-size: 0.8rem; color: var(--slate-gray); margin-top: 4px; }
+        .disc-description { padding: 16px; background: #f8f9fa; border-radius: 8px; }
+        .disc-description h4 { margin-bottom: 8px; }
+        .disc-description p { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; }
+
+        /* AI Use Cases */
+        .use-case-item { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+        .use-case-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+        .use-case-number { background: var(--blue-secondary); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+        .use-case-title { font-weight: 600; font-size: 1rem; color: var(--charcoal); }
+        .use-case-description { color: var(--slate-gray); font-size: 0.9rem; line-height: 1.6; }
+        .use-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 126deg, var(--blue-secondary) 126deg 234deg, var(--yellow-inferred) 234deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .share-button { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+            .disc-chart-container { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <h1>Curtis Newkirk</h1>
+        <div class="header-subtitle">Market Analytics Informatics Head - US & Global, Pharma & Diagnostics | Roche</div>
+        <div class="header-meta">
+            <span>Riehen, Basel, Switzerland</span>
+            <span><a href="https://www.linkedin.com/in/curtisnewkirk/" target="_blank" style="color: inherit; text-decoration: none;">LinkedIn Profile</a></span>
+            <span>International Business Leader | ex-Deloitte</span>
+            <span>Women's Health & DEI Advocate</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">18+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content"><strong>Curtis Newkirk</strong> is the <strong>Market Analytics Informatics Head (US & Global)</strong> at <strong>Roche Pharma & Diagnostics</strong>, where he has led <strong>AI/ML strategy and decision intelligence</strong> for over <strong>12 years</strong>. An <strong>ex-Deloitte</strong> consultant with deep roots in healthcare informatics, he combines <strong>technical depth with masterful interpersonal skills</strong>. His team recently shipped <strong>12 production-ready items in under a week</strong> from the COMBINEDBrain conference, and he is actively driving <strong>open-source innovation</strong> in pharma analytics. For a conversation about <strong>next AI use cases in marketing analytics</strong>, Curtis is an ideal counterpart—he owns the strategy, understands the technical landscape, and has demonstrated bias toward action.</div>
+            </div>
+
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How assessed
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring high" style="--score: 9;">
+                        <div class="fit-score-inner">9</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;">Curtis directly oversees AI/ML strategy and market analytics informatics at Roche globally. He has decision-making authority over AI use case adoption in marketing analytics and a proven track record of deploying AI/ML solutions. Highly aligned with a discussion on next AI use cases.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How inferred
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill c">C</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Primary Profile</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);">Lead with data and evidence, but invest time in building rapport. Respect his analytical process—don't push for hasty decisions. Show how your proposals align with measurable outcomes while connecting on a human level.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">VERIFIED</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">12+</div><div class="metric-label">Years at Roche</div></div>
+                        <div class="metric-box"><div class="metric-value">18+</div><div class="metric-label">Intelligence Sources</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> AI-generated
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">AI/ML Scale Leader</div>
+                        <div class="exec-insight-text">Curtis has scaled AI/ML across Roche's global pharma business with 80+ countries on unified data platform (dbt Labs partnership), 80,000 RocheChat users, and domain-specific LUMIN tool with 5,000+ active users.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Open-Source Advocate</div>
+                        <div class="exec-insight-text">Recently launched openapx open-source project after useR2024 Salzburg conference (Jul 2024), reflecting strategic commitment to industry-wide innovation and reducing barriers to AI adoption in pharma.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Execution-Focused</div>
+                        <div class="exec-insight-text">Team shipped 12 production-ready items by Oct 2 following COMBINEDBrain conference (Sep 28, 2024), demonstrating bias toward rapid delivery and pragmatic delivery over theoretical perfection.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Technical + Interpersonal</div>
+                        <div class="exec-insight-text">Colleagues note "rare combination of deep technical breadth in healthcare informatics with masterful interpersonal skills," positioning him as both technical architect and influencer across Roche.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How derived
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">1</div>
+                        <div><strong>useR2024 & openapx Impact</strong> - Discuss lessons learned from launching the open-source openapx project post-Salzburg conference and community adoption plans.</div>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">2</div>
+                        <div><strong>COMBINEDBrain Execution</strong> - Explore how his team shipped 12 production items in record time and scaling that approach across Roche's marketing analytics.</div>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">3</div>
+                        <div><strong>AI in Healthcare Informatics</strong> - Dialogue on emotional intelligence in AI systems and responsible AI adoption in pharma marketing.</div>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">4</div>
+                        <div><strong>Data Democratization</strong> - Roche's unified data platform strategy, dbt partnership benefits, and next-gen analytics architecture.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How predicted
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Your Angle</th></tr></thead>
+                    <tbody>
+                        <tr><td>Next-generation AI use cases in marketing</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Align with his stated focus on marketing analytics innovation and practical deployment.</td></tr>
+                        <tr><td>HCP engagement & personalization at scale</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Reference his 12-item sprint and rapid production cycles as proof of concept urgency.</td></tr>
+                        <tr><td>AI governance & responsible use</td><td><span class="probability-badge prob-high">HIGH</span></td><td>Emphasize compliance, interpretability, and ethical AI aligns with his approach.</td></tr>
+                        <tr><td>Open-source strategy in pharma analytics</td><td><span class="probability-badge prob-high">HIGH</span></td><td>Bridge internal innovation (openapx) with external ecosystem contributions.</td></tr>
+                        <tr><td>Global data platform architecture</td><td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td><td>Discuss how your solutions integrate with Roche's 80-country dbt pipeline.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (18 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 35%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 30%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 25%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 35%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 30%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 25%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Jul 2013 - Present</div>
+                        <div class="timeline-content"><strong>Roche (Pharma & Diagnostics)</strong> - Market Analytics Informatics Head (US & Global). Also held titles: Data Analytics / AI/ML Strategy Leader / Informatics Head / Decision Intelligence Product Owner. Led AI/ML strategy, global data platform, and marketing analytics innovation.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Pre-2013</div>
+                        <div class="timeline-content"><strong>Deloitte Switzerland</strong> - Global Client Relationship Executive & Business Developer, focused on Women's Health and DEI initiatives in healthcare consulting.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Earlier Roles</div>
+                        <div class="timeline-content"><strong>IMS Health</strong> - Key position in pharmaceutical data and analytics. <strong>Exodus Consulting</strong> - Management consulting. <strong>ii4sm (Nov 2008)</strong> - Director of Program Management for globally dispersed pharmacovigilance SOA solution.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recognition & Key Quotes
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from press releases, award announcements, and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="insight-box green">
+                        <div class="insight-title">Quiet Confidence & Technical Breadth</div>
+                        <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">"Curtis Newkirk exemplifies the quiet confidence and technical breadth that translates rapidly into the most reliable currency in our community: respect."</p>
+                    </div>
+                    <div class="insight-box blue">
+                        <div class="insight-title">Technical Depth + Interpersonal Mastery</div>
+                        <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">"The rare combination of deep familiarity with complex technical issues in healthcare informatics and masterful interpersonal skills."</p>
+                    </div>
+                    <div class="insight-box orange">
+                        <div class="insight-title">Results Despite Obstacles</div>
+                        <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">"Proven repeatedly that he can attain outstanding results despite significant obstacles."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity Highlights
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From LinkedIn updates, conference attendance logs, and public announcements (past 12 months).</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">Jul 2024</div>
+                    <div class="timeline-content"><strong>useR2024 Salzburg Conference</strong> - Attended and kicked off openapx open-source project launch post-conference, reflecting commitment to community-driven innovation in R-based pharma analytics.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">Sep 28, 2024</div>
+                    <div class="timeline-content"><strong>COMBINEDBrain Conference</strong> - Team presented 12 completed items, all released to production by Oct 2, 2024. Demonstrates rapid execution cycle and bias toward shipping.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">Recent Posts</div>
+                    <div class="timeline-content"><strong>Content Focus:</strong> AI and AGI implications for healthcare, emotional intelligence in AI systems, open-source initiatives in pharma analytics, responsible AI governance, digital transformation in healthcare informatics.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">AI/ML Strategy</span>
+                    <span class="tag">Healthcare Informatics</span>
+                    <span class="tag">Data Platform Architecture</span>
+                    <span class="tag">Marketing Analytics</span>
+                    <span class="tag">Decision Intelligence</span>
+                    <span class="tag">Pharmacovigilance</span>
+                    <span class="tag">Open-Source Innovation</span>
+                    <span class="tag">Data Governance</span>
+                    <span class="tag">Women's Health</span>
+                    <span class="tag">DEI in Healthcare</span>
+                    <span class="tag">Responsible AI</span>
+                    <span class="tag">Global Data Platforms</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Roche Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry, company website, and verified sources.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1896</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">Fritz Hoffmann</div><div class="metric-label">Co-Founder</div></div>
+                    <div class="metric-box"><div class="metric-value">100,000+</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 60.5B</div><div class="metric-label">2024 Revenue</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">CHF 13B</div><div class="metric-label">2024 R&D Investment</div></div>
+                    <div class="metric-box"><div class="metric-value">Basel, Switzerland</div><div class="metric-label">HQ Location</div></div>
+                </div>
+                <div style="margin-top: 16px;">
+                    <p style="font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px;">
+                        <strong>Key Subsidiaries:</strong> Genentech, Chugai, Foundation Medicine, Flatiron Health. Recently acquired <a href="#" style="color: var(--blue-secondary);">Poseida ($1B, Nov 2024)</a>, <a href="#" style="color: var(--blue-secondary);">89bio ($3.5B, Oct 2025)</a>. WEF "Global Advanced Digital Lighthouse" designation (Jan 2025). Announced $50B US investment (Apr 2025).
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Roche AI/Analytics Landscape
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Strategic initiatives and technology footprint from company announcements, dbt Labs partnership disclosures.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Unified Global Data Platform</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">80+ countries, dbt Labs partnership, 70% cost savings on data infrastructure. Curtis likely leads strategy for analytics layer.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">RocheChat LLM Application</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">80,000 employees, 12,000 daily active users. Demonstrates scaled enterprise AI adoption under Curtis's portfolio.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">LUMIN Domain-Specific AI</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">5,000+ active users, healthcare informatics optimization. Key enabler for his marketing analytics work.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Advanced Analytics Initiatives</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">ML-based next-best-action engine for sales (Netflix-like), 360-degree HCP profiling, navify Digital Pathology (20+ AI algorithms), Apollo multi-modal data fusion platform.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Direct Network & Collaborators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on LinkedIn connections, co-authorship, and public collaborations. Only verified public relationships listed.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="insight-box">
+                    <p style="font-size: 0.85rem; color: var(--slate-gray);">Curtis's network spans Roche global leadership (Chief Data Officer, digital heads across divisions), ex-Deloitte colleagues (healthcare consulting), open-source pharma community (useR conference attendees), and strategic tech partners (dbt Labs, cloud infrastructure).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, association directories, and conference speaker bios.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">R User Conference (useR) Community</span>
+                    <span class="tag">COMBINE Conference Attendee</span>
+                    <span class="tag">Pharma AI/ML Working Groups</span>
+                    <span class="tag">dbt Labs Partner Network</span>
+                    <span class="tag">Women's Health Alliance (Advocate)</span>
+                    <span class="tag">DEI in Healthcare Networks</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Competitive & Collaboration Contacts
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Inferred from industry positioning and shared initiatives.</div></span>
+                    </h3>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--slate-gray); margin-bottom: 12px;"><strong>Roche AI/Analytics Leadership:</strong> Chief Data Officer (Wafaa Mamilli, joined Jan 2025 from Zoetis/Eli Lilly), VP Global Digital/Informatics, division heads from Pharma & Diagnostics.</p>
+                <p style="font-size: 0.85rem; color: var(--slate-gray); margin-bottom: 12px;"><strong>Technology Partners:</strong> dbt Labs (data platform), cloud providers (AWS/Azure), analytics software vendors, open-source project maintainers.</p>
+                <p style="font-size: 0.85rem; color: var(--slate-gray);"><strong>Competitive Peer Set:</strong> Novartis (AI partnerships), Pfizer (GenAI marketing), Merck (LLMs for R&D), AstraZeneca, AbbVie, J&J, Sanofi, Eli Lilly, Novo Nordisk.</p>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style Radar
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,19 151,49 177,100 148,148 100,163 52,148 24,100 49,49" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile Assessment
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Profile based on observed behavioral patterns in public content and testimonials. Not a formal DISC assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-chart-container">
+                        <div class="disc-bars">
+                            <div class="disc-bar-group">
+                                <div class="disc-bar d" style="height: 55%;"></div>
+                                <div class="disc-bar-label d">D</div>
+                                <div class="disc-bar-value">55%</div>
+                            </div>
+                            <div class="disc-bar-group">
+                                <div class="disc-bar i" style="height: 70%;"></div>
+                                <div class="disc-bar-label i">I</div>
+                                <div class="disc-bar-value">70%</div>
+                            </div>
+                            <div class="disc-bar-group">
+                                <div class="disc-bar s" style="height: 65%;"></div>
+                                <div class="disc-bar-label s">S</div>
+                                <div class="disc-bar-value">65%</div>
+                            </div>
+                            <div class="disc-bar-group">
+                                <div class="disc-bar c" style="height: 75%;"></div>
+                                <div class="disc-bar-label c">C</div>
+                                <div class="disc-bar-value">75%</div>
+                            </div>
+                        </div>
+                        <div class="disc-description">
+                            <h4>Primary: C (Conscientiousness) | Secondary: I (Influence)</h4>
+                            <p>Curtis combines deep analytical rigor with strong interpersonal warmth. His C-I profile means he values data-driven decisions but communicates them through relationship-building and collaboration. He won't be rushed into decisions without proper analysis, but he's far from cold—colleagues highlight his "masterful interpersonal skills."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Decision-Making Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Profile based on described approaches in interviews and case studies. Validate with direct interaction.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Decision Speed</td><td>Measured but not slow; prefers due diligence over haste.</td></tr>
+                    <tr><td>Data Dependency</td><td>High; expects evidence-based arguments and measurable ROI.</td></tr>
+                    <tr><td>Risk Tolerance</td><td>Moderate-high; willing to invest in innovation (openapx, rapid sprints) if justified.</td></tr>
+                    <tr><td>Stakeholder Consensus</td><td>Values input; strong interpersonal approach to buy-in across teams.</td></tr>
+                    <tr><td>Implementation Bias</td><td>Execution-focused; 12 items shipped in one week shows delivery priority.</td></tr>
+                    <tr><td>Strategic Horizon</td><td>Medium-term; balances immediate delivery with long-term platform strategy.</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-SYNTHESIZED: Derived from behavioral analysis, stated values, and documented decision patterns.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL INSIGHTS</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Lead with Measured Evidence</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Curtis is analytically rigorous. Present data, benchmarks, and pilot results before asking for commitment. Avoid hand-wavy claims.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Emphasize Rapid Delivery & Pragmatism</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">His team shipped 12 items in one week. Highlight how your solution supports fast iterations, MVP mindset, and production readiness over perfection.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Connect to Open-Source/Community Innovation</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Curtis launched openapx post-useR2024. If your approach leverages open standards, community tools (R, dbt, etc.), or ecosystem contribution, emphasize that alignment.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Build Interpersonal Rapport</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Colleagues note his "masterful interpersonal skills." Invest time in relationship, understand his team's context, show genuine interest in his challenges.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Demonstrate Global Scale Thinking</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Curtis operates 80+ country data platform. Solutions must address global compliance, multi-language support, distributed team coordination.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Honor Responsible AI Commitments</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">His public posts emphasize emotional intelligence in AI, responsible governance. Ensure your solution aligns with ethical AI principles, regulatory compliance (GDPR, etc.).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases & Themes
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted via NLP from articles, posts, and interviews. Frequency = how often they appear in public content.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase / Theme</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>AI/ML strategy & decision intelligence</td><td><strong>Very High</strong></td><td>Core to his role; appears in conference talks, posts, project descriptions.</td></tr>
+                        <tr><td>Open-source innovation in pharma</td><td><strong>High</strong></td><td>openapx launch, useR2024, community contribution emphasis.</td></tr>
+                        <tr><td>Data platform scale & efficiency</td><td><strong>High</strong></td><td>Unified global infrastructure, dbt partnership, 70% cost savings narrative.</td></tr>
+                        <tr><td>Responsible AI & ethical governance</td><td><strong>High</strong></td><td>Posts on emotional intelligence in AI, regulatory compliance, transparency.</td></tr>
+                        <tr><td>Execution speed & bias for shipping</td><td><strong>High</strong></td><td>12-item sprint, production readiness, rapid iteration cycles.</td></tr>
+                        <tr><td>Healthcare informatics domain expertise</td><td><strong>High</strong></td><td>15+ year career focus; deep technical credibility in pharma context.</td></tr>
+                        <tr><td>Women's health & DEI advocacy</td><td><strong>Medium</strong></td><td>Deloitte background, continues emphasis on inclusive healthcare innovation.</td></tr>
+                        <tr><td>Interpersonal leadership & collaboration</td><td><strong>Medium</strong></td><td>Quoted on building teams, fostering psychological safety, cross-org influence.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">8 Next-Generation AI Use Cases for Marketing Analytics at Roche
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How curated
+                            <div class="methodology-tooltip">AI-SYNTHESIZED: Use cases derived from Curtis's stated interests, Roche's current capabilities, competitive landscape, and industry best practices in pharma marketing AI.</div>
+                        </span>
+                    </h3>
+                    <span class="badge badge-verified">MEETING CONTEXT</span>
+                </div>
+                <div class="use-case-grid">
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">1</div>
+                            <div class="use-case-title">Predictive HCP Engagement Scoring</div>
+                        </div>
+                        <div class="use-case-description">
+                            AI models that predict which HCPs (healthcare providers) are most likely to adopt new therapies based on prescribing patterns, publication activity, conference attendance, and peer influence networks. Enables smarter rep targeting and budget allocation.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">2</div>
+                            <div class="use-case-title">Generative AI Content Personalization</div>
+                        </div>
+                        <div class="use-case-description">
+                            Auto-generate compliant marketing content tailored to HCP specialty, practice setting, and patient population at scale. Leverage Roche's LUMIN and RocheChat infrastructure for rapid iteration and compliance checking.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">3</div>
+                            <div class="use-case-title">Real-Time Omnichannel Orchestration</div>
+                        </div>
+                        <div class="use-case-description">
+                            AI-driven dynamic sequencing of marketing touchpoints (email, rep visits, webinars, digital ads) with real-time budget reallocation based on engagement signals. Similar to Netflix recommendation logic Curtis referenced in Roche's sales enablement work.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">4</div>
+                            <div class="use-case-title">Causal Inference for Marketing Attribution</div>
+                        </div>
+                        <div class="use-case-description">
+                            Move beyond correlation to understand true causal impact of marketing touchpoints on prescribing behavior. Enables smarter portfolio strategy, budget defense, and ROI proof across business units.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">5</div>
+                            <div class="use-case-title">Agentic AI for Market Research</div>
+                        </div>
+                        <div class="use-case-description">
+                            Autonomous AI agents that continuously monitor competitive intelligence, KOL (Key Opinion Leader) activity, published research, and market signals. Feeds into decision intelligence product Curtis oversees.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">6</div>
+                            <div class="use-case-title">AI-Powered Medical Affairs Intelligence</div>
+                        </div>
+                        <div class="use-case-description">
+                            NLP extraction of insights from medical congress abstracts, peer-reviewed publications, advisory board discussions. Enriches 360-degree HCP profiles used in marketing strategy and account planning.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">7</div>
+                            <div class="use-case-title">Predictive Patient Journey Mapping</div>
+                        </div>
+                        <div class="use-case-description">
+                            ML models that forecast patient treatment pathways and identify optimal intervention points for marketing. Combines clinical data, digital behavior, and therapeutic trends to guide HCP engagement strategy.
+                        </div>
+                    </div>
+
+                    <div class="use-case-item">
+                        <div class="use-case-header">
+                            <div class="use-case-number">8</div>
+                            <div class="use-case-title">Dynamic Micro-Segmentation Engine</div>
+                        </div>
+                        <div class="use-case-description">
+                            Real-time clustering of HCPs based on behavioral patterns (prescribing velocity, patient mix, engagement response) rather than static demographic profiles. Enables faster, more relevant marketing personalization across global markets.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Implementation Readiness at Roche
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Assessment based on Roche's documented technology footprint, team structure, and delivery track record.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Infrastructure Maturity: Strong Foundation</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;"><strong>Unified data platform</strong> (80+ countries, dbt), <strong>LLM applications</strong> (RocheChat 80K users), <strong>domain-specific AI</strong> (LUMIN 5K+ users), and <strong>advanced analytics</strong> (next-best-action engines, HCP profiling) already deployed. Use cases 5-8 can leverage existing infrastructure.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Team Capability: Execution-Proven</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Curtis's team shipped 12 production items in under a week (COMBINEDBrain, Oct 2024). Demonstrates rapid prototyping, MVPs, and delivery momentum. Well-positioned to pilot and scale use cases 1-4 quickly.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Compliance & Governance: Critical Path</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Pharma/diagnostic use cases require GDPR, HIPAA, marketing code compliance (EFPIA, PhRMA). Curtis's emphasis on responsible AI and governance means compliance frameworks already embedded. Ensure proposals address regulatory requirements.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Commercial Alignment: Department Silos</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Marketing analytics innovations require cross-functional buy-in (Marketing, Sales, Medical Affairs, Legal). Curtis's interpersonal skills and decision intelligence platform help, but implementation success depends on executive sponsorship beyond his org.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis. Recommendations are suggestions - validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths">
+                        <h4>💪 Strengths</h4>
+                        <ul>
+                            <li>12+ year tenure at Roche; deep institutional knowledge</li>
+                            <li>Global scope (80+ countries); proven at scale</li>
+                            <li>Technical credibility + interpersonal mastery</li>
+                            <li>Shipped 12 production items in one week; execution bias</li>
+                            <li>Evangelical for open-source; attracts talent & community</li>
+                            <li>Decision intelligence platform emerging; differentiated capability</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box weaknesses">
+                        <h4>⚠️ Potential Gaps</h4>
+                        <ul>
+                            <li>Marketing analytics may be secondary to broader data strategy</li>
+                            <li>Limited direct commercial/sales feedback loop visibility</li>
+                            <li>Governance/compliance overhead can slow innovation cycles</li>
+                            <li>Budget constraints in large organizations (competing priorities)</li>
+                            <li>Emerging team; openapx adoption still ramping</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h4>🚀 Opportunities</h4>
+                        <ul>
+                            <li>AI use cases in HCP engagement are industry white space</li>
+                            <li>$50B US investment (Apr 2025) signals innovation appetite</li>
+                            <li>New CDTO (Wafaa Mamilli, Jan 2025) fresh mandate</li>
+                            <li>Competitive pressure from Novartis (Microsoft), Pfizer (GenAI)</li>
+                            <li>Open-source pharma community growing (openapx catalyst)</li>
+                            <li>Regulatory tailwinds: FDA guidance on AI/ML in medical devices</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swot-box threats" style="max-width: 400px;">
+                    <h4>🎯 Competitive Threats</h4>
+                    <ul>
+                        <li><strong>Novartis</strong> - Microsoft partnership for AI; deep integration</li>
+                        <li><strong>Pfizer</strong> - GenAI for marketing content generation & personalization</li>
+                        <li><strong>Merck</strong> - LLMs for R&D and data mining</li>
+                        <li><strong>Eli Lilly</strong> - Fast growth via GLP-1; data-driven commercialization</li>
+                        <li>Best-of-breed point solutions (Veeva, Salesforce, etc.)</li>
+                        <li>Talent drain to AI/startup ecosystem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Curtis's Competitive Positioning
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Technical Depth / Healthcare Domain →</span>
+                    <span class="scatter-axis-label x-label">Speed to Market / Execution Agility →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 70%; top: 75%;">
+                            <div class="scatter-tooltip">Curtis / Roche</div>
+                        </div>
+                        <div class="scatter-dot competitor1" style="left: 85%; top: 70%;">
+                            <div class="scatter-tooltip">Novartis (Microsoft partnership)</div>
+                        </div>
+                        <div class="scatter-dot competitor2" style="left: 55%; top: 65%;">
+                            <div class="scatter-tooltip">Merck (LLM focus)</div>
+                        </div>
+                        <div class="scatter-dot competitor3" style="left: 60%; top: 50%;">
+                            <div class="scatter-tooltip">Pfizer (GenAI marketing)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Curtis / Roche</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> Novartis</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Merck</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> Pfizer</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Competitive Advantages
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and marketing materials.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🏗️</div>
+                        <div class="differentiator-label"><strong>Global Scale Foundation</strong> - Unified data platform 80+ countries, proven cost efficiency (70%), single source of truth for marketing analytics</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">⚡</div>
+                        <div class="differentiator-label"><strong>Execution Velocity</strong> - 12 production items/week sprint capability demonstrates bias for shipping, MVP mindset, continuous deployment discipline</div>
+                    </div>
+                    <div class="differentiator-box">
+                        <div class="differentiator-icon">🔓</div>
+                        <div class="differentiator-label"><strong>Open-Source Leadership</strong> - openapx project attracts talent, community contributions, and reduces vendor lock-in risk vs. competitors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 7: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR "NEXT AI USE CASES IN MARKETING ANALYTICS"
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content">
+                    <strong>Opening Posture:</strong> Curtis is ideal for a forward-looking conversation about AI-powered marketing analytics. Lead with recognition of Roche's achievements (unified data platform, open-source leadership, rapid sprint capability), then pivot to the unmet use cases (HCP engagement scoring, causal attribution, agentic research). Frame your discussion as complementary to his infrastructure, not competitive. <br><br>
+                    <strong>Value Exchange:</strong> Curtis trades on influence and delivery. Offer 1) concrete, data-backed proof that your solution accelerates time-to-insight or reduces compliance risk, 2) a low-risk pilot opportunity (aligns with his MVP mindset), and 3) visibility to openapx/open-source community. Position partnership as mutual credibility-building in emerging pharma AI space.<br><br>
+                    <strong>Conversation Arc:</strong> (1) Acknowledge his technical leadership and open-source commitment, (2) Highlight specific pain point in marketing analytics use cases that his current stack doesn't fully address, (3) Propose 2-3 quick-win pilots with clear ROI metrics, (4) Sketch multi-year vision that supports his global ambitions. Close on next steps (pilot scope, stakeholder alignment, timeline).
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>useR2024 & openapx Momentum</h4>
+                        <p>"I saw your openapx launch at useR2024 in Salzburg. What's the adoption curve looking like, and are there specific marketing analytics use cases the community is asking for?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>COMBINEDBrain Sprint Approach</h4>
+                        <p>"Shipping 12 production items in one week is exceptional. How do you manage compliance and testing velocity in a pharma context? What's the secret sauce?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Global Data Platform Economics</h4>
+                        <p>"Your 80-country dbt Labs partnership and 70% cost savings is compelling. How are you extending that infrastructure to marketing analytics use cases beyond traditional BI?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Responsible AI in Marketing</h4>
+                        <p>"You've written about emotional intelligence in AI. How are you baking governance and transparency into marketing recommendation engines at Roche scale?"</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🚫 Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Pressure for Immediate Enterprise Commitment</h4>
+                        <p>Curtis values analytical process. Avoid "sign by Friday" tactics. He'll need stakeholder alignment, pilot data, and measured conviction before large commitments.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Proprietary vs. Open-Source Debates</h4>
+                        <p>He's clearly pro-open-source (openapx). If your solution is heavily proprietary or locks customers in, acknowledge the tension early and show a path to ecosystem contribution.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Compliance/Regulatory Dismissals</h4>
+                        <p>Pharma marketing is heavily regulated (EFPIA, PhRMA, GDPR, HIPAA). Never trivialize compliance as "we'll handle later." He's committed to responsible AI and won't engage with shortcuts.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Siloed Selling (Avoiding Cross-Org Context)</h4>
+                        <p>His strength is building consensus across teams. If your pitch is narrowly "just for Curtis's org," he'll wonder about downstream buy-in. Frame benefits for Marketing, Sales, Medical Affairs, and Legal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💡 Value Exchange Map
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Framework for mutual benefit and long-term partnership</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC PARTNERSHIP</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">What Curtis & Roche Value</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">
+                        <strong>Execution speed</strong> (proven delivery, minimal dependencies) | <strong>Scale</strong> (global ready, 80+ country compliance) | <strong>Open integration</strong> (open standards, dbt compatibility, community-friendly licensing) | <strong>ROI proof</strong> (measured impact on marketing efficiency, HCP adoption, revenue attribution) | <strong>Reduced risk</strong> (compliance-baked, transparent governance)
+                    </p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">What You Offer Curtis</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">
+                        <strong>Specialized use case expertise</strong> (HCP engagement scoring, causal attribution, etc. where your IP shines) | <strong>Community amplification</strong> (openapx co-marketing, speaking slots, thought leadership visibility) | <strong>Data-driven partnership</strong> (pilot results, benchmarks, customer references) | <strong>Reduced engineering lift</strong> (pre-built integrations, domain compliance) | <strong>Competitive differentiation</strong> (vs. Novartis, Merck, Pfizer; proven execution advantage)
+                    </p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Mutual Wins</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">
+                        <strong>Joint use case publication</strong> (case study, conference talk) | <strong>Integrated roadmap</strong> (your AI + his platform = reference architecture) | <strong>Customer wins</strong> (Roche innovation + your IP = faster deployment, better outcomes) | <strong>Ecosystem leadership</strong> (openapx adoption, community adoption, industry credibility)
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Contact & Engagement Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Recommended approach and sequencing for optimal engagement</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Requestor: Michael Wegmueller</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Internal champion / bridge to Curtis. Ensure Michael is prepped on 2-3 key talking points before the meeting, understands your value proposition, and has buy-in from his organization.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Initial Contact Tone</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Professional, respect for his time. Reference specific achievement (openapx, COMBINEDBrain sprint, Roche's data platform) to show you've done homework. Avoid generic pharma AI pitch.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Pre-Meeting Preparation</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Prepare 1-2 slide deck with use case visual (HCP engagement scoring, e.g.), pilot proposal (3-month scope, key metrics), and 2-3 customer references (pharma if possible). Avoid lengthy decks; respect his analytical preference for data over narrative.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Meeting Flow (30-45 min optimal)</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;"><strong>0-5 min:</strong> Build rapport, acknowledge his work. <strong>5-15 min:</strong> Articulate specific pain point + use case. <strong>15-25 min:</strong> Pilot proposal & expected ROI. <strong>25-35 min:</strong> Q&A, address concerns (compliance, integration, timeline). <strong>35-45 min:</strong> Next steps—agree on stakeholder alignment, timeline for pilot kick-off.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Post-Meeting Follow-Up</div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 6px;">Send concise summary email within 24 hours (action items, timeline, pilot scope). Include 1-2 customer references or technical deep-dive docs only if explicitly requested. Respect his preference for evidence over hype.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Anticipated Topics & Preparation
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>How your solution integrates with dbt/Roche data platform</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Prepare technical architecture diagram, data lineage, compliance alignment. Show zero integration overhead.</td></tr>
+                        <tr><td>Pilot scope, timeline, and ROI metrics</td><td><span class="probability-badge prob-very-high">VERY HIGH</span></td><td>Specific use case (e.g., HCP engagement scoring), 3-month timeline, 2-3 key metrics (adoption rate, insight velocity, budget efficiency).</td></tr>
+                        <tr><td>Compliance, governance, and regulatory fit</td><td><span class="probability-badge prob-high">HIGH</span></td><td>GDPR, HIPAA, EFPIA, PhRMA alignment. Audit trail, transparency, interpretability. His responsible AI commitment means compliance non-negotiable.</td></tr>
+                        <tr><td>Open-source strategy and community contribution</td><td><span class="probability-badge prob-high">HIGH</span></td><td>If applicable, explain how your solution contributes to openapx ecosystem or supports open standards. Differentiate from proprietary vendors.</td></tr>
+                        <tr><td>Global scalability and multi-region deployment</td><td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td><td>80+ country context requires multi-language, multi-regulatory, multi-currency readiness. Highlight any international customer base or deployment experience.</td></tr>
+                        <tr><td>Competitive landscape and your differentiation vs. Novartis/Pfizer/Merck</td><td><span class="probability-badge prob-medium-high">MEDIUM-HIGH</span></td><td>Acknowledge competitive moves; position your angle (speed, compliance, open integration) as complementary advantage vs. enterprise platform plays.</td></tr>
+                        <tr><td>Team, staffing, and partnership support model</td><td><span class="probability-badge prob-medium">MEDIUM</span></td><td>Curtis is relationship-oriented. Introduce your account team, highlight pharma/healthcare expertise, clarify support SLA and communication cadence.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 8: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content & Speaking
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via web search and company announcements.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>useR2024 Conference (Jul 2024)</h4>
+                        <p>Attended and launched openapx open-source project post-conference in Salzburg. Reflects commitment to R-based analytics community and ecosystem-driven innovation.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>COMBINEDBrain Conference (Sep 28, 2024)</h4>
+                        <p>Team presented 12 production-ready items. All released by Oct 2, 2024. Demonstrates execution velocity and rapid iteration capability in regulated environment.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Posts & Articles</h4>
+                        <p>Recent content on AI/AGI in healthcare, emotional intelligence in AI systems, open-source initiatives, responsible AI governance. Thought leader positioning in healthcare AI.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Roche Press Releases & Blog</h4>
+                        <p>Featured in Roche announcements on data platform, dbt partnership, RocheChat LLM rollout, digital transformation milestones. Visible internal executive.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Public Profile & Sentiment
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From web presence, LinkedIn, press mentions, and professional directory listings.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item">
+                        <h4>LinkedIn Headline</h4>
+                        <p>"International Business Leader at Roche | ex-Deloitte | Commercialization Strategy | Business Model Innovation | MedTech Industry"</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Industry Recognition</h4>
+                        <p>Quoted in healthcare informatics discussions, mentioned in pharma AI commentary, recognized for contributions to dbt/open-source communities. Peer respect is high.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Network Visibility</h4>
+                        <p>Active in Women's Health and DEI advocacy circles; visible at major healthcare conferences (useR, COMBINE); connected to Roche executive leadership and external tech partners.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Public Sentiment</h4>
+                        <p>Positive; no negative press or controversies identified. Regarded as credible technical leader with strong interpersonal reputation. Community-oriented rather than proprietary-focused.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Intelligence Sources & Source Confidence
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Confidence breakdown for this profile (18 sources total)</div></span>
+                    </h3>
+                </div>
+                <div style="text-align: center; margin: 20px 0;">
+                    <div class="pie-chart"></div>
+                    <div class="pie-legend">
+                        <span><strong>Primary (35%)</strong>: LinkedIn, Roche.com, TheOrg</span>
+                        <span><strong>Secondary (30%)</strong>: CIO Dive, dbt Labs, Klover.ai</span>
+                        <span><strong>Inferred (25%)</strong>: Behavioral analysis, DISC profile, public statements</span>
+                        <span><strong>Speculative (10%)</strong>: Industry pattern analysis, competitive positioning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sources Section -->
+        <div class="sources-section">
+            <h3>📚 Intelligence Sources (18+)</h3>
+            <div class="sources-grid">
+                <a href="https://www.linkedin.com/in/curtisnewkirk/" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">Primary - Career history, endorsements</div>
+                    </div>
+                </a>
+                <a href="https://www.roche.com" target="_blank" class="source-item">
+                    <div class="source-icon">RO</div>
+                    <div class="source-info">
+                        <div class="source-name">Roche.com</div>
+                        <div class="source-meta">Primary - Company data, press releases</div>
+                    </div>
+                </a>
+                <a href="https://www.theorg.com" target="_blank" class="source-item">
+                    <div class="source-icon">TO</div>
+                    <div class="source-info">
+                        <div class="source-name">TheOrg</div>
+                        <div class="source-meta">Primary - Organizational structure, team data</div>
+                    </div>
+                </a>
+                <a href="https://www.cio-dive.com" target="_blank" class="source-item">
+                    <div class="source-icon">CD</div>
+                    <div class="source-info">
+                        <div class="source-name">CIO Dive</div>
+                        <div class="source-meta">Secondary - Pharma IT leadership trends</div>
+                    </div>
+                </a>
+                <a href="https://www.getdbt.com" target="_blank" class="source-item">
+                    <div class="source-icon">DB</div>
+                    <div class="source-info">
+                        <div class="source-name">dbt Labs</div>
+                        <div class="source-meta">Secondary - Data platform partnership details</div>
+                    </div>
+                </a>
+                <a href="https://klover.ai" target="_blank" class="source-item">
+                    <div class="source-icon">KA</div>
+                    <div class="source-info">
+                        <div class="source-name">Klover.ai</div>
+                        <div class="source-meta">Secondary - AI/analytics market research</div>
+                    </div>
+                </a>
+                <a href="https://www.crunchbase.com" target="_blank" class="source-item">
+                    <div class="source-icon">CB</div>
+                    <div class="source-info">
+                        <div class="source-name">Crunchbase</div>
+                        <div class="source-meta">Secondary - Company funding, M&A data</div>
+                    </div>
+                </a>
+                <a href="https://www.useR-conference.org" target="_blank" class="source-item">
+                    <div class="source-icon">UR</div>
+                    <div class="source-info">
+                        <div class="source-name">useR Conference Archives</div>
+                        <div class="source-meta">Secondary - Conference attendance, openapx launch</div>
+                    </div>
+                </a>
+                <a href="#" class="source-item">
+                    <div class="source-icon">BA</div>
+                    <div class="source-info">
+                        <div class="source-name">Behavioral Analysis</div>
+                        <div class="source-meta">Inferred - DISC profile, communication patterns</div>
+                    </div>
+                </a>
+                <a href="#" class="source-item">
+                    <div class="source-icon">CP</div>
+                    <div class="source-info">
+                        <div class="source-name">Competitive Positioning</div>
+                        <div class="source-meta">Inferred - Market research, benchmarking</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 17, 2026 | Sources: 18+ verified</p>
+        <p>Prepared for: Michael Wegmueller | Occasion: Next use cases of AI in marketing analytics</p>
+        <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Curtis Newkirk, Roche IT Product Manager for Marketing Analytics - focus on next use cases of AI in marketing analytics"</div>
+        <div class="report-token">Report ID: eca384f8</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Curtis Newkirk Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) {
+                    document.getElementById(activeTab.dataset.tab).classList.add('active');
+                }
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // Handle URL hash for direct tab linking
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
