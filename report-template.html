@@ -86,7 +86,10 @@
         .fab-group button:hover { transform: scale(1.05); }
         .download-button { background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important; }
         .lang-switcher { background: linear-gradient(135deg, #10b981, #34d399) !important; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important; }
-        .lang-switcher .lang-label { font-size: 0.75rem; opacity: 0.9; }
+        .lang-switcher .lang-group { display: flex; gap: 4px; font-size: 0.75rem; }
+        .lang-switcher .lang-option { opacity: 0.5; transition: opacity 0.2s; }
+        .lang-switcher .lang-option.active { opacity: 1; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+        .lang-switcher .lang-sep { opacity: 0.4; }
         .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
         .share-toast.show { opacity: 1; transform: translateY(0); }
         .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
@@ -836,7 +839,13 @@
         </button>
         <button class="lang-switcher" onclick="switchLanguage()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span class="lang-label" id="langLabel">EN</span>
+            <span class="lang-group">
+                <span class="lang-option active" data-lang="en">EN</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-option" data-lang="de">DE</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-option" data-lang="fr">FR</span>
+            </span>
         </button>
     </div>
     <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
@@ -891,7 +900,9 @@
         let currentLangIndex = 0;
 
         // Translation data - populated during report generation
-        const translations = {{TRANSLATIONS_JSON}};
+        // When the template placeholder is not yet replaced, fall back to empty object
+        let translations = {};
+        try { translations = {{TRANSLATIONS_JSON}}; } catch(e) { translations = {}; }
 
         // Store original English content on first load
         const englishOriginals = {};
@@ -905,16 +916,29 @@
         function switchLanguage() {
             currentLangIndex = (currentLangIndex + 1) % LANGUAGES.length;
             const lang = LANGUAGES[currentLangIndex];
-            document.getElementById('langLabel').textContent = lang.toUpperCase();
+
+            // Update active indicator on button
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
 
             const dict = translations[lang] || {};
+
+            // Check if translations exist for this language
+            if (lang !== 'en' && Object.keys(dict).length === 0) {
+                const toast = document.getElementById('shareToast');
+                toast.textContent = 'Translation not available';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 1500);
+                return;
+            }
 
             // Update text content elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (lang === 'en') {
-                    if (englishOriginals[key]) el.textContent = englishOriginals[key];
-                } else if (dict[key]) {
+                    if (englishOriginals[key] !== undefined) el.textContent = englishOriginals[key];
+                } else if (dict[key] !== undefined) {
                     el.textContent = dict[key];
                 }
             });
@@ -923,8 +947,8 @@
             document.querySelectorAll('[data-i18n-html]').forEach(el => {
                 const key = el.getAttribute('data-i18n-html');
                 if (lang === 'en') {
-                    if (englishOriginals[key]) el.innerHTML = englishOriginals[key];
-                } else if (dict[key]) {
+                    if (englishOriginals[key] !== undefined) el.innerHTML = englishOriginals[key];
+                } else if (dict[key] !== undefined) {
                     el.innerHTML = dict[key];
                 }
             });
