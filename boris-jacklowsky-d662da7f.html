@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Boris Jacklowsky">
+    <meta property="og:title" content="Sailor 2.0 - Boris Jacklowsky Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Boris Jacklowsky at Swiss Post (Die Schweizerische Post)">
+    <meta name="report-token" content="d662da7f">
+    <title>Sailor 2.0 - Boris Jacklowsky</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .fab-group, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary - McKinsey-style components */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .exec-opener { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0fdf4; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+        .exec-opener-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        /* FAB button group - stacked vertically */
+        .fab-group { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 1000; }
+        .fab-group button { background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); display: flex; align-items: center; gap: 8px; transition: all 0.3s; white-space: nowrap; }
+        .fab-group button:hover { transform: scale(1.05); }
+        .download-button { background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important; }
+        .lang-switcher { background: linear-gradient(135deg, #10b981, #34d399) !important; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important; }
+        .lang-switcher .lang-label { font-size: 0.75rem; opacity: 0.9; }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 126deg, var(--blue-secondary) 126deg 234deg, var(--yellow-inferred) 234deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.8rem; white-space: normal; max-width: 280px; min-width: 180px; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); line-height: 1.5; }
+        .scatter-tooltip strong { color: #60a5fa; }
+        .scatter-tooltip em { font-size: 0.75rem; opacity: 0.85; display: block; margin-top: 4px; }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* AI Use Cases grid */
+        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .use-case-card { background: linear-gradient(135deg, #f8f9fa, #ffffff); border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; position: relative; transition: all 0.3s; cursor: pointer; }
+        .use-case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); border-color: #8b5cf6; }
+        .use-case-icon { font-size: 2rem; margin-bottom: 12px; }
+        .use-case-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-description { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; }
+        .use-case-reasoning { display: none; position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px; background: var(--navy); color: white; padding: 16px; border-radius: 8px; font-size: 0.85rem; z-index: 100; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .use-case-card:hover .use-case-reasoning { display: block; }
+        .reasoning-label { font-weight: 600; color: #60a5fa; margin-bottom: 8px; font-size: 0.75rem; text-transform: uppercase; }
+
+        /* Use Case scatter dots - numbered circles */
+        .uc-dot { position: absolute; width: 32px; height: 32px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: white; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .uc-dot:hover { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+        .uc-dot:hover .scatter-tooltip { opacity: 1; }
+        .uc-dot.uc1 { background: #8b5cf6; } .uc-dot.uc2 { background: #3b82f6; } .uc-dot.uc3 { background: #10b981; } .uc-dot.uc4 { background: #f59e0b; }
+        .uc-dot.uc5 { background: #ef4444; } .uc-dot.uc6 { background: #ec4899; } .uc-dot.uc7 { background: #06b6d4; } .uc-dot.uc8 { background: #84cc16; }
+        .uc-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .uc-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; }
+        .uc-legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+        
+        .disc-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 150px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .disc-bar { width: 50px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border-radius: 4px 4px 0 0; min-height: 20px; color: white; font-weight: 600; padding: 8px 0; }
+        .disc-bar span { font-size: 0.9rem; }
+        .disc-score { font-size: 0.75rem; opacity: 0.9; }
+        .d-bar { background: linear-gradient(180deg, #dc2626, #ef4444); }
+        .i-bar { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
+        .s-bar { background: linear-gradient(180deg, #16a34a, #22c55e); }
+        .c-bar { background: linear-gradient(180deg, #2563eb, #3b82f6); }
+        .disc-labels { display: flex; justify-content: space-around; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+        .disc-primary { font-size: 1.1rem; margin-bottom: 8px; }
+        .disc-secondary { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .disc-description { font-size: 0.9rem; line-height: 1.6; }
+        .profile-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.3); }
+        .profile-initials { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #3b82f6); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; color: white; border: 3px solid rgba(255,255,255,0.3); }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .fab-group { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 24px;">
+            <div class="profile-initials">BJ</div>
+            <div>
+                <h1>Boris Jacklowsky</h1>
+                <div class="header-subtitle">Head of Digital Channels | Swiss Post (Die Schweizerische Post)</div>
+        </div></div>
+        <div class="header-meta">
+            <span>Switzerland</span>
+            <span>IMD (Transformational Leadership) | ZHAW (CAS Health Care)</span>
+            <span>post.ch</span>
+            <span>Guest Lecturer, University of Basel</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">18+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary" data-i18n="tab_executive_summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile" data-i18n="tab_subject_profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map" data-i18n="tab_network_map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis" data-i18n="tab_behavioral_analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position" data-i18n="tab_strategic_position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook" data-i18n="tab_engagement_playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint" data-i18n="tab_media_footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases" data-i18n="tab_ai_use_cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary" data-i18n="tab_mobile_summary">Summary</button>
+            <button class="tab" data-tab="subject-profile" data-i18n="tab_mobile_profile">Profile</button>
+            <button class="tab" data-tab="network-map" data-i18n="tab_mobile_network">Network</button>
+            <button class="tab" data-tab="behavioral-analysis" data-i18n="tab_mobile_behavioral">Behavioral</button>
+            <button class="tab" data-tab="strategic-position" data-i18n="tab_mobile_strategic">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook" data-i18n="tab_mobile_playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint" data-i18n="tab_mobile_media">Media</button>
+            <button class="tab" data-tab="ai-use-cases" data-i18n="tab_mobile_ai">AI</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary (McKinsey Senior Partner Layout) -->
+        <div id="executive-summary" class="tab-content active">
+            <!-- Row 1: BLUF - crisp, 2-3 sentences max -->
+            <div class="bluf-section">
+                <div class="bluf-label" data-i18n="bluf_label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content" data-i18n="bluf_content"><strong>Boris Jacklowsky</strong> is the <strong>Head of Digital Channels</strong> at <strong>Swiss Post</strong> since October 2024, overseeing digital customer touchpoints for Switzerland's national postal service (45,000 employees, CHF 324M profit in 2024). A seasoned digital transformation leader with <strong>20+ years</strong> of executive experience, he previously drove Sympany's customer loyalty from <strong>8th to 1st place in NPS</strong>. His current focus on <strong>AI-powered customer service</strong>, the <strong>ePost platform</strong>, and <strong>omnichannel digital experiences</strong> makes him a highly relevant counterpart for discussing <strong>AI use cases and strategic priorities</strong> in digital channels.</div>
+            </div>
+
+            <!-- Row 2: Three key cards - Fit Score | DISC Quick Read | Key Metrics -->
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title" data-i18n="meeting_fit">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How assessed
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring high" style="--score: 9;">
+                        <div class="fit-score-inner">9</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;" data-i18n="meeting_fit_rationale">Boris directly owns digital channels and customer service at Swiss Post — the exact domain where AI use cases have the highest impact. His active interest in agentic AI and Swiss Post's ambitious AI adoption program make this an exceptionally well-aligned meeting.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="how_to_engage">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How inferred
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill d">D</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Driver / Results-Oriented</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);" data-i18n="disc_comm_tips">Be direct and results-focused. Lead with business impact and ROI. Avoid lengthy preambles. Present clear options with data-backed recommendations. Let him feel in control of decisions.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="key_facts">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">MEDIUM CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">20+</div><div class="metric-label" data-i18n="years_experience">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">#1</div><div class="metric-label">NPS Rank (Sympany)</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Two columns - Strategic Insights | Conversation Openers -->
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="strategic_insights">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> AI-generated
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="strategic_insights_content">
+<div class="exec-insight">
+    <div class="exec-insight-title">Swiss Post AI at Scale</div>
+    <div class="exec-insight-text">Swiss Post has rolled out Microsoft Copilot Chat to all 45,000 employees and launched an "Agent Factory" for building custom AI agents — one of the most ambitious public-sector AI programs in Europe.</div>
+</div>
+<div class="exec-insight">
+    <div class="exec-insight-title">ePost Platform Growth</div>
+    <div class="exec-insight-text">The ePost platform grew 70% YoY to 10,000+ connected organizations and 200,000+ private customers. The Digital Services unit increased revenue by 30% in 2024.</div>
+</div>
+<div class="exec-insight">
+    <div class="exec-insight-title">Agentic AI Advocate</div>
+    <div class="exec-insight-text">Boris actively promotes agentic AI on LinkedIn, citing IDC's forecast of 1.3B agents by 2028, and sees Swiss organizations as frontrunners with "Frontier firms" powered by hybrid human-AI teams.</div>
+</div>
+<div class="exec-insight">
+    <div class="exec-insight-title">Customer-Centric Track Record</div>
+    <div class="exec-insight-text">At Sympany, he drove customer loyalty from 8th to 1st place in NPS — a rare achievement in Swiss health insurance. He brings the same customer-obsessed mindset to Swiss Post.</div>
+</div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="conversation_openers">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How derived
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="exec_openers_content">
+<div class="exec-opener"><div class="exec-opener-num">1</div><div>"Swiss Post's Agent Factory sounds groundbreaking — what AI agents have delivered the most value so far in your digital channels?"</div></div>
+<div class="exec-opener"><div class="exec-opener-num">2</div><div>"You moved Sympany from 8th to 1st in NPS — how are you applying that customer-first approach to Swiss Post's digital transformation?"</div></div>
+<div class="exec-opener"><div class="exec-opener-num">3</div><div>"With 70% of written inquiries now handled without human intervention, what's the next frontier for AI in Swiss Post's contact center?"</div></div>
+<div class="exec-opener"><div class="exec-opener-num">4</div><div>"Your LinkedIn post on agentic AI and 'Frontier firms' resonated — how do you see Swiss Post evolving its human-AI team model?"</div></div></div>
+                </div>
+            </div>
+
+            <!-- Row 4: Anticipated Topics (compact table) -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="anticipated_topics_title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How predicted
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th data-i18n="th_topic">Topic</th><th data-i18n="th_probability">Probability</th><th data-i18n="th_your_angle">Your Angle</th></tr></thead>
+                    <tbody data-i18n-html="exec_anticipated_topics">
+<tr><td>AI-Powered Customer Service Automation</td><td><span class="probability-badge prob-very-high">95%</span></td><td>Lead with concrete use cases for contact center AI, chatbot enhancement, and agent assist tools</td></tr>
+<tr><td>Agentic AI &amp; Agent Factory Scaling</td><td><span class="probability-badge prob-high">85%</span></td><td>Discuss frameworks for building, deploying, and governing autonomous AI agents at enterprise scale</td></tr>
+<tr><td>ePost Platform &amp; Digital Channel Optimization</td><td><span class="probability-badge prob-high">80%</span></td><td>Present AI-driven personalization and intelligent routing for the ePost ecosystem</td></tr>
+<tr><td>Data-Driven Customer Insights &amp; NPS</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>Share how predictive analytics and sentiment analysis can enhance CX metrics</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- Row 5: Source confidence - compact inline bar -->
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (18 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 35%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 30%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 25%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 35%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 30%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 25%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="professional_timeline">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    
+<div class="timeline-item"><div class="timeline-period">Oct 2024 - Present</div><div class="timeline-content"><strong>Head of Digital Channels</strong> — Swiss Post. Leading digital customer touchpoints, omnichannel strategy, and AI-powered service channels.</div></div>
+<div class="timeline-item"><div class="timeline-period">2024 - Present</div><div class="timeline-content"><strong>Guest Lecturer</strong> — University of Basel. Teaching Market Management, Business Development in MAS/MBA programs.</div></div>
+<div class="timeline-item"><div class="timeline-period">Apr 2022 - 2024</div><div class="timeline-content"><strong>Head Products &amp; Marketing / Executive Board</strong> — Sympany. Led product management, marketing. Drove NPS from 8th to 1st place.</div></div>
+<div class="timeline-item"><div class="timeline-period">Sep 2021 - Apr 2022</div><div class="timeline-content"><strong>Head Offer Management &amp; Customer Analytics (interim EB)</strong> — Sympany. Added customer analytics while maintaining marketing leadership.</div></div>
+<div class="timeline-item"><div class="timeline-period">Jul 2017 - Sep 2021</div><div class="timeline-content"><strong>Head Marketing &amp; Communications</strong> — Sympany. Extended Executive Board member. Brand repositioning and customer loyalty strategy.</div></div>
+<div class="timeline-item"><div class="timeline-period">2016 - 2017</div><div class="timeline-content"><strong>Head Insurance / Executive Board</strong> — Verivox Schweiz AG. Market entry of health insurance comparison portal.</div></div>
+<div class="timeline-item"><div class="timeline-period">~2010 - 2016</div><div class="timeline-content"><strong>Head Digital Business / Web</strong> — AXA Winterthur. Six years leading digital transformation for a major Swiss insurer.</div></div>
+<div class="timeline-item"><div class="timeline-period">Earlier</div><div class="timeline-content"><strong>Senior Advisor</strong> — Synpulse Consulting. Strategy consulting for healthcare and health insurance sectors.</div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="recognition_awards">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from press releases, award announcements, and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    
+<div class="media-item"><h4>NPS Leadership Achievement</h4><p>Drove Sympany from 8th to 1st place in customer loyalty (NPS) across the Swiss health insurance market.</p></div>
+<div class="media-item"><h4>Executive Board Selection</h4><p>Competitively selected for Sympany Executive Board as Head Products &amp; Marketing (April 2022).</p></div>
+<div class="media-item"><h4>Digital Veterans Association</h4><p>Active member of non-profit fostering next-generation digital leaders through networking, education, and research.</p></div>
+<div class="media-item"><h4>University of Basel Teaching</h4><p>Appointed Guest Lecturer for MAS/MBA programs — recognition of industry expertise in digital business.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="industry_expertise">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags"><span class="tag">Digital Transformation</span><span class="tag">Customer Experience (CX)</span><span class="tag">AI &amp; Agentic AI</span><span class="tag">Omnichannel Strategy</span><span class="tag">Health Insurance</span><span class="tag">Postal &amp; Logistics</span><span class="tag">Marketing Communications</span><span class="tag">Product Management</span><span class="tag">NPS &amp; Customer Loyalty</span><span class="tag">Digital Channels</span><span class="tag">Strategy Consulting</span><span class="tag">E-Commerce</span></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Swiss Post (Die Schweizerische Post) Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry (Moneyhouse), company website, and Crunchbase/similar directories.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1849</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">Federal Gov</div><div class="metric-label">Co-Founders</div></div>
+                    <div class="metric-box"><div class="metric-value">45,000+</div><div class="metric-label">Team Members</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 324M</div><div class="metric-label">Group Profit 2024</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">175+</div><div class="metric-label">Combined Years Experience</div></div>
+                    <div class="metric-box"><div class="metric-value">Bern, CH</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Co-Founders
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company registry records and team page. Roles verified via LinkedIn.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    
+<div class="person-card"><div class="person-avatar">PG</div><div class="person-info"><h4>Pascal Grieder</h4><p>CEO (since Nov 2025) | Former CEO Salt Mobile, PhD ETH</p></div></div>
+<div class="person-card"><div class="person-avatar">AG</div><div class="person-info"><h4>Alex Glanzmann</h4><p>CFO &amp; Head Finance / Real Estate | Interim CEO Apr-Oct 2025</p></div></div>
+<div class="person-card"><div class="person-avatar">WE</div><div class="person-info"><h4>Wolfgang Eger</h4><p>CIO / Head Informatics &amp; Technology</p></div></div>
+<div class="person-card"><div class="person-avatar">CR</div><div class="person-info"><h4>Carole Rentsch</h4><p>Head of Human Resources</p></div></div>
+<div class="person-card"><div class="person-avatar">DM</div><div class="person-info"><h4>Deborah Murith</h4><p>Head of Communication</p></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Advisory Board
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Advisors identified from company pages, LinkedIn connections marked as advisors, and press mentions.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    
+<div class="person-card"><div class="person-avatar">CL</div><div class="person-info"><h4>Christian Levrat</h4><p>Chairman Board of Directors | Former Council of States member</p></div></div>
+<div class="person-card"><div class="person-avatar">JT</div><div class="person-info"><h4>Jean-Jacques Toffel</h4><p>Head Contact Center &amp; Sales SMEs | Key internal stakeholder</p></div></div>
+<div class="person-card"><div class="person-avatar">RT</div><div class="person-info"><h4>Raphael Tanner</h4><p>Lead Conversation Design &amp; IA Content | Chatbot strategy lead</p></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, association directories, and conference speaker bios.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+<div class="conversation-card"><h4>Digital Veterans Association</h4><p>Non-profit fostering next-gen digital leaders through networking, education, and research</p></div>
+<div class="conversation-card"><h4>University of Basel</h4><p>Guest Lecturer — MAS/MBA programs in Market Management &amp; Business Development</p></div>
+<div class="conversation-card"><h4>IMD Alumni Network</h4><p>Transformational Leadership program alumnus — executive education network</p></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Client Relationships
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Clients identified from case studies, testimonials, and press releases. Sector inferred from industry focus.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags"><span class="tag">Swiss Population (9M+)</span><span class="tag">10,000+ Business Customers (ePost)</span><span class="tag">200,000+ Private Users (ePost)</span><span class="tag">Swiss Federal Government</span><span class="tag">Banks &amp; Insurance</span><span class="tag">Cantonal Authorities</span><span class="tag">Healthcare Providers</span></div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,18 162,42 176,100 162,158 100,182 38,155 24,100 38,45" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Decision-Making Profile
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Profile based on described approaches in interviews and case studies. Validate with direct interaction.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+<tr><td>Decision Speed</td><td>Fast — evidence of quick role transitions and bold strategic moves (NPS turnaround, Swiss Post move)</td></tr>
+<tr><td>Risk Tolerance</td><td>Moderate-High — left AXA for startup Verivox, then moved to major public institution</td></tr>
+<tr><td>Information Need</td><td>Data-driven but pragmatic — IT background, values metrics (NPS, revenue) but acts decisively</td></tr>
+<tr><td>Stakeholder Orientation</td><td>Customer-first — consistently prioritizes CX and loyalty metrics across all roles</td></tr>
+<tr><td>Innovation Appetite</td><td>High — actively promotes agentic AI, digital transformation on LinkedIn</td></tr></table>
+                </div>
+            </div>
+
+            <!-- DISC Profile -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">DISC Personality Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content, communication style, and role characteristics. NOT a formal DISC assessment — use as meeting preparation guidance only.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="disc-chart">
+                            <div class="disc-bar d-bar" style="height: 82%;"><span>D</span><span class="disc-score">82</span></div>
+                            <div class="disc-bar i-bar" style="height: 60%;"><span>I</span><span class="disc-score">60</span></div>
+                            <div class="disc-bar s-bar" style="height: 45%;"><span>S</span><span class="disc-score">45</span></div>
+                            <div class="disc-bar c-bar" style="height: 70%;"><span>C</span><span class="disc-score">70</span></div>
+                        </div>
+                        <div class="disc-labels"><span>Dominance</span><span>Influence</span><span>Steadiness</span><span>Conscientiousness</span></div>
+                    </div>
+                    <div>
+                        <div class="disc-primary">Primary: <strong>D (Dominance)</strong></div>
+                        <div class="disc-secondary">Secondary: C (Conscientiousness)</div>
+                        <p class="disc-description">Boris displays strong Dominance traits — direct, results-oriented, and decisive. His track record of transforming NPS rankings and winning competitive executive selections shows a driven achiever. The secondary Conscientiousness dimension reflects his IT background, data-driven approach, and systematic thinking.</p>
+                    </div>
+                </div>
+                <div class="insight-box blue" style="margin-top: 16px;">
+                    <div class="insight-title">Communication Tips:</div>
+                    <p>Be direct and get to the point quickly. Lead with results, ROI, and measurable outcomes. Provide data to back claims, but don't drown in details. Let him feel in control. Avoid small talk — move quickly to substance.</p>
+                </div>
+            </div>
+
+            <!-- Influence Levers -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns. Validate in conversation.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="insight-box green"><div class="insight-title">Customer Impact:</div><p>Frame AI solutions in terms of CX improvement, NPS impact, and service quality. This is his primary decision driver.</p></div>
+                <div class="insight-box blue"><div class="insight-title">Measurable ROI:</div><p>Provide concrete metrics — cost savings, efficiency gains, automation rates. His NPS turnaround shows he values quantifiable outcomes.</p></div>
+                <div class="insight-box orange"><div class="insight-title">Speed to Value:</div><p>Emphasize quick wins and rapid deployment. His career pattern shows preference for fast-moving environments and tangible results.</p></div>
+                <div class="insight-box yellow"><div class="insight-title">Swiss Market Relevance:</div><p>He values Switzerland-specific context — multilingual capabilities, data sovereignty, local success stories resonate strongly.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Patterns from content analysis. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div data-i18n-html="psychological_indicators_content">
+<div class="grid-2">
+    <div class="insight-box blue">
+        <div class="insight-title">Achievement-Driven:</div>
+        <p>Career trajectory shows consistent upward mobility and competitive selection wins. Motivated by measurable impact and visible results.</p>
+    </div>
+    <div class="insight-box green">
+        <div class="insight-title">Customer Empathy:</div>
+        <p>Despite the driven personality, shows genuine customer orientation — NPS improvement was a cultural transformation at Sympany.</p>
+    </div>
+    <div class="insight-box yellow">
+        <div class="insight-title">Digital Native Mindset:</div>
+        <p>IT background who transitioned into business leadership. Comfortable evaluating AI solutions at both strategic and operational levels.</p>
+    </div>
+    <div class="insight-box orange">
+        <div class="insight-title">Thought Leadership:</div>
+        <p>Active LinkedIn presence discussing agentic AI, Swiss AI ecosystem, European competitiveness. Values being a forward-thinking industry voice.</p>
+    </div>
+</div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted via NLP from articles, posts, and interviews. Frequency = how often they appear in public content.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+<tr><td>"Agentic AI — systems that understand context, plan, and execute"</td><td>High</td><td>LinkedIn post on future of AI, referencing IDC forecast of 1.3B agents by 2028</td></tr>
+<tr><td>"AI is most powerful when it works hand in hand with people"</td><td>High</td><td>Human-AI collaboration focus in thought leadership</td></tr>
+<tr><td>"Frontier firms" powered by hybrid teams</td><td>Medium</td><td>Describing Swiss organizations structuring around on-demand intelligence</td></tr>
+<tr><td>"Customer loyalty" / "Kundenloyalitat"</td><td>Very High</td><td>Recurring theme — central metric at Sympany and Swiss Post</td></tr>
+<tr><td>"52% of Swiss companies already automate entire processes"</td><td>Medium</td><td>Citing Microsoft Work Trend Index, positioning CH as AI leader</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis. Recommendations are suggestions - validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <div class="swot-box strengths"><h4 data-i18n="swot_strengths">Strengths</h4><ul data-i18n-html="swot_strengths_list">
+<li><div class="interactive-item">Massive scale — 45,000 employees, government-backed, universal service mandate<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Position AI solutions as enablers for this scale. Show how AI can serve 9M residents while managing costs.</div></div></li>
+<li><div class="interactive-item">Ambitious AI adoption — Copilot for 45K employees, Agent Factory, 70%+ written inquiries automated<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Reference existing AI maturity. Propose next-level use cases building on Copilot/Agent Factory.</div></div></li>
+<li><div class="interactive-item">Strong digital growth — ePost revenue +30%, 200K+ users, 10K+ business connections<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Show how AI accelerates ePost adoption through personalized onboarding and intelligent routing.</div></div></li>
+<li><div class="interactive-item">Proven customer focus — NPS transformation from Boris's Sympany leadership<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Align proposals with CX outcomes. Boris evaluates everything through a customer impact lens.</div></div></li></ul></div>
+                    <div class="swot-box weaknesses"><h4 data-i18n="swot_weaknesses">Potential Gaps</h4><ul data-i18n-html="swot_weaknesses_list">
+<li><div class="interactive-item">Public sector constraints — government ownership may slow procurement<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Prepare for longer decision cycles. Offer pilot-friendly approaches and proof-of-concept models.</div></div></li>
+<li><div class="interactive-item">Digital Services unit not yet profitable — approaching but not achieved<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Frame AI investments as cost-reduction tools with clear ROI timelines.</div></div></li>
+<li><div class="interactive-item">CEO transition — Pascal Grieder started Nov 2025, priorities may shift<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Focus on initiatives already underway (Agent Factory, ePost). Align with continuity.</div></div></li></ul></div>
+                    <div class="swot-box opportunities"><h4 data-i18n="swot_opportunities">Opportunities</h4><ul data-i18n-html="swot_opportunities_list">
+<li><div class="interactive-item">ePost as Switzerland's digital hub — targeting 1M users, open banking, e-voting, EPR<div class="item-recommendation"><div class="item-recommendation-label">Pursue</div>Position AI as intelligence layer: smart routing, automated document processing, predictive billing.</div></div></li>
+<li><div class="interactive-item">Agent Factory scaling — actively building custom AI agents with Copilot Studio<div class="item-recommendation"><div class="item-recommendation-label">Pursue</div>Offer agent development expertise, evaluation frameworks, governance models.</div></div></li>
+<li><div class="interactive-item">Video consultation expansion — 20+ My Post 24 locations, growing further<div class="item-recommendation"><div class="item-recommendation-label">Pursue</div>Present AI-powered video analysis, real-time translation, advisor augmentation.</div></div></li>
+<li><div class="interactive-item">Multilingual Switzerland — 4 official languages need native AI support<div class="item-recommendation"><div class="item-recommendation-label">Pursue</div>Showcase multilingual AI: chatbots, document processing, analytics across DE/FR/IT/EN.</div></div></li></ul></div>
+                    <div class="swot-box threats"><h4 data-i18n="swot_threats">Competitive Threats</h4><ul data-i18n-html="swot_threats_list">
+<li><div class="interactive-item">Declining letter volumes — structural decline increases pressure on digital growth<div class="item-recommendation"><div class="item-recommendation-label">Address</div>Position digital channels as the revenue replacement engine.</div></div></li>
+<li><div class="interactive-item">Data sovereignty — 50% of Swiss companies cite data protection as AI barrier<div class="item-recommendation"><div class="item-recommendation-label">Address</div>Emphasize Swiss-hosted, FADP-compliant AI solutions.</div></div></li>
+<li><div class="interactive-item">Competitive digital services — private sector alternatives gaining ground<div class="item-recommendation"><div class="item-recommendation-label">Address</div>Help differentiate ePost through AI features competitors cannot match at Swiss Post's scale.</div></div></li></ul></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="competitive_positioning">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label" data-i18n="axis_market_expertise">Market Expertise</span>
+                    <span class="scatter-axis-label x-label" data-i18n="axis_agility_speed">Agility & Speed</span>
+                    <span class="scatter-axis-label y-high" data-i18n="axis_high">High</span><span class="scatter-axis-label y-low" data-i18n="axis_low">Low</span>
+                    <span class="scatter-axis-label x-low" data-i18n="axis_low_2">Low</span><span class="scatter-axis-label x-high" data-i18n="axis_high_2">High</span>
+                    <div class="scatter-dots-container">
+<div class="scatter-dot subject" style="left: 45%; bottom: 85%;"><div class="scatter-tooltip"><strong>Swiss Post</strong> — Highest market expertise, government mandate. Moderate agility.<em>Dominant position, trusted brand, universal coverage</em></div></div>
+<div class="scatter-dot competitor1" style="left: 75%; bottom: 55%;"><div class="scatter-tooltip"><strong>DPD / DHL Switzerland</strong> — High agility in parcel delivery, moderate expertise.<em>Strong B2C logistics, growing digital tools</em></div></div>
+<div class="scatter-dot competitor2" style="left: 80%; bottom: 40%;"><div class="scatter-tooltip"><strong>Certifaction / DigiSigner</strong> — Very agile digital-native startups.<em>Focused e-signature/digital docs competitors</em></div></div>
+<div class="scatter-dot competitor3" style="left: 30%; bottom: 60%;"><div class="scatter-tooltip"><strong>Swisscom</strong> — Strong Swiss digital infrastructure player.<em>Potential competitor in digital communication platform</em></div></div></div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;"><span class="legend-item"><span class="legend-color" style="background: var(--green-verified);"></span>Swiss Post</span>
+<span class="legend-item"><span class="legend-color" style="background: var(--charcoal);"></span>DPD / DHL</span>
+<span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary);"></span>Certifaction</span>
+<span class="legend-item"><span class="legend-color" style="background: var(--slate-gray);"></span>Swisscom</span></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and marketing materials.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+<div class="differentiator-box"><div class="differentiator-icon">1</div><h4>Government Trust</h4><div class="differentiator-label">100% federally owned — uniquely trusted for sensitive digital services (e-voting, EPR, secure messaging)</div></div>
+<div class="differentiator-box"><div class="differentiator-icon">2</div><h4>Physical + Digital</h4><div class="differentiator-label">Only Swiss org seamlessly bridging physical postal infrastructure with digital channels at national scale</div></div>
+<div class="differentiator-box"><div class="differentiator-icon">3</div><h4>Universal Coverage</h4><div class="differentiator-label">Mandated to serve all citizens — digital channels must work for Baby Boomers and Gen Z alike</div></div></div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR Discussion on AI use cases and priorities
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content" data-i18n-html="engagement_strategy"><strong>Lead with impact, not technology.</strong> Boris is a results-oriented digital leader who evaluates everything through customer experience and measurable outcomes. Open with Swiss-specific AI success stories that demonstrate clear NPS or efficiency improvements. Reference his own Agent Factory initiative to show you understand Swiss Post's AI maturity. <strong>Move quickly from vision to concrete use cases</strong> — he values speed and will lose interest in pure strategy talk. Present 3-4 prioritized AI use cases with estimated ROI and pilot approaches. <strong>Speak his language:</strong> customer loyalty, automation rates, digital adoption metrics. Close by proposing a specific next step.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="conversation_starters_content">
+<div class="conversation-card"><h4>Agent Factory Deep-Dive</h4><p>"Swiss Post's Agent Factory is one of the most ambitious enterprise AI programs I've seen — what's been the biggest surprise in scaling it across 45,000 employees?"</p></div>
+<div class="conversation-card"><h4>NPS Playbook</h4><p>"Moving from 8th to 1st in NPS at Sympany is remarkable. How are you translating that customer-first DNA into Swiss Post's digital strategy?"</p></div>
+<div class="conversation-card"><h4>Agentic AI Vision</h4><p>"Your thoughts on 'Frontier firms' powered by hybrid human-AI teams are compelling. What does that look like practically for Swiss Post's contact center?"</p></div>
+<div class="conversation-card"><h4>Multilingual AI Challenge</h4><p>"Serving customers in four languages is a unique Swiss challenge. How is AI helping bridge the multilingual gap in your digital channels?"</p></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="topics_to_avoid">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="topics_to_avoid_content">
+<div class="conversation-card warning"><h4>Legacy Postal Decline</h4><p>Avoid framing Swiss Post as a "declining postal company." Boris joined to drive digital growth — focus on the future.</p></div>
+<div class="conversation-card warning"><h4>Public Sector Stereotypes</h4><p>Don't assume slow decisions or bureaucracy. Swiss Post's AI adoption (45K on Copilot) shows they move faster than many private companies.</p></div>
+<div class="conversation-card warning"><h4>Over-Comparing to Sympany</h4><p>While his Sympany achievements are impressive, focus on Swiss Post's current challenges and opportunities.</p></div>
+<div class="conversation-card warning"><h4>Generic AI Hype</h4><p>Boris is technically literate (IT background) and will see through superficial AI claims. Bring substance and specifics.</p></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💡 Connection Points
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential common ground based on your provided context and their profile.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div data-i18n-html="connection_points_content">
+<div class="insight-box green">
+    <div class="insight-title">Shared AI Passion:</div>
+    <p>Both Boris and Michael are active in the Swiss AI ecosystem. Boris through Swiss Post's Agent Factory and LinkedIn thought leadership; Michael through Artifact's AI consulting practice.</p>
+</div>
+<div class="insight-box blue">
+    <div class="insight-title">Digital Transformation Practitioners:</div>
+    <p>Both have hands-on experience transforming organizations with AI — Boris at enterprise scale (Swiss Post, Sympany), Michael through consulting engagements across Swiss industries.</p>
+</div>
+<div class="insight-box orange">
+    <div class="insight-title">Swiss AI Community:</div>
+    <p>Both operate in overlapping Swiss AI networks — Digital Veterans Association (Boris), Digital Impact Network and SwissCognitive (Michael). Potential shared connections.</p>
+</div>
+<div class="insight-box yellow">
+    <div class="insight-title">Customer-Centric AI Philosophy:</div>
+    <p>Boris's "AI works best hand in hand with people" aligns with Artifact's human-centered AI approach. Strong rapport builder.</p>
+</div></div>
+            </div>
+
+            <!-- Value Exchange Map -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">What You Can Offer Them
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Suggestions based on their stated needs and your context. Customize based on actual capabilities.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--green-verified); color: white;">VALUE EXCHANGE</span>
+                </div>
+                <div class="insight-box green"><div class="insight-title">AI Implementation Expertise:</div><p>Artifact's proven AI methodology, award-winning data capabilities (SwissICT 2024), hands-on experience deploying AI across Swiss enterprises.</p></div>
+                <div class="insight-box blue"><div class="insight-title">Use Case Prioritization:</div><p>Structured approach to evaluating and prioritizing AI use cases by impact, feasibility, and strategic alignment — focusing resources on highest-value opportunities.</p></div>
+                <div class="insight-box orange"><div class="insight-title">Swiss AI Ecosystem Insights:</div><p>Cross-industry benchmarks and best practices from deep network across Swiss AI community (Forbes Business Council, SwissCognitive, Digital Impact Network).</p></div>
+            </div>
+
+            <!-- Contact Strategy -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Optimal Contact Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Recommendations based on communication style analysis and professional norms. Adjust based on relationship status.</div></span>
+                    </h3>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Preferred Channel</td><td>LinkedIn direct message (he is active) or email via Swiss Post</td></tr>
+                    <tr><td>Optimal Timing</td><td>Tuesday-Thursday, morning hours (executive schedules)</td></tr>
+                    <tr><td>Formality Level</td><td>Professional but direct — avoid overly formal language. He appreciates substance over ceremony.</td></tr>
+                    <tr><td>First Touchpoint</td><td>Reference a specific LinkedIn post (e.g., agentic AI piece) to show genuine interest, then propose a focused 30-min conversation.</td></tr>
+                </table>
+            </div>
+
+            <!-- Personal Interests Matching -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Personal Interests Matching
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Personal interests from public profiles, interviews, and social media. Research conducted separately for each person.</div></span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #ec4899, #f472b6); color: white;">PERSONAL CONNECTION</span>
+                </div>
+                <div class="grid-2" style="margin-bottom: 20px;">
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 12px;">Boris Jacklowsky's Interests</h4>
+                        <div class="tags"><span class="tag">Digital Veterans Association</span><span class="tag">University Teaching</span><span class="tag">AI Thought Leadership</span><span class="tag">Swiss Digital Ecosystem</span><span class="tag">Healthcare Innovation</span><span class="tag">Student Mentoring</span></div>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 12px;">Michael Wegmuller's Interests</h4>
+                        <div class="tags"><span class="tag">Swiss Armed Forces (Senior Officer)</span><span class="tag">AI Policy &amp; Ethics</span><span class="tag">Swiss AI Community</span><span class="tag">Forbes Business Council</span><span class="tag">Data Science Innovation</span><span class="tag">University Collaboration</span></div>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 20px; border-radius: 8px; border: 1px solid #fbcfe8;">
+                    <h4 style="font-weight: 600; margin-bottom: 12px; color: #be185d;">Shared Interests &amp; Connection Points</h4>
+                    <div class="insight-box green" style="border-color: #ec4899;"><div class="insight-title" style="color: #be185d;">Swiss Digital Community:</div><p>Both deeply embedded in Switzerland's digital leadership — Boris via Digital Veterans Association, Michael via Digital Impact Network and SwissCognitive. Likely shared connections.</p></div>
+                    <div class="insight-box green" style="border-color: #ec4899;"><div class="insight-title" style="color: #be185d;">AI Thought Leadership:</div><p>Both publicly advocate for impactful AI in Switzerland. Boris posts about agentic AI; Michael contributes to AI policy and won a SwissICT innovation award.</p></div>
+                    <div class="insight-box green" style="border-color: #ec4899;"><div class="insight-title" style="color: #be185d;">Academic Connection:</div><p>Boris teaches at Uni Basel; Michael engages with ETH and university programs. Both value knowledge transfer and supporting next-gen leaders.</p></div>
+                </div>
+                <div class="insight-box" style="border-color: #ec4899; margin-top: 16px;">
+                    <div class="insight-title" style="color: #ec4899;">Conversation Opportunities:</div>
+                    <p>Leverage shared commitment to the Swiss AI ecosystem. Mention Digital Impact Network or SwissCognitive to establish common ground. Reference the SwissICT award as a shared reference for AI innovation. The teaching/mentoring angle provides a values-based connection beyond business.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+<tr><td>AI-Powered Contact Center Automation</td><td><span class="probability-badge prob-very-high">95%</span></td><td>Prepare concrete case studies of chatbot/agent assist deployments with measured ROI</td></tr>
+<tr><td>Agentic AI Strategy &amp; Agent Factory</td><td><span class="probability-badge prob-high">85%</span></td><td>Show expertise in agent design patterns, governance, and evaluation methodologies</td></tr>
+<tr><td>ePost Intelligence Layer</td><td><span class="probability-badge prob-high">80%</span></td><td>Present AI use cases for document classification, smart routing, personalization</td></tr>
+<tr><td>Customer Analytics &amp; NPS Prediction</td><td><span class="probability-badge prob-medium-high">75%</span></td><td>Demonstrate predictive NPS models, churn prediction, journey optimization</td></tr>
+<tr><td>Multilingual AI Capabilities</td><td><span class="probability-badge prob-medium">65%</span></td><td>Showcase multilingual LLM performance, especially DE/FR/IT capabilities</td></tr>
+<tr><td>Data Sovereignty &amp; AI Ethics</td><td><span class="probability-badge prob-medium">60%</span></td><td>Address Swiss data protection (FADP), on-premise options, ethical AI frameworks</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via web search and company blog archives.</div></span>
+                        </h3>
+                    </div>
+                    
+<div class="media-item"><h4>LinkedIn: Agentic AI &amp; Swiss Ecosystem</h4><p>Active thought leader discussing agentic AI, Swiss companies' AI leadership (52% automating processes), "Frontier firms" with hybrid human-AI teams.</p></div>
+<div class="media-item"><h4>LinkedIn: European AI Strategy</h4><p>Interview reference with WirtschaftsWoche discussing why Europe urgently needs a strategy to turn innovation into real-world impact.</p></div>
+<div class="media-item"><h4>Swiss Press Coverage</h4><p>Featured in persoenlich.com, markt-kom.com, Handelszeitung for executive appointments at Sympany and Verivox.</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
+                        </h3>
+                    </div>
+                    
+<div class="media-item"><h4>dmexco Satellites Switzerland</h4><p>Speaker at dmexco Satellites — representing AXA Winterthur as "Director Online" during digital business leadership.</p></div>
+<div class="media-item"><h4>University of Basel Lectures</h4><p>Ongoing teaching in MAS/MBA programs covering Market Management, Business Development, Marketing.</p></div>
+<div class="media-item"><h4>Swiss Post Digital Connect 2025</h4><p>Swiss Post's flagship digital event featured AI thought leadership. Boris's team central to digital channels narrative.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Sentiment from NLP classification of news coverage. Aggregate scores, not individual article analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+<div class="bar-group"><div class="bar-tooltip">2023: 55% positive, 35% neutral, 10% critical</div><div class="bar" style="height: 130px;"><div class="bar-segment positive" style="height: 55%;"></div><div class="bar-segment neutral" style="height: 35%;"></div><div class="bar-segment critical" style="height: 10%;"></div></div><span class="bar-label">2023</span></div>
+<div class="bar-group"><div class="bar-tooltip">2024: 70% positive, 25% neutral, 5% critical</div><div class="bar" style="height: 160px;"><div class="bar-segment positive" style="height: 70%;"></div><div class="bar-segment neutral" style="height: 25%;"></div><div class="bar-segment critical" style="height: 5%;"></div></div><span class="bar-label">2024</span></div>
+<div class="bar-group"><div class="bar-tooltip">2025: 75% positive, 20% neutral, 5% critical</div><div class="bar" style="height: 170px;"><div class="bar-segment positive" style="height: 75%;"></div><div class="bar-segment neutral" style="height: 20%;"></div><div class="bar-segment critical" style="height: 5%;"></div></div><span class="bar-label">2025</span></div></div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="ai_use_cases_title">AI Use Cases - Impact vs Feasibility
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How generated
+                            <div class="methodology-tooltip">AI-GENERATED: Use cases positioned based on estimated business impact and implementation feasibility for Swiss Post (Die Schweizerische Post). Hover over each dot for rationale.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white;">AI OPPORTUNITIES</span>
+                </div>
+                <div class="scatter-plot" style="height: 400px;">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label" data-i18n="axis_impact">Business Impact</span>
+                    <span class="scatter-axis-label x-label" data-i18n="axis_feasibility">Implementation Feasibility</span>
+                    <span class="scatter-axis-label y-high" data-i18n="axis_high_3">High</span><span class="scatter-axis-label y-low" data-i18n="axis_low_3">Low</span>
+                    <span class="scatter-axis-label x-low" data-i18n="axis_low_4">Low</span><span class="scatter-axis-label x-high" data-i18n="axis_high_4">High</span>
+                    <div class="scatter-dots-container">
+<div class="uc-dot uc1" style="left: 80%; bottom: 90%;"><span>1</span><div class="scatter-tooltip"><strong>AI Contact Center Agent</strong><br>High impact, high feasibility. Builds on existing chatbot.<em>Quick win — enhances "Yellow World" chatbot</em></div></div>
+<div class="uc-dot uc2" style="left: 70%; bottom: 80%;"><span>2</span><div class="scatter-tooltip"><strong>Intelligent Document Processing</strong><br>High impact for ePost. Proven NLP/OCR technology.<em>Streamlines ePost document handling</em></div></div>
+<div class="uc-dot uc3" style="left: 60%; bottom: 85%;"><span>3</span><div class="scatter-tooltip"><strong>Predictive Customer Analytics</strong><br>High impact, requires data integration.<em>NPS prediction and churn prevention</em></div></div>
+<div class="uc-dot uc4" style="left: 85%; bottom: 70%;"><span>4</span><div class="scatter-tooltip"><strong>Multilingual AI Translation</strong><br>Serves 4 languages. Mature LLM tech.<em>Real-time DE/FR/IT/EN for all channels</em></div></div>
+<div class="uc-dot uc5" style="left: 50%; bottom: 75%;"><span>5</span><div class="scatter-tooltip"><strong>Video Consultation AI Assist</strong><br>Enhances advisor productivity.<em>Real-time suggestions for video advisors</em></div></div>
+<div class="uc-dot uc6" style="left: 40%; bottom: 90%;"><span>6</span><div class="scatter-tooltip"><strong>Personalized Digital Onboarding</strong><br>Drives ePost adoption. Needs user behavior data.<em>AI-driven conversion optimization</em></div></div>
+<div class="uc-dot uc7" style="left: 75%; bottom: 60%;"><span>7</span><div class="scatter-tooltip"><strong>Agent Quality Monitoring</strong><br>Improves service quality via speech/text analytics.<em>Automated QA across all channels</em></div></div>
+<div class="uc-dot uc8" style="left: 55%; bottom: 65%;"><span>8</span><div class="scatter-tooltip"><strong>Smart Knowledge Base</strong><br>Accelerates agent response via RAG.<em>AI-powered internal knowledge for agents</em></div></div></div>
+                </div>
+                <div class="uc-legend">
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #8b5cf6;"></div>1. AI Contact Center Agent</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #3b82f6;"></div>2. Intelligent Document Processing</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #10b981;"></div>3. Predictive Customer Analytics</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #f59e0b;"></div>4. Multilingual AI Translation</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #ef4444;"></div>5. Video Consultation AI Assist</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #ec4899;"></div>6. Personalized Digital Onboarding</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #06b6d4;"></div>7. Agent Quality Monitoring</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #84cc16;"></div>8. Smart Knowledge Base</div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="recommended_ai_use_cases">Recommended AI Use Cases
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How generated
+                            <div class="methodology-tooltip">AI-GENERATED: Use cases selected based on person's role, industry, company challenges, and stated interests. Reasoning available on hover.</div>
+                        </span>
+                    </h3>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 20px;" data-i18n="ai_use_cases_intro">
+                    Based on Boris Jacklowsky's role as Head of Digital Channels at Swiss Post (Die Schweizerische Post), these AI applications could be highly relevant:
+                </p>
+                <div class="use-cases-grid" data-i18n-html="ai_use_cases_grid">
+                    
+<div class="use-case-card"><div class="use-case-icon">1</div><h4 class="use-case-title">AI Contact Center Agent</h4><p class="use-case-description">Next-gen conversational AI beyond the "Yellow World" chatbot — handling complex multi-turn inquiries, performing actions (package rerouting, address changes), seamlessly escalating with full context.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Swiss Post already automates 70%+ of written inquiries. An advanced AI agent could push this to 85%+ while improving CSAT. Builds on existing infrastructure and Boris's agentic AI interest.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">2</div><h4 class="use-case-title">Intelligent Document Processing</h4><p class="use-case-description">AI-powered classification, extraction, and routing for ePost documents — auto-categorizing invoices, contracts, government correspondence, triggering workflows.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>10,000+ organizations and 200,000+ users on ePost means document volume is scaling rapidly. AI reduces manual processing and improves UX through instant categorization.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">3</div><h4 class="use-case-title">Predictive Customer Analytics</h4><p class="use-case-description">ML models predicting NPS, identifying churn risk, recommending proactive interventions — turning reactive service into predictive relationship management.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Boris drove Sympany from 8th to 1st in NPS. Predictive analytics at Swiss Post's scale (9M+ citizens) could transform how the organization anticipates customer needs.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">4</div><h4 class="use-case-title">Real-Time Multilingual AI</h4><p class="use-case-description">AI-powered real-time translation across all channels — ensuring customers in DE, FR, IT, EN receive seamless, culturally appropriate service.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Switzerland's four-language reality is unique. AI eliminates need for language-specific teams, enabling any agent to serve any customer in their preferred language.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">5</div><h4 class="use-case-title">AI-Augmented Video Consultation</h4><p class="use-case-description">Real-time AI assistance for video advisors — product recommendations, customer history, compliance prompts, next-best-action during live consultations.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Swiss Post is expanding video to 20+ locations. AI augmentation makes each advisor significantly more effective with complex product inquiries.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">6</div><h4 class="use-case-title">Personalized Digital Onboarding</h4><p class="use-case-description">AI-driven onboarding that adapts to each user's behavior and needs — guiding feature discovery, maximizing ePost adoption and engagement.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>ePost targets 1M users but has 200K. AI-personalized onboarding can dramatically improve conversion, accelerating Digital Services profitability.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">7</div><h4 class="use-case-title">Automated Quality Monitoring</h4><p class="use-case-description">AI analysis of all interactions (chat, email, phone, video) to assess quality, identify training needs, detect compliance issues, surface best practices.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Millions of interactions across channels make manual QA impossible at scale. AI monitoring ensures quality while identifying improvement patterns.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">8</div><h4 class="use-case-title">AI Knowledge Base &amp; Agent Assist</h4><p class="use-case-description">RAG-powered system providing agents instant, accurate answers from Swiss Post's knowledge base — reducing handle time, improving accuracy, accelerating onboarding.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Swiss Post's service complexity (postal, financial, digital, logistics) means agents need vast knowledge. RAG-based AI surfaces the right answer instantly.</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>📚 Intelligence Sources (18)</h3>
+            <div class="sources-grid">
+<a href="https://www.linkedin.com/in/jacklowsky/" target="_blank" class="source-item"><div class="source-icon">LI</div><div class="source-info"><div class="source-name">LinkedIn Profile — Boris Jacklowsky</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://theorg.com/org/die-schweizerische-post-ag/org-chart/boris-jacklowsky" target="_blank" class="source-item"><div class="source-icon">TO</div><div class="source-info"><div class="source-name">The Org — Swiss Post Org Chart</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.sympany.ch/en/about-us/news-media/media/press-releases/2022/head-products-marketing.html" target="_blank" class="source-item"><div class="source-icon">SY</div><div class="source-info"><div class="source-name">Sympany — Executive Appointment</div><div class="source-meta">2022 | Primary</div></div></a>
+<a href="https://www.persoenlich.com/marketing/neuer-leiter-produkte-und-marketing-gewahlt" target="_blank" class="source-item"><div class="source-icon">PE</div><div class="source-info"><div class="source-name">persoenlich.com — Sympany News</div><div class="source-meta">2022 | Secondary</div></div></a>
+<a href="https://www.markt-kom.com/en/work-life/jobchange/boris-jacklowsky-wird-leiter-produkte-marketing-bei-sympany/" target="_blank" class="source-item"><div class="source-icon">MK</div><div class="source-info"><div class="source-name">markt-kom.com — Career Move</div><div class="source-meta">2022 | Secondary</div></div></a>
+<a href="https://www.post.ch/en/about-us/profile/digital-services" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — Digital Services</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.post.ch/en/about-us/news/2024/swiss-post-looks-to-the-future" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — Strategy 2025-2028</div><div class="source-meta">2024 | Primary</div></div></a>
+<a href="https://www.microsoft.com/en/customers/story/25880-swiss-post-microsoft-365-copilot" target="_blank" class="source-item"><div class="source-icon">MS</div><div class="source-info"><div class="source-name">Microsoft — Swiss Post Copilot</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.post.ch/en/about-us/profile/swiss-post-executive-management" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — Executive Management</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.post.ch/en/about-us/news/2025/the-new-swiss-post-ceo-pascal-grieder" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — New CEO Grieder</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.unblu.com/en/blog/swiss-post-takes-leap-forward-enabling-clients-receive-support-whatsapp/" target="_blank" class="source-item"><div class="source-icon">UB</div><div class="source-info"><div class="source-name">Unblu — WhatsApp Integration</div><div class="source-meta">2024 | Secondary</div></div></a>
+<a href="https://www.post.ch/en/about-us/news/2025/rethinking-advice-personal-digital-surprising" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — Video Consultation</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.computerweekly.com/news/366616219/Swiss-encrypted-messaging-service-ePost-targets-one-million-postal-users" target="_blank" class="source-item"><div class="source-icon">CW</div><div class="source-info"><div class="source-name">Computer Weekly — ePost Target</div><div class="source-meta">2025 | Secondary</div></div></a>
+<a href="https://data-lead.com/person/name/Boris+Jacklowsky/id/52588461/v/0ea9b" target="_blank" class="source-item"><div class="source-icon">DL</div><div class="source-info"><div class="source-name">Data-Lead — Profile</div><div class="source-meta">2024 | Secondary</div></div></a>
+<a href="https://www.post.ch/en/about-us/responsibility/corporate-responsibility/digital-ethics-at-swiss-post" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — Digital Ethics</div><div class="source-meta">2025 | Primary</div></div></a>
+<a href="https://www.siteimprove.com/case-studies/schweizerische/" target="_blank" class="source-item"><div class="source-icon">SI</div><div class="source-info"><div class="source-name">Siteimprove — Swiss Post UX</div><div class="source-meta">2024 | Secondary</div></div></a>
+<a href="https://rocketreach.co/boris-jacklowsky-email_26319823" target="_blank" class="source-item"><div class="source-icon">RR</div><div class="source-info"><div class="source-name">RocketReach — Contact Info</div><div class="source-meta">2024 | Secondary</div></div></a>
+<a href="https://www.post.ch/en/about-us/news/2025/solid-foundation-for-the-future-swiss-post-continues-to-develop-modern-public-service" target="_blank" class="source-item"><div class="source-icon">SP</div><div class="source-info"><div class="source-name">Swiss Post — 2024 Results</div><div class="source-meta">2025 | Primary</div></div></a></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 19, 2026 | Sources: 18+ verified</p>
+        <p>Prepared for: Michael Wegmuller | Occasion: Discussion on AI use cases and priorities</p>
+        <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Boris Jacklowsky from Swiss Post (Lead digital channels and customer service) for a discussion on AI use cases and priorities"</div>
+        <div class="report-token">Report ID: d662da7f</div>
+    </div>
+
+    <div class="fab-group">
+        <button class="share-button" onclick="shareProfile()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            <span data-i18n="btn_share">Share</span>
+        </button>
+        <button class="download-button" onclick="downloadPDF()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="btn_download">PDF</span>
+        </button>
+        <button class="lang-switcher" onclick="switchLanguage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-label" id="langLabel">EN</span>
+        </button>
+    </div>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Boris Jacklowsky Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download - uses native print-to-PDF for reliable cross-browser support
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) document.getElementById(activeTab.dataset.tab).classList.add('active');
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // ===== MULTI-LANGUAGE SUPPORT =====
+        const LANGUAGES = ['en', 'de', 'fr'];
+        let currentLangIndex = 0;
+
+        // Translation data - populated during report generation
+        const translations = {};
+
+        // Store original English content on first load
+        const englishOriginals = {};
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            englishOriginals[el.getAttribute('data-i18n')] = el.textContent;
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            englishOriginals[el.getAttribute('data-i18n-html')] = el.innerHTML;
+        });
+
+        function switchLanguage() {
+            currentLangIndex = (currentLangIndex + 1) % LANGUAGES.length;
+            const lang = LANGUAGES[currentLangIndex];
+            document.getElementById('langLabel').textContent = lang.toUpperCase();
+
+            const dict = translations[lang] || {};
+
+            // Update text content elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (lang === 'en') {
+                    if (englishOriginals[key]) el.textContent = englishOriginals[key];
+                } else if (dict[key]) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            // Update innerHTML elements (for complex content blocks)
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (lang === 'en') {
+                    if (englishOriginals[key]) el.innerHTML = englishOriginals[key];
+                } else if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            // Visual feedback
+            const toast = document.getElementById('shareToast');
+            const langNames = { en: 'English', de: 'Deutsch', fr: 'Francais' };
+            toast.textContent = langNames[lang] || lang.toUpperCase();
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 1500);
+        }
+
+        // Handle URL hash for direct tab linking
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
