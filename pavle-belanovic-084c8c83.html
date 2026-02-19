@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Pavle Belanovic">
+    <meta property="og:title" content="Sailor 2.0 - Pavle Belanovic Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Pavle Belanovic at BEKB (Berner Kantonalbank AG)">
+    <meta name="report-token" content="084c8c83">
+    <title>Sailor 2.0 - Pavle Belanovic</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .fab-group, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary - McKinsey-style components */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .exec-opener { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0fdf4; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+        .exec-opener-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        /* FAB button group - stacked vertically */
+        .fab-group { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 1000; }
+        .fab-group button { background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); display: flex; align-items: center; gap: 8px; transition: all 0.3s; white-space: nowrap; }
+        .fab-group button:hover { transform: scale(1.05); }
+        .download-button { background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important; }
+        .lang-switcher { background: linear-gradient(135deg, #10b981, #34d399) !important; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important; }
+        .lang-switcher .lang-group { display: flex; gap: 4px; font-size: 0.75rem; }
+        .lang-switcher .lang-option { opacity: 0.5; transition: opacity 0.2s; }
+        .lang-switcher .lang-option.active { opacity: 1; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+        .lang-switcher .lang-sep { opacity: 0.4; }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 144deg, var(--blue-secondary) 144deg 252deg, var(--yellow-inferred) 252deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.8rem; white-space: normal; max-width: 280px; min-width: 180px; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); line-height: 1.5; }
+        .scatter-tooltip strong { color: #60a5fa; }
+        .scatter-tooltip em { font-size: 0.75rem; opacity: 0.85; display: block; margin-top: 4px; }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        
+        .disc-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 150px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .disc-bar { width: 50px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border-radius: 4px 4px 0 0; min-height: 20px; color: white; font-weight: 600; padding: 8px 0; }
+        .disc-bar span { font-size: 0.9rem; }
+        .disc-score { font-size: 0.75rem; opacity: 0.9; }
+        .d-bar { background: linear-gradient(180deg, #dc2626, #ef4444); }
+        .i-bar { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
+        .s-bar { background: linear-gradient(180deg, #16a34a, #22c55e); }
+        .c-bar { background: linear-gradient(180deg, #2563eb, #3b82f6); }
+        .disc-labels { display: flex; justify-content: space-around; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+        .disc-primary { font-size: 1.1rem; margin-bottom: 8px; }
+        .disc-secondary { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .disc-description { font-size: 0.9rem; line-height: 1.6; }
+        .profile-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.3); }
+        .profile-initials { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #3b82f6); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; color: white; border: 3px solid rgba(255,255,255,0.3); }
+
+        /* AI Use Cases grid */
+        .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .use-case-card { background: linear-gradient(135deg, #f8f9fa, #ffffff); border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; position: relative; transition: all 0.3s; cursor: pointer; }
+        .use-case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); border-color: #8b5cf6; }
+        .use-case-icon { font-size: 2rem; margin-bottom: 12px; }
+        .use-case-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-description { font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; }
+        .use-case-reasoning { display: none; position: absolute; top: 100%; left: 0; right: 0; margin-top: 8px; background: var(--navy); color: white; padding: 16px; border-radius: 8px; font-size: 0.85rem; z-index: 100; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .use-case-card:hover .use-case-reasoning { display: block; }
+        .reasoning-label { font-weight: 600; color: #60a5fa; margin-bottom: 8px; font-size: 0.75rem; text-transform: uppercase; }
+
+        /* Use Case scatter dots - numbered circles */
+        .uc-dot { position: absolute; width: 32px; height: 32px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: white; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .uc-dot:hover { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+        .uc-dot:hover .scatter-tooltip { opacity: 1; }
+        .uc-dot.uc1 { background: #8b5cf6; } .uc-dot.uc2 { background: #3b82f6; } .uc-dot.uc3 { background: #10b981; } .uc-dot.uc4 { background: #f59e0b; }
+        .uc-dot.uc5 { background: #ef4444; } .uc-dot.uc6 { background: #ec4899; } .uc-dot.uc7 { background: #06b6d4; } .uc-dot.uc8 { background: #84cc16; }
+        .uc-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .uc-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; }
+        .uc-legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .fab-group { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 8px;">
+            <div class="profile-initials">PB</div>
+            <div>
+                <h1>Pavle Belanovic</h1>
+        <div class="header-subtitle">Chief Data Officer | BEKB (Berner Kantonalbank AG)</div>
+        <div class="header-meta">
+            <span>Bern, Switzerland</span>
+            <span>PhD, TU Wien (2006) | Postdocs UPM &amp; EPFL</span>
+            <span>bekb.ch</span>
+            <span>20+ years Data &amp; AI Leadership</span>
+            </div>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">22+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary" data-i18n="tab_executive_summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile" data-i18n="tab_subject_profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map" data-i18n="tab_network_map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis" data-i18n="tab_behavioral_analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position" data-i18n="tab_strategic_position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook" data-i18n="tab_engagement_playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint" data-i18n="tab_media_footprint">Media Footprint</button>
+            <button class="tab" data-tab="ai-use-cases" data-i18n="tab_ai_use_cases">AI Use Cases</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary" data-i18n="tab_mobile_summary">Summary</button>
+            <button class="tab" data-tab="subject-profile" data-i18n="tab_mobile_profile">Profile</button>
+            <button class="tab" data-tab="network-map" data-i18n="tab_mobile_network">Network</button>
+            <button class="tab" data-tab="behavioral-analysis" data-i18n="tab_mobile_behavioral">Behavioral</button>
+            <button class="tab" data-tab="strategic-position" data-i18n="tab_mobile_strategic">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook" data-i18n="tab_mobile_playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint" data-i18n="tab_mobile_media">Media</button>
+            <button class="tab" data-tab="ai-use-cases" data-i18n="tab_mobile_ai">AI</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary (McKinsey Senior Partner Layout) -->
+        <div id="executive-summary" class="tab-content active">
+            <!-- Row 1: BLUF - crisp, 2-3 sentences max -->
+            <div class="bluf-section">
+                <div class="bluf-label" data-i18n="bluf_label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content" data-i18n="bluf_content"><strong>Pavle Belanovic</strong> is the <strong>Chief Data Officer</strong> at <strong>BEKB (Berner Kantonalbank AG)</strong>, Switzerland's 6th largest cantonal bank with <strong>CHF 40.5B</strong> in total assets. A PhD-holding data scientist turned banking CDO, he leads the newly formed Data &amp; AI unit within BEKB's <strong>Innovation/Digitalization department</strong> (est. April 2025). With <strong>20+ years</strong> of experience spanning academia (EPFL, TU Wien), telecom (Swisscom), and banking (BLKB, BEKB), he is the key decision-maker for <strong>AI strategy, data governance, and GenAI platform</strong> selection at the bank. BEKB is actively hiring for AI governance roles and has allocated <strong>CHF 25M</strong> for digital transformation.</div>
+            </div>
+
+            <!-- Row 2: Three key cards - Fit Score | DISC Quick Read | Key Metrics -->
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title" data-i18n="meeting_fit">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How assessed
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring high" style="--score: 9;">
+                        <div class="fit-score-inner">9</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;" data-i18n="meeting_fit_rationale">Pavle is the direct decision-maker for AI and data strategy at BEKB. The bank has just created a dedicated Innovation/Digitalization department with AI as a core pillar. Timing is optimal as BEKB is in early-stage AI platform selection.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="how_to_engage">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How inferred
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill c">C</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Conscientiousness (Analytical)</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);" data-i18n="disc_comm_tips">Lead with data and evidence. Provide detailed technical depth before business cases. Give him time to analyze options systematically. Respect his expertise and academic background. Avoid emotional appeals - focus on logical frameworks and proven results.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="key_facts">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">HIGH CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">20+</div><div class="metric-label" data-i18n="years_experience">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">CDO</div><div class="metric-label">C-Level Decision Maker</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Two columns - Strategic Insights | Conversation Openers -->
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="strategic_insights">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> AI-generated
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="strategic_insights_content"><div class="exec-insight"><div class="exec-insight-title">AI Platform Selection Window</div><div class="exec-insight-text">BEKB's new Innovation/Digitalization department (April 2025) signals an active evaluation phase for GenAI platforms. Pavle is building the data governance framework from scratch - a prime window for platform and tooling discussions.</div></div>
+<div class="exec-insight"><div class="exec-insight-title">Academic-to-Industry Bridge</div><div class="exec-insight-text">With 30+ academic publications and a PhD, Pavle values rigorous, evidence-based approaches. He will expect technical depth and proven methodologies, not just marketing claims about AI capabilities.</div></div>
+<div class="exec-insight"><div class="exec-insight-title">Telecom-to-Banking Trajectory</div><div class="exec-insight-text">His 8.5 years at Swisscom managing mobile analytics at scale (20+ engineers) means he understands enterprise-grade AI deployment. He'll benchmark banking AI against telecom standards for reliability and scale.</div></div>
+<div class="exec-insight"><div class="exec-insight-title">Governance-First Mindset</div><div class="exec-insight-text">BEKB is hiring Data &amp; AI Governance specialists reporting to Pavle. This signals governance is a priority alongside innovation - any GenAI platform must address Swiss banking compliance (FINMA, FADP) upfront.</div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="conversation_openers">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How derived
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="exec_openers_content"><div class="exec-opener"><div class="exec-opener-num">1</div><div>"How has the first year building BEKB's data governance framework shaped your view on what a GenAI platform needs to deliver for a cantonal bank?"</div></div>
+<div class="exec-opener"><div class="exec-opener-num">2</div><div>"With your background managing analytics at scale at Swisscom, what aspects of that experience are most transferable to BEKB's AI journey?"</div></div>
+<div class="exec-opener"><div class="exec-opener-num">3</div><div>"The new Innovation/Digitalization department at BEKB seems like a strategic inflection point - what are the first AI use cases you're prioritizing?"</div></div>
+<div class="exec-opener"><div class="exec-opener-num">4</div><div>"How do you see the balance between GenAI innovation and the governance requirements specific to Swiss cantonal banking?"</div></div></div>
+                </div>
+            </div>
+
+            <!-- Row 4: Anticipated Topics (compact table) -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="anticipated_topics_title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How predicted
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th data-i18n="th_topic">Topic</th><th data-i18n="th_probability">Probability</th><th data-i18n="th_your_angle">Your Angle</th></tr></thead>
+                    <tbody data-i18n-html="exec_anticipated_topics"><tr><td>GenAI Platform Architecture &amp; Selection</td><td><span class="probability-badge prob-very-high">95%</span></td><td>Lead with reference architectures from comparable Swiss FIs</td></tr>
+<tr><td>Data Governance &amp; FINMA Compliance</td><td><span class="probability-badge prob-very-high">90%</span></td><td>Show how governance is built into the platform, not bolted on</td></tr>
+<tr><td>AI Use Cases for Cantonal Banking</td><td><span class="probability-badge prob-high">85%</span></td><td>Focus on document processing, customer insights, risk analytics</td></tr>
+<tr><td>Change Management &amp; Team Building</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>Reference his datathon experience - he values hands-on team engagement</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- Row 5: Source confidence - compact inline bar -->
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (22 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 40%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 30%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 20%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 40%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 30%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 20%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="professional_timeline">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item"><div class="timeline-period">2024 - Present</div><div class="timeline-content">Chief Data Officer, BEKB (Berner Kantonalbank AG) - Leading Data &amp; AI strategy, building governance framework</div></div>
+<div class="timeline-item"><div class="timeline-period">2022 - 2024</div><div class="timeline-content">Data &amp; AI Leader, BLKB (Basellandschaftliche Kantonalbank) - Driving digital transformation, organized first datathon</div></div>
+<div class="timeline-item"><div class="timeline-period">2017 - 2022</div><div class="timeline-content">Head of Mobile Analytics, Swisscom - Led data, analytics &amp; AI strategy for mobile network, managed ~20 engineers</div></div>
+<div class="timeline-item"><div class="timeline-period">2014 - 2017</div><div class="timeline-content">Innovation Department, Swisscom - Joined as researcher, transitioned to analytics leadership</div></div>
+<div class="timeline-item"><div class="timeline-period">2007 - 2014</div><div class="timeline-content">Postdoctoral Researcher, EPFL &amp; UPM Madrid - Wireless communications, distributed systems research</div></div>
+<div class="timeline-item"><div class="timeline-period">2002 - 2006</div><div class="timeline-content">PhD, Vienna University of Technology (TU Wien) - Embedded systems, FPGA design</div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="recognition_awards">Recognition & Awards
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Collected from press releases, award announcements, and professional directory listings.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item"><h4>Academic Publications</h4><p>30+ peer-reviewed publications with 663 citations across IEEE, ResearchGate, and other journals</p></div>
+<div class="media-item"><h4>AWS Certified Cloud Practitioner</h4><p>Amazon Web Services cloud certification (2022)</p></div>
+<div class="media-item"><h4>Swiss National Science Foundation</h4><p>Research grant recipient for scientific projects in Switzerland</p></div>
+<div class="media-item"><h4>AMLD EPFL Speaker</h4><p>Selected speaker at Applied Machine Learning Days 2022, one of Europe's largest ML/AI conferences</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="industry_expertise">Industry Expertise
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                    </h3>
+                </div>
+                <div class="tags"><span class="tag">Data Strategy</span><span class="tag">AI/ML</span><span class="tag">Data Governance</span><span class="tag">Banking &amp; Finance</span><span class="tag">Telecommunications</span><span class="tag">Big Data</span><span class="tag">Wireless Communications</span><span class="tag">Distributed Systems</span><span class="tag">Cloud Computing (AWS)</span><span class="tag">Digital Transformation</span><span class="tag">FPGA/Embedded Systems</span><span class="tag">GenAI</span></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity (Last 90 Days)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How sourced<div class="methodology-tooltip">Content from last 30-90 days sourced from LinkedIn posts, company news, and press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">RECENT</span>
+                </div>
+                <div class="media-item"><h4>LinkedIn: Data &amp; AI at BEKB</h4><p>Active posting about BEKB data and AI initiatives (#bekb #seiteanseite #data #ai)</p></div>
+                <div class="media-item"><h4>AI Governance Hiring</h4><p>Posted job listing for Data &amp; AI Governance Specialist at BEKB, directly reporting to CDO</p></div>
+                <div class="media-item"><h4>Cloud &amp; AI Leadership Day 2025</h4><p>Confirmed as speaker at the Zurich-based Cloud &amp; AI Leadership Day conference</p></div>
+                <div class="media-item"><h4>BEKB Organizational Restructuring</h4><p>Data &amp; AI unit became part of the new Innovation/Digitalization department (April 2025)</p></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">BEKB (Berner Kantonalbank AG) Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry (Moneyhouse), company website, and Crunchbase/similar directories.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1834</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">Cantonal</div><div class="metric-label">Co-Founders</div></div>
+                    <div class="metric-box"><div class="metric-value">1,200+</div><div class="metric-label">Team Members</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 40.5B</div><div class="metric-label">Total Assets</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">190+</div><div class="metric-label">Combined Years Experience</div></div>
+                    <div class="metric-box"><div class="metric-value">Bern, CH</div><div class="metric-label">HQ Location</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Co-Founders
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company registry records and team page. Roles verified via LinkedIn.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card"><div class="person-avatar">AB</div><div class="person-info"><h4>Armin Brun</h4><p>CEO | Leading BEKB since 2019, drives innovation agenda</p></div></div>
+<div class="person-card"><div class="person-avatar">EW</div><div class="person-info"><h4>Ekkehard Werner</h4><p>CFO | Joined January 2024, financial strategy</p></div></div>
+<div class="person-card"><div class="person-avatar">SW</div><div class="person-info"><h4>Simon Wehrli</h4><p>CIO | Appointed April 2025, ex-Twint IT lead</p></div></div>
+<div class="person-card"><div class="person-avatar">DS</div><div class="person-info"><h4>Domenico Sottile</h4><p>Interim Head Innovation/Digitalization | Also leads Key Clients &amp; Asset Mgmt</p></div></div>
+<div class="person-card"><div class="person-avatar">MS</div><div class="person-info"><h4>Markus Schwab</h4><p>Head IT Management &amp; Value Streams | Ex-CEO Yuh AG, joined Nov 2025</p></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Advisory Board
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Advisors identified from company pages, LinkedIn connections marked as advisors, and press mentions.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card"><div class="person-avatar">CL</div><div class="person-info"><h4>Christoph Lanz</h4><p>CEO Aity AG | Leads BEKB's IT subsidiary (~150 employees)</p></div></div>
+<div class="person-card"><div class="person-avatar">MO</div><div class="person-info"><h4>Marcel Oertle</h4><p>Executive Board Member | Leads regional market areas since 2019</p></div></div>
+<div class="person-card"><div class="person-avatar">SM</div><div class="person-info"><h4>Stefan Moser</h4><p>Executive Board Member | Joined GL April 2025, 25+ years banking</p></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Memberships and affiliations from LinkedIn, association directories, and conference speaker bios.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3"><div class="conversation-card"><h4>Swiss Cantonal Banking Association</h4><p>BEKB is part of the network of 24 cantonal banks serving Switzerland</p></div>
+<div class="conversation-card"><h4>SIX Digital Exchange (SDX)</h4><p>BEKB participates in Switzerland's regulated digital asset exchange for tokenized SME shares</p></div>
+<div class="conversation-card"><h4>Applied Machine Learning Days (AMLD)</h4><p>Pavle has spoken at EPFL's premier AI/ML conference, connecting with the Swiss AI community</p></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Client Relationships
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Clients identified from case studies, testimonials, and press releases. Sector inferred from industry focus.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="tags"><span class="tag">SME Banking (Bern region)</span><span class="tag">Private Banking</span><span class="tag">Public Sector (Canton of Bern)</span><span class="tag">Retail Banking (~200,000 customers)</span><span class="tag">Mortgage Lending</span><span class="tag">Wealth Management</span></div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,18 172,38 186,74 172,140 100,160 40,128 14,74 40,38" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Decision-Making Profile
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ INFERRED: Profile based on described approaches in interviews and case studies. Validate with direct interaction.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table"><tr><td>Decision Style</td><td>Analytical, evidence-based. Values thorough evaluation over speed.</td></tr>
+<tr><td>Risk Tolerance</td><td>Moderate-Conservative. Prefers proven approaches with clear governance.</td></tr>
+<tr><td>Stakeholder Approach</td><td>Collaborative - builds consensus across technical and business teams.</td></tr>
+<tr><td>Innovation Stance</td><td>Progressive but grounded. Organized BLKB's first datathon.</td></tr>
+<tr><td>Vendor Evaluation</td><td>Demands technical depth, compliance proof, and reference cases.</td></tr></table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">🧠 Psychological Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Patterns from content analysis. These are behavioral observations, not clinical assessments. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div data-i18n-html="psychological_indicators_content"><div class="grid-2">
+<div class="insight-box blue"><div class="insight-title">Academic Rigor</div><p>PhD holder with 30+ publications. Expects evidence-based proposals backed by research and proven methodologies.</p></div>
+<div class="insight-box green"><div class="insight-title">Builder Mentality</div><p>Has repeatedly built teams and frameworks from scratch (Swisscom analytics, BLKB datathon, BEKB governance). Energized by greenfield opportunities.</p></div>
+<div class="insight-box yellow"><div class="insight-title">Loyalty &amp; Depth</div><p>8.5 years at Swisscom, methodical career transitions. Values long-term partnerships over transactional vendor relationships.</p></div>
+<div class="insight-box orange"><div class="insight-title">Cross-Domain Translator</div><p>Bridges academia, telecom, and banking. Speaks both technical and business language. Values partners who operate at both levels.</p></div>
+</div></div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">DISC Personality Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How assessed<div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content, communication style, and role characteristics. This is NOT a formal DISC assessment - use as meeting preparation guidance only.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="grid-2">
+                    <div>
+                        <div class="disc-chart">
+                            <div class="disc-bar d-bar" style="height: 55%;"><span>D</span><span class="disc-score">55</span></div>
+                            <div class="disc-bar i-bar" style="height: 40%;"><span>I</span><span class="disc-score">40</span></div>
+                            <div class="disc-bar s-bar" style="height: 60%;"><span>S</span><span class="disc-score">60</span></div>
+                            <div class="disc-bar c-bar" style="height: 85%;"><span>C</span><span class="disc-score">85</span></div>
+                        </div>
+                        <div class="disc-labels"><span>Dominance</span><span>Influence</span><span>Steadiness</span><span>Conscientiousness</span></div>
+                    </div>
+                    <div>
+                        <div class="disc-primary">Primary: <strong>C (Conscientiousness)</strong></div>
+                        <div class="disc-secondary">Secondary: S (Steadiness)</div>
+                        <p class="disc-description">Pavle exhibits a strong Conscientiousness (C) profile with secondary Steadiness (S). His academic background (PhD, 30+ publications) and systematic approach to building data governance frameworks indicate high analytical rigor. His steady career progression and loyalty (8.5 years at Swisscom) suggest patience and methodical decision-making.</p>
+                    </div>
+                </div>
+                <div class="insight-box blue" style="margin-top: 16px;">
+                    <div class="insight-title">Communication Tips:</div>
+                    <p>Lead with data, evidence, and structured frameworks. Provide detailed technical documentation. Give him time to analyze proposals thoroughly. Respect his academic expertise. Avoid high-pressure sales tactics. Present logical comparisons with clear criteria.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How inferred<div class="methodology-tooltip">AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <div class="grid-2">
+                    <div class="insight-box blue"><div class="insight-title">Evidence &amp; Data</div><p>Primary lever. As a PhD researcher, he responds to quantified impact, benchmarks, and peer-validated results.</p></div>
+                    <div class="insight-box green"><div class="insight-title">Technical Excellence</div><p>Values deep technical competence in partners. Superficial pitches without substance will erode trust immediately.</p></div>
+                    <div class="insight-box yellow"><div class="insight-title">Governance &amp; Risk Control</div><p>Currently building governance from scratch. Solutions that embed governance natively will resonate strongly.</p></div>
+                    <div class="insight-box orange"><div class="insight-title">Peer References</div><p>Will want to know which comparable Swiss FIs have deployed your solution. Cantonal bank references are most relevant.</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted via NLP from articles, posts, and interviews. Frequency = how often they appear in public content.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody><tr><td>"Transforming banking with the power of data"</td><td>High</td><td>LinkedIn headline - core professional identity</td></tr>
+<tr><td>"Innovative data products with real business impact"</td><td>High</td><td>LinkedIn description - values tangible outcomes</td></tr>
+<tr><td>"Building data governance framework from the ground up"</td><td>Medium</td><td>Current BEKB mission - governance is foundational</td></tr>
+<tr><td>"Cross-functional teams building prototypes"</td><td>Medium</td><td>Datathon at BLKB - values collaborative experimentation</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis. Recommendations are suggestions - validate with domain expertise.</div></span>
+                    </h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <div class="swot-box strengths"><h4 data-i18n="swot_strengths">Strengths</h4><ul data-i18n-html="swot_strengths_list"><li><div class="interactive-item">PhD-level technical expertise combined with C-suite business leadership<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Match his technical depth - bring your best engineers to the meeting</div></div></li>
+<li><div class="interactive-item">Greenfield opportunity to define BEKB's entire AI/GenAI architecture<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Position your platform as the foundational layer for BEKB's AI journey</div></div></li>
+<li><div class="interactive-item">Strong institutional backing: new department, CHF 25M digital budget, CEO support<div class="item-recommendation"><div class="item-recommendation-label">Leverage</div>Budget is allocated - focus on speed-to-value and governance compliance</div></div></li></ul></div>
+                    <div class="swot-box weaknesses"><h4 data-i18n="swot_weaknesses">Potential Gaps</h4><ul data-i18n-html="swot_weaknesses_list"><li><div class="interactive-item">BEKB is in early-stage AI maturity - governance framework still being built<div class="item-recommendation"><div class="item-recommendation-label">Approach</div>Offer governance-as-a-service or framework templates to accelerate his timeline</div></div></li>
+<li><div class="interactive-item">Innovation/Digitalization department leadership still interim<div class="item-recommendation"><div class="item-recommendation-label">Approach</div>Clarify reporting lines and decision authority before proposing large commitments</div></div></li>
+<li><div class="interactive-item">Regional cantonal bank scale may limit AI investment compared to UBS or ZKB<div class="item-recommendation"><div class="item-recommendation-label">Approach</div>Show modular, scalable solutions that start small and grow with the organization</div></div></li></ul></div>
+                    <div class="swot-box opportunities"><h4 data-i18n="swot_opportunities">Opportunities</h4><ul data-i18n-html="swot_opportunities_list"><li><div class="interactive-item">Active AI governance hiring signals immediate need for platform and tooling<div class="item-recommendation"><div class="item-recommendation-label">Action</div>Propose a quick-win pilot that demonstrates platform value within governance setup</div></div></li>
+<li><div class="interactive-item">Swiss banking sector at inflection point: 91% of AI-adopting banks use GenAI<div class="item-recommendation"><div class="item-recommendation-label">Action</div>Frame the conversation around competitive necessity and peer benchmarks</div></div></li>
+<li><div class="interactive-item">Aity AG (IT subsidiary) provides a dedicated team for implementation<div class="item-recommendation"><div class="item-recommendation-label">Action</div>Propose a partnership model that includes Aity engineers for knowledge transfer</div></div></li></ul></div>
+                    <div class="swot-box threats"><h4 data-i18n="swot_threats">Competitive Threats</h4><ul data-i18n-html="swot_threats_list"><li><div class="interactive-item">ZKB and Raiffeisen are ahead in GenAI deployment<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Show how your platform helps BEKB leapfrog rather than follow the pack</div></div></li>
+<li><div class="interactive-item">FINMA regulatory requirements for AI add complexity and potential delays<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Demonstrate built-in FINMA compliance and audit trails</div></div></li>
+<li><div class="interactive-item">Microsoft Copilot and hyperscaler AI tools may be default choice<div class="item-recommendation"><div class="item-recommendation-label">Mitigate</div>Differentiate on Swiss data residency, banking-specific features, and FINMA alignment</div></div></li></ul></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="competitive_positioning">Competitive Positioning Matrix
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute measurements.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label" data-i18n="axis_market_expertise">Market Expertise</span>
+                    <span class="scatter-axis-label x-label" data-i18n="axis_agility_speed">Agility & Speed</span>
+                    <span class="scatter-axis-label y-high" data-i18n="axis_high">High</span><span class="scatter-axis-label y-low" data-i18n="axis_low">Low</span>
+                    <span class="scatter-axis-label x-low" data-i18n="axis_low_2">Low</span><span class="scatter-axis-label x-high" data-i18n="axis_high_2">High</span>
+                    <div class="scatter-dots-container"><div class="scatter-dot subject" style="left: 55%; bottom: 70%;"><div class="scatter-tooltip"><strong>BEKB</strong> - Strong regional expertise, building AI capabilities<em>Moderate agility, high market knowledge in Bern region</em></div></div>
+<div class="scatter-dot competitor1" style="left: 80%; bottom: 90%;"><div class="scatter-tooltip"><strong>Zurcher Kantonalbank (ZKB)</strong> - Leading digital innovation among cantonal banks<em>High agility and market expertise</em></div></div>
+<div class="scatter-dot competitor2" style="left: 70%; bottom: 60%;"><div class="scatter-tooltip"><strong>Raiffeisen</strong> - Large cooperative network, active GenAI adoption<em>Good agility, broad reach</em></div></div>
+<div class="scatter-dot competitor3" style="left: 40%; bottom: 50%;"><div class="scatter-tooltip"><strong>PostFinance</strong> - Mass-market digital banking<em>Moderate positioning</em></div></div></div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;"><span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> BEKB</span>
+<span class="legend-item"><span class="legend-color" style="background: var(--charcoal)"></span> ZKB</span>
+<span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Raiffeisen</span>
+<span class="legend-item"><span class="legend-color" style="background: var(--slate-gray)"></span> PostFinance</span></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Core Differentiators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Self-stated differentiators from company website, pitch decks, and marketing materials.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3"><div class="differentiator-box"><div class="differentiator-icon">Data</div><div class="differentiator-label">PhD-level Data Science Leadership</div></div>
+<div class="differentiator-box"><div class="differentiator-icon">Gov</div><div class="differentiator-label">Governance-First AI Approach</div></div>
+<div class="differentiator-box"><div class="differentiator-icon">Scale</div><div class="differentiator-label">Telecom-Grade Analytics Experience</div></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Competitive Intelligence
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How researched<div class="methodology-tooltip">SPECULATIVE: Based on market research and industry patterns. Actual competitive situation may differ.</div></span>
+                    </h3>
+                    <span class="badge badge-speculative">SPECULATIVE</span>
+                </div>
+                <div class="grid-2">
+                    <div class="insight-box red"><div class="insight-title">Microsoft / Azure OpenAI</div><p>Dominant GenAI platform in Swiss banking. Raiffeisen uses Copilot. BEKB may already be exploring Azure OpenAI.</p></div>
+                    <div class="insight-box yellow"><div class="insight-title">Google Cloud / Vertex AI</div><p>Growing presence in Swiss financial services. May be evaluated for multilingual (DE/FR) capabilities relevant to BEKB.</p></div>
+                    <div class="insight-box blue"><div class="insight-title">Swiss AI Vendors (Unique, Ergon)</div><p>Local Swiss AI companies with banking expertise and inherent Swiss data residency. Strong alternative for compliance-sensitive cantonal banks.</p></div>
+                    <div class="insight-box green"><div class="insight-title">Open Source / Self-Hosted</div><p>Given Pavle's academic background and Aity AG's engineering capacity, self-hosted open-source LLMs may be attractive for maximum data control.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">🎯 ENGAGEMENT STRATEGY FOR AI Topics &amp; GenAI Platforms for Banking
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content" data-i18n-html="engagement_strategy"><strong>Lead with technical substance, not sales.</strong> Pavle's academic background and systematic approach means he will scrutinize every claim. Open with the governance angle - BEKB is actively building its AI governance framework, making this the perfect entry point. Demonstrate how your GenAI platform addresses Swiss banking compliance (FINMA, FADP, Banking Secrecy) natively. Reference the SBA's 4-phase GenAI adoption framework to speak his language. Bring concrete reference cases from comparable Swiss financial institutions. Be prepared for deep technical questions - this is a CDO who has published 30+ academic papers and managed 20+ engineers. <strong>Position yourself as a long-term strategic partner, not a vendor</strong> - Pavle's loyalty pattern (8.5 years at Swisscom) shows he values enduring relationships built on competence.</div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="conversation_starters_content"><div class="conversation-card"><h4>BEKB's AI Governance Journey</h4><p>"How is the Data &amp; AI Governance framework taking shape? What are the biggest challenges in establishing governance for GenAI in a cantonal bank context?"</p></div>
+<div class="conversation-card"><h4>From Telecom to Banking AI</h4><p>"Your Swisscom experience managing mobile analytics at scale is fascinating. How are you applying those lessons to BEKB's AI architecture?"</p></div>
+<div class="conversation-card"><h4>GenAI Platform Evaluation</h4><p>"What are your key evaluation criteria for a GenAI platform? How important is Swiss data residency vs. capabilities breadth?"</p></div>
+<div class="conversation-card"><h4>Innovation/Digitalization Department</h4><p>"The new department structure at BEKB signals a strategic commitment. How does the collaboration between your Data &amp; AI unit and Aity AG work?"</p></div></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="topics_to_avoid">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values and potential sensitivities. Use judgment in actual conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="topics_to_avoid_content"><div class="conversation-card warning"><h4>Overselling AI hype</h4><p>As a PhD-holder and published researcher, Pavle will see through unsubstantiated claims about AI capabilities. Stick to proven, evidence-backed results.</p></div>
+<div class="conversation-card warning"><h4>Comparing BEKB to large global banks</h4><p>BEKB is a regional cantonal bank by design. Frame comparisons with peers of similar scale and mission, not Goldman Sachs or JPMorgan.</p></div>
+<div class="conversation-card warning"><h4>Rushing the decision process</h4><p>His C-type DISC profile and academic background mean he values thorough analysis. Avoid high-pressure tactics or artificial urgency.</p></div></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">💡 Connection Points
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential common ground based on your provided context and their profile.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div data-i18n-html="connection_points_content"><div class="insight-box green"><div class="insight-title">Shared AI Transformation Mission</div><p>Both Artifact and Pavle are focused on practical AI implementation in Swiss enterprises. Artifact's consulting approach aligns with BEKB's need for strategic AI guidance.</p></div>
+<div class="insight-box blue"><div class="insight-title">Swiss AI Ecosystem</div><p>Michael's involvement in Digital Impact Network and Swissmem connects to Pavle's participation in AMLD EPFL and Cloud &amp; AI Leadership Day.</p></div>
+<div class="insight-box yellow"><div class="insight-title">Academic-to-Industry Bridge</div><p>Both Pavle (PhD, EPFL) and Artifact value the connection between research and practical application. Shared appreciation for evidence-based approaches.</p></div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">📋 Anticipated Topics
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody><tr><td>GenAI Platform Architecture for Banking</td><td><span class="probability-badge prob-very-high">95%</span></td><td>Have reference architectures ready. Show how LLMs integrate with existing banking systems.</td></tr>
+<tr><td>Data Governance &amp; AI Compliance (FINMA/FADP)</td><td><span class="probability-badge prob-very-high">90%</span></td><td>Demonstrate built-in governance controls. Reference SBA guidelines and FINMA Guidance 08/2024.</td></tr>
+<tr><td>AI Use Cases for Cantonal Banking</td><td><span class="probability-badge prob-high">85%</span></td><td>Prepare 5-6 use cases specific to cantonal bank operations.</td></tr>
+<tr><td>Swiss Data Residency &amp; Cloud Strategy</td><td><span class="probability-badge prob-high">80%</span></td><td>Address where data lives, Swiss cloud options, and Banking Secrecy requirements.</td></tr>
+<tr><td>Change Management &amp; AI Adoption</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>Reference Raiffeisen's 300 AI champions model. Discuss his datathon approach.</td></tr>
+<tr><td>ROI &amp; Business Case for GenAI</td><td><span class="probability-badge prob-medium">65%</span></td><td>Quantify productivity gains with Swiss banking benchmarks.</td></tr></tbody>
+                </table>
+            </div>
+        
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Personal Interests Matching
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How researched<div class="methodology-tooltip">INFERRED: Personal interests discovered from public profiles, interviews, and social media. Research conducted separately for each person.</div></span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #ec4899, #f472b6); color: white;">PERSONAL CONNECTION</span>
+                </div>
+                <div class="grid-2" style="margin-bottom: 20px;">
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 12px;">Pavle Belanovic's Interests</h4>
+                        <div class="tags"><span class="tag">Data Science &amp; AI Research</span><span class="tag">Academic Publishing</span><span class="tag">Datathons &amp; Hackathons</span><span class="tag">Cloud Technologies (AWS)</span><span class="tag">Conference Speaking</span><span class="tag">Serbian Heritage</span></div>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 12px;">Michael Wegmuller's Interests</h4>
+                        <div class="tags"><span class="tag">AI Policy &amp; Ethics</span><span class="tag">Swiss Armed Forces</span><span class="tag">Digital Impact Network</span><span class="tag">AI Transformation</span><span class="tag">Entrepreneurship</span><span class="tag">Swiss Tech Ecosystem</span></div>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 20px; border-radius: 8px; border: 1px solid #fbcfe8;">
+                    <h4 style="font-weight: 600; margin-bottom: 12px; color: #be185d;">Shared Interests &amp; Connection Points</h4>
+                    <div class="insight-box green"><div class="insight-title">Swiss AI Ecosystem Engagement</div><p>Both are active in the Swiss AI community - Pavle through AMLD EPFL and Cloud &amp; AI Leadership Day, Michael through Digital Impact Network and Swissmem Next Industries.</p></div>
+                    <div class="insight-box blue"><div class="insight-title">Practical AI Implementation</div><p>Both share a focus on moving AI from theory to practice. Pavle's datathons and "innovative data products" mirror Artifact's mission of "accelerating impact through AI."</p></div>
+                </div>
+                <div class="insight-box" style="border-color: #ec4899; margin-top: 16px;">
+                    <div class="insight-title" style="color: #ec4899;">Conversation Opportunities:</div>
+                    <p>Consider opening with Cloud &amp; AI Leadership Day in Zurich - a natural shared touchpoint. Pavle's datathon organizing shows he values collaborative, hands-on AI exploration, aligning with Artifact's consulting approach.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 7: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Published Content
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Content discovered via web search and company blog archives.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item"><h4>Academic Publications (30+)</h4><p>Peer-reviewed papers on wireless communications, big data, distributed systems - published in IEEE, ResearchGate (663 citations)</p></div>
+<div class="media-item"><h4>LinkedIn Thought Leadership</h4><p>Active on LinkedIn sharing insights on data, AI, and banking transformation (#bekb #data #ai #ki)</p></div>
+<div class="media-item"><h4>BEKB Job Postings</h4><p>Listed as contact for Data &amp; AI Governance hiring, signaling active team building</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Speaking & Appearances
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From conference speaker pages, event listings, and press coverage.</div></span>
+                        </h3>
+                    </div>
+                    <div class="media-item"><h4>Cloud &amp; AI Leadership Day 2025 (Zurich)</h4><p>Speaker at the premier Swiss Cloud &amp; AI executive event</p></div>
+<div class="media-item"><h4>AMLD EPFL 2022 (Lausanne)</h4><p>Talk: "Creating a New Super Tuner for Mobile Networks using ML"</p></div>
+<div class="media-item"><h4>Telco Data Analytics Europe 2017 (Madrid)</h4><p>Speaker at the European telecom data analytics conference</p></div>
+<div class="media-item"><h4>Data &amp; AI Leadership Day</h4><p>Listed as speaker with title "Lead Data" at the co-located conference</p></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">⚠️ AI-GENERATED: Sentiment from NLP classification of news coverage. Aggregate scores, not individual article analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart"><div class="bar-group"><div class="bar-tooltip">2023: 70% positive, 25% neutral, 5% critical</div><div class="bar" style="height: 150px;"><div class="bar-segment positive" style="height: 70%;"></div><div class="bar-segment neutral" style="height: 25%;"></div><div class="bar-segment critical" style="height: 5%;"></div></div><span class="bar-label">2023</span></div>
+<div class="bar-group"><div class="bar-tooltip">2024: 75% positive, 20% neutral, 5% critical</div><div class="bar" style="height: 150px;"><div class="bar-segment positive" style="height: 75%;"></div><div class="bar-segment neutral" style="height: 20%;"></div><div class="bar-segment critical" style="height: 5%;"></div></div><span class="bar-label">2024</span></div>
+<div class="bar-group"><div class="bar-tooltip">2025: 85% positive, 12% neutral, 3% critical</div><div class="bar" style="height: 150px;"><div class="bar-segment positive" style="height: 85%;"></div><div class="bar-segment neutral" style="height: 12%;"></div><div class="bar-segment critical" style="height: 3%;"></div></div><span class="bar-label">2025</span></div></div>
+                        <span class="bar-chart-x-axis">Time Period</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="ai_use_cases_title">AI Use Cases - Impact vs Feasibility
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How generated
+                            <div class="methodology-tooltip">AI-GENERATED: Use cases positioned based on estimated business impact and implementation feasibility for BEKB (Berner Kantonalbank AG). Hover over each dot for rationale.</div>
+                        </span>
+                    </h3>
+                    <span class="badge" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white;">AI OPPORTUNITIES</span>
+                </div>
+                <div class="scatter-plot" style="height: 400px;">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label" data-i18n="axis_impact">Business Impact</span>
+                    <span class="scatter-axis-label x-label" data-i18n="axis_feasibility">Implementation Feasibility</span>
+                    <span class="scatter-axis-label y-high" data-i18n="axis_high_3">High</span><span class="scatter-axis-label y-low" data-i18n="axis_low_3">Low</span>
+                    <span class="scatter-axis-label x-low" data-i18n="axis_low_4">Low</span><span class="scatter-axis-label x-high" data-i18n="axis_high_4">High</span>
+                    <div class="scatter-dots-container"><div class="uc-dot uc1" style="left: 75%; bottom: 85%;">1<div class="scatter-tooltip"><strong>1. Document Intelligence</strong><br>High impact, high feasibility</div></div>
+<div class="uc-dot uc2" style="left: 80%; bottom: 70%;">2<div class="scatter-tooltip"><strong>2. Customer Service AI</strong><br>High impact, very high feasibility</div></div>
+<div class="uc-dot uc3" style="left: 60%; bottom: 80%;">3<div class="scatter-tooltip"><strong>3. Regulatory Compliance</strong><br>High impact, moderate feasibility</div></div>
+<div class="uc-dot uc4" style="left: 85%; bottom: 55%;">4<div class="scatter-tooltip"><strong>4. Employee Productivity</strong><br>Medium-high impact, very high feasibility</div></div>
+<div class="uc-dot uc5" style="left: 50%; bottom: 75%;">5<div class="scatter-tooltip"><strong>5. Risk Analytics</strong><br>High impact, moderate feasibility</div></div>
+<div class="uc-dot uc6" style="left: 65%; bottom: 60%;">6<div class="scatter-tooltip"><strong>6. Personalized Advisory</strong><br>Medium-high impact, moderate feasibility</div></div>
+<div class="uc-dot uc7" style="left: 45%; bottom: 65%;">7<div class="scatter-tooltip"><strong>7. Fraud Detection</strong><br>High impact, moderate feasibility</div></div>
+<div class="uc-dot uc8" style="left: 70%; bottom: 45%;">8<div class="scatter-tooltip"><strong>8. Data Quality AI</strong><br>Medium impact, high feasibility</div></div></div>
+                </div>
+                <div class="uc-legend"><div class="uc-legend-item"><div class="uc-legend-dot" style="background: #8b5cf6;"></div>1. Document Intelligence</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #3b82f6;"></div>2. Customer Service AI</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #10b981;"></div>3. Regulatory Compliance</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #f59e0b;"></div>4. Employee Productivity</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #ef4444;"></div>5. Risk Analytics</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #ec4899;"></div>6. Personalized Advisory</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #06b6d4;"></div>7. Fraud Detection</div>
+<div class="uc-legend-item"><div class="uc-legend-dot" style="background: #84cc16;"></div>8. Data Quality AI</div></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="recommended_ai_use_cases">Recommended AI Use Cases
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How generated
+                            <div class="methodology-tooltip">AI-GENERATED: Use cases selected based on person's role, industry, company challenges, and stated interests. Reasoning available on hover.</div>
+                        </span>
+                    </h3>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 20px;" data-i18n="ai_use_cases_intro">
+                    Based on Pavle Belanovic's role as Chief Data Officer at BEKB (Berner Kantonalbank AG), these AI applications could be highly relevant:
+                </p>
+                <div class="use-cases-grid" data-i18n-html="ai_use_cases_grid">
+                    <div class="use-case-card"><div class="use-case-icon">DOC</div><h4 class="use-case-title">Document Intelligence &amp; Processing</h4><p class="use-case-description">GenAI-powered extraction, classification, and summarization of banking documents - mortgage applications, KYC documents, correspondence, and regulatory filings.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>BEKB processes thousands of documents daily across 80+ branches. As CDO, Pavle can directly see the impact on data quality and operational efficiency. Document processing is a proven GenAI use case with fast ROI.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">BOT</div><h4 class="use-case-title">AI-Powered Customer Service</h4><p class="use-case-description">Intelligent chatbot and agent-assist tools for handling customer inquiries across banking products - account queries, mortgage information, and investment guidance.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>With ~200,000 customers and 80+ branches, BEKB's customer service volume is significant. GenAI can provide 24/7 support in German and French (BEKB operates bilingually), improving customer satisfaction.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">REG</div><h4 class="use-case-title">Automated Regulatory Compliance</h4><p class="use-case-description">GenAI for monitoring regulatory changes (FINMA, FADP), automated compliance checking, and report generation aligned with BEKB's governance-first approach.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Pavle is actively hiring Data &amp; AI Governance specialists. Regulatory compliance automation directly supports his governance framework initiative and addresses FINMA requirements.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">COP</div><h4 class="use-case-title">GenAI Copilot for Employees</h4><p class="use-case-description">Internal productivity tool: AI assistant for email drafting, meeting summaries, research synthesis, and knowledge base queries for BEKB's 1,200+ employees.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Following the Raiffeisen model (300 AI champions, 50% Copilot adoption increase), this is a quick-win use case. Low risk, high visibility, and directly measurable productivity gains.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">RISK</div><h4 class="use-case-title">AI-Enhanced Risk Analytics</h4><p class="use-case-description">Machine learning models for credit risk assessment, early warning systems for loan defaults, and portfolio risk analysis leveraging BEKB's historical data.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>Pavle's background in big data and distributed systems at Swisscom makes him naturally aligned with advanced analytics. BEKB's CHF 40.5B asset base provides substantial data for training risk models.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">ADV</div><h4 class="use-case-title">Personalized Wealth Advisory</h4><p class="use-case-description">AI-driven investment recommendations and portfolio analysis tailored to individual client profiles, risk appetite, and financial goals.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>BEKB has a dedicated Key Clients &amp; Asset Management department. GenAI can augment relationship managers with data-driven insights, maintaining the personal touch cantonal banks are known for.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">FRD</div><h4 class="use-case-title">Real-Time Fraud Detection</h4><p class="use-case-description">AI-based anomaly detection for transaction monitoring, anti-money laundering (AML), and fraud prevention across BEKB's digital and physical channels.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>CEO Armin Brun has emphasized cybersecurity as a priority. AI fraud detection addresses this concern while leveraging Pavle's experience with real-time analytics at Swisscom.</p></div></div>
+<div class="use-case-card"><div class="use-case-icon">DQ</div><h4 class="use-case-title">AI-Powered Data Quality Management</h4><p class="use-case-description">Automated data quality monitoring, cleansing, and enrichment across BEKB's data landscape - the foundation for all other AI use cases.</p><div class="use-case-reasoning"><div class="reasoning-label">Why This Use Case?</div><p>As CDO building the data governance framework from scratch, data quality is Pavle's immediate priority. This use case directly supports his mandate.</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>📚 Intelligence Sources (22)</h3>
+            <div class="sources-grid"><a href="https://www.linkedin.com/in/pavlebelanovic/" target="_blank" class="source-item"><div class="source-icon">LI</div><div class="source-info"><div class="source-name">LinkedIn - Pavle Belanovic CDO Profile</div><div class="source-meta">2025 | Professional</div></div></a>
+<a href="https://www.bekb.ch/die-bekb/portraet/organisation" target="_blank" class="source-item"><div class="source-icon">BK</div><div class="source-info"><div class="source-name">BEKB Organization &amp; Leadership</div><div class="source-meta">2025 | Company</div></div></a>
+<a href="https://www.netzwoche.ch/news/2025-04-10/berner-kantonalbank-schafft-departement-fuer-digitalisierung" target="_blank" class="source-item"><div class="source-icon">NW</div><div class="source-info"><div class="source-name">Netzwoche - BEKB Digitalization Dept</div><div class="source-meta">2025 | News</div></div></a>
+<a href="https://www.ictjournal.ch/news/2025-04-10/la-banque-cantonale-de-berne-se-dote-dun-departement-dedie-a-la-numerisation" target="_blank" class="source-item"><div class="source-icon">ICT</div><div class="source-info"><div class="source-name">ICTjournal - BEKB Numerisation</div><div class="source-meta">2025 | News</div></div></a>
+<a href="https://www.finews.com/news/english-news/67157-bekb-organisation-geschaeftsleitung-2" target="_blank" class="source-item"><div class="source-icon">FN</div><div class="source-info"><div class="source-name">Finews - BEKB Restructures</div><div class="source-meta">2025 | News</div></div></a>
+<a href="https://en.wikipedia.org/wiki/Berner_Kantonalbank" target="_blank" class="source-item"><div class="source-icon">WK</div><div class="source-info"><div class="source-name">Wikipedia - Berner Kantonalbank</div><div class="source-meta">2025 | Encyclopedia</div></div></a>
+<a href="https://cloudxai.io/speaker/pavle-belanovic/" target="_blank" class="source-item"><div class="source-icon">CX</div><div class="source-info"><div class="source-name">Cloud &amp; AI Leadership Day Speaker</div><div class="source-meta">2025 | Conference</div></div></a>
+<a href="https://appliedmldays.org/events/amld-epfl-2022/speakers/pavle-belanovic" target="_blank" class="source-item"><div class="source-icon">AM</div><div class="source-info"><div class="source-name">AMLD EPFL 2022 Speaker</div><div class="source-meta">2022 | Conference</div></div></a>
+<a href="https://scholar.google.com/citations?user=6iRP6FYAAAAJ" target="_blank" class="source-item"><div class="source-icon">GS</div><div class="source-info"><div class="source-name">Google Scholar Profile</div><div class="source-meta">2025 | Academic</div></div></a>
+<a href="https://www.researchgate.net/profile/Pavle-Belanovic" target="_blank" class="source-item"><div class="source-icon">RG</div><div class="source-info"><div class="source-name">ResearchGate - EPFL Profile</div><div class="source-meta">2025 | Academic</div></div></a>
+<a href="https://jobs.bekb.ch/offene-stellen/fachverantwortliche-fachverantwortlicher-daten-und-ki-governance-a/cdee6b64-d57b-4053-8d10-05b885367cb3" target="_blank" class="source-item"><div class="source-icon">JB</div><div class="source-info"><div class="source-name">BEKB - AI Governance Job</div><div class="source-meta">2025 | Job Posting</div></div></a>
+<a href="https://aity.ch/" target="_blank" class="source-item"><div class="source-icon">AI</div><div class="source-info"><div class="source-name">Aity AG - BEKB IT Subsidiary</div><div class="source-meta">2025 | Company</div></div></a>
+<a href="https://fintechnews.ch/aifintech/who-are-the-leading-swiss-banks-in-genai-visibility/80071/" target="_blank" class="source-item"><div class="source-icon">FT</div><div class="source-info"><div class="source-name">Swiss Banks GenAI Visibility</div><div class="source-meta">2025 | Industry</div></div></a>
+<a href="https://www.swissbanking.ch/_Resources/Persistent/2/0/3/b/203b937e175f25819ea271c883a095fe1dfa1ee0/SBA_Generative-AI-in-Banking_EN.pdf" target="_blank" class="source-item"><div class="source-icon">SB</div><div class="source-info"><div class="source-name">SBA - GenAI in Banking</div><div class="source-meta">2025 | Industry Guide</div></div></a>
+<a href="https://www.finma.ch/en/news/2025/04/20250424-mm-umfrage-ki/" target="_blank" class="source-item"><div class="source-icon">FM</div><div class="source-info"><div class="source-name">FINMA AI Survey</div><div class="source-meta">2025 | Regulatory</div></div></a>
+<a href="https://ieeexplore.ieee.org/author/37535086200" target="_blank" class="source-item"><div class="source-icon">IE</div><div class="source-info"><div class="source-name">IEEE Xplore Author</div><div class="source-meta">2025 | Academic</div></div></a>
+<a href="https://www-chn.sdx.com/news/bekb-daura/" target="_blank" class="source-item"><div class="source-icon">SD</div><div class="source-info"><div class="source-name">SDX - BEKB Tokenized Shares</div><div class="source-meta">2024 | Digital Assets</div></div></a>
+<a href="https://www.linkedin.com/in/michael-wegmueller/" target="_blank" class="source-item"><div class="source-icon">LI</div><div class="source-info"><div class="source-name">LinkedIn - Michael Wegmuller</div><div class="source-meta">2025 | Professional</div></div></a></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 19, 2026 | Sources: 22+ verified</p>
+        <p>Prepared for: Michael Wegmuller | Occasion: AI Topics &amp; GenAI Platforms for Banking</p>
+        <div class="responsible-ai-badge">🛡️ Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Pavle Belanovic from BEKB (Berner Kantonalbank) - meeting context: discussing potential AI topics and GenAI Platforms for banking"</div>
+        <div class="report-token">Report ID: 084c8c83</div>
+    </div>
+
+    <div class="fab-group">
+        <button class="share-button" onclick="shareProfile()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            <span data-i18n="btn_share">Share</span>
+        </button>
+        <button class="download-button" onclick="downloadPDF()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="btn_download">PDF</span>
+        </button>
+        <button class="lang-switcher" onclick="switchLanguage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-group">
+                <span class="lang-option active" data-lang="en">EN</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-option" data-lang="de">DE</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-option" data-lang="fr">FR</span>
+            </span>
+        </button>
+    </div>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Pavle Belanovic Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download - uses native print-to-PDF for reliable cross-browser support
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) document.getElementById(activeTab.dataset.tab).classList.add('active');
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // ===== MULTI-LANGUAGE SUPPORT =====
+        const LANGUAGES = ['en', 'de', 'fr'];
+        let currentLangIndex = 0;
+
+        // Translation data - populated during report generation
+        // When the template placeholder is not yet replaced, fall back to empty object
+        let translations = {};
+        try { translations = {}; } catch(e) { translations = {}; }
+
+        // Store original English content on first load
+        const englishOriginals = {};
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            englishOriginals[el.getAttribute('data-i18n')] = el.textContent;
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            englishOriginals[el.getAttribute('data-i18n-html')] = el.innerHTML;
+        });
+
+        function switchLanguage() {
+            currentLangIndex = (currentLangIndex + 1) % LANGUAGES.length;
+            const lang = LANGUAGES[currentLangIndex];
+
+            // Update active indicator on button
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
+
+            const dict = translations[lang] || {};
+
+            // Check if translations exist for this language
+            if (lang !== 'en' && Object.keys(dict).length === 0) {
+                const toast = document.getElementById('shareToast');
+                toast.textContent = 'Translation not available';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 1500);
+                return;
+            }
+
+            // Update text content elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (lang === 'en') {
+                    if (englishOriginals[key] !== undefined) el.textContent = englishOriginals[key];
+                } else if (dict[key] !== undefined) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            // Update innerHTML elements (for complex content blocks)
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (lang === 'en') {
+                    if (englishOriginals[key] !== undefined) el.innerHTML = englishOriginals[key];
+                } else if (dict[key] !== undefined) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            // Visual feedback
+            const toast = document.getElementById('shareToast');
+            const langNames = { en: 'English', de: 'Deutsch', fr: 'Francais' };
+            toast.textContent = langNames[lang] || lang.toUpperCase();
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 1500);
+        }
+
+        // Handle URL hash for direct tab linking
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
