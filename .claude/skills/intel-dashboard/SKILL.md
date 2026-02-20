@@ -420,16 +420,16 @@ open {OUTPUT_DIR}/{filename}.html
 `https://mwegmueller.github.io/intel-dashboard/{filename}.html`
 (Note: URL will only work after successful push and GitHub Pages build, which takes ~1-2 minutes)
 
-### Step 5b: Generate Translations (DE + FR)
+### Step 5b: Generate Translations (DE + FR) — REQUIRED
 
-**CRITICAL: This step happens AFTER the English report is written and deployed.**
+**CRITICAL: This step is MANDATORY and happens AFTER the English report is written and deployed. Do NOT skip this step. Do NOT leave `{{TRANSLATIONS_JSON}}` as empty `{}` — the language switcher will not work without actual translation data.**
 
 The report template includes a `{{TRANSLATIONS_JSON}}` placeholder that must be populated with a complete JSON object containing German and French translations of ALL text content.
 
 **Process:**
 1. After writing the English HTML report, identify ALL `data-i18n` and `data-i18n-html` keys used in the report
-2. Generate complete German (de) and French (fr) translations for every key
-3. Update the HTML file by replacing `{{TRANSLATIONS_JSON}}` with the actual JSON object
+2. Generate complete German (de) and French (fr) translations for EVERY key — typically 60-70 keys
+3. Update the HTML file by replacing `try { translations = {{TRANSLATIONS_JSON}}; }` with `try { translations = {ACTUAL_JSON}; }` — the JSON must be a valid JavaScript object literal, NOT a string
 
 **Translation scope - translate EVERYTHING including:**
 - Tab names and mobile tab names
@@ -865,7 +865,7 @@ The Meeting Fit Score is now integrated directly into the Executive Summary as a
 **AI Use Case Card Template:**
 ```html
 <div class="use-case-card">
-    <div class="use-case-icon">{{ICON}}</div>
+    <div class="use-case-icon">📄</div> <!-- MUST be an emoji, NOT text like "DOC" -->
     <h4 class="use-case-title">{{USE_CASE_TITLE}}</h4>
     <p class="use-case-description">{{USE_CASE_DESCRIPTION}}</p>
     <div class="use-case-reasoning">
@@ -874,6 +874,7 @@ The Meeting Fit Score is now integrated directly into the Executive Summary as a
     </div>
 </div>
 ```
+**Recommended Use Case Emojis:** 📄 (documents), 🤖 (chatbot/AI), ⚖️ (compliance/legal), 💡 (productivity/ideas), 📊 (analytics/data), 💰 (finance/wealth), 🛡️ (security/fraud), 🔍 (search/quality), 🏭 (operations), 🎯 (targeting/optimization), 🔄 (automation), 📱 (mobile/digital)
 
 **AI Use Cases CSS:**
 ```css
@@ -1027,7 +1028,7 @@ The DISC model (developed by William Moulton Marston) describes four behavioral 
 10. **Methodology callouts**: EVERY section must have an info icon explaining data provenance
 11. **Clickable sources**: ALL sources must be `<a href="URL">` tags with actual URLs, NOT `<div>` elements
 12. **DISC Profile**: REQUIRED for ALL reports. Include DISC personality assessment in Behavioral Analysis tab. Score each dimension (D, I, S, C) from 0-100 based on observable behavioral indicators. Include communication tips for the primary type.
-13. **NO EMOJIS**: Do not use emojis anywhere in the report. Use plain text throughout (no ⛵, 📍, 🎯, etc.)
+13. **EMOJIS**: Do NOT use emojis in headings, body text, or labels. EXCEPTION: Use case icons (`.use-case-icon`) and differentiator icons (`.differentiator-icon`) MUST use emojis (e.g., 📄, 🤖, ⚖️, 💡, 📊, 💰, 🛡️, 🔍). Never use text abbreviations like "DOC", "BOT", "REG" as icons.
 14. **Meeting Fit Score**: REQUIRED. Include a 1-10 alignment score with ONE SENTENCE rationale in Executive Summary ring visual.
 15. **Recent Activity**: REQUIRED. Include last 30-90 days activity in Subject Profile tab.
 16. **Value Exchange**: REQUIRED when meeting has commercial purpose. Show what YOU can offer THEM.
@@ -1046,3 +1047,6 @@ The DISC model (developed by William Moulton Marston) describes four behavioral 
 29. **Competitive Map Rationale**: REQUIRED. Every dot on the Competitive Positioning Matrix must include a tooltip with: company name (bold), axis values, and a 1-2 sentence rationale explaining why it's positioned there.
 30. **SWOT Grid**: Use a 2x2 grid layout (not 3-column). Strengths, Weaknesses, Opportunities, and Threats each get equal space.
 31. **FAB Button Group**: Buttons (Share, PDF, Language) are stacked vertically in the bottom-right corner as a FAB group. They must NOT overlap horizontally.
+32. **HTML Structure**: Ensure all `<div>` tags are properly closed. Each `.card` div must be independently closed - do NOT nest card divs inside each other. Verify div balance after generating the report.
+33. **Translation Generation**: The `{{TRANSLATIONS_JSON}}` placeholder MUST be replaced with actual translation data, NOT with an empty `{}`. Generate complete DE and FR translations for ALL `data-i18n` and `data-i18n-html` keys. This is a REQUIRED step, not optional.
+34. **Use Case Icons**: Use case cards MUST use emoji icons (📄, 🤖, ⚖️, 💡, 📊, 💰, 🛡️, 🔍, 🏭, 🎯, etc.) in the `.use-case-icon` div. Never use text abbreviations. Similarly, differentiator boxes must use emojis.
