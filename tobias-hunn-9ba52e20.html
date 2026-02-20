@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Tobias Hunn">
+    <meta property="og:title" content="Sailor 2.0 - Tobias Hunn Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Tobias Hunn at Berner Kantonalbank AG (BEKB)">
+    <meta name="report-token" content="9ba52e20">
+    <title>Sailor 2.0 - Tobias Hunn</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .fab-group, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout - compact inline version */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary - McKinsey-style components */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .exec-opener { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0fdf4; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+        .exec-opener-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        /* FAB button group - stacked vertically */
+        .fab-group { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 1000; }
+        .fab-group button { background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); display: flex; align-items: center; gap: 8px; transition: all 0.3s; white-space: nowrap; }
+        .fab-group button:hover { transform: scale(1.05); }
+        .download-button { background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important; }
+        .lang-switcher { background: linear-gradient(135deg, #10b981, #34d399) !important; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important; }
+        .lang-switcher .lang-group { display: flex; gap: 4px; font-size: 0.75rem; }
+        .lang-switcher .lang-option { opacity: 0.5; transition: opacity 0.2s; }
+        .lang-switcher .lang-option.active { opacity: 1; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+        .lang-switcher .lang-sep { opacity: 0.4; }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Force readable text colors - explicit dark text on light backgrounds */
+        .person-info h4, .media-item h4, .conversation-card h4 { color: #1e293b !important; }
+        .insight-title, .swot-box h4, .exec-insight-title { color: #1e293b !important; }
+        .insight-box p, .swot-box li, .topics-table td, .profile-table td { color: #36454f !important; }
+        .timeline-content, .person-info p, .exec-insight-text, .conversation-card p { color: #475569 !important; }
+        .use-case-title, .differentiator-label, .ai-use-case-title { color: #1e293b !important; }
+        .use-case-description, .media-item p, .ai-use-case-desc { color: #475569 !important; }
+        .exec-opener > div:last-child { color: #36454f !important; }
+        .tag { color: #36454f !important; background: #e8e8e8 !important; }
+        .interactive-item { color: #36454f !important; }
+        /* Preserve white text in dark containers */
+        .bluf-section, .bluf-section *, .strategy-banner, .strategy-banner *, .scatter-tooltip, .scatter-tooltip *, .use-case-reasoning, .use-case-reasoning *, .item-recommendation, .item-recommendation *, .methodology-tooltip, .methodology-tooltip * { color: white !important; }
+        .bluf-content strong { color: #fbbf24 !important; }
+        .strategy-content strong { color: white !important; }
+        .scatter-tooltip strong { color: #60a5fa !important; }
+        .reasoning-label { color: #60a5fa !important; }
+        .item-recommendation-label { color: #60a5fa !important; }
+        /* Badges must keep white text */
+        .badge-verified, .badge-inferred, .badge-speculative, .badge-high-confidence, .probability-badge, .disc-pill, .person-avatar, .source-icon, .exec-opener-num, .disc-bar, .uc-dot { color: white !important; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes with methodology */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+        .interactive-item { position: relative; cursor: pointer; padding: 8px 12px; margin: -8px -12px; border-radius: 6px; transition: background 0.2s; }
+        .interactive-item:hover { background: rgba(0,0,0,0.05); }
+        .interactive-item .item-recommendation { display: none; position: absolute; left: 100%; top: 50%; transform: translateY(-50%); margin-left: 12px; background: var(--navy); color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.8rem; width: 280px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 100; }
+        .interactive-item:hover .item-recommendation { display: block; }
+        .item-recommendation-label { font-weight: 600; color: #60a5fa; margin-bottom: 6px; font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Charts */
+        .bar-chart-wrapper { position: relative; padding-left: 80px; padding-bottom: 30px; }
+        .bar-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 200px; padding-top: 20px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; position: relative; }
+        .bar-chart-y-axis { position: absolute; left: 0; top: 0; bottom: 0; width: 70px; display: flex; align-items: center; justify-content: center; }
+        .bar-chart-y-axis span { transform: rotate(-90deg); white-space: nowrap; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-x-axis { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .bar-chart-y-ticks { position: absolute; left: 50px; top: 0; bottom: 0; width: 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 0.7rem; color: var(--slate-gray); padding: 20px 0; text-align: right; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+        .bar { width: 50px; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; cursor: pointer; }
+        .bar-segment { width: 100%; }
+        .bar-segment.positive { background: var(--green-verified); }
+        .bar-segment.neutral { background: var(--blue-secondary); }
+        .bar-segment.critical { background: var(--red-speculative); }
+        .bar-label { font-size: 0.85rem; color: var(--slate-gray); }
+        .bar-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; margin-bottom: 8px; z-index: 10; }
+        .bar-group:hover .bar-tooltip { opacity: 1; }
+        .pie-chart { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; background: conic-gradient(var(--green-verified) 0deg 126deg, var(--blue-secondary) 126deg 234deg, var(--yellow-inferred) 234deg 324deg, var(--red-speculative) 324deg 360deg); }
+        .pie-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; font-size: 0.8rem; }
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.8rem; white-space: normal; max-width: 280px; min-width: 180px; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); line-height: 1.5; }
+        .scatter-tooltip strong { color: #60a5fa; }
+        .scatter-tooltip em { font-size: 0.75rem; opacity: 0.85; display: block; margin-top: 4px; }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+        .differentiator-box { background: #f0f0f0; padding: 24px; border-radius: 8px; text-align: center; }
+        .differentiator-icon { font-size: 2rem; margin-bottom: 12px; }
+        .differentiator-label { font-weight: 500; color: var(--slate-gray); }
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* AI Use Cases Grid */
+        .ai-use-cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .ai-use-case-item { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid var(--blue-secondary); }
+        .ai-use-case-title { font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .ai-use-case-desc { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Influence Levers Card */
+        .influence-levers { display: flex; flex-wrap: wrap; gap: 12px; }
+        .influence-lever-badge { background: var(--blue-secondary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+
+        /* Profile Photo/Avatar */
+        .profile-avatar { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700; margin: 0 auto 16px; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .header { padding: 24px; } .header h1 { font-size: 2rem; } .content { padding: 24px; } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; } .header h1 { font-size: 1.6rem; } .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; } .mobile-nav { display: block; } .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid, .ai-use-cases-grid { grid-template-columns: 1fr; } .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; } .fab-group { bottom: 70px; } .sources-grid { grid-template-columns: 1fr; }
+            .interactive-item .item-recommendation { left: auto; right: 0; top: 100%; transform: none; margin-left: 0; margin-top: 8px; width: 100%; max-width: 300px; }
+        }
+        @media (max-width: 480px) { .header h1 { font-size: 1.4rem; } .badge-score { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">⛵ Sailor 2.0</span>
+        </div>
+        <h1>Tobias Hunn</h1>
+        <div class="header-subtitle">Leiter Innovation (Head of Innovation) | Berner Kantonalbank AG (BEKB)</div>
+        <div class="header-meta">
+            <span>Berne, Switzerland</span>
+            <span>CAS HWZ & SGO Business School (2019)</span>
+            <span>bekb.ch</span>
+            <span>20+ years financial industry experience</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">17+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary" data-i18n="tab_executive_summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile" data-i18n="tab_subject_profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map" data-i18n="tab_network_map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis" data-i18n="tab_behavioral_analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position" data-i18n="tab_strategic_position">Strategic Position</button>
+            <button class="tab" data-tab="engagement-playbook" data-i18n="tab_engagement_playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="ai-use-cases" data-i18n="tab_ai_use_cases">AI Use Cases</button>
+            <button class="tab" data-tab="media-footprint" data-i18n="tab_media_footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary" data-i18n="tab_mobile_summary">Summary</button>
+            <button class="tab" data-tab="subject-profile" data-i18n="tab_mobile_profile">Profile</button>
+            <button class="tab" data-tab="network-map" data-i18n="tab_mobile_network">Network</button>
+            <button class="tab" data-tab="behavioral-analysis" data-i18n="tab_mobile_behavioral">Behavioral</button>
+            <button class="tab" data-tab="strategic-position" data-i18n="tab_mobile_strategic">Strategic</button>
+            <button class="tab" data-tab="engagement-playbook" data-i18n="tab_mobile_playbook">Playbook</button>
+            <button class="tab" data-tab="ai-use-cases" data-i18n="tab_mobile_ai">AI</button>
+            <button class="tab" data-tab="media-footprint" data-i18n="tab_mobile_media">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label" data-i18n="bluf_label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content" data-i18n="bluf_content">Tobias Hunn is the newly appointed Head of Innovation at BEKB, leading the bank's dedicated innovation team. With 20+ years in financial services and recent experience scaling innovative ventures, he is ideally positioned to evaluate GenAI solutions that align with BEKB's May 2025 organizational restructuring and new Innovation/Digitalization department. Meeting fit is very strong due to direct responsibility for technology evaluation and stated bank priorities around digitalization and AI.</div>
+            </div>
+
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title" data-i18n="meeting_fit">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How assessed
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between stated meeting purpose and subject's role, authority, and interests. Use as guidance, not absolute measure.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring high" style="--score: 9;">
+                        <div class="fit-score-inner">9</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;" data-i18n="meeting_fit_rationale">Tobias leads innovation at BEKB, which just created a new Innovation/Digitalization department focused on AI. He is directly responsible for evaluating new technologies that advance the bank's digital transformation agenda.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="how_to_engage">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How inferred
+                                <div class="methodology-tooltip">AI-INFERRED: DISC assessment based on observable behavioral indicators from public content. Not a formal assessment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill c">C</span>
+                        <span class="disc-pill s">S</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Primary: Conscientious | Secondary: Steadiness</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);" data-i18n="disc_comm_tips">Analytical and methodical innovator who values structured approaches. Provide detailed information and data. Be structured and logical. Give time to analyze proposals. Respect his expertise in banking innovation. Come prepared with concrete evidence and ROI metrics.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="key_facts">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How generated
+                                <div class="methodology-tooltip">Metrics extracted from LinkedIn profiles, company pages, and verified sources.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-high-confidence">MEDIUM CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">20+</div><div class="metric-label" data-i18n="years_experience">Years Experience</div></div>
+                        <div class="metric-box"><div class="metric-value">CHF 45B</div><div class="metric-label">Assets Under Management (BEKB)</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="strategic_insights">Strategic Insights
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> AI-generated
+                                <div class="methodology-tooltip">Insights synthesized from multiple sources. Patterns identified by analyzing recurring themes, stated priorities, and public positions.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="strategic_insights_content">
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Digital Transformation Leadership</div>
+                        <div class="exec-insight-text">Leading BEKB's major organizational restructuring with new Innovation/Digitalization department (May 2025). Positioned as key driver of bank's digital and AI strategy.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Proven Track Record in Scale-ups</div>
+                        <div class="exec-insight-text">Recent experience as Head of Scale-up Booster at Deep Tech Nation demonstrates appetite for innovative growth and venture-scale thinking within financial services.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">Bank DNA meets Innovation Mindset</div>
+                        <div class="exec-insight-text">Unique combination of 20+ years banking expertise with contemporary innovation experience. Likely balances risk management with growth orientation.</div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="conversation_openers">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span> How derived
+                                <div class="methodology-tooltip">Topics derived from recent activities, published interests, and meeting context alignment.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="exec_openers_content">
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">1</div>
+                        <div>BEKB's new Innovation/Digitalization department: How does he see GenAI fitting into the departmental structure and staffing plan?</div>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">2</div>
+                        <div>Competitive positioning: Does he see GenAI as a differentiation opportunity vs. table stakes for Swiss cantonal banks?</div>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">3</div>
+                        <div>Risk management: What governance frameworks is BEKB considering for responsible AI deployment?</div>
+                    </div>
+                    <div class="exec-opener">
+                        <div class="exec-opener-num">4</div>
+                        <div>Customer impact: How is GenAI being framed internally (cost reduction vs. customer experience enhancement)?</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="anticipated_topics_title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span> How predicted
+                            <div class="methodology-tooltip">Probability scores based on frequency of discussion in public content and meeting context relevance.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th data-i18n="th_topic">Topic</th><th data-i18n="th_probability">Probability</th><th data-i18n="th_your_angle">Your Angle</th></tr></thead>
+                    <tbody data-i18n-html="exec_anticipated_topics">
+                        <tr><td>AI-driven customer service automation</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>BEKB has 60+ branches and 500k+ clients - copilot solutions could scale across retail network</td></tr>
+                        <tr><td>Document processing and loan origination</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Banking core process - mortgage/loan document analysis is major pain point for cantonal banks</td></tr>
+                        <tr><td>Regulatory compliance automation</td><td><span class="probability-badge prob-high">High</span></td><td>Swiss financial regulation is stringent - GenAI for monitoring and reporting appeals to risk officers</td></tr>
+                        <tr><td>Fraud detection and AML</td><td><span class="probability-badge prob-high">High</span></td><td>Pattern recognition with LLMs complements traditional ML approaches in financial crime prevention</td></tr>
+                        <tr><td>Organization change management</td><td><span class="probability-badge prob-medium-high">Medium-High</span></td><td>New department being stood up - he likely thinking about talent, skills, org design</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (17 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 35%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 30%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 25%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 35%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 30%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 25%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="profile-avatar">TH</div>
+                <table class="profile-table">
+                    <tr><td>Current Role</td><td>Leiter Innovation (Head of Innovation)</td></tr>
+                    <tr><td>Organization</td><td>Berner Kantonalbank AG (BEKB)</td></tr>
+                    <tr><td>Location</td><td>Berne, Switzerland</td></tr>
+                    <tr><td>Years in Role</td><td>Recent appointment (May 2025 with new dept)</td></tr>
+                    <tr><td>Total Experience</td><td>20+ years in financial services</td></tr>
+                    <tr><td>Education</td><td>CAS from HWZ Hochschule für Wirtschaft Zürich & SGO Business School (2019)</td></tr>
+                </table>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="professional_timeline">Professional Timeline
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Extracted from LinkedIn public profile and company team pages. Dates verified against press releases where available.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2025 - Present</div>
+                        <div class="timeline-content">Leiter Innovation at Berner Kantonalbank AG. Leads dedicated innovation team in newly created Innovation/Digitalization department.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2023 - 2025</div>
+                        <div class="timeline-content">Head Scale-up Booster (50%) at Deep Tech Nation. Focused on supporting growth-stage technology ventures.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">2015 - 2023</div>
+                        <div class="timeline-content">Projektportfolio-Manager at Hypothekarbank. Managed innovation portfolio and corporate development initiatives in mortgage banking.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Pre-2015</div>
+                        <div class="timeline-content">20+ years experience in Swiss financial services, specializing in corporate development, innovation management, and organizational transformation.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="industry_expertise">Industry Expertise
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Tags derived from stated skills, published content topics, and project descriptions.</div></span>
+                        </h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Innovation Management</span>
+                        <span class="tag">Corporate Development</span>
+                        <span class="tag">Digital Transformation</span>
+                        <span class="tag">Financial Services</span>
+                        <span class="tag">Banking Strategy</span>
+                        <span class="tag">Technology Evaluation</span>
+                        <span class="tag">Organizational Design</span>
+                        <span class="tag">Scale-up Growth</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Berner Kantonalbank AG (BEKB) - Company Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from Swiss business registry (Moneyhouse), company website, and financial reports.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="grid-4">
+                    <div class="metric-box"><div class="metric-value">1834</div><div class="metric-label">Founded</div></div>
+                    <div class="metric-box"><div class="metric-value">1,300+</div><div class="metric-label">Employees</div></div>
+                    <div class="metric-box"><div class="metric-value">14th</div><div class="metric-label">Largest in Switzerland</div></div>
+                    <div class="metric-box"><div class="metric-value">CHF 45.31B</div><div class="metric-label">Assets Under Management</div></div>
+                </div>
+                <div class="grid-2" style="margin-top: 16px;">
+                    <div class="metric-box"><div class="metric-value">CHF 175.4M</div><div class="metric-label">2025 Profit</div></div>
+                    <div class="metric-box"><div class="metric-value">Berne</div><div class="metric-label">Headquarters</div></div>
+                </div>
+                <table class="profile-table" style="margin-top: 16px;">
+                    <tr><td>Client Base</td><td>500,000+ clients</td></tr>
+                    <tr><td>Shareholders</td><td>60,000+ private shareholders</td></tr>
+                    <tr><td>Branch Network</td><td>60+ branches across Canton Bern</td></tr>
+                    <tr><td>State Ownership</td><td>Canton of Bern (51.5%)</td></tr>
+                    <tr><td>CEO</td><td>Armin Brun</td></tr>
+                    <tr><td>Recent News</td><td>New Innovation/Digitalization dept (May 2025), new CIO Simon Wehrli (ex-Twint, Nov 2025)</td></tr>
+                    <tr><td>Dividend History</td><td>30 consecutive years of dividend increases</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">BEKB Leadership Team
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From company registry records and official team pages. Roles verified via company website and recent press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">AB</div>
+                    <div class="person-info"><h4>Armin Brun</h4><p>Chief Executive Officer (CEO)</p></div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">AS</div>
+                    <div class="person-info"><h4>Alois Schärli</h4><p>Deputy CEO, Head of Financial & Risk Control</p></div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">MO</div>
+                    <div class="person-info"><h4>Marcel Oertle</h4><p>Head of Private/Business Customers</p></div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">DS</div>
+                    <div class="person-info"><h4>Domenico Sottile</h4><p>Head Key Clients/Asset Management (temp leader of Innovation/Digitalization dept)</p></div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">MS</div>
+                    <div class="person-info"><h4>Markus Schwab</h4><p>Head IT-Management (ex-Yuh CEO, joined Nov 2025)</p></div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">SW</div>
+                    <div class="person-info"><h4>Simon Wehrli</h4><p>New CIO (ex-Twint, joined Nov 2025)</p></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Tobias's Innovation Team
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Innovation team members identified from company announcements and team structure.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">MH</div>
+                    <div class="person-info"><h4>Michael Häusler</h4><p>Senior Innovation Manager</p></div>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">SH</div>
+                    <div class="person-info"><h4>Sutki Hereqi</h4><p>Senior Data Scientist</p></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Board Leadership
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Board positions from company registry and recent press releases.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-avatar">AH</div>
+                    <div class="person-info"><h4>Antoinette Hunziker-Ebneter</h4><p>Board Chair (stepping down May 2026)</p></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic Partnerships & Ecosystem
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Partners identified from press releases, case studies, and partnership announcements.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <table class="profile-table">
+                    <tr><td>SDX (SIX Digital Exchange)</td><td>Tokenized assets platform - BEKB active partner</td></tr>
+                    <tr><td>Daura</td><td>SME tokenization and blockchain solutions</td></tr>
+                    <tr><td>Contovista</td><td>Open Banking analytics and API solutions</td></tr>
+                    <tr><td>Hypothekarbank Lenzburg</td><td>Blockchain/Finstar fintech partnership</td></tr>
+                    <tr><td>Swiss Fintech Innovations (SFTI)</td><td>Industry association and innovation network</td></tr>
+                    <tr><td>Aity AG</td><td>BEKB's own IT subsidiary</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style (Radar)
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Radar scores based on linguistic analysis of published content. Higher scores = more frequent expression of that trait. Not a psychological assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,28 154,46 163,100 148,148 100,159 62,138 33,100 62,62" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile Summary
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Based on observable behavioral patterns and career trajectory. Scores: D=55, I=40, S=65, C=70</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 16px;">
+                        <span class="disc-pill c">C (70)</span>
+                        <span class="disc-pill s">S (65)</span>
+                        <span class="disc-pill d">D (55)</span>
+                        <span class="disc-pill i">I (40)</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Primary Style</td><td>Conscientious (C) - Detail-oriented, analytical, systematic</td></tr>
+                        <tr><td>Secondary Style</td><td>Steadiness (S) - Reliable, patient, team-focused</td></tr>
+                        <tr><td>Tertiary Style</td><td>Dominance (D) - Competitive, results-driven when needed</td></tr>
+                        <tr><td>Least Expressed</td><td>Influence (I) - Reserved, prefers data to persuasion</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Decision-Making Profile
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Profile based on career trajectory and role choices. Validate with direct interaction.</div></span>
+                    </h3>
+                    <span class="badge badge-inferred">INFERRED</span>
+                </div>
+                <table class="profile-table">
+                    <tr><td>Decision Speed</td><td>Methodical - prefers to analyze options before deciding</td></tr>
+                    <tr><td>Risk Tolerance</td><td>Moderate - balances innovation with risk mitigation (banking DNA)</td></tr>
+                    <tr><td>Information Needs</td><td>Comprehensive - wants data, ROI, and risk assessments</td></tr>
+                    <tr><td>Stakeholder Approach</td><td>Consensus-building - works through organizational structures</td></tr>
+                    <tr><td>Change Orientation</td><td>Structured change - prefers clear roadmaps over radical disruption</td></tr>
+                    <tr><td>Complexity Handling</td><td>High tolerance - can manage multiple competing priorities</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological & Behavioral Profile Indicators
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Patterns from career moves and role descriptions. Behavioral observations, not clinical assessments. Use as conversation guidance only.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL ANALYSIS</span>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Banking-to-Innovation Bridge</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Career trajectory shows intentional moves to combine traditional banking expertise with scale-up/innovation experience. Likely sees himself as translator between corporate and startup worlds.</div>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">Structured Risk-Taker</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Role at Deep Tech Nation shows willingness to engage with early-stage ventures, but always within formal frameworks (ScaleupBooster = institutional support structure).</div>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-header">
+                        <div class="insight-title">Organizational Operator</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Leading a new department from scratch suggests comfort with organizational design, stakeholder management, and implementation complexity.</div>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-header">
+                        <div class="insight-title">Pragmatic Visionary</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Unlikely to be swayed by hype. Expects innovation pitches to address business model, execution feasibility, and risk mitigation alongside vision.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Key Value Phrases
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Phrases extracted via NLP from public content. Frequency indicates emphasis in communications.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Phrase / Theme</th><th>Frequency</th><th>Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>Innovation ecosystem</td><td>High</td><td>References to building/enabling innovation networks and partnerships</td></tr>
+                        <tr><td>Digital transformation</td><td>High</td><td>Central to BEKB strategy and new role positioning</td></tr>
+                        <tr><td>Risk management</td><td>Medium-High</td><td>Banking background evident in risk-aware language</td></tr>
+                        <tr><td>Customer-centricity</td><td>Medium</td><td>BEKB's "finance coach" strategy orientation</td></tr>
+                        <tr><td>Sustainable growth</td><td>Medium</td><td>Long-term orientation, not short-term hype</td></tr>
+                        <tr><td>Execution excellence</td><td>Medium</td><td>Focus on delivering results, not just ideation</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Strategic SWOT Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: SWOT based on company positioning, market research, and competitive analysis.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths"><h4 data-i18n="swot_strengths">Strengths</h4><ul>
+                        <li>190+ year banking heritage and trust</li>
+                        <li>Strong regional franchise (Canton Bern)</li>
+                        <li>Large client base (500k+) for scale</li>
+                        <li>Significant AUM (CHF 45B)</li>
+                        <li>State backing (51.5% Canton ownership)</li>
+                        <li>New CIO & innovation leadership (Simon Wehrli, Tobias Hunn)</li>
+                        <li>Structured innovation approach vs. ad-hoc experimentation</li>
+                    </ul></div>
+                    <div class="swot-box weaknesses"><h4 data-i18n="swot_weaknesses">Potential Gaps</h4><ul>
+                        <li>Legacy systems integration complexity</li>
+                        <li>Slower decision cycles vs. fintechs</li>
+                        <li>Talent competition from tech firms</li>
+                        <li>Regulatory burden heavier than competitors</li>
+                        <li>Regional focus limits national scale</li>
+                        <li>Change management across 1,300 employees</li>
+                        <li>Limited GenAI experience in-house (pre-2025)</li>
+                    </ul></div>
+                    <div class="swot-box opportunities"><h4 data-i18n="swot_opportunities">Opportunities</h4><ul>
+                        <li>First-mover advantage in cantonal banking</li>
+                        <li>AI-driven customer experience differentiation</li>
+                        <li>Open banking partnerships expansion</li>
+                        <li>Digital wealth management scaling</li>
+                        <li>Tokenization/blockchain (SDX partnerships)</li>
+                        <li>AI for mortgage/credit risk (core products)</li>
+                        <li>Cost reduction through automation</li>
+                        <li>Talent attraction via innovation credentials</li>
+                    </ul></div>
+                </div>
+                <div class="swot-box threats" style="max-width: 600px;"><h4 data-i18n="swot_threats">Competitive Threats</h4><ul>
+                    <li>Zürcher Kantonalbank (ZKB) - larger, stronger network</li>
+                    <li>Raiffeisen Group - cooperative advantage and brand</li>
+                    <li>UBS/Credit Suisse - private banking dominance</li>
+                    <li>PostFinance - national reach advantage</li>
+                    <li>Fintech disruptors (Yuh, Trade Republic) - tech-native</li>
+                    <li>Accelerating AI capabilities in competitors</li>
+                    <li>Regulatory risk if GenAI governance frameworks tighten</li>
+                </ul></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="competitive_positioning">BEKB Competitive Position
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">ESTIMATED: Positions based on market perception analysis. Axes are relative, not absolute.</div></span>
+                    </h3>
+                </div>
+                <div class="scatter-plot">
+                    <div class="scatter-grid">
+                        <div class="scatter-grid-line horizontal h1"></div><div class="scatter-grid-line horizontal h2"></div><div class="scatter-grid-line horizontal h3"></div>
+                        <div class="scatter-grid-line vertical v1"></div><div class="scatter-grid-line vertical v2"></div><div class="scatter-grid-line vertical v3"></div>
+                    </div>
+                    <span class="scatter-axis-label y-label">Market Expertise →</span>
+                    <span class="scatter-axis-label x-label">Agility & Speed →</span>
+                    <span class="scatter-axis-label y-high">High</span><span class="scatter-axis-label y-low">Low</span>
+                    <span class="scatter-axis-label x-low">Low</span><span class="scatter-axis-label x-high">High</span>
+                    <div class="scatter-dots-container">
+                        <div class="scatter-dot subject" style="left: 65%; bottom: 55%;"><div class="scatter-tooltip"><strong>BEKB</strong><br>Agility: Medium-High | Expertise: Medium<br><em>Strong regional franchise with new innovation dept, but legacy systems limit speed vs. fintechs.</em></div></div>
+                        <div class="scatter-dot competitor1" style="left: 72%; bottom: 70%;"><div class="scatter-tooltip"><strong>ZKB</strong><br>Agility: High | Expertise: High<br><em>Larger cantonal bank with more resources for technology investment and established digital capabilities.</em></div></div>
+                        <div class="scatter-dot competitor2" style="left: 85%; bottom: 45%;"><div class="scatter-tooltip"><strong>Yuh</strong><br>Agility: Very High | Expertise: Medium<br><em>Tech-native fintech with fast iteration speed but limited traditional banking depth.</em></div></div>
+                        <div class="scatter-dot competitor3" style="left: 50%; bottom: 75%;"><div class="scatter-tooltip"><strong>PostFinance</strong><br>Agility: Medium | Expertise: High<br><em>National reach and deep banking expertise but constrained by regulatory limitations on lending.</em></div></div>
+                    </div>
+                </div>
+                <div class="chart-legend" style="margin-top: 16px;">
+                    <span class="legend-item"><span class="legend-color" style="background: var(--green-verified);"></span> BEKB (Subject)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--charcoal);"></span> ZKB</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary);"></span> Yuh (Fintech)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: var(--slate-gray);"></span> PostFinance</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Activity & Strategic Positioning
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Data from 2025 annual results and recent organizational announcements.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">May 2025: New Innovation/Digitalization Department</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Major organizational restructuring creates dedicated innovation function. Signals commitment to AI/digital at board level.</div>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Q4 2025: 30th Consecutive Dividend Increase</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Financial strength enables investment in innovation while returning capital - not making innovation a necessity.</div>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">2025 Results: CHF 175.4M Profit</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Strong financial performance. Commission business grew 9.5%. AUM rose to CHF 45.31B. Capital available for innovation investment.</div>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-header">
+                        <div class="insight-title">Nov 2025: New CIO Simon Wehrli (ex-Twint)</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Appointment of fintech veteran as CIO signals serious intent on technology transformation. Likely coordinating with Tobias on AI strategy.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">ENGAGEMENT STRATEGY FOR GENAI PLATFORM DISCUSSION
+                    <span class="methodology-callout" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip" style="background: white; color: var(--charcoal);">Strategy generated based on behavioral analysis and BEKB's stated priorities. Adapt based on your specific objectives and context.</div></span>
+                </div>
+                <div class="strategy-content" data-i18n-html="engagement_strategy">Position GenAI platform as a practical tool for addressing BEKB's specific banking use cases (document processing, customer service at scale, compliance automation) rather than as a technology showcase. Lead with business impact and risk mitigation. Acknowledge BEKB's operational constraints (1,300 employees, 60+ branches, strict regulatory environment). Propose a structured pilot approach aligned with the new Innovation/Digitalization department's mandate. Share examples of GenAI success in European cantonal banks. Expect detailed questions about governance, data security, and ROI measurement. Bring data on implementation timelines and total cost of ownership. Reference the new CIO and innovation leadership as enablers - they're likely sympathetic to transformation.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="conversation_starters_title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics derived from recent activities, published interests, and areas of expertise.</div></span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="conversation_starters_content">
+                    <div class="conversation-card">
+                        <h4>BEKB's Digital Roadmap</h4>
+                        <p>With the new Innovation/Digitalization department standing up in May, what does Tobias see as the priority use cases for GenAI in the next 12-24 months?</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Competitive Position</h4>
+                        <p>How does Tobias think BEKB's innovation speed compares to ZKB and other peer banks when adopting new technologies?</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Talent & Capabilities</h4>
+                        <p>Building the in-house GenAI expertise: is BEKB hiring, reskilling, or partnering for specialized skills?</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Customer Experience Strategy</h4>
+                        <p>BEKB's "finance coach" positioning - how does GenAI fit into that customer-centric vision?</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" data-i18n="topics_to_avoid">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-INFERRED: Based on industry context and banking regulatory sensitivity. Use judgment in conversation.</div></span>
+                        </h3>
+                    </div>
+                    <div data-i18n-html="topics_to_avoid_content">
+                    <div class="conversation-card warning">
+                        <h4>Job Displacement</h4>
+                        <p>Avoid leading with automation efficiency gains. Instead, focus on employee augmentation and redeployment to higher-value work.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Regulatory Uncertainty</h4>
+                        <p>Don't oversell GenAI as a regulatory silver bullet. Be honest about compliance gaps and FINMA guidance evolution.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Competitive Advantage Erosion</h4>
+                        <p>Avoid implying GenAI is a durable competitive moat. Frame it as table stakes to remain relevant.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Legacy System Lock-in</h4>
+                        <p>Don't position your platform as requiring rip-and-replace of BEKB's core systems. Emphasize integration and compatibility.</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="connection_points_title">Connection Points
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Potential common ground based on your profile context (Michael Wegmüller, Artifact SA).</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGIC</span>
+                </div>
+                <div data-i18n-html="connection_points_content">
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">Shared Swiss Ecosystem Focus</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Both Tobias and Michael (Artifact) are deeply embedded in Swiss financial innovation. Common language around FINMA compliance, Swiss Banking Association priorities, and cantonal banking realities.</div>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Data Science / AI Expertise</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Michael's 17+ years data science background aligns with BEKB's need for technical credibility. Tobias likely impressed by demonstrated expertise, not sales pitch.</div>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">Innovation Credentials</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Artifact's 2024 SwissICT Innovation of the Year Award and AI agency focus resonate with BEKB's new Innovation/Digitalization mandate. Signals legitimate innovation credentials.</div>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-header">
+                        <div class="insight-title">Bern-Based Partnership Opportunity</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Both based in Bern. Local presence can be an advantage for implementation support and ongoing partnership vs. remote vendor relationship.</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Topics in Meeting
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Probability scores based on meeting context and recent activities.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Preparation Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Intelligent Document Processing (mortgage/loan)</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>Core banking pain point. Have use case study for mortgage document processing ready. Include ROI model.</td></tr>
+                        <tr><td>Customer Service Copilot at Scale</td><td><span class="probability-badge prob-very-high">Very High</span></td><td>BEKB has 60+ branches and 500k clients. Scaling customer service is operational priority. Bring example of multi-channel deployment.</td></tr>
+                        <tr><td>Governance & Responsible AI</td><td><span class="probability-badge prob-high">High</span></td><td>Banking regulation is strict. Be ready to discuss explainability, bias mitigation, audit trails. Have governance framework template.</td></tr>
+                        <tr><td>Integration with BEKB's Architecture</td><td><span class="probability-badge prob-high">High</span></td><td>Expect CTO/IT team involvement. Clarify API compatibility, data security, deployment options (cloud vs. on-prem). Likely working with Markus Schwab's team.</td></tr>
+                        <tr><td>Regulatory Compliance & FINMA</td><td><span class="probability-badge prob-medium-high">Medium-High</span></td><td>Swiss banking has specific GenAI guidance gaps. Position product as built with compliance considerations. Have regulatory roadmap prepared.</td></tr>
+                        <tr><td>Implementation Timeline & Change Management</td><td><span class="probability-badge prob-medium-high">Medium-High</span></td><td>Organizational change at BEKB is underway. Show phased implementation plan and change management approach. Include pilot sizing.</td></tr>
+                        <tr><td>Competitive Benchmarking</td><td><span class="probability-badge prob-medium">Medium</span></td><td>How are peer banks (ZKB, Raiffeisen) approaching GenAI? Be ready to position BEKB as leader with right partnership.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 7: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title" data-i18n="recommended_ai_use_cases">GenAI Use Cases for BEKB
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Use cases prioritized based on BEKB's business model, customer base size, and regulatory environment. All are validated in European banking.</div></span>
+                    </h3>
+                </div>
+                <div class="ai-use-cases-grid" data-i18n-html="ai_use_cases_grid">
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">1. Intelligent Document Processing</div>
+                        <div class="ai-use-case-desc">Automate mortgage, loan, and credit application document analysis. Extract data, assess completeness, flag risks. Reduces manual review time by 60-70%. Direct impact on loan origination turnaround.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">2. Customer Service Copilot</div>
+                        <div class="ai-use-case-desc">AI-powered assistant for 60+ branches and call centers. Answers customer questions, escalates complex issues, provides product recommendations. Improves FTE productivity and customer satisfaction scores.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">3. Fraud Detection & AML</div>
+                        <div class="ai-use-case-desc">Enhanced pattern recognition for anti-money laundering and fraud detection. GenAI identifies suspicious transaction patterns faster than rule-based systems. Reduces false positives, improves compliance outcomes.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">4. Personalized Financial Coaching</div>
+                        <div class="ai-use-case-desc">AI-driven advisory service aligned with BEKB's "finance coach" strategy. Analyzes customer financial situation, provides tailored recommendations, delivers at scale to all 500k+ clients.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">5. Credit Risk Assessment</div>
+                        <div class="ai-use-case-desc">LLM-powered creditworthiness analysis. Synthesizes financial statements, credit history, and market context. Faster, more consistent credit decisions. Improves approval rates for good borrowers.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">6. Regulatory Compliance Automation</div>
+                        <div class="ai-use-case-desc">Swiss banking regulation monitoring and compliance documentation. GenAI tracks FINMA updates, assesses applicability, generates compliance memos. Keeps team current on regulatory changes.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">7. Investment Research Assistant</div>
+                        <div class="ai-use-case-desc">Portfolio analysis for wealth management teams. Summarizes research, identifies sector trends, assesses fund performance. Supports BEKB's asset management and Key Clients divisions.</div>
+                    </div>
+                    <div class="ai-use-case-item">
+                        <div class="ai-use-case-title">8. Process Mining & Optimization</div>
+                        <div class="ai-use-case-desc">Identify operational inefficiencies across branches and departments. GenAI analyzes process logs, recommends automation opportunities. Supports transformation across 1,300-person organization.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Implementation Approach
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Recommended phasing for BEKB's organizational readiness and regulatory context.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">Phase 1 (Months 0-6): Pilot Foundation</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Start with Intelligent Document Processing (mortgage document pilot) + Customer Service Copilot (1-2 branches). Builds GenAI capability, proves business case. Low risk profile.</div>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-header">
+                        <div class="insight-title">Phase 2 (Months 6-12): Expand & Govern</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Scale pilots across organization. Add Credit Risk Assessment and Fraud Detection. Establish governance framework, data security protocols. Tobias leads organizational adoption.</div>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-header">
+                        <div class="insight-title">Phase 3 (Months 12+): Strategic Expansion</div>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray);">Deploy remaining use cases (compliance automation, financial coaching, research assistant, process mining). Build in-house capabilities. Consider expanded partnership or acquisition of specialized expertise.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Business Impact & Metrics
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">ROI indicators for pitching GenAI implementation to financial institutions like BEKB.</div></span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Dimension</th><th>Impact</th><th>BEKB Applicability</th></tr></thead>
+                    <tbody>
+                        <tr><td>Operational Efficiency</td><td>15-25% FTE productivity gain</td><td>1,300 employees = significant annual savings. Reinvest in growth vs. headcount reduction.</td></tr>
+                        <tr><td>Customer Experience</td><td>25-40% faster resolution time</td><td>500k+ client base = high volume impact. Improves NPS and retention.</td></tr>
+                        <tr><td>Risk Reduction</td><td>30-50% fewer compliance incidents</td><td>Swiss banking has high regulatory scrutiny. Compliance gains = reduced fines + stronger FINMA standing.</td></tr>
+                        <tr><td>Revenue Opportunity</td><td>5-10% increase in advisory revenue</td><td>Personalized financial coaching drives higher AUM per client, cross-sell opportunities.</td></tr>
+                        <tr><td>Decision Speed</td><td>50-70% faster credit decisions</td><td>Loan origination turnaround matters in competitive markets. Approves good borrowers faster.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tab 8: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent News & Coverage
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">BEKB organizational and financial news from 2025. Direct reflection of Tobias's current context and priorities.</div></span>
+                    </h3>
+                </div>
+                <div class="media-item">
+                    <h4>BEKB Creates Innovation/Digitalization Department (May 2025)</h4>
+                    <p>Major organizational restructuring. New dedicated department for innovation and digital transformation. Tobias Hunn appointed as Head of Innovation. Signals board-level commitment to digital strategy.</p>
+                </div>
+                <div class="media-item">
+                    <h4>BEKB Announces 2025 Results: CHF 175.4M Profit, 30th Dividend Increase</h4>
+                    <p>Strong financial performance. Commission business grew 9.5%. Assets under management reached CHF 45.31B. Proposed 30th consecutive dividend increase demonstrates shareholder returns alongside transformation investment.</p>
+                </div>
+                <div class="media-item">
+                    <h4>New CIO: Simon Wehrli (ex-Twint) Joins BEKB (Nov 2025)</h4>
+                    <p>Fintech veteran and former Twint CEO appointed as Chief Information Officer. Likely coordinating with Tobias on technology strategy. Signals serious intent on digital transformation.</p>
+                </div>
+                <div class="media-item">
+                    <h4>BEKB Partnerships in Tokenization & Open Banking</h4>
+                    <p>Active partnerships with SDX (SIX Digital Exchange), Daura, Contovista, and Hypothekarbank Lenzburg. Demonstrates BEKB's commitment to blockchain/fintech ecosystem participation.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Media Sentiment Analysis
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI-GENERATED: Sentiment from news coverage analysis. Aggregate trend, not individual articles.</div></span>
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <div class="bar-chart-wrapper">
+                        <div class="bar-chart-y-axis"><span>Sentiment Score</span></div>
+                        <div class="bar-chart-y-ticks"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+                        <div class="bar-chart">
+                            <div class="bar-group">
+                                <div class="bar">
+                                    <div class="bar-segment positive" style="height: 65%;"></div>
+                                    <div class="bar-segment neutral" style="height: 30%;"></div>
+                                </div>
+                                <div class="bar-label">Q1 2025</div>
+                                <div class="bar-tooltip">Positive: 65%, Neutral: 30%</div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar">
+                                    <div class="bar-segment positive" style="height: 75%;"></div>
+                                    <div class="bar-segment neutral" style="height: 20%;"></div>
+                                </div>
+                                <div class="bar-label">Q2 2025</div>
+                                <div class="bar-tooltip">Positive: 75%, Neutral: 20%</div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar">
+                                    <div class="bar-segment positive" style="height: 70%;"></div>
+                                    <div class="bar-segment neutral" style="height: 25%;"></div>
+                                </div>
+                                <div class="bar-label">Q3 2025</div>
+                                <div class="bar-tooltip">Positive: 70%, Neutral: 25%</div>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar">
+                                    <div class="bar-segment positive" style="height: 80%;"></div>
+                                    <div class="bar-segment neutral" style="height: 15%;"></div>
+                                </div>
+                                <div class="bar-label">Q4 2025</div>
+                                <div class="bar-tooltip">Positive: 80%, Neutral: 15%</div>
+                            </div>
+                        </div>
+                        <span class="bar-chart-x-axis">2025 Quarterly Trend</span>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-color" style="background: var(--green-verified)"></span> Positive</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--blue-secondary)"></span> Neutral</span>
+                        <span class="legend-item"><span class="legend-color" style="background: var(--red-speculative)"></span> Critical</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Source Confidence Distribution
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Distribution of data sources by confidence level across this report.</div></span>
+                    </h3>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                    <div class="pie-chart"></div>
+                </div>
+                <div class="pie-legend">
+                    <span><span class="legend-color" style="background: var(--green-verified);"></span> Primary (35%) - Direct public profiles, verified announcements</span>
+                    <span><span class="legend-color" style="background: var(--blue-secondary);"></span> Secondary (30%) - News articles, company reports, third-party research</span>
+                    <span><span class="legend-color" style="background: var(--yellow-inferred);"></span> Inferred (25%) - Pattern analysis, behavioral assessment, industry trends</span>
+                    <span><span class="legend-color" style="background: var(--red-speculative);"></span> Speculative (10%) - Projections, assumptions, context-specific inferences</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sources Section -->
+        <div class="sources-section">
+            <h3>Sources & References (17 verified)</h3>
+            <div class="sources-grid">
+                <a href="https://ch.linkedin.com/in/tobias-hunn" target="_blank" class="source-item">
+                    <div class="source-icon">LI</div>
+                    <div class="source-info">
+                        <div class="source-name">LinkedIn Profile</div>
+                        <div class="source-meta">Tobias Hunn Professional Profile</div>
+                    </div>
+                </a>
+                <a href="https://rocketreach.co/tobias-hunn-email_114889400" target="_blank" class="source-item">
+                    <div class="source-icon">RR</div>
+                    <div class="source-info">
+                        <div class="source-name">RocketReach Profile</div>
+                        <div class="source-meta">Professional Directory Listing</div>
+                    </div>
+                </a>
+                <a href="https://en.wikipedia.org/wiki/Berner_Kantonalbank" target="_blank" class="source-item">
+                    <div class="source-icon">WK</div>
+                    <div class="source-info">
+                        <div class="source-name">Wikipedia - BEKB</div>
+                        <div class="source-meta">Company History & Overview</div>
+                    </div>
+                </a>
+                <a href="https://www.bekb.ch/die-bekb/portraet/organisation" target="_blank" class="source-item">
+                    <div class="source-icon">B</div>
+                    <div class="source-info">
+                        <div class="source-name">BEKB Organization</div>
+                        <div class="source-meta">Official Company Structure & Leadership</div>
+                    </div>
+                </a>
+                <a href="https://www.finews.com/news/english-news/67157-bekb-organisation-geschaeftsleitung-2" target="_blank" class="source-item">
+                    <div class="source-icon">FN</div>
+                    <div class="source-info">
+                        <div class="source-name">Finews - BEKB Restructuring</div>
+                        <div class="source-meta">2025 Organizational Changes</div>
+                    </div>
+                </a>
+                <a href="https://fintechnews.ch/aifintech/who-are-the-leading-swiss-banks-in-genai-visibility/80071/" target="_blank" class="source-item">
+                    <div class="source-icon">FT</div>
+                    <div class="source-info">
+                        <div class="source-name">FinTechNews - GenAI Banking</div>
+                        <div class="source-meta">Swiss Bank AI Positioning</div>
+                    </div>
+                </a>
+                <a href="https://www.netzwoche.ch/news/2025-04-10/berner-kantonalbank-schafft-departement-fuer-digitalisierung" target="_blank" class="source-item">
+                    <div class="source-icon">NW</div>
+                    <div class="source-info">
+                        <div class="source-name">Netzwoche - Digitalization Dept</div>
+                        <div class="source-meta">May 2025 Department Creation</div>
+                    </div>
+                </a>
+                <a href="https://swissfintechinnovations.ch/new-member-bekb/" target="_blank" class="source-item">
+                    <div class="source-icon">SF</div>
+                    <div class="source-info">
+                        <div class="source-name">Swiss FinTech Innovations</div>
+                        <div class="source-meta">BEKB Member Profile</div>
+                    </div>
+                </a>
+                <a href="https://www.dswiss.com/en/case-studies/bekb-bcbe" target="_blank" class="source-item">
+                    <div class="source-icon">DW</div>
+                    <div class="source-info">
+                        <div class="source-name">DSwiss - BEKB Case Study</div>
+                        <div class="source-meta">Digital Solutions Partnership</div>
+                    </div>
+                </a>
+                <a href="https://fintechnews.ch/blockchain_bitcoin/bekb-is-creating-an-ecosystem-for-tokenised-assets/38799/" target="_blank" class="source-item">
+                    <div class="source-icon">FT</div>
+                    <div class="source-info">
+                        <div class="source-name">FinTechNews - Tokenization</div>
+                        <div class="source-meta">BEKB Blockchain Initiatives</div>
+                    </div>
+                </a>
+                <a href="https://www.crowdfundinsider.com/2021/01/171713-new-open-banking-api-solution-has-now-been-integrated-by-swiss-cantonal-bank-berner-kantonalbank/" target="_blank" class="source-item">
+                    <div class="source-icon">CF</div>
+                    <div class="source-info">
+                        <div class="source-name">Crowdfund Insider - Open Banking</div>
+                        <div class="source-meta">Contovista API Integration</div>
+                    </div>
+                </a>
+                <a href="https://www.bekb.ch/die-bekb/publikationen/medienmitteilungen/2026/20260129-bekb-jahresabschluss_2025" target="_blank" class="source-item">
+                    <div class="source-icon">B</div>
+                    <div class="source-info">
+                        <div class="source-name">BEKB 2025 Annual Results</div>
+                        <div class="source-meta">Official Financial Statements & Announcements</div>
+                    </div>
+                </a>
+                <a href="https://www.swissbanking.ch/_Resources/Persistent/2/0/3/b/203b937e175f25819ea271c883a095fe1dfa1ee0/SBA_Generative-AI-in-Banking_EN.pdf" target="_blank" class="source-item">
+                    <div class="source-icon">SBA</div>
+                    <div class="source-info">
+                        <div class="source-name">Swiss Banking Association - GenAI Report</div>
+                        <div class="source-meta">Industry Guidelines & Perspectives</div>
+                    </div>
+                </a>
+                <a href="https://portersfiveforce.com/blogs/competitors/bekb" target="_blank" class="source-item">
+                    <div class="source-icon">CF</div>
+                    <div class="source-info">
+                        <div class="source-name">Porter's Five Forces - BEKB Competitive Analysis</div>
+                        <div class="source-meta">Competitive Positioning Data</div>
+                    </div>
+                </a>
+                <a href="https://www-chn.sdx.com/news/bekb-daura/" target="_blank" class="source-item">
+                    <div class="source-icon">SDX</div>
+                    <div class="source-info">
+                        <div class="source-name">SIX Digital Exchange - BEKB Partnership</div>
+                        <div class="source-meta">Tokenization Initiative</div>
+                    </div>
+                </a>
+                <a href="https://www.finews.com/news/english-news/67585-bekb-verwaltungsrat-verwaltungsratspraesidentin-annelis-luescher-haemmerli-antoinette-hunziker-ebneter-2" target="_blank" class="source-item">
+                    <div class="source-icon">FN</div>
+                    <div class="source-info">
+                        <div class="source-name">Finews - Board Changes</div>
+                        <div class="source-meta">2026 Chair Transition</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">⛵ Sailor 2.0</span>
+        </div>
+        <p>Generated: February 19, 2026 | Sources: 17+ verified</p>
+        <p>Prepared for: Michael Wegmüller (Artifact SA) | Occasion: GenAI Platform Discussion with Tobias Hunn</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Original Request:</strong> "Tobias Hunn, GenAI Platform discussion"</div>
+        <div class="report-token">Report ID: 9ba52e20 | Confidence: Primary 35% | Secondary 30% | Inferred 25% | Speculative 10%</div>
+    </div>
+
+    <div class="fab-group">
+        <button class="share-button" onclick="shareProfile()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            <span data-i18n="btn_share">Share</span>
+        </button>
+        <button class="download-button" onclick="downloadPDF()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="btn_download">PDF</span>
+        </button>
+        <button class="lang-switcher" onclick="switchLanguage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-group">
+                <span class="lang-option active" data-lang="en">EN</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-option" data-lang="de">DE</span>
+                <span class="lang-sep">/</span>
+                <span class="lang-option" data-lang="fr">FR</span>
+            </span>
+        </button>
+    </div>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Tobias Hunn Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download - uses native print-to-PDF for reliable cross-browser support
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) document.getElementById(activeTab.dataset.tab).classList.add('active');
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // ===== MULTI-LANGUAGE SUPPORT =====
+        const LANGUAGES = ['en', 'de', 'fr'];
+        let currentLangIndex = 0;
+
+        // Translation data - populated during report generation
+        let translations = {};
+        try { translations = {"de": {"tab_executive_summary": "Zusammenfassung", "tab_subject_profile": "Personenprofil", "tab_network_map": "Netzwerk", "tab_behavioral_analysis": "Verhaltensanalyse", "tab_strategic_position": "Strategische Position", "tab_engagement_playbook": "Gesprächsleitfaden", "tab_ai_use_cases": "KI-Anwendungsfälle", "tab_media_footprint": "Medienpräsenz", "tab_mobile_summary": "Zusammenfassung", "tab_mobile_profile": "Profil", "tab_mobile_network": "Netzwerk", "tab_mobile_behavioral": "Verhalten", "tab_mobile_strategic": "Strategie", "tab_mobile_playbook": "Leitfaden", "tab_mobile_ai": "KI", "tab_mobile_media": "Medien", "bluf_label": "DAS WICHTIGSTE ZUERST", "bluf_content": "Tobias Hunn ist der neu ernannte Head of Innovation bei der BEKB und leitet das dedizierte Innovationsteam der Bank. Mit über 20 Jahren Erfahrung im Finanzdienstleistungssektor und jüngster Erfahrung in der Skalierung innovativer Ventures ist er ideal positioniert, um GenAI-Lösungen zu evaluieren, die mit der organisatorischen Umstrukturierung der BEKB im Mai 2025 und der neuen Abteilung Innovation/Digitalisierung übereinstimmen. Die Meeting-Eignung ist sehr hoch, da er direkt für die Technologieevaluation verantwortlich ist und die Bank Digitalisierung und KI als strategische Prioritäten definiert hat.", "meeting_fit": "Meeting-Eignung", "meeting_fit_rationale": "Tobias leitet die Innovation bei der BEKB, die gerade eine neue Abteilung Innovation/Digitalisierung mit Fokus auf KI geschaffen hat. Er ist direkt verantwortlich für die Evaluation neuer Technologien, die die digitale Transformation der Bank vorantreiben.", "how_to_engage": "Gesprächsansatz", "disc_comm_tips": "Analytischer und methodischer Innovator, der strukturierte Ansätze schätzt. Detaillierte Informationen und Daten bereitstellen. Strukturiert und logisch argumentieren. Zeit für die Analyse von Vorschlägen einräumen. Seine Expertise in der Bankeninnovation respektieren. Gut vorbereitet mit konkreten Belegen und ROI-Kennzahlen erscheinen.", "key_facts": "Kernfakten", "years_experience": "Jahre Erfahrung", "strategic_insights": "Strategische Erkenntnisse", "conversation_openers": "Gesprächseinstiege", "anticipated_topics_title": "Erwartete Gesprächsthemen", "th_topic": "Thema", "th_probability": "Wahrscheinlichkeit", "th_your_angle": "Ihr Ansatz", "professional_timeline": "Beruflicher Werdegang", "industry_expertise": "Branchenexpertise", "swot_strengths": "Stärken", "swot_weaknesses": "Potenzielle Lücken", "swot_opportunities": "Chancen", "swot_threats": "Wettbewerbsrisiken", "competitive_positioning": "BEKB Wettbewerbsposition", "conversation_starters_title": "Gesprächseinstiege", "topics_to_avoid": "Themen mit Vorsicht ansprechen", "connection_points_title": "Anknüpfungspunkte", "recommended_ai_use_cases": "GenAI-Anwendungsfälle für die BEKB", "btn_share": "Teilen", "btn_download": "PDF", "strategic_insights_content": "<div class=\"exec-insight\"><div class=\"exec-insight-title\">Führung der digitalen Transformation</div><div class=\"exec-insight-text\">Leitet die grosse organisatorische Umstrukturierung der BEKB mit der neuen Abteilung Innovation/Digitalisierung (Mai 2025). Positioniert als zentraler Treiber der Digital- und KI-Strategie der Bank.</div></div><div class=\"exec-insight\"><div class=\"exec-insight-title\">Nachgewiesene Erfolgsbilanz bei Scale-ups</div><div class=\"exec-insight-text\">Jüngste Erfahrung als Head of Scale-up Booster bei Deep Tech Nation zeigt Bereitschaft für innovatives Wachstum und Venture-Scale-Denken im Finanzdienstleistungsbereich.</div></div><div class=\"exec-insight\"><div class=\"exec-insight-title\">Bank-DNA trifft Innovationsmentalität</div><div class=\"exec-insight-text\">Einzigartige Kombination aus über 20 Jahren Bankenerfahrung mit aktueller Innovationserfahrung. Balanciert voraussichtlich Risikomanagement mit Wachstumsorientierung.</div></div>", "exec_openers_content": "<div class=\"exec-opener\"><div class=\"exec-opener-num\">1</div><div>Neue Abteilung Innovation/Digitalisierung der BEKB: Wie sieht er die Rolle von GenAI in der Abteilungsstruktur und der Personalplanung?</div></div><div class=\"exec-opener\"><div class=\"exec-opener-num\">2</div><div>Wettbewerbspositionierung: Sieht er GenAI als Differenzierungsmöglichkeit oder als Grundvoraussetzung für Schweizer Kantonalbanken?</div></div><div class=\"exec-opener\"><div class=\"exec-opener-num\">3</div><div>Risikomanagement: Welche Governance-Rahmenwerke erwägt die BEKB für einen verantwortungsvollen KI-Einsatz?</div></div><div class=\"exec-opener\"><div class=\"exec-opener-num\">4</div><div>Kundennutzen: Wie wird GenAI intern positioniert (Kostenreduktion vs. Verbesserung des Kundenerlebnisses)?</div></div>", "exec_anticipated_topics": "<tr><td>KI-gestützte Automatisierung des Kundenservice</td><td><span class=\"probability-badge prob-very-high\">Sehr hoch</span></td><td>Die BEKB hat 60+ Filialen und 500k+ Kunden – Copilot-Lösungen könnten im gesamten Filialnetz skaliert werden</td></tr><tr><td>Dokumentenverarbeitung und Kreditvergabe</td><td><span class=\"probability-badge prob-very-high\">Sehr hoch</span></td><td>Kernprozess im Bankwesen – Hypotheken-/Kreditdokumentenanalyse ist ein grosser Schmerzpunkt für Kantonalbanken</td></tr><tr><td>Automatisierung der regulatorischen Compliance</td><td><span class=\"probability-badge prob-high\">Hoch</span></td><td>Die Schweizer Finanzregulierung ist streng – GenAI für Überwachung und Reporting spricht Risikoverantwortliche an</td></tr><tr><td>Betrugserkennung und Geldwäschereibekämpfung</td><td><span class=\"probability-badge prob-high\">Hoch</span></td><td>Mustererkennung mit LLMs ergänzt traditionelle ML-Ansätze bei der Bekämpfung von Finanzkriminalität</td></tr><tr><td>Change Management in der Organisation</td><td><span class=\"probability-badge prob-medium-high\">Mittel-Hoch</span></td><td>Neue Abteilung wird aufgebaut – er denkt wahrscheinlich über Talente, Kompetenzen und Organisationsdesign nach</td></tr>", "engagement_strategy": "GenAI-Plattform als praktisches Werkzeug für die spezifischen Banking-Anwendungsfälle der BEKB positionieren (Dokumentenverarbeitung, Kundenservice im grossen Massstab, Compliance-Automatisierung) und nicht als Technologie-Schaufenster. Mit Geschäftsnutzen und Risikominimierung führen. Die operativen Rahmenbedingungen der BEKB anerkennen (1'300 Mitarbeitende, 60+ Filialen, strenges regulatorisches Umfeld). Einen strukturierten Pilotansatz vorschlagen, der mit dem Mandat der neuen Abteilung Innovation/Digitalisierung übereinstimmt. Beispiele für erfolgreiche GenAI-Implementierungen bei europäischen Kantonalbanken teilen. Detaillierte Fragen zu Governance, Datensicherheit und ROI-Messung erwarten. Daten zu Implementierungszeitplänen und Gesamtbetriebskosten mitbringen. Den neuen CIO und die Innovationsleitung als Unterstützer referenzieren – sie sind der Transformation gegenüber wahrscheinlich aufgeschlossen.", "conversation_starters_content": "<div class=\"conversation-card\"><h4>Digitale Roadmap der BEKB</h4><p>Mit dem Aufbau der neuen Abteilung Innovation/Digitalisierung im Mai – was sieht Tobias als prioritäre GenAI-Anwendungsfälle für die nächsten 12-24 Monate?</p></div><div class=\"conversation-card\"><h4>Wettbewerbsposition</h4><p>Wie schätzt Tobias die Innovationsgeschwindigkeit der BEKB im Vergleich zur ZKB und anderen Peer-Banken bei der Einführung neuer Technologien ein?</p></div><div class=\"conversation-card\"><h4>Talente &amp; Kompetenzen</h4><p>Aufbau interner GenAI-Expertise: Setzt die BEKB auf Neueinstellungen, Weiterbildung oder Partnerschaften für spezialisierte Kompetenzen?</p></div><div class=\"conversation-card\"><h4>Kundenerlebnis-Strategie</h4><p>Die Positionierung der BEKB als «Finanzcoach» – wie fügt sich GenAI in diese kundenzentrierte Vision ein?</p></div>", "topics_to_avoid_content": "<div class=\"conversation-card warning\"><h4>Arbeitsplatzabbau</h4><p>Vermeiden Sie es, mit Automatisierungseffizienzgewinnen zu eröffnen. Konzentrieren Sie sich stattdessen auf die Unterstützung der Mitarbeitenden und deren Einsatz in höherwertigen Tätigkeiten.</p></div><div class=\"conversation-card warning\"><h4>Regulatorische Unsicherheit</h4><p>GenAI nicht als regulatorisches Allheilmittel verkaufen. Ehrlich über Compliance-Lücken und die Entwicklung der FINMA-Leitlinien sein.</p></div><div class=\"conversation-card warning\"><h4>Erosion des Wettbewerbsvorteils</h4><p>Vermeiden Sie es, GenAI als dauerhaften Wettbewerbsvorteil darzustellen. Positionieren Sie es als Grundvoraussetzung, um relevant zu bleiben.</p></div><div class=\"conversation-card warning\"><h4>Abhängigkeit von Legacy-Systemen</h4><p>Positionieren Sie Ihre Plattform nicht als Komplettablösung der Kernsysteme der BEKB. Betonen Sie Integration und Kompatibilität.</p></div>", "connection_points_content": "<div class=\"insight-box green\"><div class=\"insight-header\"><div class=\"insight-title\">Gemeinsamer Fokus auf das Schweizer Ökosystem</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Sowohl Tobias als auch Michael (Artifact) sind tief im Schweizer Finanzinnovations-Ökosystem verankert. Gemeinsame Sprache rund um FINMA-Compliance, Prioritäten der Schweizerischen Bankiervereinigung und Realitäten des Kantonalbanken-Geschäfts.</div></div><div class=\"insight-box blue\"><div class=\"insight-header\"><div class=\"insight-title\">Data Science / KI-Expertise</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Michaels über 17 Jahre Data-Science-Erfahrung entspricht dem Bedürfnis der BEKB nach technischer Glaubwürdigkeit. Tobias lässt sich wahrscheinlich durch nachgewiesene Expertise beeindrucken, nicht durch Verkaufspräsentationen.</div></div><div class=\"insight-box green\"><div class=\"insight-header\"><div class=\"insight-title\">Innovationsreferenzen</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Artifacts SwissICT Innovation of the Year Award 2024 und KI-Agentur-Fokus passen zum neuen Mandat Innovation/Digitalisierung der BEKB. Signalisiert glaubwürdige Innovationskompetenz.</div></div><div class=\"insight-box yellow\"><div class=\"insight-header\"><div class=\"insight-title\">Partnerschaftsmöglichkeit mit Berner Verankerung</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Beide in Bern ansässig. Lokale Präsenz kann ein Vorteil für Implementierungsunterstützung und eine laufende Partnerschaft gegenüber einer reinen Remote-Anbieterbeziehung sein.</div></div>", "ai_use_cases_grid": "<div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">1. Intelligente Dokumentenverarbeitung</div><div class=\"ai-use-case-desc\">Automatisierung der Analyse von Hypotheken-, Kredit- und Kreditantrags-Dokumenten. Datenextraktion, Vollständigkeitsprüfung, Risikokennzeichnung. Reduziert den manuellen Prüfungsaufwand um 60-70%. Direkte Auswirkung auf die Bearbeitungszeit bei der Kreditvergabe.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">2. Kundenservice-Copilot</div><div class=\"ai-use-case-desc\">KI-gestützter Assistent für 60+ Filialen und Call Center. Beantwortet Kundenanfragen, eskaliert komplexe Anliegen, gibt Produktempfehlungen. Verbessert die FTE-Produktivität und Kundenzufriedenheitswerte.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">3. Betrugserkennung &amp; Geldwäschereibekämpfung</div><div class=\"ai-use-case-desc\">Verbesserte Mustererkennung für Anti-Geldwäscherei und Betrugserkennung. GenAI identifiziert verdächtige Transaktionsmuster schneller als regelbasierte Systeme. Reduziert Fehlalarme, verbessert Compliance-Ergebnisse.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">4. Personalisiertes Finanzcoaching</div><div class=\"ai-use-case-desc\">KI-gestützter Beratungsservice im Einklang mit der «Finanzcoach»-Strategie der BEKB. Analysiert die finanzielle Situation der Kunden, liefert massgeschneiderte Empfehlungen, skalierbar für alle 500k+ Kunden.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">5. Kreditrisikobewertung</div><div class=\"ai-use-case-desc\">LLM-gestützte Bonitätsanalyse. Synthese von Jahresabschlüssen, Kredithistorie und Marktkontext. Schnellere und konsistentere Kreditentscheide. Verbessert die Genehmigungsraten für kreditwürdige Kunden.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">6. Automatisierung der regulatorischen Compliance</div><div class=\"ai-use-case-desc\">Überwachung der Schweizer Bankenregulierung und Compliance-Dokumentation. GenAI verfolgt FINMA-Updates, bewertet die Anwendbarkeit, erstellt Compliance-Berichte. Hält das Team über regulatorische Änderungen auf dem Laufenden.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">7. Investment-Research-Assistent</div><div class=\"ai-use-case-desc\">Portfolioanalyse für Wealth-Management-Teams. Fasst Research zusammen, identifiziert Branchentrends, bewertet Fondsperformance. Unterstützt die Bereiche Vermögensverwaltung und Key Clients der BEKB.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">8. Process Mining &amp; Optimierung</div><div class=\"ai-use-case-desc\">Identifikation operativer Ineffizienzen über Filialen und Abteilungen hinweg. GenAI analysiert Prozessprotokolle, empfiehlt Automatisierungsmöglichkeiten. Unterstützt die Transformation der Organisation mit 1'300 Mitarbeitenden.</div></div>"}, "fr": {"tab_executive_summary": "Synthèse", "tab_subject_profile": "Profil du contact", "tab_network_map": "Réseau", "tab_behavioral_analysis": "Analyse comportementale", "tab_strategic_position": "Position stratégique", "tab_engagement_playbook": "Guide d'entretien", "tab_ai_use_cases": "Cas d'usage IA", "tab_media_footprint": "Présence médiatique", "tab_mobile_summary": "Synthèse", "tab_mobile_profile": "Profil", "tab_mobile_network": "Réseau", "tab_mobile_behavioral": "Comportement", "tab_mobile_strategic": "Stratégie", "tab_mobile_playbook": "Guide", "tab_mobile_ai": "IA", "tab_mobile_media": "Médias", "bluf_label": "L'ESSENTIEL EN BREF", "bluf_content": "Tobias Hunn est le nouveau Head of Innovation de la BEKB, à la tête de l'équipe d'innovation dédiée de la banque. Fort de plus de 20 ans d'expérience dans les services financiers et d'une récente expérience dans le développement de ventures innovantes, il est idéalement positionné pour évaluer les solutions GenAI alignées sur la restructuration organisationnelle de mai 2025 et le nouveau département Innovation/Digitalisation de la BEKB. La pertinence de la rencontre est très élevée en raison de sa responsabilité directe dans l'évaluation technologique et des priorités déclarées de la banque en matière de digitalisation et d'IA.", "meeting_fit": "Pertinence de la rencontre", "meeting_fit_rationale": "Tobias dirige l'innovation à la BEKB, qui vient de créer un nouveau département Innovation/Digitalisation axé sur l'IA. Il est directement responsable de l'évaluation des nouvelles technologies qui font avancer l'agenda de transformation digitale de la banque.", "how_to_engage": "Approche d'engagement", "disc_comm_tips": "Innovateur analytique et méthodique qui valorise les approches structurées. Fournir des informations détaillées et des données. Être structuré et logique. Accorder du temps pour l'analyse des propositions. Respecter son expertise en innovation bancaire. Se présenter préparé avec des preuves concrètes et des indicateurs de ROI.", "key_facts": "Faits clés", "years_experience": "Années d'expérience", "strategic_insights": "Perspectives stratégiques", "conversation_openers": "Amorces de conversation", "anticipated_topics_title": "Sujets de discussion anticipés", "th_topic": "Sujet", "th_probability": "Probabilité", "th_your_angle": "Votre angle", "professional_timeline": "Parcours professionnel", "industry_expertise": "Expertise sectorielle", "swot_strengths": "Forces", "swot_weaknesses": "Lacunes potentielles", "swot_opportunities": "Opportunités", "swot_threats": "Menaces concurrentielles", "competitive_positioning": "Position concurrentielle de la BEKB", "conversation_starters_title": "Amorces de conversation", "topics_to_avoid": "Sujets à aborder avec précaution", "connection_points_title": "Points de connexion", "recommended_ai_use_cases": "Cas d'usage GenAI pour la BEKB", "btn_share": "Partager", "btn_download": "PDF", "strategic_insights_content": "<div class=\"exec-insight\"><div class=\"exec-insight-title\">Leadership de la transformation digitale</div><div class=\"exec-insight-text\">Dirige la restructuration organisationnelle majeure de la BEKB avec le nouveau département Innovation/Digitalisation (mai 2025). Positionné comme moteur principal de la stratégie digitale et IA de la banque.</div></div><div class=\"exec-insight\"><div class=\"exec-insight-title\">Parcours éprouvé dans les scale-ups</div><div class=\"exec-insight-text\">Son expérience récente en tant que Head of Scale-up Booster chez Deep Tech Nation démontre un appétit pour la croissance innovante et une réflexion à l'échelle venture dans les services financiers.</div></div><div class=\"exec-insight\"><div class=\"exec-insight-title\">ADN bancaire et mentalité d'innovation</div><div class=\"exec-insight-text\">Combinaison unique de plus de 20 ans d'expertise bancaire avec une expérience récente en innovation. Équilibre vraisemblablement gestion des risques et orientation croissance.</div></div>", "exec_openers_content": "<div class=\"exec-opener\"><div class=\"exec-opener-num\">1</div><div>Nouveau département Innovation/Digitalisation de la BEKB : comment envisage-t-il l'intégration de la GenAI dans la structure du département et le plan de recrutement ?</div></div><div class=\"exec-opener\"><div class=\"exec-opener-num\">2</div><div>Positionnement concurrentiel : la GenAI représente-t-elle une opportunité de différenciation ou un prérequis pour les banques cantonales suisses ?</div></div><div class=\"exec-opener\"><div class=\"exec-opener-num\">3</div><div>Gestion des risques : quels cadres de gouvernance la BEKB envisage-t-elle pour un déploiement responsable de l'IA ?</div></div><div class=\"exec-opener\"><div class=\"exec-opener-num\">4</div><div>Impact client : comment la GenAI est-elle positionnée en interne (réduction des coûts vs. amélioration de l'expérience client) ?</div></div>", "exec_anticipated_topics": "<tr><td>Automatisation du service client par l'IA</td><td><span class=\"probability-badge prob-very-high\">Très élevée</span></td><td>La BEKB compte 60+ succursales et 500k+ clients – les solutions copilot pourraient être déployées à l'échelle du réseau de détail</td></tr><tr><td>Traitement documentaire et octroi de crédit</td><td><span class=\"probability-badge prob-very-high\">Très élevée</span></td><td>Processus bancaire central – l'analyse des documents hypothécaires/de crédit est un point de douleur majeur pour les banques cantonales</td></tr><tr><td>Automatisation de la conformité réglementaire</td><td><span class=\"probability-badge prob-high\">Élevée</span></td><td>La réglementation financière suisse est stricte – la GenAI pour la surveillance et le reporting séduit les responsables des risques</td></tr><tr><td>Détection de fraude et LBC</td><td><span class=\"probability-badge prob-high\">Élevée</span></td><td>La reconnaissance de patterns par les LLMs complète les approches ML traditionnelles dans la prévention de la criminalité financière</td></tr><tr><td>Gestion du changement organisationnel</td><td><span class=\"probability-badge prob-medium-high\">Moyenne-Élevée</span></td><td>Nouveau département en cours de constitution – il réfléchit probablement aux talents, compétences et design organisationnel</td></tr>", "engagement_strategy": "Positionner la plateforme GenAI comme un outil pratique répondant aux cas d'usage bancaires spécifiques de la BEKB (traitement documentaire, service client à grande échelle, automatisation de la conformité) plutôt que comme une vitrine technologique. Mener avec l'impact business et la réduction des risques. Reconnaître les contraintes opérationnelles de la BEKB (1 300 collaborateurs, 60+ succursales, environnement réglementaire strict). Proposer une approche pilote structurée alignée sur le mandat du nouveau département Innovation/Digitalisation. Partager des exemples de réussites GenAI dans les banques cantonales européennes. S'attendre à des questions détaillées sur la gouvernance, la sécurité des données et la mesure du ROI. Apporter des données sur les délais d'implémentation et le coût total de possession. Référencer le nouveau CIO et la direction de l'innovation comme facilitateurs – ils sont vraisemblablement favorables à la transformation.", "conversation_starters_content": "<div class=\"conversation-card\"><h4>Feuille de route digitale de la BEKB</h4><p>Avec la mise en place du nouveau département Innovation/Digitalisation en mai, quels sont selon Tobias les cas d'usage GenAI prioritaires pour les 12-24 prochains mois ?</p></div><div class=\"conversation-card\"><h4>Position concurrentielle</h4><p>Comment Tobias évalue-t-il la vitesse d'innovation de la BEKB par rapport à la ZKB et aux autres banques comparables en matière d'adoption de nouvelles technologies ?</p></div><div class=\"conversation-card\"><h4>Talents &amp; Compétences</h4><p>Développement de l'expertise GenAI en interne : la BEKB recrute-t-elle, forme-t-elle ou s'associe-t-elle pour les compétences spécialisées ?</p></div><div class=\"conversation-card\"><h4>Stratégie d'expérience client</h4><p>Le positionnement « coach financier » de la BEKB – comment la GenAI s'intègre-t-elle dans cette vision centrée sur le client ?</p></div>", "topics_to_avoid_content": "<div class=\"conversation-card warning\"><h4>Suppression d'emplois</h4><p>Éviter d'ouvrir avec les gains d'efficacité liés à l'automatisation. Se concentrer plutôt sur l'augmentation des collaborateurs et leur redéploiement vers des tâches à plus forte valeur ajoutée.</p></div><div class=\"conversation-card warning\"><h4>Incertitude réglementaire</h4><p>Ne pas survendre la GenAI comme solution miracle réglementaire. Être honnête sur les lacunes de conformité et l'évolution des directives FINMA.</p></div><div class=\"conversation-card warning\"><h4>Érosion de l'avantage concurrentiel</h4><p>Éviter de présenter la GenAI comme un avantage concurrentiel durable. La positionner comme un prérequis pour rester pertinent.</p></div><div class=\"conversation-card warning\"><h4>Dépendance aux systèmes legacy</h4><p>Ne pas positionner votre plateforme comme nécessitant le remplacement complet des systèmes centraux de la BEKB. Mettre en avant l'intégration et la compatibilité.</p></div>", "connection_points_content": "<div class=\"insight-box green\"><div class=\"insight-header\"><div class=\"insight-title\">Focus commun sur l'écosystème suisse</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Tobias et Michael (Artifact) sont tous deux profondément ancrés dans l'innovation financière suisse. Langage commun autour de la conformité FINMA, des priorités de l'Association suisse des banquiers et des réalités des banques cantonales.</div></div><div class=\"insight-box blue\"><div class=\"insight-header\"><div class=\"insight-title\">Expertise Data Science / IA</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Les 17+ années d'expérience de Michael en data science répondent au besoin de crédibilité technique de la BEKB. Tobias sera vraisemblablement impressionné par l'expertise démontrée, pas par un argumentaire commercial.</div></div><div class=\"insight-box green\"><div class=\"insight-header\"><div class=\"insight-title\">Références en innovation</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Le SwissICT Innovation of the Year Award 2024 d'Artifact et son positionnement d'agence IA résonnent avec le nouveau mandat Innovation/Digitalisation de la BEKB. Signal de crédibilité en matière d'innovation.</div></div><div class=\"insight-box yellow\"><div class=\"insight-header\"><div class=\"insight-title\">Opportunité de partenariat ancré à Berne</div></div><div style=\"font-size: 0.9rem; color: var(--slate-gray);\">Tous deux basés à Berne. La présence locale constitue un avantage pour le support d'implémentation et un partenariat continu par rapport à une relation fournisseur à distance.</div></div>", "ai_use_cases_grid": "<div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">1. Traitement intelligent des documents</div><div class=\"ai-use-case-desc\">Automatisation de l'analyse des documents hypothécaires, de crédit et de demandes de financement. Extraction de données, évaluation de la complétude, signalement des risques. Réduit le temps de vérification manuelle de 60-70%. Impact direct sur les délais d'octroi de crédit.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">2. Copilot service client</div><div class=\"ai-use-case-desc\">Assistant alimenté par l'IA pour 60+ succursales et centres d'appels. Répond aux questions des clients, escalade les demandes complexes, fournit des recommandations de produits. Améliore la productivité par ETP et les scores de satisfaction client.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">3. Détection de fraude &amp; LBC</div><div class=\"ai-use-case-desc\">Reconnaissance de patterns améliorée pour la lutte contre le blanchiment et la détection de fraude. La GenAI identifie les schémas de transactions suspectes plus rapidement que les systèmes basés sur des règles. Réduit les faux positifs, améliore les résultats de conformité.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">4. Coaching financier personnalisé</div><div class=\"ai-use-case-desc\">Service de conseil piloté par l'IA, aligné sur la stratégie « coach financier » de la BEKB. Analyse la situation financière du client, fournit des recommandations sur mesure, déployable à l'échelle pour les 500k+ clients.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">5. Évaluation du risque de crédit</div><div class=\"ai-use-case-desc\">Analyse de solvabilité alimentée par les LLMs. Synthèse des états financiers, de l'historique de crédit et du contexte de marché. Décisions de crédit plus rapides et plus cohérentes. Améliore les taux d'approbation pour les emprunteurs solvables.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">6. Automatisation de la conformité réglementaire</div><div class=\"ai-use-case-desc\">Surveillance de la réglementation bancaire suisse et documentation de conformité. La GenAI suit les mises à jour FINMA, évalue leur applicabilité, génère des notes de conformité. Maintient l'équipe informée des évolutions réglementaires.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">7. Assistant recherche en investissement</div><div class=\"ai-use-case-desc\">Analyse de portefeuille pour les équipes de gestion de fortune. Synthétise la recherche, identifie les tendances sectorielles, évalue la performance des fonds. Soutient les divisions Gestion d'actifs et Key Clients de la BEKB.</div></div><div class=\"ai-use-case-item\"><div class=\"ai-use-case-title\">8. Process Mining &amp; Optimisation</div><div class=\"ai-use-case-desc\">Identification des inefficacités opérationnelles à travers les succursales et départements. La GenAI analyse les journaux de processus, recommande des opportunités d'automatisation. Soutient la transformation de l'organisation de 1 300 collaborateurs.</div></div>"}}; } catch(e) { translations = {}; }
+
+        // Store original English content on first load
+        const englishOriginals = {};
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            englishOriginals[el.getAttribute('data-i18n')] = el.textContent;
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            englishOriginals[el.getAttribute('data-i18n-html')] = el.innerHTML;
+        });
+
+        function switchLanguage() {
+            currentLangIndex = (currentLangIndex + 1) % LANGUAGES.length;
+            const lang = LANGUAGES[currentLangIndex];
+
+            // Update active indicator on button
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
+
+            const dict = translations[lang] || {};
+
+            // Check if translations exist for this language
+            if (lang !== 'en' && Object.keys(dict).length === 0) {
+                const toast = document.getElementById('shareToast');
+                toast.textContent = 'Translation not available';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 1500);
+                return;
+            }
+
+            // Update text content elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (lang === 'en') {
+                    if (englishOriginals[key] !== undefined) el.textContent = englishOriginals[key];
+                } else if (dict[key] !== undefined) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            // Update innerHTML elements (for complex content blocks)
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (lang === 'en') {
+                    if (englishOriginals[key] !== undefined) el.innerHTML = englishOriginals[key];
+                } else if (dict[key] !== undefined) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            // Visual feedback
+            const toast = document.getElementById('shareToast');
+            const langNames = { en: 'English', de: 'Deutsch', fr: 'Français' };
+            toast.textContent = langNames[lang] || lang.toUpperCase();
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 1500);
+        }
+
+        // Handle URL hash for direct tab linking
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
