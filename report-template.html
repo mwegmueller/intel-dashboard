@@ -105,6 +105,26 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
+        /* Force readable text colors - explicit dark text on light backgrounds */
+        .person-info h4, .media-item h4, .conversation-card h4 { color: #1e293b !important; }
+        .insight-title, .swot-box h4, .exec-insight-title { color: #1e293b !important; }
+        .insight-box p, .swot-box li, .topics-table td, .profile-table td { color: #36454f !important; }
+        .timeline-content, .person-info p, .exec-insight-text, .conversation-card p { color: #475569 !important; }
+        .use-case-title, .differentiator-label { color: #1e293b !important; }
+        .use-case-description, .media-item p { color: #475569 !important; }
+        .exec-opener > div:last-child { color: #36454f !important; }
+        .tag { color: #36454f !important; background: #e8e8e8 !important; }
+        .interactive-item { color: #36454f !important; }
+        /* Preserve white text in dark containers */
+        .bluf-section, .bluf-section *, .strategy-banner, .strategy-banner *, .scatter-tooltip, .scatter-tooltip *, .use-case-reasoning, .use-case-reasoning *, .item-recommendation, .item-recommendation *, .methodology-tooltip, .methodology-tooltip * { color: white !important; }
+        .bluf-content strong { color: #fbbf24 !important; }
+        .strategy-content strong { color: white !important; }
+        .scatter-tooltip strong { color: #60a5fa !important; }
+        .reasoning-label { color: #60a5fa !important; }
+        .item-recommendation-label { color: #60a5fa !important; }
+        /* Badges must keep white text */
+        .badge-verified, .badge-inferred, .badge-speculative, .badge-high-confidence, .probability-badge, .disc-pill, .person-avatar, .source-icon, .exec-opener-num, .disc-bar, .uc-dot { color: white !important; }
+
         /* Cards & Components */
         .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
