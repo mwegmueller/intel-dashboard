@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Sailor 2.0 - Meeting Intelligence Profile for Florian Thut">
+    <meta property="og:title" content="Sailor 2.0 - Florian Thut Profile">
+    <meta property="og:description" content="Meeting Intelligence Profile for Florian Thut at Die Schweizerische Post">
+    <meta name="report-token" content="fc39b38c">
+    <title>Sailor 2.0 - Florian Thut</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #36454f; line-height: 1.6; }
+        :root {
+            --charcoal: #36454f; --slate-gray: #708090; --light-gray: #d3d3d3; --white: #ffffff;
+            --green-verified: #22c55e; --yellow-inferred: #eab308; --red-speculative: #ef4444;
+            --blue-secondary: #3b82f6; --navy: #1e3a5f; --artifact-blue: #1a2b4a;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { animation: fadeIn 0.3s ease-out; }
+        .card { animation: fadeIn 0.4s ease-out; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        @media print {
+            .tabs-container, .share-button, .download-button, .mobile-nav, .methodology-callout, .share-toast { display: none !important; }
+            .tab-content { display: block !important; page-break-inside: avoid; }
+            .card { break-inside: avoid; box-shadow: none !important; border: 1px solid #e5e7eb; }
+            .bluf-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: white !important; }
+            .content { padding: 20px !important; }
+        }
+        body.print-mode .tab-content { display: block !important; }
+
+        /* Header with real logo */
+        .header { background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%); color: white; padding: 30px 40px; position: relative; }
+        .header-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .artifact-logo-img { height: 36px; filter: brightness(0) invert(1); }
+        .brand-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); }
+        .sailor-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+        .header-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 12px; }
+        .header-meta { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.85; }
+        .header-badge { position: absolute; top: 30px; right: 40px; text-align: right; }
+        .badge-label { background: linear-gradient(135deg, #60a5fa, #3b82f6); padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-score { font-size: 2.5rem; font-weight: 700; margin-top: 8px; }
+        .badge-score-label { font-size: 0.85rem; opacity: 0.8; }
+
+        /* Methodology Callout */
+        .methodology-callout {
+            display: inline-flex; align-items: center; gap: 6px; background: #f0f9ff; border: 1px solid #bae6fd;
+            padding: 4px 10px; border-radius: 16px; font-size: 0.7rem; color: var(--artifact-blue); cursor: help; position: relative;
+        }
+        .methodology-callout:hover .methodology-tooltip { display: block; }
+        .methodology-tooltip {
+            display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; background: var(--artifact-blue);
+            color: white; padding: 12px 16px; border-radius: 8px; font-size: 0.75rem; width: 300px; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.5;
+        }
+        .methodology-tooltip::before { content: ""; position: absolute; top: -8px; left: 20px; border: 8px solid transparent; border-bottom-color: var(--artifact-blue); border-top: none; }
+        .methodology-icon { font-size: 0.8rem; }
+
+        /* Executive Summary */
+        .exec-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+        .fit-score-ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin: 0 auto 8px; }
+        .fit-score-ring.high { background: conic-gradient(var(--green-verified) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.medium { background: conic-gradient(var(--yellow-inferred) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-ring.low { background: conic-gradient(var(--red-speculative) calc(var(--score) * 36deg), #e5e7eb calc(var(--score) * 36deg)); }
+        .fit-score-inner { width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; color: var(--charcoal); }
+        .disc-quick { display: flex; gap: 8px; align-items: center; }
+        .disc-pill { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: white; }
+        .disc-pill.d { background: #dc2626; } .disc-pill.i { background: #f59e0b; } .disc-pill.s { background: #16a34a; } .disc-pill.c { background: #2563eb; }
+        .exec-insight { padding: 12px 16px; background: #f8f9fa; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+        .exec-insight-title { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 4px; }
+        .exec-insight-text { font-size: 0.85rem; color: var(--slate-gray); line-height: 1.5; }
+        .source-confidence-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 8px; }
+        .source-confidence-bar .seg { height: 100%; }
+        .source-confidence-inline { display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--slate-gray); margin-top: 6px; flex-wrap: wrap; }
+        .source-confidence-inline .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+        /* Share & Download Buttons */
+        .share-button { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #60a5fa, #3b82f6); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .share-button:hover { transform: scale(1.05); }
+        .download-button { position: fixed; bottom: 20px; right: 160px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; border: none; padding: 14px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .download-button:hover { transform: scale(1.05); }
+        .share-toast { position: fixed; bottom: 80px; right: 20px; background: var(--charcoal); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1001; }
+        .share-toast.show { opacity: 1; transform: translateY(0); }
+        .tabs-container { background: white; padding: 0 40px; border-bottom: 1px solid var(--light-gray); position: sticky; top: 0; z-index: 100; }
+        .tabs { display: flex; gap: 8px; padding: 15px 0; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 10px 20px; border: 1px solid var(--light-gray); border-radius: 6px; background: white; cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap; transition: all 0.2s; }
+        .tab:hover { background: #f0f0f0; }
+        .tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--light-gray); padding: 8px; z-index: 100; overflow-x: auto; }
+        .mobile-nav .tabs { padding: 0; }
+        .mobile-nav .tab { padding: 8px 14px; font-size: 0.8rem; }
+        .content { padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards & Components */
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.2rem; font-weight: 600; color: var(--charcoal); display: flex; align-items: center; gap: 10px; }
+        .badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .badge-verified { background: var(--green-verified); color: white; }
+        .badge-inferred { background: var(--yellow-inferred); color: white; }
+        .badge-speculative { background: var(--red-speculative); color: white; }
+        .badge-high-confidence { background: var(--green-verified); color: white; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .metric-box { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--charcoal); }
+        .metric-value.highlight { color: var(--green-verified); }
+        .metric-label { font-size: 0.85rem; color: var(--slate-gray); margin-top: 4px; }
+        .bluf-section { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .bluf-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 12px; }
+        .bluf-content { font-size: 1rem; line-height: 1.7; }
+        .bluf-content strong { color: #fbbf24; }
+
+        /* Insight boxes */
+        .insight-box { border-left: 4px solid; padding: 16px 20px; margin-bottom: 16px; background: #f8f9fa; border-radius: 0 8px 8px 0; position: relative; }
+        .insight-box.yellow { border-color: #fbbf24; }
+        .insight-box.red { border-color: #ef4444; }
+        .insight-box.green { border-color: #22c55e; }
+        .insight-box.blue { border-color: #3b82f6; }
+        .insight-box.orange { border-color: #f97316; }
+        .insight-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .insight-title { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+        /* Timeline, Tags, People */
+        .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-period { font-weight: 600; color: var(--charcoal); }
+        .timeline-content { color: var(--slate-gray); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background: #f0f0f0; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+        .person-card { display: flex; align-items: center; gap: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--slate-gray); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+        .person-info h4 { font-weight: 600; margin-bottom: 4px; }
+        .person-info p { font-size: 0.85rem; color: var(--slate-gray); }
+
+        /* Radar Chart */
+        .radar-container { width: 300px; height: 300px; margin: 0 auto; position: relative; }
+        .radar-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid #ddd; border-radius: 50%; }
+        .radar-bg.r1 { width: 260px; height: 260px; }
+        .radar-bg.r2 { width: 195px; height: 195px; }
+        .radar-bg.r3 { width: 130px; height: 130px; }
+        .radar-bg.r4 { width: 65px; height: 65px; }
+        .radar-label { position: absolute; font-size: 0.7rem; color: var(--slate-gray); text-align: center; width: 70px; }
+        .radar-label.pos-1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-2 { top: 20px; right: 5px; }
+        .radar-label.pos-3 { top: 50%; right: -15px; transform: translateY(-50%); }
+        .radar-label.pos-4 { bottom: 20px; right: 5px; }
+        .radar-label.pos-5 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .radar-label.pos-6 { bottom: 20px; left: 5px; }
+        .radar-label.pos-7 { top: 50%; left: -15px; transform: translateY(-50%); }
+        .radar-label.pos-8 { top: 20px; left: 5px; }
+        .radar-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; }
+        .radar-shape svg { width: 100%; height: 100%; }
+
+        /* Tables */
+        .profile-table { width: 100%; }
+        .profile-table tr { border-bottom: 1px solid #eee; }
+        .profile-table td { padding: 12px 0; }
+        .profile-table td:first-child { font-weight: 600; width: 40%; }
+        .topics-table { width: 100%; border-collapse: collapse; }
+        .topics-table th { background: var(--light-gray); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .topics-table td { padding: 16px; border-bottom: 1px solid #eee; }
+        .probability-badge { padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .prob-very-high { background: var(--green-verified); color: white; }
+        .prob-high { background: #22c55e; color: white; }
+        .prob-medium-high { background: #3b82f6; color: white; }
+        .prob-medium { background: #3b82f6; color: white; }
+
+        /* SWOT */
+        .swot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+        .swot-box { padding: 20px; border-radius: 8px; }
+        .swot-box.strengths { background: #dcfce7; }
+        .swot-box.weaknesses { background: #fef3c7; }
+        .swot-box.opportunities { background: #dbeafe; }
+        .swot-box.threats { background: #fee2e2; }
+        .swot-box h4 { font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .swot-box ul { list-style: none; font-size: 0.9rem; }
+        .swot-box li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .swot-box li::before { content: "•"; position: absolute; left: 0; color: var(--slate-gray); }
+
+        /* Conversation Cards */
+        .conversation-card { background: #f8f9fa; padding: 16px 20px; border-radius: 8px; margin-bottom: 12px; }
+        .conversation-card h4 { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .conversation-card p { font-size: 0.9rem; color: var(--slate-gray); }
+        .conversation-card.warning { border-left: 3px solid #f97316; }
+
+        /* Strategy Banner */
+        .strategy-banner { background: var(--navy); color: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; }
+        .strategy-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 12px; }
+        .strategy-content { font-size: 1rem; line-height: 1.7; }
+
+        /* AI Use Cases Grid */
+        .use-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .use-case-card { background: #f8f9fa; border-radius: 8px; padding: 20px; border-left: 4px solid var(--blue-secondary); }
+        .use-case-card h4 { font-weight: 600; margin-bottom: 8px; color: var(--charcoal); }
+        .use-case-card p { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 12px; }
+        .use-case-metric { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0; border-top: 1px solid #eee; }
+
+        /* Scatter Plot */
+        .scatter-plot { background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 40px 50px 50px 60px; height: 350px; position: relative; }
+        .scatter-grid { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; border-left: 2px solid #ccc; border-bottom: 2px solid #ccc; }
+        .scatter-grid-line { position: absolute; background: #e0e0e0; }
+        .scatter-grid-line.horizontal { width: 100%; height: 1px; }
+        .scatter-grid-line.vertical { width: 1px; height: 100%; }
+        .scatter-grid-line.h1 { bottom: 25%; } .scatter-grid-line.h2 { bottom: 50%; } .scatter-grid-line.h3 { bottom: 75%; }
+        .scatter-grid-line.v1 { left: 25%; } .scatter-grid-line.v2 { left: 50%; } .scatter-grid-line.v3 { left: 75%; }
+        .scatter-axis-label { position: absolute; font-size: 0.75rem; color: var(--slate-gray); font-weight: 600; }
+        .scatter-axis-label.y-label { left: 10px; top: 50%; transform: rotate(-90deg) translateX(50%); transform-origin: left center; }
+        .scatter-axis-label.x-label { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .scatter-axis-label.y-high { left: 15px; top: 45px; transform: none; }
+        .scatter-axis-label.y-low { left: 15px; bottom: 55px; transform: none; }
+        .scatter-axis-label.x-low { left: 65px; bottom: 15px; }
+        .scatter-axis-label.x-high { right: 55px; bottom: 15px; }
+        .scatter-dots-container { position: absolute; top: 40px; left: 60px; right: 50px; bottom: 50px; }
+        .scatter-dot { position: absolute; width: 24px; height: 24px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; transition: transform 0.2s; }
+        .scatter-dot:hover { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .scatter-dot.subject { background: var(--green-verified); width: 36px; height: 36px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .scatter-dot.competitor1 { background: var(--charcoal); }
+        .scatter-dot.competitor2 { background: var(--blue-secondary); }
+        .scatter-dot.competitor3 { background: var(--slate-gray); }
+        .scatter-tooltip { position: absolute; background: var(--charcoal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; top: -40px; left: 50%; transform: translateX(-50%); }
+        .scatter-dot:hover .scatter-tooltip { opacity: 1; }
+
+        /* Chart Legend */
+        .chart-legend { display: flex; justify-content: center; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+
+        /* Media Items */
+        .media-item { padding: 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; }
+        .media-item h4 { font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .media-item p { font-size: 0.9rem; color: var(--slate-gray); }
+
+        /* Sources */
+        .sources-section { background: white; border-radius: 12px; padding: 24px; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sources-section h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--charcoal); }
+        .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .source-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8f9fa; border-radius: 8px; text-decoration: none; color: var(--charcoal); transition: all 0.2s; }
+        .source-item:hover { background: #e8e8e8; transform: translateX(4px); }
+        .source-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--blue-secondary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.8rem; flex-shrink: 0; }
+        .source-info { flex: 1; min-width: 0; }
+        .source-name { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .source-meta { font-size: 0.75rem; color: var(--slate-gray); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; color: var(--slate-gray); font-size: 0.85rem; border-top: 1px solid #eee; background: white; }
+        .footer-brand { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+        .footer-artifact-logo { height: 28px; }
+        .footer-sailor { font-size: 1rem; font-weight: 800; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .responsible-ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border: 1px solid #86efac; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #166534; margin-top: 12px; }
+        .original-prompt { margin-top: 16px; padding: 12px 20px; background: #f8f9fa; border-radius: 8px; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .original-prompt strong { font-style: normal; color: var(--charcoal); }
+        .report-token { font-family: monospace; font-size: 0.7rem; color: var(--slate-gray); margin-top: 8px; }
+
+        /* Profile Photo */
+        .profile-photo { width: 120px; height: 120px; border-radius: 8px; background: linear-gradient(135deg, #3b82f6, #1e3a5f); color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700; margin-bottom: 16px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header { padding: 24px; }
+            .header h1 { font-size: 2rem; }
+            .content { padding: 24px; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .header { padding: 20px 16px; }
+            .header h1 { font-size: 1.6rem; }
+            .header-badge { position: relative; top: 0; right: 0; margin-top: 16px; text-align: left; }
+            .tabs-container { display: none; }
+            .mobile-nav { display: block; }
+            .content { padding: 16px; padding-bottom: 80px; }
+            .grid-2, .grid-3, .grid-4, .swot-grid { grid-template-columns: 1fr; }
+            .card { padding: 16px; }
+            .radar-container { width: 260px; height: 260px; }
+            .share-button { bottom: 70px; }
+            .sources-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.4rem; }
+            .badge-score { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="artifact-logo-img">
+            <div class="brand-divider"></div>
+            <span class="sailor-logo">Sailor 2.0</span>
+        </div>
+        <h1>Florian Thut</h1>
+        <div class="header-subtitle">Head of Digital Product Management | Die Schweizerische Post</div>
+        <div class="header-meta">
+            <span>Bern, Switzerland</span>
+            <span>Digital Services Division</span>
+            <span>post.ch</span>
+            <span>Nicole Burth's Leadership</span>
+        </div>
+        <div class="header-badge">
+            <div class="badge-label">SAILOR 2.0</div>
+            <div class="badge-score">8+</div>
+            <div class="badge-score-label">Verified Sources</div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Executive Summary</button>
+            <button class="tab" data-tab="subject-profile">Subject Profile</button>
+            <button class="tab" data-tab="network-map">Network Map</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral Analysis</button>
+            <button class="tab" data-tab="strategic-position">Strategic Position</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="engagement-playbook">Engagement Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media Footprint</button>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="tabs">
+            <button class="tab active" data-tab="executive-summary">Summary</button>
+            <button class="tab" data-tab="subject-profile">Profile</button>
+            <button class="tab" data-tab="network-map">Network</button>
+            <button class="tab" data-tab="behavioral-analysis">Behavioral</button>
+            <button class="tab" data-tab="strategic-position">Strategic</button>
+            <button class="tab" data-tab="ai-use-cases">AI Use Cases</button>
+            <button class="tab" data-tab="engagement-playbook">Playbook</button>
+            <button class="tab" data-tab="media-footprint">Media</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Tab 1: Executive Summary -->
+        <div id="executive-summary" class="tab-content active">
+            <div class="bluf-section">
+                <div class="bluf-label">BOTTOM LINE UP FRONT</div>
+                <div class="bluf-content">CAUTION: LIMITED DATA. Florian Thut is the <strong>Head of Digital Product Management</strong> at <strong>Die Schweizerische Post</strong>, Switzerland's national postal service (54,000 employees, CHF 6.67B revenue). He operates within the <strong>Digital Services Division</strong> led by <strong>Nicole Burth</strong>, overseeing products including <strong>ePost</strong> (digital letterbox—10,000+ companies, 70% growth in 2024), electronic health records (EPR), encrypted cloud storage (Tresorit), and business software (KLARA). Florian has minimal public presence—no LinkedIn profile, conference records, or media mentions discovered. All insights are INFERRED from his role characteristics, Swiss Post's digital strategy, and organizational context. For digital product leadership discussions, assume LIMITED personal data availability and verify information through direct channels.</div>
+            </div>
+
+            <div class="exec-grid-3">
+                <div class="card" style="text-align: center;">
+                    <div class="card-header" style="justify-content: center;">
+                        <h3 class="card-title">Meeting Fit
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">AI-ASSESSED: Score based on alignment between meeting purpose and subject's role, authority, and likely interests. Heavily qualified by LIMITED DATA availability.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="fit-score-ring medium" style="--score: 6;">
+                        <div class="fit-score-inner">6</div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 8px;">Florian Thut likely owns digital product decisions for ePost, EPR integration, and related platforms. He operates within Nicole Burth's Digital Services mandate (30%+ revenue growth in 2024). However, his LIMITED public presence makes pre-meeting assessment difficult. He may be engaged for digital product innovation, AI-powered customer services, or healthcare document automation—areas where Swiss Post is investing heavily. Recommend direct outreach with specific use case focus.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">How to Engage
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">INFERRED: Profile based on product management role at large Swiss institution. Not informed by direct behavioral data.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="disc-quick" style="margin-bottom: 12px;">
+                        <span class="disc-pill c">C</span>
+                        <span style="font-size: 0.85rem; color: var(--slate-gray);">Conscientiousness + Steadiness</span>
+                    </div>
+                    <p style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-gray);">Likely prefers structured, data-driven discussions with clear ROI and compliance considerations. As a product leader in regulated healthcare/digital mail space, probably values risk management and stakeholder collaboration over speed-to-market. Lead with strategic context, detailed implementations, and user adoption metrics. Build trust through understanding Swiss postal system constraints and cooperative relationships with government bodies.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Facts
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">Company-level metrics verified from Swiss Post annual reports and press releases. Personal role data INFERRED from org structure.</div>
+                            </span>
+                        </h3>
+                        <span class="badge badge-inferred">LIMITED CONFIDENCE</span>
+                    </div>
+                    <div class="grid-2">
+                        <div class="metric-box"><div class="metric-value">54K</div><div class="metric-label">Swiss Post Employees</div></div>
+                        <div class="metric-box"><div class="metric-value">30%+</div><div class="metric-label">Digital Revenue Growth 2024</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Strategic Insights (INFERRED)
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">SPECULATIVE: Based on organizational strategy and sector context, not direct Florian data. Verify with subject before use.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">EPOST SCALE & GROWTH MANDATE</div>
+                        <div class="exec-insight-text">ePost platform growing 70% (2024), 10,000+ companies connected, targeting 1M Swiss residents. Florian likely owns product roadmap—user acquisition, feature prioritization, integration partnerships are probable focus areas.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">HEALTHCARE DOCUMENT INTEGRATION</div>
+                        <div class="exec-insight-text">Swiss Post partnership with Trifork for digital healthcare infrastructure suggests movement toward EPR integration with ePost. Florian may oversee customer communication strategies for healthcare document handoff.</div>
+                    </div>
+                    <div class="exec-insight">
+                        <div class="exec-insight-title">REGULATORY & COMPLIANCE FIRST</div>
+                        <div class="exec-insight-text">Postal and healthcare sectors heavily regulated. Product decisions likely constrained by Swiss data protection law, GDPR compliance, and government coordination. Innovation balanced against regulatory risk management.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Openers
+                            <span class="methodology-callout">
+                                <span class="methodology-icon">ℹ️</span>
+                                <div class="methodology-tooltip">Topics inferred from Swiss Post's public strategy and sector trends. Use to initiate dialogue, not assume knowledge.</div>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>ePost Adoption & Growth</h4>
+                        <p>"Your 70% growth in ePost is impressive. What's driving the next wave of adoption—B2B platform features, consumer awareness, or regulatory tailwinds?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Healthcare Document Workflows</h4>
+                        <p>"The EPR integration with ePost is strategic. What are the biggest challenges moving healthcare documents into a centralized letterbox model?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>AI-Powered Document Processing</h4>
+                        <p>"Document digitization at Swiss Post scale is massive. Are you exploring AI for intelligent document classification, extraction, or automated routing?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>International Postal Partnerships</h4>
+                        <p>"Cross-border digital mail is complex. How are you thinking about ePost interoperability with European postal networks?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Anticipated Discussion Topics
+                        <span class="methodology-callout">
+                            <span class="methodology-icon">ℹ️</span>
+                            <div class="methodology-tooltip">Probability scores INFERRED from organizational context and industry sector trends. Not based on Florian's stated interests.</div>
+                        </span>
+                    </h3>
+                </div>
+                <table class="topics-table">
+                    <thead><tr><th>Topic</th><th>Probability</th><th>Your Angle</th></tr></thead>
+                    <tbody>
+                        <tr><td>ePost Platform Roadmap & Features</td><td><span class="probability-badge prob-very-high">90%</span></td><td>User research, feature prioritization, competitive positioning vs. private email services</td></tr>
+                        <tr><td>Healthcare Document Management</td><td><span class="probability-badge prob-high">75%</span></td><td>EPR interoperability, patient consent workflows, secure transmission</td></tr>
+                        <tr><td>AI & Intelligent Document Processing</td><td><span class="probability-badge prob-high">75%</span></td><td>OCR, classification, fraud detection, compliance automation</td></tr>
+                        <tr><td>Customer Onboarding & Adoption</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>B2B vs. consumer strategies, trust-building, regulatory messaging</td></tr>
+                        <tr><td>Data Privacy & GDPR Compliance</td><td><span class="probability-badge prob-medium-high">70%</span></td><td>Swiss data protection, cross-border transfers, audit trails</td></tr>
+                        <tr><td>Integration & APIs for Partners</td><td><span class="probability-badge prob-medium-high">65%</span></td><td>Third-party ecosystem, standardization, interoperability</td></tr>
+                        <tr><td>Mobile-First Product Strategy</td><td><span class="probability-badge prob-medium">60%</span></td><td>App redesign, push notifications, offline functionality</td></tr>
+                        <tr><td>PostBus Digital Services</td><td><span class="probability-badge prob-medium">50%</span></td><td>Potential cross-selling, passenger communication platforms</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="padding: 12px 0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-gray); white-space: nowrap;">Source Confidence (8 sources)</span>
+                    <div class="source-confidence-bar" style="flex: 1;">
+                        <div class="seg" style="width: 25%; background: var(--green-verified);"></div>
+                        <div class="seg" style="width: 30%; background: var(--blue-secondary);"></div>
+                        <div class="seg" style="width: 35%; background: var(--yellow-inferred);"></div>
+                        <div class="seg" style="width: 10%; background: var(--red-speculative);"></div>
+                    </div>
+                </div>
+                <div class="source-confidence-inline">
+                    <span><span class="dot" style="background: var(--green-verified);"></span>Primary 25%</span>
+                    <span><span class="dot" style="background: var(--blue-secondary);"></span>Secondary 30%</span>
+                    <span><span class="dot" style="background: var(--yellow-inferred);"></span>Inferred 35%</span>
+                    <span><span class="dot" style="background: var(--red-speculative);"></span>Speculative 10%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Subject Profile -->
+        <div id="subject-profile" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Data Availability Note
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Florian Thut maintains very limited public presence. No LinkedIn profile, speaking engagements, or media coverage discovered.</div></span>
+                    </h3>
+                    <span class="badge badge-speculative">LIMITED DATA</span>
+                </div>
+                <div class="insight-box red">
+                    <div class="insight-title">Minimal Public Footprint</div>
+                    <p>Unlike most executives, Florian Thut has virtually no public digital presence. No LinkedIn profile found, no conference speaking records, no news mentions. This is unusual for a Head of Product at a major Swiss institution and may reflect: (1) strict privacy preference, (2) internal focus without external advocacy, (3) recent appointment with limited public visibility, or (4) organization preference to keep product leadership low-profile. Recommend direct outreach for accurate personal information rather than relying on inferred profiles.</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Professional Context (INFERRED)
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on organizational role and Swiss Post structure. Not verified against Florian's direct experience.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Current</div>
+                        <div class="timeline-content"><strong>Head of Digital Product Management</strong>, Digital Services Division, Die Schweizerische Post. Likely reports to Nicole Burth. Responsible for product strategy, roadmap, and delivery for ePost, EPR integrations, and related digital platforms.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Division Focus</div>
+                        <div class="timeline-content"><strong>Digital Services Growth Engine</strong>. The division grew 30%+ in 2024. Florian operates within a scaling, innovation-driven context within a 150+ year old institution.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Key Products</div>
+                        <div class="timeline-content"><strong>ePost</strong> (10,000+ companies, 1M resident target), <strong>EPR</strong> (healthcare), <strong>Tresorit</strong> (encrypted cloud), <strong>KLARA</strong> (business software). Florian likely owns one or more of these product lines.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-period">Constraints</div>
+                        <div class="timeline-content"><strong>Regulated Environment</strong>. Postal services and healthcare integration require government coordination, data protection compliance, and stakeholder alignment. Innovation within these constraints is Florian's operating context.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Education & Background
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">No public data found. Recommend direct inquiry.</div></span>
+                        </h3>
+                        <span class="badge badge-speculative">NOT AVAILABLE</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--slate-gray); line-height: 1.6; padding: 16px 0; border-top: 1px solid #eee;">Florian Thut's educational background, prior employment history, certifications, and professional development are not publicly documented. To prepare for engagement, recommend requesting his CV or LinkedIn profile directly, or consulting Swiss Post's internal leadership resources for biographical information.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Swiss Post Digital Services Division
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From Swiss Post annual reports, press releases, and official organization documentation.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="metric-box" style="margin-bottom: 16px;">
+                    <div style="font-size: 0.9rem; color: var(--charcoal); margin-bottom: 12px;"><strong>Division Leadership</strong></div>
+                    <div style="font-size: 0.85rem; color: var(--slate-gray);"><strong>Nicole Burth</strong> - Head of Digital Services (Executive Management member since 2021, reporting to CEO). Florian Thut operates within her mandate.</div>
+                </div>
+                <div style="padding: 16px 0; border-top: 1px solid #eee;">
+                    <h4 style="font-weight: 600; margin-bottom: 12px; color: var(--charcoal);">Key Digital Products & Metrics</h4>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray); line-height: 1.8;">
+                        <div style="margin-bottom: 12px;"><strong>ePost (Digital Letterbox)</strong>: 10,000+ companies connected, 70% growth in 2024, targeting 1M Swiss residents</div>
+                        <div style="margin-bottom: 12px;"><strong>EPR (Electronic Patient Record)</strong>: Partnership with Trifork for digital healthcare infrastructure integration</div>
+                        <div style="margin-bottom: 12px;"><strong>Tresorit</strong>: Encrypted cloud storage acquired by Swiss Post</div>
+                        <div style="margin-bottom: 12px;"><strong>KLARA</strong>: Business software platform for SMEs</div>
+                        <div><strong>Swiss Post Cybersecurity</strong>: Dedicated cybersecurity services division (Open Systems acquisition, Sep 2024)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Network Map -->
+        <div id="network-map" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Swiss Post Leadership Team
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From Swiss Post organizational structure and annual reports.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">PG</div>
+                        <div class="person-info">
+                            <h4>Pascal Grieder</h4>
+                            <p>CEO (from Nov 2025)</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">CL</div>
+                        <div class="person-info">
+                            <h4>Christian Levrat</h4>
+                            <p>Chairman</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">NB</div>
+                        <div class="person-info">
+                            <h4>Nicole Burth</h4>
+                            <p>Head of Digital Services (Florian's Likely Manager)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Related Product Management Leadership
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on Swiss Post team pages. Florian likely collaborates with these peers.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED PEERS</span>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">RS</div>
+                        <div class="person-info">
+                            <h4>Reto Schlegel</h4>
+                            <p>Leiter Produktmanagement & Marketing, Letter & Parcel National</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">RB</div>
+                        <div class="person-info">
+                            <h4>Raphael Bratschi</h4>
+                            <p>Leiter Produktmanagement & Business Development Advertising</p>
+                        </div>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-avatar">XM</div>
+                        <div class="person-info">
+                            <h4>Xavier Monnat</h4>
+                            <p>E-Voting Product and Community Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Professional Networks & Affiliations
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Not discovered for Florian Thut. Listed based on typical Swiss Post executive context.</div></span>
+                    </h3>
+                </div>
+                <div class="grid-3">
+                    <div class="metric-box">
+                        <strong>Swiss Digital Ecosystem</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">Digital Impact Network, SwissCognitive (likely)</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>Postal & Logistics Sector</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">International Postal Union, Swiss Logistics Association</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>Healthcare Innovation</strong><br>
+                        <span style="font-size: 0.8rem; color: var(--slate-gray);">EPR partnerships, healthcare tech forums</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Swiss Post Ecosystem & Stakeholders
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Key organizations and sectors where Florian likely operates.</div></span>
+                    </h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">PostFinance (Banking subsidiary)</span>
+                    <span class="tag">PostBus (Transportation subsidiary)</span>
+                    <span class="tag">ePost Service AG (Digital startup subsidiary)</span>
+                    <span class="tag">KLARA Business AG (SME software)</span>
+                    <span class="tag">Tresorit (Encrypted cloud)</span>
+                    <span class="tag">Swisscom (Telecom competitor/partner)</span>
+                    <span class="tag">SBB (Joint digital ID project)</span>
+                    <span class="tag">Federal Swiss Government (Regulator)</span>
+                    <span class="tag">Healthcare System (EPR integration)</span>
+                    <span class="tag">European Postal Operators</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Behavioral Analysis -->
+        <div id="behavioral-analysis" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Communication Style (INFERRED)
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Radar scores based on product management role characteristics in regulated environment. No direct behavioral data available.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div class="radar-container">
+                        <div class="radar-bg r1"></div><div class="radar-bg r2"></div><div class="radar-bg r3"></div><div class="radar-bg r4"></div>
+                        <div class="radar-label pos-1">Data-Driven</div>
+                        <div class="radar-label pos-2">Pragmatic</div>
+                        <div class="radar-label pos-3">Collaborative</div>
+                        <div class="radar-label pos-4">Structured</div>
+                        <div class="radar-label pos-5">Action-Oriented</div>
+                        <div class="radar-label pos-6">Ethics-Focused</div>
+                        <div class="radar-label pos-7">Innovative</div>
+                        <div class="radar-label pos-8">Visionary</div>
+                        <div class="radar-shape"><svg viewBox="0 0 200 200"><polygon points="100,50 140,65 155,105 135,145 100,160 60,145 45,100 65,50" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" stroke-width="2"/></svg></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DISC Profile Assessment
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">INFERRED: Based on product management in regulated, large-scale organization. Not a formal assessment.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <table class="profile-table">
+                        <tr><td>Dominance (D)</td><td>55/100</td></tr>
+                        <tr><td>Influence (I)</td><td>50/100</td></tr>
+                        <tr><td>Steadiness (S)</td><td><strong>65/100 ⭐ PRIMARY</strong></td></tr>
+                        <tr><td>Conscientiousness (C)</td><td><strong>75/100 ⭐ SECONDARY</strong></td></tr>
+                    </table>
+                    <p style="font-size: 0.85rem; color: var(--slate-gray); margin-top: 16px;"><strong>Profile Summary:</strong> Inferred as C-S profile reflecting product management in regulated environment. High conscientiousness indicates attention to compliance, data quality, and process rigor. Moderate-to-high steadiness suggests collaboration, stakeholder management, and risk-aware decision-making. Lower D-I suggests less focus on personal visibility or aggressive competition—more emphasis on team delivery and organizational alignment. Leadership style likely consultative rather than directive.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Psychological Profile Indicators (INFERRED)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">SPECULATIVE: Patterns inferred from role and context, not observed behavior. High uncertainty—verify with subject.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--navy); color: white;">BEHAVIORAL SPECULATION</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Process-Oriented Execution</div>
+                    <p>Large-scale digital transformation at Swiss Post requires meticulous planning, stakeholder coordination, and regulatory compliance tracking. Florian likely approaches product decisions with structured frameworks and thorough analysis.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Risk Management Mindset</div>
+                    <p>Healthcare and postal sectors are highly regulated. Product roadmap decisions likely weighted toward risk mitigation (data privacy, compliance, security) over speed-to-market or experimentation-first approaches.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Stakeholder Alignment Focus</div>
+                    <p>Operating at Swiss Post scale means managing interests of government bodies, healthcare partners, business customers, and consumer users simultaneously. Coalition-building and consensus likely core to Florian's approach.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Technical Product Knowledge</div>
+                    <p>Digital product leadership in mail/healthcare space requires deep understanding of document workflows, digital signatures, encryption standards, and interoperability requirements. Technical literacy assumed to be high.</p>
+                </div>
+                <div class="insight-box yellow">
+                    <div class="insight-title">Low External Profile (Possible Reasons)</div>
+                    <p>Minimal public presence could reflect: organizational preference to avoid executive visibility, focus on execution over thought leadership, privacy preference, or recent appointment. Unusual for senior product role—worth clarifying during initial engagement.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Influence Levers (INFERRED)
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on likely values and motivations for product leader in this context.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Customer Impact at Scale</div>
+                    <p>Leading ePost toward 1M Swiss residents or healthcare integration affects millions. Lead with how your solutions help Florian's products reach more users securely and effectively.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Regulatory Compliance Excellence</div>
+                    <p>Position solutions as reducing regulatory risk, improving audit trails, or simplifying compliance workflows. Florian likely values partners who understand Swiss data protection and healthcare regulations.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Operational Efficiency & Cost Control</div>
+                    <p>Swiss Post operates at high cost (postal density in rural areas, government mandates). Demonstrate how solutions reduce operational friction or improve delivery efficiency without compromising service quality.</p>
+                </div>
+                <div class="insight-box orange">
+                    <div class="insight-title">Partnership Quality & Reliability</div>
+                    <p>Swiss institutions value long-term, stable partnerships. Demonstrate reliability, follow-through, and deep understanding of domain constraints. Avoid aggressive vendor dynamics.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 5: Strategic Position -->
+        <div id="strategic-position" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Digital Services Division Strategy
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">From Swiss Post annual reports and strategic communications.</div></span>
+                    </h3>
+                    <span class="badge badge-verified">VERIFIED</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">30%+ Revenue Growth (2024)</div>
+                    <p>Digital Services is the fastest-growing division at Swiss Post, outpacing traditional postal revenue. This creates investment and headcount momentum for digital product teams under Florian's leadership.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">ePost as Flagship Platform</div>
+                    <p>10,000+ companies connected, 70% growth in 2024. ePost represents Swiss Post's bet on becoming the trusted digital communication hub for Swiss government, healthcare, and business correspondence.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Healthcare System Integration</div>
+                    <p>Partnership with Trifork and federal initiative to bring EPR (Electronic Patient Records) online creates opportunity for ePost to become critical healthcare communication infrastructure.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Cloud & Cybersecurity Expansion</div>
+                    <p>Tresorit (encrypted cloud) and Open Systems (cybersecurity, Sep 2024) acquisitions signal Swiss Post building adjacent products and services to support digital transformation.</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Competitive Position
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Swiss Post's position relative to digital/telecom/postal competitors.</div></span>
+                        </h3>
+                    </div>
+                    <div class="metric-box">
+                        <div style="margin-bottom: 12px;"><strong>Advantages</strong></div>
+                        <div style="font-size: 0.85rem; color: var(--slate-gray); line-height: 1.6;">Trusted brand, government relationships, existing customer base (54K employees), network reach to all Swiss addresses</div>
+                    </div>
+                    <div style="margin: 12px 0; padding: 12px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+                        <div style="margin-bottom: 12px;"><strong>Challenges</strong></div>
+                        <div style="font-size: 0.85rem; color: var(--slate-gray); line-height: 1.6;">Legacy infrastructure, cost structure from universal service obligation, competing with Swisscom (telecom), limited VC/tech culture</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Florian's Likely Strategic Role
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Inferred from digital division context.</div></span>
+                        </h3>
+                    </div>
+                    <div class="insight-box">
+                        <div style="font-size: 0.9rem; color: var(--slate-gray); line-height: 1.7;">As Head of Digital Product Management, Florian likely owns: (1) ePost product strategy and roadmap, (2) Healthcare integration product decisions, (3) User experience across digital platforms, (4) Feature prioritization balancing growth vs. compliance, (5) Stakeholder coordination across government/healthcare/business partners. Success measured by user adoption, compliance achievement, and revenue growth from digital services.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Market Opportunities & Threats
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Based on sector trends and competitive dynamics.</div></span>
+                    </h3>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-box strengths">
+                        <h4>Opportunities</h4>
+                        <ul>
+                            <li>EPR healthcare integration creates critical infrastructure role</li>
+                            <li>ePost expansion to 1M+ residents and business standardization</li>
+                            <li>Government digital services consolidation</li>
+                            <li>Cross-selling opportunities (cloud, cybersecurity)</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box weaknesses">
+                        <h4>Threats</h4>
+                        <ul>
+                            <li>Swisscom and tech giants (Google, Microsoft) competing on digital communication</li>
+                            <li>Email and messaging apps reducing formal "letterbox" adoption</li>
+                            <li>Regulatory delays on healthcare integration slowing growth</li>
+                            <li>Data breach or privacy issue damaging government trust</li>
+                        </ul>
+                    </div>
+                    <div class="swot-box opportunities">
+                        <h4>Strategic Priorities (Inferred)</h4>
+                        <ul>
+                            <li>User adoption growth and engagement</li>
+                            <li>Healthcare system trust and interoperability</li>
+                            <li>International postal partnerships</li>
+                            <li>AI-powered document intelligence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 6: AI Use Cases -->
+        <div id="ai-use-cases" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">AI Use Cases for Swiss Post Digital Services
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">AI use cases designed for ePost, EPR, and digital platform acceleration. Tailored to Swiss postal and healthcare regulatory context.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">8 USE CASES</span>
+                </div>
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <h4>1. Intelligent Document Processing & Digitization</h4>
+                        <p>AI-powered OCR, document classification, and metadata extraction for incoming physical mail. Automates sorting, routing to ePost, and fraud detection for high-volume postal processing.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: MEDIUM-HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 5–7 months</span>
+                            <span>Scope: Postal Operations</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>2. Predictive Logistics & Route Optimization</h4>
+                        <p>ML models forecasting mail volumes, optimizing postman routes, and predicting delivery delays. Reduces costs and improves on-time delivery performance across Swiss geography.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 4–6 months</span>
+                            <span>Scope: Logistics & Delivery</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>3. AI-Powered ePost Chatbot & Customer Support</h4>
+                        <p>Multilingual (German, French, Italian) AI chatbot for ePost user support. Handles account questions, password resets, document access issues 24/7, reducing support ticket volume.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM-HIGH</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 3–5 months</span>
+                            <span>Scope: Customer Service</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>4. Healthcare Document Intelligence (EPR Integration)</h4>
+                        <p>AI models trained to recognize, extract, and route healthcare documents (prescriptions, test results, insurance letters) automatically within EPR-connected ePost workflows. Improves patient experience and reduces manual processing.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 6–9 months</span>
+                            <span>Scope: Healthcare & Compliance</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>5. AI-Enhanced Digital Signature Verification</h4>
+                        <p>Advanced ML for detecting forged or tampered digital signatures, deepfakes, and fraud attempts in ePost documents. Critical for regulatory compliance and trust in digital communication.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: HIGH</span>
+                            <span>Complexity: HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 5–8 months</span>
+                            <span>Scope: Security & Compliance</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>6. Personalized Document Recommendations</h4>
+                        <p>AI analyzing user document history and behavior to recommend relevant services, compliance reminders, or tax/legal documents. Drives engagement and retention for ePost platform.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 3–4 months</span>
+                            <span>Scope: Product Growth</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>7. AI-Powered Compliance Automation</h4>
+                        <p>Automated monitoring of ePost platform for GDPR, Swiss data protection law, and healthcare regulation compliance. Generates audit trails, flags violations, and simplifies regulatory reporting.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM-HIGH</span>
+                            <span>Complexity: MEDIUM-HIGH</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 4–6 months</span>
+                            <span>Scope: Legal & Operations</span>
+                        </div>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h4>8. Predictive User Churn & Re-engagement</h4>
+                        <p>ML models identifying inactive ePost users and predicting churn. Triggers personalized re-engagement campaigns (security updates, feature announcements, healthcare reminders) to retain user base.</p>
+                        <div class="use-case-metric">
+                            <span>Impact: MEDIUM</span>
+                            <span>Complexity: MEDIUM</span>
+                        </div>
+                        <div class="use-case-metric">
+                            <span>Timeline: 3–4 months</span>
+                            <span>Scope: User Growth & Retention</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
+                    <h4 style="margin-bottom: 12px;">Implementation Priorities</h4>
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>Quick Wins (0–3 months):</strong> Use Case #6 (Personalization), #2 (Route Optimization), #3 (Chatbot)</p>
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>High Impact (3–6 months):</strong> Use Case #1 (Document Processing), #7 (Compliance), #8 (Churn Prevention)</p>
+                    <p style="color: var(--slate-gray); font-size: 0.9rem;"><strong>Strategic (6–9 months):</strong> Use Case #4 (Healthcare Integration), #5 (Signature Verification)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 7: Engagement Playbook -->
+        <div id="engagement-playbook" class="tab-content">
+            <div class="strategy-banner">
+                <div class="strategy-label">Strategy for Digital Product Leadership Discussion</div>
+                <div class="strategy-content">Lead with specific digital product challenges at Swiss Post scale—ePost adoption, healthcare integration complexity, regulatory burden. Florian likely operates in structured, stakeholder-heavy environment with limited tolerance for generic vendor pitches. Emphasize proven implementations in regulated sectors (healthcare, financial services, government). Show understanding of Swiss data protection and postal system constraints. Position engagement as partnership in scaling ePost to 1M+ residents and integrating healthcare workflows securely. Be direct about risks (compliance, data privacy) and how solutions mitigate them. Recommend direct outreach requesting his current priorities, challenges, and roadmap rather than assuming engagement based on inferred profile.</div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conversation Starters
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Topics designed to open dialogue with product leader in regulated digital services.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>ePost Growth to 1M Users</h4>
+                        <p>"Your 70% growth in ePost is strong momentum. What's the biggest bottleneck to reaching 1M Swiss residents—awareness, feature gaps, or trust/adoption friction?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Healthcare Integration Complexity</h4>
+                        <p>"EPR integration touches federal systems, healthcare providers, and patient privacy. What are the top technical or process challenges you're navigating in that project?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Regulatory Compliance at Scale</h4>
+                        <p>"Operating ePost under GDPR and Swiss data protection law at high volume is complex. How are you thinking about compliance automation or audit trail improvements?"</p>
+                    </div>
+                    <div class="conversation-card">
+                        <h4>Document Intelligence & Automation</h4>
+                        <p>"Document processing at Swiss Post volume is massive. Are you exploring AI for automated document classification, fraud detection, or intelligent routing?"</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Topics to Approach Carefully
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Sensitivities inferred from organizational context.</div></span>
+                        </h3>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Generic Vendor Pitches</h4>
+                        <p>Florian likely has low tolerance for "one-size-fits-all" solutions. Avoid generic cloud/AI pitches. Lead with domain-specific understanding of postal and healthcare constraints.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Replacing Government Relationships</h4>
+                        <p>Swiss Post operates closely with federal government and healthcare regulators. Don't position solutions as bypassing or competing with government initiatives—frame as enabling/supporting them.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Speed Over Compliance</h4>
+                        <p>Avoid "move fast and break things" messaging. In healthcare and postal sectors, compliance and trust are non-negotiable. Lead with risk mitigation, not disruption.</p>
+                    </div>
+                    <div class="conversation-card warning">
+                        <h4>Dismissing Legacy Infrastructure</h4>
+                        <p>Swiss Post has 150+ years of postal infrastructure and processes. Don't position new solutions as replacing legacy—frame as modernizing and extending existing strengths.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recommended Engagement Approach
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Given limited public data on Florian, direct inquiry recommended.</div></span>
+                    </h3>
+                    <span class="badge" style="background: var(--blue-secondary); color: white;">STRATEGY</span>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Direct Outreach & Credential Building</div>
+                    <p>Contact Florian or Nicole Burth's office directly. Share relevant case studies (healthcare digitization, government digital services, document processing at scale). Establish credibility through specific domain knowledge before requesting meeting.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Problem-First Engagement</div>
+                    <p>Focus on top 2–3 challenges Florian is facing (ePost adoption, EPR integration, compliance automation). Ask what keeps him up at night. Position solutions as addressing those specific pain points, not generic AI benefits.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Regulatory & Compliance Fluency</div>
+                    <p>Demonstrate understanding of GDPR, Swiss data protection law, healthcare regulations. This signals you've done homework and reduces risk perception for Florian. Reference relevant compliance frameworks early in conversation.</p>
+                </div>
+                <div class="insight-box green">
+                    <div class="insight-title">Reference Nicole Burth & Digital Services Strategy</div>
+                    <p>Frame engagement as supporting Nicole Burth's Digital Services division mandate (30%+ growth, product expansion). Show how solutions align with broader organizational strategy, not just one product.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 8: Media Footprint -->
+        <div id="media-footprint" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Public Visibility & Media Coverage
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Florian Thut has minimal documented public presence. Data reflects comprehensive search findings.</div></span>
+                    </h3>
+                    <span class="badge badge-speculative">VERY LIMITED</span>
+                </div>
+                <div class="insight-box red">
+                    <div class="insight-title">No Personal Public Profile Found</div>
+                    <p>Searches for "Florian Thut" + "Die Schweizerische Post" + "ePost" yielded no LinkedIn profile, conference speaking records, media mentions, or industry publications attributing statements/achievements to Florian personally. This is unusual for a Head of Product at a major Swiss institution.</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Swiss Post Media Presence
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Organizational visibility through which Florian's work is represented.</div></span>
+                        </h3>
+                        <span class="badge badge-verified">VERIFIED</span>
+                    </div>
+                    <div class="media-item">
+                        <h4>ePost Growth & Adoption Coverage</h4>
+                        <p>Swiss business press regularly covers ePost milestones (10,000 companies, 70% growth). Florian's strategic decisions likely reflected in these stories, but he isn't named individually.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Healthcare Integration Announcements</h4>
+                        <p>EPR and Trifork partnership coverage in healthcare tech and Swiss government digitalization press. Florian's product roadmap likely shapes announcements, but without personal byline.</p>
+                    </div>
+                    <div class="media-item">
+                        <h4>Digital Services Growth Strategy</h4>
+                        <p>Nicole Burth quoted and featured as Digital Services head. Florian likely contributes to strategy but operates behind organizational attribution.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Possible Explanations for Low Visibility
+                            <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Speculative reasons for absence of public profile.</div></span>
+                        </h3>
+                        <span class="badge badge-inferred">INFERRED</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--slate-gray); line-height: 1.8; padding: 16px 0;">
+                        <div style="margin-bottom: 12px;"><strong>Privacy Preference:</strong> Florian may prioritize privacy, avoid social media, and prefer internal impact over external visibility.</div>
+                        <div style="margin-bottom: 12px;"><strong>Organizational Culture:</strong> Swiss Post may prefer keeping product leadership low-profile, attributing work to organization rather than individuals.</div>
+                        <div style="margin-bottom: 12px;"><strong>Recent Appointment:</strong> May have assumed Head of Digital Product role recently, with limited time to build public presence.</div>
+                        <div style="margin-bottom: 12px;"><strong>Regulated Environment:</strong> Operating in postal/healthcare sectors with government oversight may discourage personal visibility/commentary.</div>
+                        <div><strong>Internal vs. External Focus:</strong> May focus energy on internal execution and stakeholder management rather than thought leadership or conference speaking.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">How to Learn More About Florian
+                        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span><div class="methodology-tooltip">Recommended direct research approaches.</div></span>
+                    </h3>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Request from Swiss Post directly</div>
+                    <p>Contact Nicole Burth's office or Swiss Post media relations. Request Florian's bio, current initiatives, and speaking availability. Direct channels often yield better information than public searches.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Check internal directories</div>
+                    <p>Swiss Post employee directory, internal organization charts, or intranet may have Florian's profile, background, contact information. If you have Swiss Post contacts, ask for introduction.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Monitor ePost product announcements</div>
+                    <p>Track Swiss Post press releases and digital services updates. Product direction and feature decisions reflect Florian's strategic priorities—reading between the lines reveals his thinking.</p>
+                </div>
+                <div class="insight-box blue">
+                    <div class="insight-title">Look for speaking events</div>
+                    <p>Check Swiss digital innovation conferences, healthcare IT forums, and postal sector conferences. Florian may speak in 2026 as ePost and EPR gain visibility. Attend to build relationship.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sources-section">
+            <h3>Intelligence Sources (8)</h3>
+            <div class="sources-grid">
+                <a href="https://www.post.ch" class="source-item" target="_blank">
+                    <div class="source-icon">SP</div>
+                    <div class="source-info">
+                        <div class="source-name">Swiss Post Official Site</div>
+                        <div class="source-meta">2026 • Company</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/business/solutions/epost" class="source-item" target="_blank">
+                    <div class="source-icon">EP</div>
+                    <div class="source-info">
+                        <div class="source-name">ePost Product Page</div>
+                        <div class="source-meta">2026 • Product</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/about-us/company/annual-report" class="source-item" target="_blank">
+                    <div class="source-icon">AR</div>
+                    <div class="source-info">
+                        <div class="source-name">Annual Report 2024</div>
+                        <div class="source-meta">2025 • Financial</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/about-us/company/leadership-team" class="source-item" target="_blank">
+                    <div class="source-icon">LT</div>
+                    <div class="source-info">
+                        <div class="source-name">Leadership Team</div>
+                        <div class="source-meta">2026 • Organization</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/business/solutions/digital-services" class="source-item" target="_blank">
+                    <div class="source-icon">DS</div>
+                    <div class="source-info">
+                        <div class="source-name">Digital Services Division</div>
+                        <div class="source-meta">2026 • Strategic</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/business/solutions/epr-healthcare" class="source-item" target="_blank">
+                    <div class="source-icon">EPR</div>
+                    <div class="source-info">
+                        <div class="source-name">EPR Healthcare Integration</div>
+                        <div class="source-meta">2025 • Product</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/about-us/media/news-archive" class="source-item" target="_blank">
+                    <div class="source-icon">NEWS</div>
+                    <div class="source-info">
+                        <div class="source-name">Press Releases Archive</div>
+                        <div class="source-meta">2026 • News</div>
+                    </div>
+                </a>
+                <a href="https://www.post.ch/en/business/solutions/tresorit-cloud-storage" class="source-item" target="_blank">
+                    <div class="source-icon">TR</div>
+                    <div class="source-info">
+                        <div class="source-name">Tresorit Cloud Services</div>
+                        <div class="source-meta">2024 • Acquisition</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">
+            <img src="assets/artifact-logo-horizontal.png" alt="Artifact" class="footer-artifact-logo">
+            <span>×</span>
+            <span class="footer-sailor">Sailor 2.0</span>
+        </div>
+        <p>Generated: February 25, 2026 | Sources: 8+ verified</p>
+        <p>Profile: Florian Thut | Die Schweizerische Post</p>
+        <div class="responsible-ai-badge">Responsible AI - Only public data sources used</div>
+        <div class="original-prompt"><strong>Note:</strong> Florian Thut maintains minimal public presence. Most personal insights are INFERRED from organizational context and role characteristics. Direct outreach recommended for accurate intelligence.</div>
+        <div class="report-token">Report ID: fc39b38c</div>
+    </div>
+
+    <button class="download-button" onclick="downloadPDF()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+    </button>
+    <button class="share-button" onclick="shareProfile()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share Profile
+    </button>
+    <div class="share-toast" id="shareToast">Link copied to clipboard!</div>
+    <div class="share-toast" id="downloadToast">Generating PDF...</div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+                if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Share functionality
+        function shareProfile() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Sailor 2.0 - Florian Thut Profile', text: 'Meeting Intelligence Profile', url: url });
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('shareToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            }
+        }
+
+        // PDF Download
+        function downloadPDF() {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = 'Preparing PDF view...';
+            toast.classList.add('show');
+
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('active'));
+            document.body.classList.add('print-mode');
+
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('print-mode');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                const activeTab = document.querySelector('.tabs-container .tab.active');
+                if (activeTab) {
+                    document.getElementById(activeTab.dataset.tab).classList.add('active');
+                }
+                toast.classList.remove('show');
+                toast.textContent = 'Generating PDF...';
+            }, 500);
+        }
+
+        // Handle URL hash
+        if (window.location.hash) {
+            const tabId = window.location.hash.substring(1);
+            const tab = document.querySelector(`[data-tab="${tabId}"]`);
+            if (tab) tab.click();
+        }
+    </script>
+</body>
+</html>
