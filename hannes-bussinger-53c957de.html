@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Intel — Hannes Bussinger | Weita / Bunzl Schweiz</title>
+<style>
+:root{
+  --navy:#0f172a; --navy-2:#1e293b; --slate-gray:#64748b; --charcoal:#1f2937;
+  --green-verified:#16a34a; --amber-inferred:#f59e0b; --red-speculative:#dc2626;
+  --blue:#2563eb; --blue-soft:#dbeafe; --pink:#ec4899; --purple:#8b5cf6;
+  --bg:#f8fafc; --card:#ffffff; --border:#e5e7eb; --highlight:#0ea5e9;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Helvetica Neue',sans-serif;background:var(--bg);color:var(--charcoal);line-height:1.55}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,var(--navy) 0%,#1e293b 100%);color:#fff;padding:28px 40px;position:relative;overflow:hidden}
+.header::before{content:'CONFIDENTIAL';position:absolute;top:8px;right:24px;font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.35)}
+.header-brand{font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:14px}
+.header-brand span.dot{color:#60a5fa}
+.header-main{display:flex;align-items:center;gap:24px}
+.profile-photo{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.25)}
+.profile-initials{width:104px;height:104px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:700;color:#fff;border:3px solid rgba(255,255,255,.25)}
+.header h1{font-size:2rem;font-weight:700;letter-spacing:-0.5px}
+.header-subtitle{margin-top:4px;font-size:1rem;color:rgba(255,255,255,.85)}
+.header-meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:18px;font-size:0.85rem;color:rgba(255,255,255,.7)}
+.header-meta span{display:flex;align-items:center;gap:6px}
+.header-meta strong{color:#fff;font-weight:600}
+
+/* TABS */
+.tabs{display:flex;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.tab{padding:14px 18px;font-size:0.85rem;font-weight:600;color:var(--slate-gray);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--navy)}
+.tab.active{color:var(--navy);border-bottom-color:var(--blue);background:#f1f5f9}
+
+/* CONTENT */
+.tab-content{display:none;padding:28px 40px;max-width:1280px;margin:0 auto}
+.tab-content.active{display:block}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+.badge{font-size:0.7rem;font-weight:700;letter-spacing:0.5px;padding:4px 10px;border-radius:20px;text-transform:uppercase}
+.badge-verified{background:#dcfce7;color:#166534}
+.badge-inferred{background:#fef3c7;color:#92400e}
+.badge-speculative{background:#fee2e2;color:#991b1b}
+
+/* METHODOLOGY CALLOUT */
+.methodology-callout{position:relative;display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:500;color:var(--slate-gray);background:#f1f5f9;padding:3px 8px;border-radius:12px;cursor:help;margin-left:8px}
+.methodology-icon{font-style:normal}
+.methodology-tooltip{visibility:hidden;opacity:0;position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 14px;border-radius:8px;font-size:0.78rem;font-weight:400;width:280px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s;line-height:1.5;text-transform:none;letter-spacing:0}
+.methodology-callout:hover .methodology-tooltip{visibility:visible;opacity:1}
+
+/* METRICS */
+.metric-box{background:linear-gradient(135deg,#f8fafc,#fff);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.metric-value{font-size:1.8rem;font-weight:700;color:var(--navy);line-height:1.2}
+.metric-value.highlight{color:var(--green-verified)}
+.metric-value.red-text{color:var(--red-speculative)}
+.metric-label{font-size:0.78rem;color:var(--slate-gray);margin-top:6px;text-transform:uppercase;letter-spacing:0.6px;font-weight:600}
+
+/* INSIGHT BOX */
+.insight-box{padding:14px 16px;border-left:4px solid var(--blue);background:#f8fafc;border-radius:6px;margin-bottom:12px}
+.insight-box.yellow{border-left-color:var(--amber-inferred);background:#fffbeb}
+.insight-box.red{border-left-color:var(--red-speculative);background:#fef2f2}
+.insight-box.green{border-left-color:var(--green-verified);background:#f0fdf4}
+.insight-box.blue{border-left-color:var(--blue);background:#eff6ff}
+.insight-box.orange{border-left-color:#f97316;background:#fff7ed}
+.insight-title{font-weight:700;color:var(--navy);font-size:0.88rem;margin-bottom:4px}
+.insight-box p{font-size:0.88rem;line-height:1.55;color:#374151}
+
+/* TIMELINE */
+.timeline-item{position:relative;padding-left:22px;border-left:2px solid var(--blue);padding-bottom:14px;margin-bottom:10px}
+.timeline-item::before{content:'';position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid #fff}
+.timeline-period{font-size:0.75rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px}
+.timeline-content{font-size:0.9rem;color:var(--charcoal);margin-top:2px}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-block;padding:5px 12px;background:#eff6ff;color:var(--blue);font-size:0.78rem;font-weight:600;border-radius:20px;border:1px solid #dbeafe}
+.tag.pink{background:#fdf2f8;color:#be185d;border-color:#fbcfe8}
+.tag.purple{background:#f3e8ff;color:#6b21a8;border-color:#e9d5ff}
+.tag.green{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+
+/* PERSON CARD */
+.person-card{display:flex;align-items:center;gap:12px;padding:12px;background:#fafafa;border-radius:8px;margin-bottom:10px;border:1px solid var(--border)}
+.person-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#3b82f6);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;flex-shrink:0}
+.person-info h4{font-size:0.92rem;font-weight:700;color:var(--navy)}
+.person-info p{font-size:0.8rem;color:var(--slate-gray)}
+
+/* CONVERSATION CARD */
+.conversation-card{padding:14px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;background:#fff}
+.conversation-card h4{font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.conversation-card p{font-size:0.85rem;color:#374151;line-height:1.5}
+.conversation-card.warning{border-left:4px solid var(--red-speculative);background:#fef2f2}
+
+/* TABLE */
+.profile-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+.profile-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.profile-table tr:last-child td{border-bottom:none}
+.profile-table td:first-child{font-weight:600;color:var(--slate-gray);width:32%}
+
+/* SOURCES */
+.sources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.source-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--charcoal);transition:all .2s}
+.source-item:hover{border-color:var(--blue);box-shadow:0 2px 8px rgba(37,99,235,.12);transform:translateY(-1px)}
+.source-icon{width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#1e293b,#334155);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.7rem;flex-shrink:0}
+.source-name{font-size:0.85rem;font-weight:600;color:var(--navy)}
+.source-meta{font-size:0.7rem;color:var(--slate-gray)}
+
+/* RADAR */
+.radar-wrap{position:relative;width:100%;max-width:340px;margin:0 auto}
+.radar-svg{width:100%;height:auto}
+
+/* DISC */
+.disc-chart{display:flex;align-items:flex-end;justify-content:space-around;height:170px;padding:14px;background:#f8fafc;border-radius:8px;border:1px solid var(--border)}
+.disc-bar{width:60px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border-radius:6px 6px 0 0;color:#fff;font-weight:700;padding:8px 0;min-height:30px}
+.disc-bar span{font-size:0.95rem}
+.disc-score{font-size:0.78rem;opacity:0.95;margin-top:2px}
+.d-bar{background:linear-gradient(180deg,#dc2626,#ef4444)}
+.i-bar{background:linear-gradient(180deg,#f59e0b,#fbbf24)}
+.s-bar{background:linear-gradient(180deg,#16a34a,#22c55e)}
+.c-bar{background:linear-gradient(180deg,#2563eb,#3b82f6)}
+.disc-labels{display:flex;justify-content:space-around;font-size:0.72rem;color:var(--slate-gray);margin-top:8px}
+.disc-primary{font-size:1.05rem;margin-bottom:6px;color:var(--navy);font-weight:600}
+.disc-secondary{font-size:0.88rem;color:var(--slate-gray);margin-bottom:10px}
+.disc-description{font-size:0.88rem;line-height:1.55}
+
+/* SCATTER */
+.scatter-plot{position:relative;width:100%;height:340px;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border:1px solid var(--border);border-radius:10px;padding:20px}
+.scatter-axes{position:absolute;inset:0;border-left:2px solid var(--slate-gray);border-bottom:2px solid var(--slate-gray);margin:30px}
+.scatter-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--blue);transform:translate(-50%,50%);cursor:pointer;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.scatter-dot.subject{background:var(--green-verified);width:18px;height:18px}
+.scatter-dot.competitor{background:var(--red-speculative)}
+.scatter-tooltip{visibility:hidden;opacity:0;position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:6px 10px;border-radius:6px;font-size:0.7rem;white-space:nowrap;z-index:10;transition:.2s}
+.scatter-dot:hover .scatter-tooltip{visibility:visible;opacity:1}
+.axis-label{position:absolute;font-size:0.72rem;font-weight:600;color:var(--slate-gray);text-transform:uppercase;letter-spacing:0.5px}
+
+/* SWOT */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.swot-grid{grid-template-columns:1fr}}
+.swot-quadrant{padding:16px;border-radius:10px;border:1px solid var(--border)}
+.swot-quadrant h4{font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.swot-quadrant ul{list-style:none}
+.swot-quadrant li{padding:8px 0;border-bottom:1px dashed var(--border);font-size:0.85rem}
+.swot-quadrant li:last-child{border-bottom:none}
+.swot-strengths{background:#f0fdf4;border-color:#bbf7d0}.swot-strengths h4{color:#166534}
+.swot-weaknesses{background:#fef2f2;border-color:#fecaca}.swot-weaknesses h4{color:#991b1b}
+.swot-opportunities{background:#eff6ff;border-color:#bfdbfe}.swot-opportunities h4{color:#1e40af}
+.swot-threats{background:#fffbeb;border-color:#fde68a}.swot-threats h4{color:#92400e}
+.interactive-item{position:relative;cursor:pointer}
+.item-recommendation{display:none;background:var(--navy);color:#fff;padding:10px;border-radius:6px;margin-top:8px;font-size:0.78rem;line-height:1.5}
+.interactive-item:hover .item-recommendation{display:block}
+.item-recommendation-label{font-size:0.65rem;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+
+/* USE CASES */
+.use-cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.use-case-card{background:linear-gradient(135deg,#fafafa,#fff);border:1px solid var(--border);border-radius:12px;padding:22px;position:relative;transition:all .25s;cursor:pointer}
+.use-case-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(139,92,246,.15);border-color:var(--purple)}
+.use-case-icon{font-size:1.7rem;margin-bottom:10px;color:var(--purple);font-weight:700}
+.use-case-title{font-size:1.02rem;font-weight:700;margin-bottom:6px;color:var(--navy)}
+.use-case-description{font-size:0.85rem;color:#475569;line-height:1.55}
+.use-case-reasoning{display:none;position:absolute;top:100%;left:0;right:0;margin-top:8px;background:var(--navy);color:#fff;padding:14px;border-radius:8px;font-size:0.82rem;z-index:50;box-shadow:0 8px 24px rgba(0,0,0,.2);line-height:1.5}
+.use-case-card:hover .use-case-reasoning{display:block}
+.reasoning-label{font-weight:700;color:#a78bfa;margin-bottom:6px;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px}
+
+/* MEDIA ITEM */
+.media-item{padding:12px 0;border-bottom:1px dashed var(--border)}
+.media-item:last-child{border-bottom:none}
+.media-item h4{font-size:0.92rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.media-item p{font-size:0.83rem;color:var(--slate-gray)}
+
+/* BAR CHART */
+.bar-chart{display:flex;align-items:flex-end;justify-content:space-around;gap:14px;padding:16px;background:#f8fafc;border-radius:8px;border:1px solid var(--border);height:220px}
+.bar-group{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.bar{width:54px;display:flex;flex-direction:column-reverse;border-radius:6px 6px 0 0;overflow:hidden;border:1px solid var(--border)}
+.bar-segment{width:100%}
+.bar-segment.positive{background:linear-gradient(180deg,#22c55e,#16a34a)}
+.bar-segment.neutral{background:linear-gradient(180deg,#94a3b8,#64748b)}
+.bar-segment.critical{background:linear-gradient(180deg,#ef4444,#dc2626)}
+.bar-label{font-size:0.78rem;font-weight:600;color:var(--slate-gray)}
+.bar-tooltip{visibility:hidden;opacity:0;position:absolute;bottom:110%;background:var(--navy);color:#fff;padding:6px 10px;border-radius:6px;font-size:0.7rem;white-space:nowrap;transition:.2s;z-index:10}
+.bar-group:hover .bar-tooltip{visibility:visible;opacity:1}
+
+/* PIE */
+.pie-chart{width:140px;height:140px;border-radius:50%;background:conic-gradient(var(--green-verified) 0deg var(--p1),var(--blue) var(--p1) var(--p2),var(--amber-inferred) var(--p2) var(--p3),var(--red-speculative) var(--p3) 360deg);position:relative;margin:0 auto}
+.pie-legend{display:flex;flex-direction:column;gap:6px;margin-top:14px;font-size:0.8rem}
+.pie-legend-item{display:flex;align-items:center;gap:8px}
+.pie-legend-dot{width:12px;height:12px;border-radius:3px}
+
+/* FOOTER */
+.footer{padding:24px 40px;background:#f1f5f9;border-top:1px solid var(--border);text-align:center;font-size:0.78rem;color:var(--slate-gray)}
+.footer strong{color:var(--navy)}
+
+@media print{
+  .tabs{display:none}
+  .tab-content{display:block !important;break-inside:avoid;page-break-after:always}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-brand">Sailor Intel <span class="dot">●</span> Meeting Intelligence Profile</div>
+  <div class="header-main">
+    <div class="profile-initials">HB</div>
+    <div style="flex:1">
+      <h1>Hannes Bussinger</h1>
+      <div class="header-subtitle">Finance Director — Weita AG / Bunzl Schweiz</div>
+      <div class="header-meta">
+        <span><strong>Location:</strong> Ormalingen / Aesch BL, Switzerland</span>
+        <span><strong>Education:</strong> MSc Strategic Management, HWZ Zürich</span>
+        <span><strong>Sources:</strong> 14 verified</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" data-tab="exec">Executive Summary</div>
+  <div class="tab" data-tab="profile">Subject Profile</div>
+  <div class="tab" data-tab="network">Network Map</div>
+  <div class="tab" data-tab="behavior">Behavioral Analysis</div>
+  <div class="tab" data-tab="strategy">Strategic Position</div>
+  <div class="tab" data-tab="playbook">Engagement Playbook</div>
+  <div class="tab" data-tab="media">Media Footprint</div>
+  <div class="tab" data-tab="ai">AI Use Cases</div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<div id="exec" class="tab-content active">
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Bottom Line Up Front (BLUF)
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">Synthesis of LinkedIn profile, Swiss commercial registry data (Moneyhouse, Lixt), Bunzl plc public reporting, and Weita corporate website.</div>
+        </span>
+      </h3>
+      <span class="badge badge-verified">HIGH CONFIDENCE</span>
+    </div>
+    <p style="font-size:0.95rem;line-height:1.65">
+      <strong>Hannes Bussinger</strong> is <strong>Finance Director at Weita AG / Bunzl Schweiz</strong>, the Swiss arm of <strong>Bunzl plc</strong> — a £12B+ FTSE-100 distribution group present in 32 countries. He sits on the <strong>board of directors with joint signature authority</strong> across multiple Weita group entities, giving him formal weight in capital-allocation and operating decisions for the ~180-person Swiss organisation. His self-described positioning — <em>"Driving Financial Excellence and Innovation… Empowering Teams… Data Rocks"</em> — and his <strong>MSc in Strategic Management (HWZ Zürich, 2017)</strong> signal a finance leader who is <strong>strategically curious, data-positive, and team-oriented</strong> rather than a pure controller. The meeting purpose — <em>"establishing a case for AI in organizations"</em> — is well-aligned: Bunzl plc has explicit, board-level digital-transformation goals (76% digital order penetration in 2025, AI/ML pilots in catering supplies via RELEX), giving Hannes both <strong>local autonomy</strong> (Bunzl's decentralised model) and a <strong>group-level mandate</strong> to back well-framed business cases.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Meeting Fit Score
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How assessed
+            <div class="methodology-tooltip">⚠️ AI-ASSESSED: Score based on alignment between stated meeting purpose ("case for AI") and subject's role authority, decision power, and stated interest in data/innovation.</div>
+          </span>
+        </h3>
+        <span class="badge badge-verified">STRONG FIT</span>
+      </div>
+      <div class="grid-2">
+        <div class="metric-box">
+          <div class="metric-value highlight">8.5/10</div>
+          <div class="metric-label">Alignment Score</div>
+        </div>
+        <div style="padding:8px;font-size:0.88rem;line-height:1.55">
+          A finance director with formal board signature authority and a self-stated affinity for data is the right entry point for an AI business-case discussion. Slight discount because the typical AI-strategy <em>budget owner</em> in Bunzl Schweiz would still be Managing Director Philipp Hauser — Hannes is an excellent <strong>champion</strong> and ROI gatekeeper, not necessarily the sole decision-maker.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Key Person Metrics
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Metrics extracted from LinkedIn profile and HWZ press release. Years calculated from career timeline, role tenure inferred from registry data.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="grid-4">
+        <div class="metric-box"><div class="metric-value">15+</div><div class="metric-label">Yrs Finance Exp.</div></div>
+        <div class="metric-box"><div class="metric-value">MSc</div><div class="metric-label">HWZ Zürich '17</div></div>
+        <div class="metric-box"><div class="metric-value">3+</div><div class="metric-label">Group Entities</div></div>
+        <div class="metric-box"><div class="metric-value">CH</div><div class="metric-label">Basel-Land Base</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Personality Quick View
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ AI-INFERRED: Based on observable indicators (role, education, LinkedIn self-description, Bunzl culture). See Behavioral Analysis tab for full DISC.</div>
+          </span>
+        </h3>
+        <span class="badge badge-inferred">INFERRED</span>
+      </div>
+      <p style="font-size:0.88rem;line-height:1.6">
+        Likely <strong>C / S blended profile</strong> (Conscientious–Steady) with a meaningful <strong>I (Influence) lift</strong> from his "empowering teams" self-description. Translates to: data-driven and detail-oriented, but warm and people-positive — not the stereotypical adversarial CFO.
+      </p>
+      <div class="insight-box blue" style="margin-top:12px">
+        <div class="insight-title">How to engage:</div>
+        <p>Lead with <strong>numbers, framework, ROI</strong>. Earn trust by showing rigour. Then layer the <em>"this empowers your team"</em> story — that's where his energy is.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Top 4 Conversation Starters
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Derived from his stated interests ("Data Rocks"), Bunzl group context, and the meeting purpose around AI business cases.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="conversation-card"><h4>1. "Data Rocks"</h4><p>"Your tagline mentions 'Data Rocks' — what's been your most surprising win using data inside Weita's finance function so far?"</p></div>
+      <div class="conversation-card"><h4>2. Bunzl group AI</h4><p>"Bunzl Catering UK has rolled out RELEX for forecasting — has any of that played back into Weita yet, or are you looking at it independently?"</p></div>
+      <div class="conversation-card"><h4>3. Empowering teams</h4><p>"You write a lot about empowering teams — when you imagine AI inside Weita, do you see it removing toil or actually making people more strategic?"</p></div>
+      <div class="conversation-card"><h4>4. Strategic management lens</h4><p>"You did your MSc in Strategic Management — how do you frame the AI investment case to the board: as efficiency, as moat, or as table stakes?"</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Anticipated Discussion Topics
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">Probability scores based on meeting purpose, role characteristics, and Bunzl plc's stated 2025 priorities.</div>
+        </span>
+      </h3>
+    </div>
+    <table class="profile-table">
+      <tr><td>ROI / payback period for AI initiatives</td><td><strong>95%</strong> — central to a "case for AI" framed for finance</td></tr>
+      <tr><td>Data readiness, ERP / data quality in Weita</td><td><strong>85%</strong> — typical first blocker; he'll want honest scoping</td></tr>
+      <tr><td>Forecasting, demand planning, working capital</td><td><strong>80%</strong> — Bunzl group already piloting; clear local relevance</td></tr>
+      <tr><td>Team & change-management impact</td><td><strong>75%</strong> — aligns with his "empowering teams" identity</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Top AI Use Cases — Preview
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">⚠️ AI-GENERATED: Prioritised against his role (finance), industry (B2B distribution / hygiene), and group context (Bunzl already piloting forecasting). See AI Use Cases tab for the full set.</div>
+        </span>
+      </h3>
+      <span class="badge" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);color:#fff">PREVIEW</span>
+    </div>
+    <div class="grid-4">
+      <div class="metric-box" style="text-align:left;padding:14px"><div style="font-weight:700;color:var(--purple);font-size:0.95rem">Cash-flow & demand forecasting</div><div style="font-size:0.78rem;color:var(--slate-gray);margin-top:4px">Direct ROI, board-friendly story</div></div>
+      <div class="metric-box" style="text-align:left;padding:14px"><div style="font-weight:700;color:var(--purple);font-size:0.95rem">AP automation (invoice IDP)</div><div style="font-size:0.78rem;color:var(--slate-gray);margin-top:4px">Quick-win 70-80% cycle reduction</div></div>
+      <div class="metric-box" style="text-align:left;padding:14px"><div style="font-weight:700;color:var(--purple);font-size:0.95rem">Dynamic pricing & margin</div><div style="font-size:0.78rem;color:var(--slate-gray);margin-top:4px">Hygiene/distribution sweet spot</div></div>
+      <div class="metric-box" style="text-align:left;padding:14px"><div style="font-weight:700;color:var(--purple);font-size:0.95rem">Finance copilots / FP&A</div><div style="font-size:0.78rem;color:var(--slate-gray);margin-top:4px">Empowers his team — emotional fit</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Key Strategic Insights
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">Insights synthesized from multiple sources and cross-referenced for consistency across LinkedIn, registry, group annual reports.</div>
+        </span>
+      </h3>
+    </div>
+    <div class="insight-box green"><div class="insight-title">Decentralised mandate is a gift:</div><p>Bunzl plc explicitly empowers regional/operating-company teams with pricing, inventory and tech decisions. Weita can move on AI without London sign-off as long as the business case stacks up — Hannes is the gatekeeper of that case.</p></div>
+    <div class="insight-box blue"><div class="insight-title">"Data Rocks" = an opening, not a credential:</div><p>He signals appetite, but his career has been classical finance (accounting → Finance Director). Don't assume technical depth. Pitch concept-first, vendor-neutral, and use analogies from RELEX / Bunzl Catering UK rather than abstract LLM theory.</p></div>
+    <div class="insight-box yellow"><div class="insight-title">Watch for the "control tax":</div><p>Swiss financial culture + Conscientious profile + group reporting obligations = he will probe governance, audit trail, and data-protection (FADP / EU AI Act readiness). Have a one-pager ready.</p></div>
+    <div class="insight-box orange"><div class="insight-title">Use the parent-company tailwind:</div><p>Bunzl plc reports digital orders 75% → 76% YoY and consolidated 16 warehouses around digital tooling. Reference these as <em>"your group is already on this curve"</em> rather than asking him to start from zero.</p></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Source Confidence Distribution
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Primary = official sources (Bunzl plc, Moneyhouse registry, weita.ch). Secondary = reputable industry sources (HWZ press release, business-monitor). Inferred = cross-referenced patterns. Speculative = limited single-source data.</div>
+          </span>
+        </h3>
+      </div>
+      <div style="display:flex;gap:24px;align-items:center">
+        <div class="pie-chart" style="--p1:180deg;--p2:288deg;--p3:342deg"></div>
+        <div class="pie-legend">
+          <div class="pie-legend-item"><span class="pie-legend-dot" style="background:var(--green-verified)"></span> Primary 50%</div>
+          <div class="pie-legend-item"><span class="pie-legend-dot" style="background:var(--blue)"></span> Secondary 30%</div>
+          <div class="pie-legend-item"><span class="pie-legend-dot" style="background:var(--amber-inferred)"></span> Inferred 15%</div>
+          <div class="pie-legend-item"><span class="pie-legend-dot" style="background:var(--red-speculative)"></span> Speculative 5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Risks & Caveats</h3>
+      </div>
+      <div class="insight-box red"><div class="insight-title">Limited public footprint:</div><p>Hannes maintains a deliberately low public profile (no press interviews, no speaking gigs surfaced). DISC, behavioural and value insights are <strong>inferential</strong> — validate live.</p></div>
+      <div class="insight-box yellow"><div class="insight-title">Decision authority is shared:</div><p>Final go/no-go on a meaningful AI investment likely sits with MD Philipp Hauser plus group CFO. Plan for a <strong>two-step</strong> motion: (1) win Hannes as champion, (2) co-design the board pitch.</p></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SUBJECT PROFILE -->
+<div id="profile" class="tab-content">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Professional Timeline
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Extracted from LinkedIn public profile, HWZ press release (2017), and Swiss commercial registry filings (Moneyhouse).</div>
+          </span>
+        </h3>
+        <span class="badge badge-verified">VERIFIED</span>
+      </div>
+      <div class="timeline-item"><div class="timeline-period">Current</div><div class="timeline-content"><strong>Finance Director</strong> — Weita AG / Bunzl Schweiz, Aesch BL. Board member with joint signature authority across multiple Weita group entities.</div></div>
+      <div class="timeline-item"><div class="timeline-period">2017</div><div class="timeline-content">Graduated <strong>MSc Business Administration, Strategic Management</strong> — HWZ Hochschule für Wirtschaft Zürich (one of 19 graduates that year).</div></div>
+      <div class="timeline-item"><div class="timeline-period">Earlier</div><div class="timeline-content">Senior <strong>Financial Accountant / Lead Accounting</strong> roles (60–100% progression). Responsibilities: financial-statement preparation, budgeting, forecasting, cash-flow planning.</div></div>
+      <div class="timeline-item"><div class="timeline-period">Foundations</div><div class="timeline-content">Career rooted in operational finance — moved up through accounting craft, not via consulting / banking. Likely values practitioner credibility.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Recent Activity (Last 90 Days)
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Content from last 30–90 days sourced from LinkedIn, company news, and press releases. Public footprint is light — recency is limited.</div>
+          </span>
+        </h3>
+        <span class="badge badge-verified">RECENT</span>
+      </div>
+      <div class="media-item"><h4>No public posts surfaced</h4><p>Hannes maintains a low LinkedIn posting cadence. His profile is up-to-date but he is not a public broadcaster — this is a private-by-default executive.</p></div>
+      <div class="media-item"><h4>Bunzl plc — Annual Results 2025</h4><p>Group reported steady performance and continued share-buyback program. Margin expansion 8.0% → 8.3% remains the headline metric his function is measured against.</p></div>
+      <div class="media-item"><h4>Bunzl Continental Europe — IT centralisation</h4><p>Group Technology hubs in Amsterdam / Arnhem / Budapest continue rolling out cloud foundations. Likely indirect impact on Weita's local IT and data foundations within the next 12 months.</p></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Recognition & Awards
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Collected from press releases, award announcements and HWZ alumni listings.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="media-item"><h4>HWZ MSc Graduate (2017)</h4><p>Featured as one of 19 graduates of the MSc Business Administration cohort focused on Strategic Management — a quality programme but not a high-profile award.</p></div>
+      <div class="media-item"><h4>Public awards</h4><p>No external awards (industry, "CFO of the Year", etc.) surfaced. His recognition pattern is internal / corporate rather than public.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Industry Expertise
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Tags derived from stated skills on LinkedIn, role responsibilities, and the wholesale-distribution context.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="tags">
+        <span class="tag">Finance Leadership</span>
+        <span class="tag">Strategic Management</span>
+        <span class="tag">B2B Distribution</span>
+        <span class="tag">Group Reporting (UK GAAP/IFRS)</span>
+        <span class="tag">Cash-Flow Planning</span>
+        <span class="tag">Budgeting & Forecasting</span>
+        <span class="tag green">Data-Curious</span>
+        <span class="tag">Team Empowerment</span>
+        <span class="tag">Swiss / DACH Market</span>
+        <span class="tag">Hygiene / Cleaning Products</span>
+        <span class="tag">Catering & Foodservice Supplies</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Company Profile — Weita AG / Bunzl Schweiz
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">Data from Swiss business registry (Moneyhouse, Lixt), Weita corporate website and Bunzl plc 2024 Annual Report.</div>
+        </span>
+      </h3>
+      <span class="badge badge-verified">VERIFIED</span>
+    </div>
+    <table class="profile-table">
+      <tr><td>Founded</td><td>1989 by Christoph Huber and Hans Lehmann (originally a division of Weitnauer AG)</td></tr>
+      <tr><td>Owner</td><td>100% Bunzl plc (since 2010) — UK FTSE-100 listed; world's largest value-added distributor</td></tr>
+      <tr><td>Employees</td><td>~180 in Switzerland (Weita group); 19,000+ globally (Bunzl plc)</td></tr>
+      <tr><td>Group Revenue</td><td>£11.8 bn (Bunzl plc, 2024); operating margin 8.3%</td></tr>
+      <tr><td>HQ</td><td>Nordring 2, 4147 Aesch BL — plus Weita Service AG sites in Möhlin (AG) and Donneloye (VD)</td></tr>
+      <tr><td>Categories</td><td>Cleaning products & hygiene, food & gastronomy packaging, medical / care consumables, incontinence (iD), facility management, retail / industry consumables</td></tr>
+      <tr><td>Brand Partners</td><td>Tork, Kimberly-Clark Professional, Diversey (600+ SKUs), Dr. Schumacher, Ontex, Dr. Schnell</td></tr>
+      <tr><td>Group Strategy</td><td>"One-stop shop" specialist distribution across 32 countries; growth via disciplined M&A (£883M committed in 2024) + digital channel + margin expansion</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- NETWORK MAP -->
+<div id="network" class="tab-content">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Local Leadership (Weita / Bunzl Schweiz)
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">From Bunzl Schweiz Impressum and Swiss commercial registry. Roles verified against company website.</div>
+          </span>
+        </h3>
+        <span class="badge badge-verified">VERIFIED</span>
+      </div>
+      <div class="person-card"><div class="person-avatar">PH</div><div class="person-info"><h4>Philipp Alex Hauser</h4><p>Managing Director, Bunzl Schweiz / Weita AG — primary budget owner</p></div></div>
+      <div class="person-card"><div class="person-avatar">HB</div><div class="person-info"><h4>Hannes Bussinger</h4><p>Finance Director — board signature authority across group entities</p></div></div>
+      <div class="person-card"><div class="person-avatar">RH</div><div class="person-info"><h4>Roman Huber</h4><p>Key Account Manager, Weita Medical — commercial signal</p></div></div>
+      <div class="person-card"><div class="person-avatar">HF</div><div class="person-info"><h4>Huber Family Legacy</h4><p>Founders' family led the company for 20+ years pre-2010 acquisition; cultural DNA still relationship-driven</p></div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Strategic Group Context
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Identified from Bunzl plc Annual Report 2024 and Bunzl Continental Europe organisation page.</div>
+          </span>
+        </h3>
+        <span class="badge badge-inferred">INFERRED</span>
+      </div>
+      <div class="person-card"><div class="person-avatar">FR</div><div class="person-info"><h4>Frank van Zanten</h4><p>CEO Bunzl plc — sets group AI/digital direction</p></div></div>
+      <div class="person-card"><div class="person-avatar">RP</div><div class="person-info"><h4>Richard Howes</h4><p>CFO Bunzl plc — finance line above Hannes</p></div></div>
+      <div class="person-card"><div class="person-avatar">CM</div><div class="person-info"><h4>Claudio Marrero</h4><p>Head of Digital Product, Bunzl Group — Amsterdam-based; potential reference for Weita digital roadmap</p></div></div>
+      <div class="person-card"><div class="person-avatar">EU</div><div class="person-info"><h4>Bunzl CE Tech Hubs</h4><p>Amsterdam / Arnhem / Budapest — central engineering capacity Weita can leverage</p></div></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Professional Affiliations
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Memberships and affiliations from Swiss commercial registry, HWZ alumni network, and LinkedIn.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="conversation-card"><h4>HWZ Alumni (MSc 2017)</h4><p>Strategic Management cohort — relatively tight-knit professional network in Zurich finance/strategy.</p></div>
+      <div class="conversation-card"><h4>Bunzl Finance Community</h4><p>Reports into Bunzl Continental Europe finance line; informally connected to peers across group operating companies (Austria, Germany, Benelux).</p></div>
+      <div class="conversation-card"><h4>Swiss Wholesale & Distribution circles</h4><p>Likely connected via supplier ecosystem (Tork, Diversey, Kimberly-Clark) and customer industries (hospitality, healthcare, facility management).</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Key Customer Sectors
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Sectors identified from weita.ch shop categorisation, Weita brand portfolio (Industry/HoReCa/Medical/Retail), and Bunzl group materials.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="tags">
+        <span class="tag">Hospitality (HoReCa)</span>
+        <span class="tag">Healthcare & Care Homes</span>
+        <span class="tag">Facility Management</span>
+        <span class="tag">Industry / Manufacturing</span>
+        <span class="tag">Food Retail</span>
+        <span class="tag">Public Sector</span>
+        <span class="tag">Cleaning Service Providers</span>
+        <span class="tag">Catering</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BEHAVIORAL ANALYSIS -->
+<div id="behavior" class="tab-content">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Communication Style — 8-Dimension Profile
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ INFERRED: Radar scores based on linguistic and behavioural cues from his LinkedIn self-description, role characteristics, Bunzl culture and Swiss financial-leadership norms. Not a psychological assessment.</div>
+          </span>
+        </h3>
+        <span class="badge badge-inferred">INFERRED</span>
+      </div>
+      <div class="radar-wrap">
+        <svg class="radar-svg" viewBox="0 0 340 340">
+          <g transform="translate(170,170)">
+            <!-- grid -->
+            <polygon points="0,-150 106,-106 150,0 106,106 0,150 -106,106 -150,0 -106,-106" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+            <polygon points="0,-100 71,-71 100,0 71,71 0,100 -71,71 -100,0 -71,-71" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+            <polygon points="0,-50 35,-35 50,0 35,35 0,50 -35,35 -50,0 -35,-35" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- axes -->
+            <line x1="0" y1="0" x2="0" y2="-150" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="106" y2="-106" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="150" y2="0" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="106" y2="106" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="0" y2="150" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="-106" y2="106" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="-150" y2="0" stroke="#e2e8f0"/>
+            <line x1="0" y1="0" x2="-106" y2="-106" stroke="#e2e8f0"/>
+            <!-- subject polygon: Data-Driven 130, Pragmatic 120, Collaborative 110, Structured 130, Action-Oriented 95, Ethics-Focused 115, Innovative 90, Visionary 80 -->
+            <polygon points="0,-130 85,-85 110,0 92,92 0,95 -81,81 -90,0 -57,-57" fill="rgba(37,99,235,0.25)" stroke="#2563eb" stroke-width="2"/>
+            <!-- labels -->
+            <text x="0" y="-160" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Data-Driven</text>
+            <text x="118" y="-118" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Pragmatic</text>
+            <text x="166" y="4" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Collaborative</text>
+            <text x="118" y="122" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Structured</text>
+            <text x="0" y="168" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Action-Oriented</text>
+            <text x="-118" y="122" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Ethics-Focused</text>
+            <text x="-166" y="4" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Innovative</text>
+            <text x="-118" y="-118" text-anchor="middle" font-size="10" fill="#475569" font-weight="600">Visionary</text>
+          </g>
+        </svg>
+      </div>
+      <p style="font-size:0.82rem;color:var(--slate-gray);text-align:center;margin-top:8px">Strongest: <strong>Structured, Data-Driven, Pragmatic</strong>. Lower: <strong>Visionary</strong> (he buys vision via numbers).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">DISC Personality Profile
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How assessed
+            <div class="methodology-tooltip">⚠️ AI-INFERRED: DISC assessment based on observable behavioural indicators from public content, communication style, and role characteristics. NOT a formal DISC assessment — use as meeting preparation guidance only.</div>
+          </span>
+        </h3>
+        <span class="badge badge-inferred">INFERRED</span>
+      </div>
+      <div class="disc-chart">
+        <div class="disc-bar d-bar" style="height:35%"><span>D</span><span class="disc-score">35</span></div>
+        <div class="disc-bar i-bar" style="height:55%"><span>I</span><span class="disc-score">55</span></div>
+        <div class="disc-bar s-bar" style="height:75%"><span>S</span><span class="disc-score">75</span></div>
+        <div class="disc-bar c-bar" style="height:85%"><span>C</span><span class="disc-score">85</span></div>
+      </div>
+      <div class="disc-labels"><span>Dominance</span><span>Influence</span><span>Steadiness</span><span>Conscientiousness</span></div>
+      <div style="margin-top:14px">
+        <div class="disc-primary">Primary: <strong>C — Conscientious</strong></div>
+        <div class="disc-secondary">Secondary: S — Steady</div>
+        <p class="disc-description">A <strong>"Coordinator" / "Stabiliser"</strong> profile. Decisions are evidence-led and risk-aware (high C). Style is patient, supportive, team-positive (high S). The "empowering teams" and "Data Rocks" cues suggest enough I to make him approachable — he is <em>not</em> a stereotypical bean-counter — but D is comparatively low: he won't be the one banging the table for change, he'll be the one validating the case for it.</p>
+      </div>
+      <div class="insight-box blue" style="margin-top:14px">
+        <div class="insight-title">Communication tips:</div>
+        <p>Lead with <strong>structure, evidence, sources</strong>. Send a tight pre-read. Allow time to think; don't push for an in-room close. Show the <strong>governance & risk story</strong> alongside the upside. Acknowledge his team — he is loyal to his people.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Influence Levers — What Likely Moves Him
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated priorities, role characteristics, and communication patterns. Validate in actual conversation.</div>
+        </span>
+      </h3>
+      <span class="badge badge-inferred">INFERRED</span>
+    </div>
+    <div class="grid-2">
+      <div class="insight-box green"><div class="insight-title">Quality &gt; Speed</div><p>He will trade a quarter for a defensible business case. Don't pitch "ship in 4 weeks" — pitch "decisive in 4 weeks, in production in two quarters with audit trail."</p></div>
+      <div class="insight-box blue"><div class="insight-title">Total cost of ownership</div><p>Hidden run-cost (cloud, data, compliance, model maintenance) must be on slide one. Headline savings are not enough — net-of-run is what wins.</p></div>
+      <div class="insight-box yellow"><div class="insight-title">Group alignment</div><p>"What is Bunzl group doing?" is implicit currency. Reference RELEX, the digital-orders milestone, the European IT hubs. Frame Weita as <em>extending</em> group direction, not branching off.</p></div>
+      <div class="insight-box orange"><div class="insight-title">Team & change risk</div><p>Empowering teams sits in his identity. Show how the AI <strong>removes drudgery</strong> from his ~10–15 finance/AP people, not how it replaces headcount.</p></div>
+      <div class="insight-box red"><div class="insight-title">Compliance & data</div><p>FADP, EU AI Act readiness, supplier-data sovereignty (group / Switzerland). Have a one-pager. This is gating, not optional.</p></div>
+      <div class="insight-box"><div class="insight-title">Practitioner credibility</div><p>He came up through accounting craft. Don't only send strategists — bring someone who can speak ledger, allocation, IFRS / Swiss GAAP nuance.</p></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Decision-Making Profile
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ INFERRED: Profile based on described approaches and role characteristics. Validate with direct interaction.</div>
+          </span>
+        </h3>
+      </div>
+      <table class="profile-table">
+        <tr><td>Pace</td><td>Deliberate / consensus-seeking</td></tr>
+        <tr><td>Risk appetite</td><td>Conservative — prefers proof before scale</td></tr>
+        <tr><td>Information needs</td><td>High — wants written evidence, source citations</td></tr>
+        <tr><td>Stakeholders consulted</td><td>MD (Hauser), group finance, IT, ops leads</td></tr>
+        <tr><td>Sweet-spot first move</td><td>Bounded pilot with measurable KPI in &lt;120 days</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Psychological Indicators
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ AI-GENERATED: Patterns from content analysis. These are behavioural observations, not clinical assessments. Use as conversation guidance only.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="insight-box blue"><div class="insight-title">Continuous learner:</div><p>Returned to academia mid-career for an MSc — signals long-term mindset and a willingness to upgrade his frame.</p></div>
+      <div class="insight-box green"><div class="insight-title">Quietly enthusiastic about data:</div><p>"Data Rocks" tag is unusual for a Swiss finance director — read it as an open door, not a credential.</p></div>
+      <div class="insight-box yellow"><div class="insight-title">Loyal & long-tenured:</div><p>Multiple roles inside the same group — values stability, in-group trust. Trust is earned through repeated competent interactions, not one impressive pitch.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Key Value Phrases (from public content)
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">Phrases extracted from his LinkedIn headline / about and Bunzl group materials. Use these as anchors when framing your pitch.</div>
+        </span>
+      </h3>
+    </div>
+    <table class="profile-table">
+      <tr><td>"Driving Financial Excellence and Innovation"</td><td>Excellence first; innovation as servant of excellence, not an end in itself</td></tr>
+      <tr><td>"Empowering Teams"</td><td>People-positive — the AI story should liberate his team, not threaten it</td></tr>
+      <tr><td>"Data Rocks"</td><td>Personal affinity for analytics — your opening hook</td></tr>
+      <tr><td>"Strategic Management" (MSc focus)</td><td>Speaks the language of frameworks (5-forces, value-chain, BSC). Use them.</td></tr>
+      <tr><td>Bunzl: "Resourceful and Resilient"</td><td>2024 group theme — frugal, durable execution. Match this register.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- STRATEGIC POSITION -->
+<div id="strategy" class="tab-content">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">SWOT — Framed for the AI Business-Case Conversation
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">⚠️ AI-GENERATED: SWOT framed around your meeting objective ("case for AI"), not generic company analysis. Hover items for engagement recommendations.</div>
+        </span>
+      </h3>
+      <span class="badge badge-inferred">INFERRED</span>
+    </div>
+    <div class="swot-grid">
+      <div class="swot-quadrant swot-strengths">
+        <h4>Strengths (for AI adoption)</h4>
+        <ul>
+          <li><div class="interactive-item">Group-level digital tailwind (Bunzl plc 76% digital orders, RELEX pilot)<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Cite these in slide 2 — Hannes feels covered by group precedent.</div></div></li>
+          <li><div class="interactive-item">Decentralised mandate — Weita can act without London approval<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Reframe ambition: this isn't escalation, it's local authority.</div></div></li>
+          <li><div class="interactive-item">Strong margin business (8.3% group OP) → cash to invest<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>The CapEx case is fundable; emphasise opex-style SaaS structure.</div></div></li>
+          <li><div class="interactive-item">Hannes himself — strategic-management lens, data-positive tagline<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Mirror his strategic frames; he won't appreciate AI-hype tone.</div></div></li>
+        </ul>
+      </div>
+      <div class="swot-quadrant swot-weaknesses">
+        <h4>Weaknesses (likely blockers)</h4>
+        <ul>
+          <li><div class="interactive-item">Mid-size CH operating company — finite data-engineering bench<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Lead with augmentation model (managed service / co-build) not "build-it-yourself."</div></div></li>
+          <li><div class="interactive-item">Group-led IT decisions for major platforms (Amsterdam/Arnhem)<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Position your scope above ERP — finance ops, FP&A, AP — where Hannes has authority.</div></div></li>
+          <li><div class="interactive-item">No public AI-adoption track record at Weita yet<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Offer to co-write the first internal "AI principles" one-pager — gives him a quick shareable artefact.</div></div></li>
+          <li><div class="interactive-item">Conservative finance culture — change-management drag<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Build a phased 3-step plan with named "off-ramps".</div></div></li>
+        </ul>
+      </div>
+      <div class="swot-quadrant swot-opportunities">
+        <h4>Opportunities</h4>
+        <ul>
+          <li><div class="interactive-item">AP / invoice IDP — 70-80% cycle reduction at industry benchmark<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Quick-win lighthouse, fundable from finance budget alone.</div></div></li>
+          <li><div class="interactive-item">FP&A / forecasting copilots — 40% accuracy lift in benchmarks<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Frame as augment, not replace, his team.</div></div></li>
+          <li><div class="interactive-item">Sales-margin optimisation across hygiene/HoReCa categories<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Cross-sell to MD Hauser; Hannes provides the financial backstop.</div></div></li>
+          <li><div class="interactive-item">Reusable "case-for-AI" template for other Bunzl OpCos<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Position Weita as the European reference site — appeals to ambition.</div></div></li>
+        </ul>
+      </div>
+      <div class="swot-quadrant swot-threats">
+        <h4>Threats</h4>
+        <ul>
+          <li><div class="interactive-item">FADP / EU AI Act compliance load<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Bring a compliance one-pager; turn threat into reassurance.</div></div></li>
+          <li><div class="interactive-item">Group AI standards may freeze local choice<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Pre-empt: align your stack with Bunzl group cloud direction.</div></div></li>
+          <li><div class="interactive-item">Vendor-fatigue (he is being pitched a lot in 2026)<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Don't lead with capabilities — lead with his agenda.</div></div></li>
+          <li><div class="interactive-item">Pilot purgatory risk<div class="item-recommendation"><div class="item-recommendation-label">Recommendation</div>Define ROI gates and a pre-committed scale plan tied to milestones.</div></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Competitive Positioning — Swiss B2B Distribution
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ AI-ESTIMATED: Positions based on market perception analysis, public revenue & employee counts. Axes are relative, not absolute measurements.</div>
+          </span>
+        </h3>
+        <span class="badge badge-speculative">ESTIMATED</span>
+      </div>
+      <div class="scatter-plot">
+        <div class="axis-label" style="bottom:6px;left:50%;transform:translateX(-50%)">Digital / AI Maturity →</div>
+        <div class="axis-label" style="left:6px;top:50%;transform:rotate(-90deg) translateX(50%);transform-origin:left">Market Position →</div>
+        <div class="scatter-dot subject" style="left:60%;bottom:75%"><div class="scatter-tooltip">Weita / Bunzl Schweiz — strong market, mid digital maturity</div></div>
+        <div class="scatter-dot competitor" style="left:75%;bottom:60%"><div class="scatter-tooltip">CWS Switzerland — adjacent hygiene; higher digital push</div></div>
+        <div class="scatter-dot competitor" style="left:30%;bottom:55%"><div class="scatter-tooltip">Diversey CH (Solenis) — supplier+direct channel</div></div>
+        <div class="scatter-dot competitor" style="left:45%;bottom:40%"><div class="scatter-tooltip">Pistor / Saviva — foodservice distribution adjacency</div></div>
+        <div class="scatter-dot competitor" style="left:25%;bottom:30%"><div class="scatter-tooltip">Local CH facility-supply players</div></div>
+      </div>
+      <div style="display:flex;gap:18px;font-size:0.78rem;color:var(--slate-gray);margin-top:10px;justify-content:center">
+        <span><span style="display:inline-block;width:10px;height:10px;background:var(--green-verified);border-radius:50%;margin-right:4px"></span> Subject</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:var(--red-speculative);border-radius:50%;margin-right:4px"></span> Competitors / adjacencies</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Core Differentiators
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Self-stated differentiators from Weita and Bunzl Schweiz websites and group strategic narrative.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="insight-box green"><div class="insight-title">"One-stop shop" breadth</div><p>~30,000 SKUs across hygiene, packaging, medical, FM consumables — single-supplier value proposition for complex CH customers.</p></div>
+      <div class="insight-box blue"><div class="insight-title">Brand-partner depth</div><p>Tork, KCP, Diversey, Ontex, Dr. Schumacher — premium portfolio, not commodity reseller.</p></div>
+      <div class="insight-box orange"><div class="insight-title">Group buying power</div><p>Bunzl plc scale on procurement → margin and resilience under deflation.</p></div>
+      <div class="insight-box yellow"><div class="insight-title">Local + Swiss-quality service</div><p>Aesch HQ, Möhlin and Donneloye sites — Romandie + Deutschschweiz coverage with native-speaker sales.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Competitive Intelligence — Likely Vendor Conversations
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">⚠️ SPECULATIVE: Based on market patterns and Bunzl group precedents (RELEX). Actual vendor pipeline may differ — ask in the meeting.</div>
+        </span>
+      </h3>
+      <span class="badge badge-speculative">SPECULATIVE</span>
+    </div>
+    <table class="profile-table">
+      <tr><td>RELEX Solutions</td><td>Already used by Bunzl Catering UK — likely "default" for forecasting / replenishment if it scales group-wide</td></tr>
+      <tr><td>Microsoft / Copilot stack</td><td>If Bunzl group standardises on Microsoft Cloud → finance copilots become a procurement-light path</td></tr>
+      <tr><td>SAP / Oracle finance AI</td><td>Depends on local ERP choice — likely a longer-cycle, group-level conversation</td></tr>
+      <tr><td>Boutique CH AI partners</td><td>Specialist consultancies (incl. <strong>Artifact</strong>) competing on speed-to-value and local presence</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ENGAGEMENT PLAYBOOK -->
+<div id="playbook" class="tab-content">
+  <div class="card" style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff">
+    <div class="card-header">
+      <h3 class="card-title" style="color:#fff">Recommended Engagement Strategy
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">Strategy synthesised from behavioural analysis and stated meeting purpose. Adapt based on your specific objectives.</div>
+        </span>
+      </h3>
+      <span class="badge" style="background:#60a5fa;color:#fff">PRIMARY MOTION</span>
+    </div>
+    <p style="font-size:0.95rem;line-height:1.65;color:rgba(255,255,255,.9)">
+      <strong style="color:#fff">Win Hannes as your champion, not your buyer.</strong> The shortest path to a real AI investment at Weita is: (1) anchor on his identity — "Data Rocks", strategic management, empowering teams; (2) co-create a one-page "case for AI at Weita" he can take internally to MD Hauser and (informally) to Bunzl group finance; (3) propose <strong>one bounded, &lt;120-day finance pilot</strong> (AP IDP <em>or</em> cash-flow forecasting) with crisp KPI gates. Skip platform/vendor positioning in meeting #1. Bring a CFO-credible voice on your side of the table.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">What You Can Offer Him (Value Exchange)
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ AI-GENERATED: Suggestions based on his stated needs and Artifact's stated capabilities. Customise to your actual offer.</div>
+          </span>
+        </h3>
+        <span class="badge" style="background:var(--green-verified);color:#fff">VALUE EXCHANGE</span>
+      </div>
+      <div class="insight-box green"><div class="insight-title">A defendable business case (1-pager)</div><p>Co-write the "AI in Weita finance" investment case in his language and his template — usable upward to Hauser and group.</p></div>
+      <div class="insight-box blue"><div class="insight-title">Vendor-neutral architecture review</div><p>Independent view on RELEX vs. Microsoft vs. boutique stacks. He cannot get this internally.</p></div>
+      <div class="insight-box orange"><div class="insight-title">Award-winning execution credibility</div><p>Reference: <strong>SwissICT Digital Economy Award 2024 — Innovation of the Year</strong> for Artifact's AI Data-Analysis Assistant. He buys proof points, not promises.</p></div>
+      <div class="insight-box yellow"><div class="insight-title">"AI principles" one-pager</div><p>Reusable artefact for his organisation — internal communication asset for governance, FADP, EU AI Act readiness.</p></div>
+      <div class="insight-box"><div class="insight-title">Bunzl-aligned narrative</div><p>You map your pilot to Bunzl plc's published 2025 priorities (digital orders, margin, resilience) — saves him political work.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Optimal Contact Strategy
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How determined
+            <div class="methodology-tooltip">Recommendations based on communication-style analysis (high C/S DISC), Swiss professional norms, and his low public footprint.</div>
+          </span>
+        </h3>
+      </div>
+      <table class="profile-table">
+        <tr><td>Preferred channel</td><td>Email + LinkedIn (German). Avoid cold phone.</td></tr>
+        <tr><td>Optimal timing</td><td>Tue–Thu mornings, 08:00–10:00 CET. Avoid month-end / quarter-end weeks.</td></tr>
+        <tr><td>Formality level</td><td>Sie-Form on first contact; switch only when he initiates Du. Concise, evidence-backed.</td></tr>
+        <tr><td>First touchpoint</td><td>Personalised note referencing "Data Rocks" + a 1-pager (not a deck). Offer a 30-min discovery, not a 60-min pitch.</td></tr>
+        <tr><td>Follow-up cadence</td><td>One follow-up at +5 business days; a second at +14 with a fresh artefact (e.g., Bunzl-context analysis). Then space.</td></tr>
+        <tr><td>Reference asset</td><td>Two-page anonymised case study from a Swiss B2B finance function. No vendor logos in v1.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Conversation Starters (Detailed)
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Topics derived from his stated interests, recent role context and Bunzl group narrative.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="conversation-card"><h4>Opening (rapport)</h4><p>"Ihr Untertitel auf LinkedIn — 'Data Rocks' — fällt für eine Finanzfunktion auf. Was war Ihr letzter Aha-Moment mit Daten bei Weita?"</p></div>
+      <div class="conversation-card"><h4>Frame the meeting</h4><p>"Ich habe mir vorgenommen, in den ersten 15 Minuten <em>nicht</em> über Tools zu sprechen — wenn das für Sie passt, lassen Sie uns mit dem Ziel beginnen: Was würde 'AI mit Wirkung' für Weita 2026 konkret heissen?"</p></div>
+      <div class="conversation-card"><h4>Open the group angle</h4><p>"Bunzl Catering UK rollt RELEX aus, der Konzern ist bei 76% Digital-Orders. Wie viel davon ist bei Ihnen schon spürbar — und wo möchten Sie eigenständig vor der Gruppe sein?"</p></div>
+      <div class="conversation-card"><h4>Probe priorities</h4><p>"Wenn Sie zwischen Forecast-Genauigkeit, AP-Automatisierung und Margenoptimierung priorisieren müssten — was würde Ihnen 2026 die beste 'Story' zur Geschäftsleitung geben?"</p></div>
+      <div class="conversation-card"><h4>Close the loop</h4><p>"Wenn ich mit zwei Slides zurückkomme — 'AI-Investment-Case Weita 2026' in Ihrer Sprache — was muss zwingend draufstehen, damit Sie's intern weitergeben können?"</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Topics to Approach Carefully
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">⚠️ AI-INFERRED: Based on stated values, role characteristics and Bunzl culture. Use judgement in actual conversation.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="conversation-card warning"><h4>Headcount reduction</h4><p>"Empowering teams" is identity. Don't lead with FTE-elimination ROI. Frame as toil-reduction and capacity-shift to higher-value FP&A.</p></div>
+      <div class="conversation-card warning"><h4>Hyped LLM theatre</h4><p>Avoid demoware, "agentic everything", flashy chatbots. Match the "Resourceful and Resilient" Bunzl tone.</p></div>
+      <div class="conversation-card warning"><h4>Aggressive pricing tactics</h4><p>Avoid pressure-tactics, deadlines, exclusivity offers. He'll quietly close the door.</p></div>
+      <div class="conversation-card warning"><h4>Ambushing the MD</h4><p>Don't try to pull Philipp Hauser into a "casual" call early. Hannes must own the introduction.</p></div>
+      <div class="conversation-card warning"><h4>Group politics</h4><p>Don't speculate on Bunzl group's AI strategy in front of him — he's a loyal company person.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Personal Interests Matching — Hannes × Michael
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How researched
+          <div class="methodology-tooltip">⚠️ INFERRED: Personal interests discovered from public profiles, interviews and social media. Research conducted SEPARATELY for each person to avoid data mixing.</div>
+        </span>
+      </h3>
+      <span class="badge" style="background:linear-gradient(135deg,#ec4899,#f472b6);color:#fff">PERSONAL CONNECTION</span>
+    </div>
+    <div class="grid-2" style="margin-bottom:18px">
+      <div>
+        <h4 style="font-weight:700;margin-bottom:10px;color:var(--navy)">Hannes Bussinger — likely interests</h4>
+        <div class="tags">
+          <span class="tag">Strategic management</span>
+          <span class="tag">Data &amp; analytics</span>
+          <span class="tag">Continuous learning</span>
+          <span class="tag">Team building</span>
+          <span class="tag">Basel-Land community</span>
+          <span class="tag">Family / private (low public footprint)</span>
+        </div>
+        <p style="font-size:0.78rem;color:var(--slate-gray);margin-top:8px"><em>Note: Hannes's public footprint is sparse — interests above are inferred from professional cues and Swiss-DACH executive norms; treat as hypotheses, not facts.</em></p>
+      </div>
+      <div>
+        <h4 style="font-weight:700;margin-bottom:10px;color:var(--navy)">Michael Wegmüller — interests</h4>
+        <div class="tags">
+          <span class="tag pink">AI &amp; data science</span>
+          <span class="tag pink">Digital nomad / travel</span>
+          <span class="tag pink">UX / product design</span>
+          <span class="tag pink">Web3 &amp; blockchain</span>
+          <span class="tag pink">Swiss Armed Forces (senior officer)</span>
+          <span class="tag pink">Policy &amp; ethics (Digital Impact Network)</span>
+          <span class="tag pink">Mentoring &amp; community building</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);padding:18px;border-radius:10px;border:1px solid #fbcfe8">
+      <h4 style="font-weight:700;margin-bottom:10px;color:#be185d">Shared interests &amp; connection points</h4>
+      <div class="insight-box" style="border-color:#ec4899;background:#fff"><div class="insight-title" style="color:#be185d">Data &amp; analytics</div><p>Hannes self-tags "Data Rocks"; Michael's identity is built around data &amp; AI. This is your strongest organic bridge — open with it.</p></div>
+      <div class="insight-box" style="border-color:#ec4899;background:#fff"><div class="insight-title" style="color:#be185d">Strategic management lens</div><p>Hannes (HWZ MSc) and Michael (AI strategy advisor for Swissmem, KImpact, Digital Impact Network) both think in frameworks. Use Porter / value-chain language naturally.</p></div>
+      <div class="insight-box" style="border-color:#ec4899;background:#fff"><div class="insight-title" style="color:#be185d">Swiss professional context</div><p>Both Basel-aligned (Hannes in Aesch BL, Michael as a CH-based founder). Reference Swiss-specific topics — FADP, Swiss-AI policy debate — naturally.</p></div>
+      <div class="insight-box" style="border-color:#ec4899;background:#fff"><div class="insight-title" style="color:#be185d">Service / community orientation</div><p>Hannes is a long-tenured loyal company-person; Michael has a senior Swiss-Army-officer commitment. Both value institutional service over self-promotion — match this register.</p></div>
+    </div>
+    <div class="insight-box" style="border-color:#ec4899;margin-top:14px">
+      <div class="insight-title" style="color:#ec4899">Conversation opportunities</div>
+      <p>Open with "Data Rocks" — bridge into Michael's <strong>SwissICT Digital Economy Award 2024 (Innovation of the Year)</strong> for an AI Data-Analysis Assistant. Hannes is precisely the buyer profile that award targets. Avoid Web3/blockchain — too far from his orbit. The Swiss Armed Forces angle is best kept as backstory unless he asks; it can read as credibility for governance &amp; risk discussions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MEDIA FOOTPRINT -->
+<div id="media" class="tab-content">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Published Content
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">Content discovered via web search, LinkedIn and company blog archives.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="media-item"><h4>No bylined articles surfaced</h4><p>Hannes does not publish thought-leadership content under his name. He is a doer, not a broadcaster.</p></div>
+      <div class="media-item"><h4>HWZ alumni press release (2017)</h4><p>Listed as one of 19 graduates of the MSc Strategic Management cohort.</p></div>
+      <div class="media-item"><h4>Bunzl plc Annual Reports</h4><p>His function (Swiss finance) feeds aggregated reporting; his name does not appear in published group materials.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Speaking Appearances
+          <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+            <div class="methodology-tooltip">From conference speaker pages, event listings and press coverage.</div>
+          </span>
+        </h3>
+      </div>
+      <div class="media-item"><h4>No public speaking engagements found</h4><p>No conference, panel or podcast appearances surfaced as of May 2026.</p></div>
+      <div class="media-item"><h4>Implication</h4><p>This is a private executive — meetings, not microphones. Don't invite him to keynote; invite him to a closed-door peer roundtable.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Sentiment Analysis (Group + Subject)
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">⚠️ AI-GENERATED: Aggregate sentiment from NLP classification of news coverage. Subject-specific data is sparse — mostly reflects Bunzl plc parent.</div>
+        </span>
+      </h3>
+      <span class="badge badge-inferred">AGGREGATE</span>
+    </div>
+    <div class="bar-chart">
+      <div class="bar-group"><div class="bar-tooltip">2023: 70% positive · 22% neutral · 8% critical</div><div class="bar" style="height:170px"><div class="bar-segment positive" style="height:70%"></div><div class="bar-segment neutral" style="height:22%"></div><div class="bar-segment critical" style="height:8%"></div></div><span class="bar-label">2023</span></div>
+      <div class="bar-group"><div class="bar-tooltip">2024: 65% positive · 25% neutral · 10% critical</div><div class="bar" style="height:170px"><div class="bar-segment positive" style="height:65%"></div><div class="bar-segment neutral" style="height:25%"></div><div class="bar-segment critical" style="height:10%"></div></div><span class="bar-label">2024</span></div>
+      <div class="bar-group"><div class="bar-tooltip">2025: 60% positive · 28% neutral · 12% critical (margin pressure narrative)</div><div class="bar" style="height:170px"><div class="bar-segment positive" style="height:60%"></div><div class="bar-segment neutral" style="height:28%"></div><div class="bar-segment critical" style="height:12%"></div></div><span class="bar-label">2025</span></div>
+      <div class="bar-group"><div class="bar-tooltip">2026 YTD: 62% positive · 27% neutral · 11% critical</div><div class="bar" style="height:170px"><div class="bar-segment positive" style="height:62%"></div><div class="bar-segment neutral" style="height:27%"></div><div class="bar-segment critical" style="height:11%"></div></div><span class="bar-label">2026 YTD</span></div>
+    </div>
+    <div style="display:flex;gap:18px;justify-content:center;margin-top:10px;font-size:0.78rem;color:var(--slate-gray)">
+      <span><span style="display:inline-block;width:10px;height:10px;background:#16a34a;border-radius:2px;margin-right:4px"></span>Positive</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:#64748b;border-radius:2px;margin-right:4px"></span>Neutral</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:#dc2626;border-radius:2px;margin-right:4px"></span>Critical</span>
+    </div>
+    <p style="font-size:0.82rem;color:var(--slate-gray);margin-top:14px"><em>Note: critical-share lift in 2025 reflects analyst commentary on Bunzl plc margin / ROCE pressure (ainvest), not Hannes or Weita specifically.</em></p>
+  </div>
+</div>
+
+<!-- AI USE CASES -->
+<div id="ai" class="tab-content">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Recommended AI Use Cases — Tailored to Hannes &amp; Weita
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> How generated
+          <div class="methodology-tooltip">⚠️ AI-GENERATED: Use cases selected based on his role (Finance Director), industry (B2B distribution / hygiene / catering), Bunzl group precedents (RELEX, digital orders), and his stated affinity for data and team empowerment. Hover each card for the reasoning.</div>
+        </span>
+      </h3>
+      <span class="badge" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);color:#fff">AI OPPORTUNITIES</span>
+    </div>
+    <p style="font-size:0.92rem;color:var(--slate-gray);margin-bottom:18px">
+      Eight prioritised use cases, sequenced from <strong>quick wins for finance</strong> (his perimeter, his budget) to <strong>group-strategic</strong> (where he influences but co-decides). Each card has a hover-explanation of <em>why this fits him specifically</em>.
+    </p>
+    <div class="use-cases-grid">
+
+      <div class="use-case-card">
+        <div class="use-case-icon">①</div>
+        <h4 class="use-case-title">AP Invoice Automation (IDP)</h4>
+        <p class="use-case-description">Intelligent document processing for incoming supplier invoices — extraction, GL coding, 3-way match, exception routing. Industry benchmark: 70-80% cycle-time reduction.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>Pure finance perimeter, fundable from his budget alone, measurable in &lt;90 days. Empowers his AP team rather than replacing it. Lowest-friction "first yes."</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">②</div>
+        <h4 class="use-case-title">Cash-Flow &amp; Working-Capital Forecasting</h4>
+        <p class="use-case-description">ML on historic AR/AP/ERP signals + bank feeds for 13-week and 26-week cash forecasts. Benchmark accuracy 75-92% horizon-dependent.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>Direct to his KPI dashboard. Strong upward narrative to MD Hauser and group CFO. Mirrors RELEX-style success Bunzl Catering UK already achieved.</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">③</div>
+        <h4 class="use-case-title">FP&amp;A Copilot</h4>
+        <p class="use-case-description">Natural-language interface over financial data — variance analysis, scenario modelling, board-pack drafting, what-if simulation. Benchmark: 50-60% reduction in forecast cycle time.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>"Empowers teams" — his exact phrase. Frees his analysts from Excel grind into strategic work; he can demonstrate cultural change without firing anyone.</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">④</div>
+        <h4 class="use-case-title">Demand Forecasting &amp; Replenishment</h4>
+        <p class="use-case-description">Item-level demand prediction, dynamic safety-stock, automated PO suggestions. Benchmark: 20-30% inventory reduction; 5-15% procurement spend reduction.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>Direct mirror of RELEX rollout in Bunzl Catering UK — group precedent makes the conversation safer. Bridges finance-to-ops; Hannes wins influence with the MD.</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">⑤</div>
+        <h4 class="use-case-title">Dynamic B2B Pricing &amp; Margin Optimisation</h4>
+        <p class="use-case-description">AI-recommended customer- and SKU-level pricing using win-rate, elasticity, competitor signals, contract type. Benchmark: 100-300 bps margin uplift.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>Highest direct P&amp;L impact. Sweet spot for hygiene/catering distribution. Requires MD Hauser sponsorship — Hannes is the financial guarantor of the case.</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">⑥</div>
+        <h4 class="use-case-title">Customer Churn &amp; Cross-Sell Engine</h4>
+        <p class="use-case-description">Predictive scoring of B2B accounts at risk; next-best-product recommendations across hygiene / packaging / medical categories.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>Top-line growth without selling-cost increase — finance-friendly story. Leverages Weita's "one-stop-shop" advantage; defendable with sales leadership.</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">⑦</div>
+        <h4 class="use-case-title">Compliance &amp; Audit Co-pilot</h4>
+        <p class="use-case-description">RAG over policies, contracts, FADP / EU AI Act, group reporting standards. Drafting and review for the finance &amp; legal function.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>Speaks directly to his Conscientious profile. Turns AI from "risk" to "risk-mitigant." Excellent low-stakes way for him to test the technology personally.</p></div>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-icon">⑧</div>
+        <h4 class="use-case-title">"AI Principles &amp; Use-Case Portfolio" (Strategy Layer)</h4>
+        <p class="use-case-description">Lightweight, board-ready operating model: principles, governance, prioritised pipeline of 8-12 use cases with stage-gates, linked to Bunzl group direction.</p>
+        <div class="use-case-reasoning"><div class="reasoning-label">Why for Hannes</div><p>The umbrella artefact he can carry to MD Hauser and group. Matches his Strategic Management MSc lens. This is your real "case for AI" deliverable for the meeting.</p></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<div class="tab-content active" style="display:block">
+  <div class="card" style="margin:28px 40px;max-width:1280px;margin-left:auto;margin-right:auto">
+    <div class="card-header">
+      <h3 class="card-title">Sources &amp; Citations
+        <span class="methodology-callout"><span class="methodology-icon">ℹ️</span> Source freshness
+          <div class="methodology-tooltip">All sources accessed May 2026. Links open in a new tab. Sources older than 2 years are flagged. Confidence levels shown as VERIFIED / SECONDARY / INFERRED.</div>
+        </span>
+      </h3>
+      <span class="badge badge-verified">14 SOURCES</span>
+    </div>
+    <div class="sources-grid">
+      <a href="https://www.linkedin.com/in/hannes-bussinger-0008b295/" target="_blank" class="source-item"><div class="source-icon">LI</div><div class="source-info"><div class="source-name">LinkedIn — Hannes Bussinger</div><div class="source-meta">2026 · Professional · VERIFIED</div></div></a>
+      <a href="https://www.moneyhouse.ch/en/company/weita-ag-4597867751" target="_blank" class="source-item"><div class="source-icon">MH</div><div class="source-info"><div class="source-name">Moneyhouse — Weita AG</div><div class="source-meta">2026 · Swiss registry · VERIFIED</div></div></a>
+      <a href="https://www.moneyhouse.ch/en/company/bunzl-holding-switzerland-ag-20933162811" target="_blank" class="source-item"><div class="source-icon">MH</div><div class="source-info"><div class="source-name">Moneyhouse — Bunzl Holding Switzerland</div><div class="source-meta">2026 · Swiss registry · VERIFIED</div></div></a>
+      <a href="https://www.lixt.ch/handelsregister/bunzl-holding-switzerland-ag-379187" target="_blank" class="source-item"><div class="source-icon">LX</div><div class="source-info"><div class="source-name">Lixt — Bunzl Holding Switzerland</div><div class="source-meta">2026 · Registry data · VERIFIED</div></div></a>
+      <a href="https://www.bunzl.ch/ueber-bunzl-schweiz/" target="_blank" class="source-item"><div class="source-icon">BZ</div><div class="source-info"><div class="source-name">Bunzl Schweiz — Über uns</div><div class="source-meta">2026 · Corporate · VERIFIED</div></div></a>
+      <a href="https://www.weita.ch/de/ueber-weita/firmenportrait/" target="_blank" class="source-item"><div class="source-icon">WE</div><div class="source-info"><div class="source-name">Weita — Firmenportrait</div><div class="source-meta">2026 · Corporate · VERIFIED</div></div></a>
+      <a href="https://www.bunzl.com/media/a0gjhtd2/annual-report-2024.pdf" target="_blank" class="source-item"><div class="source-icon">BP</div><div class="source-info"><div class="source-name">Bunzl plc — Annual Report 2024</div><div class="source-meta">2024 · Investor PDF · VERIFIED</div></div></a>
+      <a href="https://www.bunzl.com/newsroom/annual-results-for-2025/" target="_blank" class="source-item"><div class="source-icon">BP</div><div class="source-info"><div class="source-name">Bunzl plc — Annual Results 2025</div><div class="source-meta">2026 · Newsroom · VERIFIED</div></div></a>
+      <a href="https://www.cateringinsight.com/how-bunzl-catering-supplies-has-used-ai-and-machine-learning-to-improve-stock-availability/" target="_blank" class="source-item"><div class="source-icon">CI</div><div class="source-info"><div class="source-name">Catering Insight — Bunzl AI / RELEX</div><div class="source-meta">2024 · Industry press · SECONDARY</div></div></a>
+      <a href="https://fh-hwz.ch/news/hwz-diplomiert-19-master-science-business-administration/" target="_blank" class="source-item"><div class="source-icon">HW</div><div class="source-info"><div class="source-name">HWZ — MSc Class of 2017</div><div class="source-meta">2017 · Alumni news · SECONDARY (older)</div></div></a>
+      <a href="https://business-monitor.ch/en/companies/152178-weita-ag" target="_blank" class="source-item"><div class="source-icon">BM</div><div class="source-info"><div class="source-name">Business Monitor — Weita AG</div><div class="source-meta">2026 · Registry · VERIFIED</div></div></a>
+      <a href="https://www.bunzl.eu/organisation/" target="_blank" class="source-item"><div class="source-icon">BE</div><div class="source-info"><div class="source-name">Bunzl Continental Europe — Organisation</div><div class="source-meta">2026 · Corporate · VERIFIED</div></div></a>
+      <a href="https://www.mckinsey.com/industries/industrials/our-insights/distribution-blog/harnessing-the-power-of-ai-in-distribution-operations" target="_blank" class="source-item"><div class="source-icon">MK</div><div class="source-info"><div class="source-name">McKinsey — AI in Distribution</div><div class="source-meta">2024 · Industry research · SECONDARY</div></div></a>
+      <a href="https://artifact.swiss/team/michael-wegmuller/" target="_blank" class="source-item"><div class="source-icon">AR</div><div class="source-info"><div class="source-name">Artifact — Michael Wegmüller</div><div class="source-meta">2026 · Corporate · VERIFIED</div></div></a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Generated <strong>7 May 2026</strong> for <strong>Michael Wegmüller</strong> · Original prompt: <em>"Hannes Bussinger from Weita / Bunzl Gruppe on establishing a case for AI in Organizations."</em></p>
+  <p style="margin-top:6px">Report ID: <strong>53c957de</strong> · Sailor Intel · Meeting Intelligence Profile</p>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(x=>{
+      // keep sources card always visible, but hide the rest
+      if(x.querySelector('.sources-grid')) return;
+      x.classList.remove('active');
+    });
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
